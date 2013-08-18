@@ -16,6 +16,11 @@ using System.Xml.Serialization;
 using System.Runtime.Serialization;
 
 [assembly: EdmSchemaAttribute()]
+#region EDM Relationship Metadata
+
+[assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Sub_Categories_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Category), "Sub_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Sub_Categories), true)]
+
+#endregion
 
 namespace Acig_Help_DeskModel
 {
@@ -303,6 +308,31 @@ namespace Acig_Help_DeskModel
 
         #endregion
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Sub_Categories_Categories", "Sub_Categories")]
+        public EntityCollection<Sub_Categories> Sub_Categories
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Sub_Categories>("Acig_Help_DeskModel.FK_Sub_Categories_Categories", "Sub_Categories");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Sub_Categories>("Acig_Help_DeskModel.FK_Sub_Categories_Categories", "Sub_Categories", value);
+                }
+            }
+        }
+
+        #endregion
     }
     
     /// <summary>
@@ -320,13 +350,15 @@ namespace Acig_Help_DeskModel
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
+        /// <param name="category_Id">Initial value of the Category_Id property.</param>
         /// <param name="created_At">Initial value of the Created_At property.</param>
         /// <param name="updated_At">Initial value of the Updated_At property.</param>
-        public static Sub_Categories CreateSub_Categories(global::System.Int64 id, global::System.String name, global::System.DateTime created_At, global::System.DateTime updated_At)
+        public static Sub_Categories CreateSub_Categories(global::System.Int64 id, global::System.String name, global::System.Int64 category_Id, global::System.DateTime created_At, global::System.DateTime updated_At)
         {
             Sub_Categories sub_Categories = new Sub_Categories();
             sub_Categories.Id = id;
             sub_Categories.Name = name;
+            sub_Categories.Category_Id = category_Id;
             sub_Categories.Created_At = created_At;
             sub_Categories.Updated_At = updated_At;
             return sub_Categories;
@@ -385,6 +417,30 @@ namespace Acig_Help_DeskModel
         private global::System.String _Name;
         partial void OnNameChanging(global::System.String value);
         partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 Category_Id
+        {
+            get
+            {
+                return _Category_Id;
+            }
+            set
+            {
+                OnCategory_IdChanging(value);
+                ReportPropertyChanging("Category_Id");
+                _Category_Id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Category_Id");
+                OnCategory_IdChanged();
+            }
+        }
+        private global::System.Int64 _Category_Id;
+        partial void OnCategory_IdChanging(global::System.Int64 value);
+        partial void OnCategory_IdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -484,6 +540,47 @@ namespace Acig_Help_DeskModel
 
         #endregion
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Sub_Categories_Categories", "Category")]
+        public Category Category
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Acig_Help_DeskModel.FK_Sub_Categories_Categories", "Category").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Acig_Help_DeskModel.FK_Sub_Categories_Categories", "Category").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Category> CategoryReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Acig_Help_DeskModel.FK_Sub_Categories_Categories", "Category");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("Acig_Help_DeskModel.FK_Sub_Categories_Categories", "Category", value);
+                }
+            }
+        }
+
+        #endregion
     }
 
     #endregion

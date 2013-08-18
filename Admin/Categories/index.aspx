@@ -27,6 +27,8 @@
                 <ItemTemplate>
                     <asp:LinkButton ID="EditButton" runat="server" CssClass="button" CommandName="Edit"
                         Text="Edit"/>
+                        |
+                    <a href='<%# Route.GetRootPath("admin/sub_categories/index.aspx") %>?id=<%# Eval("Id") %>'>Sub Categories</a>
                 </ItemTemplate>
                 <EditItemTemplate>
                     <asp:LinkButton ID="UpdateButton" runat="server" CssClass="button" CommandName="Update"

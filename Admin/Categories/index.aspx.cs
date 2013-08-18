@@ -66,5 +66,6 @@ public partial class Admin_Categories_index : MasterAppPage
         _acig_Help_DeskEntities.AddToCategories(_category);
         _acig_Help_DeskEntities.SaveChanges();
         BindDataToGridView();
+        txtCategoryName.Text = string.Empty;
     }
 }
