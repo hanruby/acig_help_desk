@@ -7,6 +7,7 @@ using Acig_Help_DeskModel;
 public class MasterAppPage : System.Web.UI.Page
 {
     protected Acig_Help_DeskEntities _acig_Help_DeskEntities;
+    protected long currentUserId;
     protected Acig_Help_DeskEntities GetEntity()
     {
         if (_acig_Help_DeskEntities == null)

@@ -34,5 +34,33 @@
         // or SQLServer, the event is not raised.
 
     }
+
+    protected void FormsAuthentication_OnAuthenticate(Object sender, FormsAuthenticationEventArgs e)
+    {
+        if (FormsAuthentication.CookiesSupported == true)
+        {
+            if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+            {
+                try
+                {
+                    //email
+                    var cookie = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value);
+                    string username = cookie.Name;
+
+                    //role
+                    string roles = cookie.UserData.Split('#')[1];
+                    //string roles = roles;
+
+                    //
+                    e.User = new System.Security.Principal.GenericPrincipal(
+                      new System.Security.Principal.GenericIdentity(username, "Forms"), roles.Split(';'));
+                }
+                catch (Exception)
+                {
+                    //somehting went wrong
+                }
+            }
+        }
+    }
        
 </script>

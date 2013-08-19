@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Account_ChangePasswordSuccess : System.Web.UI.Page
+public partial class not_authorized : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
