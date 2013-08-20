@@ -9,14 +9,15 @@ using Acig_Help_DeskModel;
 public partial class Tickets_show : MasterAppPage
 {
     Ticket _ticket;
+    Comment _comment;
     long _id;
     string routePath;
     protected void Page_Load(object sender, EventArgs e)
     {
         routePath = Route.GetRootPath("download.aspx?id=");
         _id = long.Parse(Request.QueryString["id"]);
+        hdnFldTicketId.Value = _id.ToString();
         _entity = new Acig_Help_DeskEntities();
-        _ticket = _entity.Tickets.Where(x => x.Id == _id).First();
         var ticketData = from t in _entity.Tickets
                          join sc in _entity.Sub_Categories
                          on t.Sub_Category_Id equals sc.Id
@@ -27,7 +28,9 @@ public partial class Tickets_show : MasterAppPage
                          join u1 in _entity.tbl_Users
                          on t.Assigned_To equals u1.Id
                          where t.Id == _id
-                         select new { 
+                         select new {
+                             AssignFromId = u.Id,
+                             AssignToId = u1.Id,
                              AssignFrom = u.Email,
                              AssignTo = u1.Email,
                              CategoryName = c.Name,
@@ -42,6 +45,7 @@ public partial class Tickets_show : MasterAppPage
 
         var data = from ev in _entity.Events
                    where ev.Ticket_Id == _id
+                   orderby ev.Created_At
                    select new
                    {
                        CreatedAt = ev.Created_At,
@@ -50,17 +54,13 @@ public partial class Tickets_show : MasterAppPage
         gvEvents.DataSource = data;
         gvEvents.DataBind();
 
-        var commentData = from c in _entity.Comments
-                          where c.Ticket_Id == _id
-                          select new
-                          {
-                              CreatedAt = c.Created_At,
-                              Notes = c.Notes,
-                              Visible = c.File_Path,
-                              Url = c.Id
-                          };
-        gvComments.DataSource = commentData;
-        gvComments.DataBind();
+        BindGVComments();
+
+        currentUserId = CurrentUser.Id();
+        foreach (var x in ticketData)
+        {
+            NewCommentDiv.Visible = currentUserId == x.AssignFromId || currentUserId == x.AssignToId;
+        }
     }
 
     protected bool FileLinkVisibile(object obj)
@@ -75,5 +75,46 @@ public partial class Tickets_show : MasterAppPage
     protected string FileDownloadUrl(object obj)
     {
         return Route.GetRootPath("download.aspx?id=" + obj.ToString());
+    }
+
+    protected void btnSave_Click(object sender, EventArgs e)
+    {
+        _id = long.Parse(hdnFldTicketId.Value);
+        currentUserId = CurrentUser.Id();
+        _entity = GetEntity();
+        _comment = new Comment
+        {
+            Created_At = DateTime.Now,
+            Created_By = currentUserId,
+            Notes = txtDescription.Text
+        };
+        _comment.Ticket_Id = _id;
+        HttpPostedFile postedFile = Request.Files["uploadFile"];
+        if (postedFile != null && postedFile.ContentLength > 0)
+        {
+            var outputFile = FileHelper.SaveFile(postedFile, _id);
+            _comment.File_Name = (string)outputFile["FileName"];
+            _comment.File_Path = (string)outputFile["FilePath"];
+        }
+        _entity.AddToComments(_comment);
+        _entity.SaveChanges();
+        txtDescription.Text = string.Empty;
+        BindGVComments();
+    }
+
+    void BindGVComments()
+    {
+        var commentData = from c in _entity.Comments
+                          where c.Ticket_Id == _id
+                          orderby c.Created_At
+                          select new
+                          {
+                              CreatedAt = c.Created_At,
+                              Notes = c.Notes,
+                              Visible = c.File_Path,
+                              Url = c.Id
+                          };
+        gvComments.DataSource = commentData;
+        gvComments.DataBind();
     }
 }

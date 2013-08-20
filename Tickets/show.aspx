@@ -4,6 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
+    <asp:HiddenField ID="hdnFldTicketId" runat="server" />
     <h2>
         Ticket Details</h2>
     <hr />
@@ -76,4 +77,22 @@
             </asp:TemplateField>
         </Columns>
     </asp:GridView>
+    <div id="NewCommentDiv" runat="server">
+      <fieldset class="login">
+            <legend>New Comment</legend>
+            <p>
+                <asp:Label ID="lblDescription" runat="server" Text="Description" AssociatedControlID="txtDescription"></asp:Label>
+                <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Rows="5" Columns="95"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvDescription" runat="server" ControlToValidate="txtDescription"
+                    ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
+            </p>
+            <p>
+                <asp:Label ID="lblFile" runat="server" Text="File"></asp:Label>
+                 <input type="file" id="uploadFile" name="uploadFile" />
+            </p>
+            <p>
+                <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Add" CssClass="btn btn-primary" />
+            </p>
+        </fieldset>
+    </div>
 </asp:Content>
