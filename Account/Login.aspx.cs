@@ -71,8 +71,8 @@ public partial class Account_Login : MasterAppPage
 
     protected tbl_Users CheckUser(string email)
     {
-        _acig_Help_DeskEntities = GetEntity();
-        var customUser = _acig_Help_DeskEntities.tbl_Users.Where(x => x.Email == email).FirstOrDefault();
+        _entity = GetEntity();
+        var customUser = _entity.tbl_Users.Where(x => x.Email == email).FirstOrDefault();
         if (customUser != null)
         {
             return customUser;
@@ -86,7 +86,7 @@ public partial class Account_Login : MasterAppPage
         var userName = txtUserName.Text;
         var array = userName.Split('\\');
         userName = array[array.Length - 1].Trim();
-        _acig_Help_DeskEntities = GetEntity();
+        _entity = GetEntity();
         var customUser = new tbl_Users { 
             Active = true,
             Created_At = DateTime.Now,
@@ -96,8 +96,8 @@ public partial class Account_Login : MasterAppPage
             Role = "normal_user",
             User_Name = userName
         };
-        _acig_Help_DeskEntities.AddTotbl_Users(customUser);
-        _acig_Help_DeskEntities.SaveChanges();
+        _entity.AddTotbl_Users(customUser);
+        _entity.SaveChanges();
         return customUser;
     }
 }

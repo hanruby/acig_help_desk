@@ -9,23 +9,20 @@ public partial class SiteMaster : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        if (Page.User.Identity.IsAuthenticated)
         {
-            if (Page.User.Identity.IsAuthenticated)
-            {
-                MenuItems(true);
-                lblUserName.Visible = true;
-                lblUserName.Text = "Logged in as " + Page.User.Identity.Name + " | ";
-                hprLinkLoginStatus.NavigateUrl = Route.GetRootPath("account/log_out.aspx");
-                hprLinkLoginStatus.Text = "Sign Out";
-            }
-            else
-            {
-                MenuItems(false);
-                lblUserName.Visible = false;
-                hprLinkLoginStatus.NavigateUrl = Route.GetRootPath("account/login.aspx");
-                hprLinkLoginStatus.Text = "Sign In";
-            }
+            MenuItems(true);
+            lblUserName.Visible = true;
+            lblUserName.Text = "Logged in as " + Page.User.Identity.Name + " | ";
+            hprLinkLoginStatus.NavigateUrl = Route.GetRootPath("account/log_out.aspx");
+            hprLinkLoginStatus.Text = "Sign Out";
+        }
+        else
+        {
+            MenuItems(false);
+            lblUserName.Visible = false;
+            hprLinkLoginStatus.NavigateUrl = Route.GetRootPath("account/login.aspx");
+            hprLinkLoginStatus.Text = "Sign In";
         }
     }
 

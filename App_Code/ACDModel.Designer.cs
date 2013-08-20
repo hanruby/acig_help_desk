@@ -18,11 +18,12 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Sub_Categories_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Category), "Sub_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Sub_Categories), true)]
-[assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Events_Tickets", "Ticket", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Ticket), "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Event), true)]
-[assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Tickets_Sub_Categories", "Sub_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Sub_Categories), "Ticket", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Ticket), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Categories_Users", "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.tbl_Users), "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Category), true)]
+[assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Sub_Categories_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Category), "Sub_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Sub_Categories), true)]
+[assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Comments_tbl_Users", "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.tbl_Users), "Comment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Comment), true)]
+[assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Events_tbl_Users", "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.tbl_Users), "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Event), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Sub_Categories_Users", "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.tbl_Users), "Sub_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Sub_Categories), true)]
+[assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Tickets_Sub_Categories", "Sub_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Sub_Categories), "Ticket", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Ticket), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Tickets_Users", "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.tbl_Users), "Ticket", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Ticket), true)]
 
 #endregion
@@ -94,6 +95,22 @@ namespace Acig_Help_DeskModel
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<Comment> Comments
+        {
+            get
+            {
+                if ((_Comments == null))
+                {
+                    _Comments = base.CreateObjectSet<Comment>("Comments");
+                }
+                return _Comments;
+            }
+        }
+        private ObjectSet<Comment> _Comments;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Event> Events
         {
             get
@@ -126,22 +143,6 @@ namespace Acig_Help_DeskModel
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Ticket> Tickets
-        {
-            get
-            {
-                if ((_Tickets == null))
-                {
-                    _Tickets = base.CreateObjectSet<Ticket>("Tickets");
-                }
-                return _Tickets;
-            }
-        }
-        private ObjectSet<Ticket> _Tickets;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<tbl_Users> tbl_Users
         {
             get
@@ -154,6 +155,22 @@ namespace Acig_Help_DeskModel
             }
         }
         private ObjectSet<tbl_Users> _tbl_Users;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Ticket> Tickets
+        {
+            get
+            {
+                if ((_Tickets == null))
+                {
+                    _Tickets = base.CreateObjectSet<Ticket>("Tickets");
+                }
+                return _Tickets;
+            }
+        }
+        private ObjectSet<Ticket> _Tickets;
 
         #endregion
         #region AddTo Methods
@@ -164,6 +181,14 @@ namespace Acig_Help_DeskModel
         public void AddToCategories(Category category)
         {
             base.AddObject("Categories", category);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Comments EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToComments(Comment comment)
+        {
+            base.AddObject("Comments", comment);
         }
     
         /// <summary>
@@ -183,19 +208,19 @@ namespace Acig_Help_DeskModel
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Tickets EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToTickets(Ticket ticket)
-        {
-            base.AddObject("Tickets", ticket);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the tbl_Users EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddTotbl_Users(tbl_Users tbl_Users)
         {
             base.AddObject("tbl_Users", tbl_Users);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Tickets EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToTickets(Ticket ticket)
+        {
+            base.AddObject("Tickets", ticket);
         }
 
         #endregion
@@ -397,28 +422,6 @@ namespace Acig_Help_DeskModel
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Sub_Categories_Categories", "Sub_Categories")]
-        public EntityCollection<Sub_Categories> Sub_Categories
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Sub_Categories>("Acig_Help_DeskModel.FK_Sub_Categories_Categories", "Sub_Categories");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Sub_Categories>("Acig_Help_DeskModel.FK_Sub_Categories_Categories", "Sub_Categories", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Categories_Users", "tbl_Users")]
         public tbl_Users tbl_Users
         {
@@ -450,6 +453,276 @@ namespace Acig_Help_DeskModel
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Sub_Categories_Categories", "Sub_Categories")]
+        public EntityCollection<Sub_Categories> Sub_Categories
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Sub_Categories>("Acig_Help_DeskModel.FK_Sub_Categories_Categories", "Sub_Categories");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Sub_Categories>("Acig_Help_DeskModel.FK_Sub_Categories_Categories", "Sub_Categories", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Acig_Help_DeskModel", Name="Comment")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Comment : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Comment object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="notes">Initial value of the Notes property.</param>
+        /// <param name="ticket_Id">Initial value of the Ticket_Id property.</param>
+        /// <param name="created_By">Initial value of the Created_By property.</param>
+        /// <param name="created_At">Initial value of the Created_At property.</param>
+        public static Comment CreateComment(global::System.Int64 id, global::System.String notes, global::System.Int64 ticket_Id, global::System.Int64 created_By, global::System.DateTime created_At)
+        {
+            Comment comment = new Comment();
+            comment.Id = id;
+            comment.Notes = notes;
+            comment.Ticket_Id = ticket_Id;
+            comment.Created_By = created_By;
+            comment.Created_At = created_At;
+            return comment;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int64 _Id;
+        partial void OnIdChanging(global::System.Int64 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Notes
+        {
+            get
+            {
+                return _Notes;
+            }
+            set
+            {
+                OnNotesChanging(value);
+                ReportPropertyChanging("Notes");
+                _Notes = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Notes");
+                OnNotesChanged();
+            }
+        }
+        private global::System.String _Notes;
+        partial void OnNotesChanging(global::System.String value);
+        partial void OnNotesChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String File_Name
+        {
+            get
+            {
+                return _File_Name;
+            }
+            set
+            {
+                OnFile_NameChanging(value);
+                ReportPropertyChanging("File_Name");
+                _File_Name = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("File_Name");
+                OnFile_NameChanged();
+            }
+        }
+        private global::System.String _File_Name;
+        partial void OnFile_NameChanging(global::System.String value);
+        partial void OnFile_NameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String File_Path
+        {
+            get
+            {
+                return _File_Path;
+            }
+            set
+            {
+                OnFile_PathChanging(value);
+                ReportPropertyChanging("File_Path");
+                _File_Path = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("File_Path");
+                OnFile_PathChanged();
+            }
+        }
+        private global::System.String _File_Path;
+        partial void OnFile_PathChanging(global::System.String value);
+        partial void OnFile_PathChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 Ticket_Id
+        {
+            get
+            {
+                return _Ticket_Id;
+            }
+            set
+            {
+                OnTicket_IdChanging(value);
+                ReportPropertyChanging("Ticket_Id");
+                _Ticket_Id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Ticket_Id");
+                OnTicket_IdChanged();
+            }
+        }
+        private global::System.Int64 _Ticket_Id;
+        partial void OnTicket_IdChanging(global::System.Int64 value);
+        partial void OnTicket_IdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 Created_By
+        {
+            get
+            {
+                return _Created_By;
+            }
+            set
+            {
+                OnCreated_ByChanging(value);
+                ReportPropertyChanging("Created_By");
+                _Created_By = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Created_By");
+                OnCreated_ByChanged();
+            }
+        }
+        private global::System.Int64 _Created_By;
+        partial void OnCreated_ByChanging(global::System.Int64 value);
+        partial void OnCreated_ByChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime Created_At
+        {
+            get
+            {
+                return _Created_At;
+            }
+            set
+            {
+                OnCreated_AtChanging(value);
+                ReportPropertyChanging("Created_At");
+                _Created_At = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Created_At");
+                OnCreated_AtChanged();
+            }
+        }
+        private global::System.DateTime _Created_At;
+        partial void OnCreated_AtChanging(global::System.DateTime value);
+        partial void OnCreated_AtChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Comments_tbl_Users", "tbl_Users")]
+        public tbl_Users tbl_Users
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tbl_Users>("Acig_Help_DeskModel.FK_Comments_tbl_Users", "tbl_Users").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tbl_Users>("Acig_Help_DeskModel.FK_Comments_tbl_Users", "tbl_Users").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<tbl_Users> tbl_UsersReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tbl_Users>("Acig_Help_DeskModel.FK_Comments_tbl_Users", "tbl_Users");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<tbl_Users>("Acig_Help_DeskModel.FK_Comments_tbl_Users", "tbl_Users", value);
+                }
+            }
+        }
 
         #endregion
     }
@@ -471,13 +744,15 @@ namespace Acig_Help_DeskModel
         /// <param name="state">Initial value of the State property.</param>
         /// <param name="ticket_Id">Initial value of the Ticket_Id property.</param>
         /// <param name="created_At">Initial value of the Created_At property.</param>
-        public static Event CreateEvent(global::System.Int64 id, global::System.String state, global::System.Int64 ticket_Id, global::System.DateTime created_At)
+        /// <param name="created_By">Initial value of the Created_By property.</param>
+        public static Event CreateEvent(global::System.Int64 id, global::System.String state, global::System.Int64 ticket_Id, global::System.DateTime created_At, global::System.Int64 created_By)
         {
             Event @event = new Event();
             @event.Id = id;
             @event.State = state;
             @event.Ticket_Id = ticket_Id;
             @event.Created_At = created_At;
+            @event.Created_By = created_By;
             return @event;
         }
 
@@ -538,174 +813,6 @@ namespace Acig_Help_DeskModel
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String File1_Name
-        {
-            get
-            {
-                return _File1_Name;
-            }
-            set
-            {
-                OnFile1_NameChanging(value);
-                ReportPropertyChanging("File1_Name");
-                _File1_Name = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("File1_Name");
-                OnFile1_NameChanged();
-            }
-        }
-        private global::System.String _File1_Name;
-        partial void OnFile1_NameChanging(global::System.String value);
-        partial void OnFile1_NameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String File1_Path
-        {
-            get
-            {
-                return _File1_Path;
-            }
-            set
-            {
-                OnFile1_PathChanging(value);
-                ReportPropertyChanging("File1_Path");
-                _File1_Path = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("File1_Path");
-                OnFile1_PathChanged();
-            }
-        }
-        private global::System.String _File1_Path;
-        partial void OnFile1_PathChanging(global::System.String value);
-        partial void OnFile1_PathChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String File2_Name
-        {
-            get
-            {
-                return _File2_Name;
-            }
-            set
-            {
-                OnFile2_NameChanging(value);
-                ReportPropertyChanging("File2_Name");
-                _File2_Name = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("File2_Name");
-                OnFile2_NameChanged();
-            }
-        }
-        private global::System.String _File2_Name;
-        partial void OnFile2_NameChanging(global::System.String value);
-        partial void OnFile2_NameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String File2_Path
-        {
-            get
-            {
-                return _File2_Path;
-            }
-            set
-            {
-                OnFile2_PathChanging(value);
-                ReportPropertyChanging("File2_Path");
-                _File2_Path = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("File2_Path");
-                OnFile2_PathChanged();
-            }
-        }
-        private global::System.String _File2_Path;
-        partial void OnFile2_PathChanging(global::System.String value);
-        partial void OnFile2_PathChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String File3_Name
-        {
-            get
-            {
-                return _File3_Name;
-            }
-            set
-            {
-                OnFile3_NameChanging(value);
-                ReportPropertyChanging("File3_Name");
-                _File3_Name = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("File3_Name");
-                OnFile3_NameChanged();
-            }
-        }
-        private global::System.String _File3_Name;
-        partial void OnFile3_NameChanging(global::System.String value);
-        partial void OnFile3_NameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String File3_Path
-        {
-            get
-            {
-                return _File3_Path;
-            }
-            set
-            {
-                OnFile3_PathChanging(value);
-                ReportPropertyChanging("File3_Path");
-                _File3_Path = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("File3_Path");
-                OnFile3_PathChanged();
-            }
-        }
-        private global::System.String _File3_Path;
-        partial void OnFile3_PathChanging(global::System.String value);
-        partial void OnFile3_PathChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Notes
-        {
-            get
-            {
-                return _Notes;
-            }
-            set
-            {
-                OnNotesChanging(value);
-                ReportPropertyChanging("Notes");
-                _Notes = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Notes");
-                OnNotesChanged();
-            }
-        }
-        private global::System.String _Notes;
-        partial void OnNotesChanging(global::System.String value);
-        partial void OnNotesChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int64 Ticket_Id
@@ -750,6 +857,30 @@ namespace Acig_Help_DeskModel
         private global::System.DateTime _Created_At;
         partial void OnCreated_AtChanging(global::System.DateTime value);
         partial void OnCreated_AtChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 Created_By
+        {
+            get
+            {
+                return _Created_By;
+            }
+            set
+            {
+                OnCreated_ByChanging(value);
+                ReportPropertyChanging("Created_By");
+                _Created_By = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Created_By");
+                OnCreated_ByChanged();
+            }
+        }
+        private global::System.Int64 _Created_By;
+        partial void OnCreated_ByChanging(global::System.Int64 value);
+        partial void OnCreated_ByChanged();
 
         #endregion
     
@@ -761,16 +892,16 @@ namespace Acig_Help_DeskModel
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Events_Tickets", "Ticket")]
-        public Ticket Ticket
+        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Events_tbl_Users", "tbl_Users")]
+        public tbl_Users tbl_Users
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Ticket>("Acig_Help_DeskModel.FK_Events_Tickets", "Ticket").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tbl_Users>("Acig_Help_DeskModel.FK_Events_tbl_Users", "tbl_Users").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Ticket>("Acig_Help_DeskModel.FK_Events_Tickets", "Ticket").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tbl_Users>("Acig_Help_DeskModel.FK_Events_tbl_Users", "tbl_Users").Value = value;
             }
         }
         /// <summary>
@@ -778,17 +909,17 @@ namespace Acig_Help_DeskModel
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Ticket> TicketReference
+        public EntityReference<tbl_Users> tbl_UsersReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Ticket>("Acig_Help_DeskModel.FK_Events_Tickets", "Ticket");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tbl_Users>("Acig_Help_DeskModel.FK_Events_tbl_Users", "tbl_Users");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Ticket>("Acig_Help_DeskModel.FK_Events_Tickets", "Ticket", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<tbl_Users>("Acig_Help_DeskModel.FK_Events_tbl_Users", "tbl_Users", value);
                 }
             }
         }
@@ -1051,28 +1182,6 @@ namespace Acig_Help_DeskModel
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Tickets_Sub_Categories", "Ticket")]
-        public EntityCollection<Ticket> Tickets
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Ticket>("Acig_Help_DeskModel.FK_Tickets_Sub_Categories", "Ticket");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Ticket>("Acig_Help_DeskModel.FK_Tickets_Sub_Categories", "Ticket", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Sub_Categories_Users", "tbl_Users")]
         public tbl_Users tbl_Users
         {
@@ -1101,6 +1210,28 @@ namespace Acig_Help_DeskModel
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<tbl_Users>("Acig_Help_DeskModel.FK_Sub_Categories_Users", "tbl_Users", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Tickets_Sub_Categories", "Ticket")]
+        public EntityCollection<Ticket> Tickets
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Ticket>("Acig_Help_DeskModel.FK_Tickets_Sub_Categories", "Ticket");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Ticket>("Acig_Help_DeskModel.FK_Tickets_Sub_Categories", "Ticket", value);
                 }
             }
         }
@@ -1373,6 +1504,50 @@ namespace Acig_Help_DeskModel
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Comments_tbl_Users", "Comment")]
+        public EntityCollection<Comment> Comments
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Comment>("Acig_Help_DeskModel.FK_Comments_tbl_Users", "Comment");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Comment>("Acig_Help_DeskModel.FK_Comments_tbl_Users", "Comment", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Events_tbl_Users", "Event")]
+        public EntityCollection<Event> Events
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Event>("Acig_Help_DeskModel.FK_Events_tbl_Users", "Event");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Event>("Acig_Help_DeskModel.FK_Events_tbl_Users", "Event", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Sub_Categories_Users", "Sub_Categories")]
         public EntityCollection<Sub_Categories> Sub_Categories
         {
@@ -1433,9 +1608,10 @@ namespace Acig_Help_DeskModel
         /// <param name="state">Initial value of the State property.</param>
         /// <param name="sub_Category_Id">Initial value of the Sub_Category_Id property.</param>
         /// <param name="created_By">Initial value of the Created_By property.</param>
+        /// <param name="subject">Initial value of the Subject property.</param>
         /// <param name="created_At">Initial value of the Created_At property.</param>
         /// <param name="updated_At">Initial value of the Updated_At property.</param>
-        public static Ticket CreateTicket(global::System.Int64 id, global::System.String type, global::System.String priority, global::System.String state, global::System.Int64 sub_Category_Id, global::System.Int64 created_By, global::System.DateTime created_At, global::System.DateTime updated_At)
+        public static Ticket CreateTicket(global::System.Int64 id, global::System.String type, global::System.String priority, global::System.String state, global::System.Int64 sub_Category_Id, global::System.Int64 created_By, global::System.String subject, global::System.DateTime created_At, global::System.DateTime updated_At)
         {
             Ticket ticket = new Ticket();
             ticket.Id = id;
@@ -1444,6 +1620,7 @@ namespace Acig_Help_DeskModel
             ticket.State = state;
             ticket.Sub_Category_Id = sub_Category_Id;
             ticket.Created_By = created_By;
+            ticket.Subject = subject;
             ticket.Created_At = created_At;
             ticket.Updated_At = updated_At;
             return ticket;
@@ -1628,6 +1805,78 @@ namespace Acig_Help_DeskModel
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
+        public global::System.String Subject
+        {
+            get
+            {
+                return _Subject;
+            }
+            set
+            {
+                OnSubjectChanging(value);
+                ReportPropertyChanging("Subject");
+                _Subject = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Subject");
+                OnSubjectChanged();
+            }
+        }
+        private global::System.String _Subject;
+        partial void OnSubjectChanging(global::System.String value);
+        partial void OnSubjectChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> Resolved_Date
+        {
+            get
+            {
+                return _Resolved_Date;
+            }
+            set
+            {
+                OnResolved_DateChanging(value);
+                ReportPropertyChanging("Resolved_Date");
+                _Resolved_Date = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Resolved_Date");
+                OnResolved_DateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _Resolved_Date;
+        partial void OnResolved_DateChanging(Nullable<global::System.DateTime> value);
+        partial void OnResolved_DateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> Closed_Date
+        {
+            get
+            {
+                return _Closed_Date;
+            }
+            set
+            {
+                OnClosed_DateChanging(value);
+                ReportPropertyChanging("Closed_Date");
+                _Closed_Date = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Closed_Date");
+                OnClosed_DateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _Closed_Date;
+        partial void OnClosed_DateChanging(Nullable<global::System.DateTime> value);
+        partial void OnClosed_DateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
         public global::System.DateTime Created_At
         {
             get
@@ -1674,28 +1923,6 @@ namespace Acig_Help_DeskModel
         #endregion
     
         #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Events_Tickets", "Event")]
-        public EntityCollection<Event> Events
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Event>("Acig_Help_DeskModel.FK_Events_Tickets", "Event");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Event>("Acig_Help_DeskModel.FK_Events_Tickets", "Event", value);
-                }
-            }
-        }
     
         /// <summary>
         /// No Metadata Documentation available.

@@ -6,14 +6,14 @@ using Acig_Help_DeskModel;
 
 public class MasterAppPage : System.Web.UI.Page
 {
-    protected Acig_Help_DeskEntities _acig_Help_DeskEntities;
+    protected Acig_Help_DeskEntities _entity;
     protected long currentUserId;
     protected Acig_Help_DeskEntities GetEntity()
     {
-        if (_acig_Help_DeskEntities == null)
+        if (_entity == null)
         {
-            _acig_Help_DeskEntities = new Acig_Help_DeskEntities();
+            _entity = new Acig_Help_DeskEntities();
         }
-        return _acig_Help_DeskEntities;
+        return _entity;
     }
 }

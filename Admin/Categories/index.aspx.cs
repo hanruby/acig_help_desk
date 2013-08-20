@@ -8,7 +8,6 @@ using Acig_Help_DeskModel;
 
 public partial class Admin_Categories_index : MasterAppPage
 {
-    Acig_Help_DeskEntities _acig_Help_DeskEntities;
     Category _category;
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -33,20 +32,20 @@ public partial class Admin_Categories_index : MasterAppPage
     {
         currentUserId = CurrentUser.Id();
         var id = long.Parse(((HiddenField)(gvCategories.Rows[e.RowIndex].FindControl("hdnCategoryId"))).Value.ToString());
-        _acig_Help_DeskEntities = GetEntity();
-        _category = _acig_Help_DeskEntities.Categories.Where(x => x.Id == id).First();
+        _entity = GetEntity();
+        _category = _entity.Categories.Where(x => x.Id == id).First();
         _category.Updated_At = DateTime.Now;
         _category.Updated_By = currentUserId;
         _category.Name = ((TextBox)gvCategories.Rows[e.RowIndex].FindControl("txtCategoryNameEdit")).Text;
-        _acig_Help_DeskEntities.SaveChanges();
+        _entity.SaveChanges();
         gvCategories.EditIndex = -1;
         BindDataToGridView();
     }
 
     protected void BindDataToGridView()
     {
-        _acig_Help_DeskEntities = GetEntity();
-        gvCategories.DataSource = _acig_Help_DeskEntities.Categories.OrderBy(x => x.Created_At).ToList();
+        _entity = GetEntity();
+        gvCategories.DataSource = _entity.Categories.OrderBy(x => x.Created_At).ToList();
         gvCategories.DataBind();
     }
 
@@ -57,7 +56,7 @@ public partial class Admin_Categories_index : MasterAppPage
     protected void btnSaveCategory_Click(object sender, EventArgs e)
     {
         currentUserId = CurrentUser.Id();
-        _acig_Help_DeskEntities = GetEntity();
+        _entity = GetEntity();
         _category = new Category
         {
             Name = txtCategoryName.Text,
@@ -66,8 +65,8 @@ public partial class Admin_Categories_index : MasterAppPage
             Created_By = currentUserId,
             Updated_By = currentUserId
         };
-        _acig_Help_DeskEntities.AddToCategories(_category);
-        _acig_Help_DeskEntities.SaveChanges();
+        _entity.AddToCategories(_category);
+        _entity.SaveChanges();
         BindDataToGridView();
         txtCategoryName.Text = string.Empty;
     }
