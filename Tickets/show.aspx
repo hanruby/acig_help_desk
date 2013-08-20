@@ -6,7 +6,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
     <asp:HiddenField ID="hdnFldTicketId" runat="server" />
     <h2>
-        Ticket Details</h2>
+        Ticket Details
+        <asp:LinkButton ID="lnkBtnResolve" runat="server" CausesValidation="false">Resolve Ticket</asp:LinkButton>
+        <asp:LinkButton ID="lnkBtnNotResolve" runat="server" CausesValidation="false">Not Resolve?</asp:LinkButton>
+        <asp:Button ID="btnCloseTicket" runat="server" Text="Close Ticket" CausesValidation="false"
+            OnClientClick="return confirm('Are you sure?')" onclick="btnCloseTicket_Click" />
+    </h2>
     <hr />
     <h4>
         Ticket Events</h4>

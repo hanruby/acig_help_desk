@@ -16,4 +16,16 @@ public class MasterAppPage : System.Web.UI.Page
         }
         return _entity;
     }
+
+    protected void ErrorRedirect(string path, string message)
+    {
+        Session["ErrorMessage"] = message;
+        Response.Redirect(path);
+    }
+
+    protected void SuccessRedirect(string path, string message)
+    {
+        Session["NoticeMessage"] = message;
+        Response.Redirect(path);
+    }
 }

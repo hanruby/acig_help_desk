@@ -10,56 +10,74 @@ public partial class Tickets_show : MasterAppPage
 {
     Ticket _ticket;
     Comment _comment;
+    Event _event;
     long _id;
     string routePath;
     protected void Page_Load(object sender, EventArgs e)
     {
-        routePath = Route.GetRootPath("download.aspx?id=");
-        _id = long.Parse(Request.QueryString["id"]);
-        hdnFldTicketId.Value = _id.ToString();
-        _entity = new Acig_Help_DeskEntities();
-        var ticketData = from t in _entity.Tickets
-                         join sc in _entity.Sub_Categories
-                         on t.Sub_Category_Id equals sc.Id
-                         join c in _entity.Categories
-                         on sc.Category_Id equals c.Id
-                         join u in _entity.tbl_Users
-                         on t.Created_By equals u.Id
-                         join u1 in _entity.tbl_Users
-                         on t.Assigned_To equals u1.Id
-                         where t.Id == _id
-                         select new {
-                             AssignFromId = u.Id,
-                             AssignToId = u1.Id,
-                             AssignFrom = u.Email,
-                             AssignTo = u1.Email,
-                             CategoryName = c.Name,
-                             SubCategoryName = sc.Name,
-                             Priority = t.Priority,
-                             State = t.State,
-                             Subject = t.Subject,
-                             Type = t.Type
-                         };
-        rptrTickets.DataSource = ticketData;
-        rptrTickets.DataBind();
-
-        var data = from ev in _entity.Events
-                   where ev.Ticket_Id == _id
-                   orderby ev.Created_At
-                   select new
-                   {
-                       CreatedAt = ev.Created_At,
-                       State = ev.State
-                   };
-        gvEvents.DataSource = data;
-        gvEvents.DataBind();
-
-        BindGVComments();
-
-        currentUserId = CurrentUser.Id();
-        foreach (var x in ticketData)
+        if (!IsPostBack)
         {
-            NewCommentDiv.Visible = currentUserId == x.AssignFromId || currentUserId == x.AssignToId;
+            lnkBtnNotResolve.Visible = lnkBtnResolve.Visible = btnCloseTicket.Visible = false;
+            routePath = Route.GetRootPath("");
+            _id = long.Parse(Request.QueryString["id"]);
+            hdnFldTicketId.Value = _id.ToString();
+            _entity = new Acig_Help_DeskEntities();
+            var ticketData = from t in _entity.Tickets
+                             join sc in _entity.Sub_Categories
+                             on t.Sub_Category_Id equals sc.Id
+                             join c in _entity.Categories
+                             on sc.Category_Id equals c.Id
+                             join u in _entity.tbl_Users
+                             on t.Created_By equals u.Id
+                             join u1 in _entity.tbl_Users
+                             on t.Assigned_To equals u1.Id
+                             where t.Id == _id
+                             select new
+                             {
+                                 Id = t.Id,
+                                 AssignFromId = u.Id,
+                                 AssignToId = u1.Id,
+                                 AssignFrom = u.Email,
+                                 AssignTo = u1.Email,
+                                 CategoryName = c.Name,
+                                 SubCategoryName = sc.Name,
+                                 Priority = t.Priority,
+                                 State = t.State,
+                                 Subject = t.Subject,
+                                 Type = t.Type
+                             };
+            rptrTickets.DataSource = ticketData;
+            rptrTickets.DataBind();
+
+            var data = from ev in _entity.Events
+                       where ev.Ticket_Id == _id
+                       orderby ev.Created_At
+                       select new
+                       {
+                           CreatedAt = ev.Created_At,
+                           State = ev.State
+                       };
+            gvEvents.DataSource = data;
+            gvEvents.DataBind();
+
+            BindGVComments();
+
+            currentUserId = CurrentUser.Id();
+            foreach (var x in ticketData)
+            {
+                NewCommentDiv.Visible = currentUserId == x.AssignFromId || currentUserId == x.AssignToId;
+                if (currentUserId == x.AssignFromId && x.State == "Resolved")
+                {
+                    lnkBtnNotResolve.Visible = true;
+                    btnCloseTicket.Visible = true;
+                    lnkBtnNotResolve.PostBackUrl = routePath + "tickets/not_resolved.aspx?id=" + x.Id;
+                }
+                else if (currentUserId == x.AssignToId && (x.State == "Open" || x.State == "Not Resolved"))
+                {
+                    lnkBtnResolve.Visible = true;
+                    lnkBtnResolve.PostBackUrl = routePath + "tickets/resolve.aspx?id=" + x.Id;
+                }
+            }
         }
     }
 
@@ -116,5 +134,26 @@ public partial class Tickets_show : MasterAppPage
                           };
         gvComments.DataSource = commentData;
         gvComments.DataBind();
+    }
+
+    protected void btnCloseTicket_Click(object sender, EventArgs e)
+    {
+        _id = long.Parse(hdnFldTicketId.Value);
+        currentUserId = CurrentUser.Id();
+        _entity = GetEntity();
+        _ticket = _entity.Tickets.Where(x => x.Id == _id).First();
+        _ticket.State = "Closed";
+        _ticket.Closed_Date = DateTime.Now;
+        _event = new Event
+        {
+            Created_At = DateTime.Now,
+            State = "Closed",
+            Created_By = currentUserId,
+            Ticket_Id = _id
+        };
+        _entity.AddToEvents(_event);
+        _entity.SaveChanges();
+        Session["NoticeMessage"] = "Successfully Closed Ticket!";
+        Response.Redirect(Route.GetRootPath("tickets/index.aspx"));
     }
 }
