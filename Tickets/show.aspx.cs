@@ -153,7 +153,6 @@ public partial class Tickets_show : MasterAppPage
         };
         _entity.AddToEvents(_event);
         _entity.SaveChanges();
-        Session["NoticeMessage"] = "Successfully Closed Ticket!";
-        Response.Redirect(Route.GetRootPath("tickets/index.aspx"));
+        SuccessRedirect(Route.GetRootPath("tickets/index.aspx"), "Successfully Closed Ticket!");
     }
 }
