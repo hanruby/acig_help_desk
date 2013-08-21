@@ -17,7 +17,7 @@ public partial class Tickets_show : MasterAppPage
     {
         if (!IsPostBack)
         {
-            lnkBtnNotResolve.Visible = lnkBtnResolve.Visible = btnCloseTicket.Visible = false;
+            lnkBtnResolve.Visible = btnCloseTicket.Visible = false;
             routePath = Route.GetRootPath("");
             _id = long.Parse(Request.QueryString["id"]);
             hdnFldTicketId.Value = _id.ToString();
@@ -68,9 +68,7 @@ public partial class Tickets_show : MasterAppPage
                 NewCommentDiv.Visible = currentUserId == x.AssignFromId || currentUserId == x.AssignToId;
                 if (currentUserId == x.AssignFromId && x.State == "Resolved")
                 {
-                    lnkBtnNotResolve.Visible = true;
                     btnCloseTicket.Visible = true;
-                    lnkBtnNotResolve.PostBackUrl = routePath + "tickets/not_resolved.aspx?id=" + x.Id;
                 }
                 else if (currentUserId == x.AssignToId && (x.State == "Open" || x.State == "Not Resolved"))
                 {

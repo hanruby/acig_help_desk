@@ -11,87 +11,71 @@ public partial class Tickets_index : MasterAppPage
 {
     string _scope, _customScope;
     DataTable dt;
-    DataRow dr ;
+    DataRow dr;
     protected void Page_Load(object sender, EventArgs e)
     {
         dr = null;
         _scope = Request.QueryString["scope"];
+        if (_scope == "closed")
+        {
+            _customScope = "Closed";
+            hdnFldScope.Value = _scope;
+        }
+        else if (_scope == "resolved")
+        {
+            hdnFldScope.Value = _scope;
+            _customScope = "Resolved";
+        }
+        else
+        {
+            _scope = "pending";
+            hdnFldScope.Value = _scope;
+            _customScope = "Open";
+        }
         currentUserId = CurrentUser.Id();
         GetHeader();
         _entity = GetEntity();
-        if (_scope == "pending")
+        var data = from t in _entity.Tickets
+                   join u in _entity.tbl_Users
+                   on t.Assigned_To equals u.Id
+                   join sc in _entity.Sub_Categories
+                   on t.Sub_Category_Id equals sc.Id
+                   join c in _entity.Categories
+                   on sc.Category_Id equals c.Id
+                   where (t.Created_By == currentUserId) && t.State == _scope
+                   orderby t.Created_By
+                   select new
+                   {
+                       AssignTo = u.Email,
+                       OpenAt = t.Created_At,
+                       ResolvedAt = t.Resolved_Date,
+                       ClosedAt = t.Closed_Date,
+                       CategoryName = c.Name,
+                       SubCategoryName = sc.Name,
+                       Id = t.Id
+                   };
+        foreach (var x in data)
         {
-            _customScope = "Pending";
-            hdnFldScope.Value = "pending";
-            var data = from t in _entity.Tickets
-                       join u in _entity.tbl_Users
-                       on t.Assigned_To equals u.Id
-                       join sc in _entity.Sub_Categories
-                       on t.Sub_Category_Id equals sc.Id
-                       join c in _entity.Categories
-                       on sc.Category_Id equals c.Id
-                       where (t.Created_By == currentUserId) && (t.State == "Open" || t.State == "Not Resolved")
-                       orderby t.Created_By
-                       select new
-                       {
-                           AssignTo = u.Email,
-                           OpenAt = t.Created_At,
-                           ResolvedAt = t.Resolved_Date,
-                           ClosedAt = t.Closed_Date,
-                           CategoryName = c.Name,
-                           SubCategoryName = sc.Name,
-                           Id = t.Id
-                       };
-            foreach (var x in data)
+            dr = dt.NewRow();
+            dr["Assigned To"] = x.AssignTo;
+            dr["Open At"] = x.OpenAt;
+            if (_scope == "resolved" || _scope == "closed")
             {
-                dr = dt.NewRow();
-                dr["Assigned To"] = x.AssignTo;
-                dr["Open At"] = x.OpenAt;
-                dr["Details"] = x.Id;
-                dt.Rows.Add(dr);
-            }
-        }
-        else 
-        {
-            _scope = _scope == "resolved" ? "resolved" : "closed";
-            hdnFldScope.Value = _scope;
-            _customScope = _scope == "resolved" ? "Resolved" : "Closed";
-            GetHeader();
-            var data = from t in _entity.Tickets
-                       join u in _entity.tbl_Users
-                       on t.Assigned_To equals u.Id
-                       join sc in _entity.Sub_Categories
-                       on t.Sub_Category_Id equals sc.Id
-                       join c in _entity.Categories
-                       on sc.Category_Id equals c.Id
-                       where t.Created_By == currentUserId && t.State == _customScope
-                       orderby t.Created_By
-                       select new
-                       {
-                           AssignTo = u.Email,
-                           OpenAt = t.Created_At,
-                           ResolvedAt = t.Resolved_Date,
-                           ClosedAt = t.Closed_Date,
-                           CategoryName = c.Name,
-                           SubCategoryName = sc.Name,
-                           Id = t.Id
-                       };
-            foreach (var x in data)
-            {
-                dr = dt.NewRow();
-                dr["Assigned To"] = x.AssignTo;
-                dr["Open At"] = x.OpenAt;
                 dr["Resolved At"] = x.ResolvedAt;
-                if (_scope == "closed")
-                {
-                    dr["Closed At"] = x.ClosedAt;
-                }
-                dr["Details"] = x.Id;
-                dt.Rows.Add(dr);
             }
+            if (_scope == "closed")
+            {
+                dr["Closed At"] = x.ClosedAt;
+            }
+            dr["Details"] = x.Id;
+            dt.Rows.Add(dr);
         }
         gvTickets.DataSource = dt;
         gvTickets.DataBind();
+        if (_customScope == "Open")
+        {
+            _customScope = "Pending";
+        }
         lblHeading.Text = _customScope + " Tickets";
     }
 
@@ -127,7 +111,7 @@ public partial class Tickets_index : MasterAppPage
         {
             dt.Columns.Add(new DataColumn("Resolved At", typeof(string)));
         }
-        else if(_scope == "closed")
+        else if (_scope == "closed")
         {
             dt.Columns.Add(new DataColumn("Resolved At", typeof(string)));
             dt.Columns.Add(new DataColumn("Closed At", typeof(string)));
