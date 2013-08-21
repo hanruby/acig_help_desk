@@ -4,6 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
+    <asp:HiddenField ID="hdnFldId" runat="server" />
     <h2>
         New Ticket
     </h2>
@@ -51,9 +52,12 @@
                     </asp:DropDownList>
                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
                         ConnectionString="<%$ ConnectionStrings:Acig_Help_DeskConnectionString %>" 
-                        SelectCommand="SELECT [Id], [Email] FROM [tbl_Users] WHERE ([Department] = @Department)">
+                        
+                        SelectCommand="SELECT [Id], [Email] FROM [tbl_Users] WHERE (([Department] = @Department) AND ([Id] &lt;&gt; @Id))">
                         <SelectParameters>
                             <asp:Parameter DefaultValue="it" Name="Department" Type="String" />
+                            <asp:ControlParameter ControlID="hdnFldId" Name="Id" PropertyName="Value" 
+                                Type="Int64" />
                         </SelectParameters>
                     </asp:SqlDataSource>
                     <asp:RequiredFieldValidator ID="rfvAssignTo" runat="server" ControlToValidate="ddlAssignTo"

@@ -30,7 +30,7 @@ public partial class Tickets_index : MasterAppPage
                        on t.Sub_Category_Id equals sc.Id
                        join c in _entity.Categories
                        on sc.Category_Id equals c.Id
-                       where t.State == "Open" || t.State == "Not Resolved"
+                       where (t.Created_By == currentUserId) && (t.State == "Open" || t.State == "Not Resolved")
                        orderby t.Created_By
                        select new
                        {
@@ -64,7 +64,7 @@ public partial class Tickets_index : MasterAppPage
                        on t.Sub_Category_Id equals sc.Id
                        join c in _entity.Categories
                        on sc.Category_Id equals c.Id
-                       where t.State == _customScope
+                       where t.Created_By == currentUserId && t.State == _customScope
                        orderby t.Created_By
                        select new
                        {

@@ -13,7 +13,10 @@ public partial class Tickets_new : MasterAppPage
     Comment _comment;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (!IsPostBack)
+        {
+            hdnFldId.Value = CurrentUser.Id().ToString();
+        }
     }
 
     protected void btnSave_Click(object sender, EventArgs e)
