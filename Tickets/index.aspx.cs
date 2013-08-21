@@ -36,8 +36,8 @@ public partial class Tickets_index : MasterAppPage
         GetHeader();
         _entity = GetEntity();
         var data = from t in _entity.Tickets
-                   join u in _entity.tbl_Users
-                   on t.Assigned_To equals u.Id
+                   //join u in _entity.tbl_Users
+                   //on t.Assigned_To equals u.Id
                    join sc in _entity.Sub_Categories
                    on t.Sub_Category_Id equals sc.Id
                    join c in _entity.Categories
@@ -46,7 +46,7 @@ public partial class Tickets_index : MasterAppPage
                    orderby t.Created_By
                    select new
                    {
-                       AssignTo = u.Email,
+                       //AssignTo = u.Email,
                        OpenAt = t.Created_At,
                        ResolvedAt = t.Resolved_Date,
                        ClosedAt = t.Closed_Date,
@@ -57,7 +57,7 @@ public partial class Tickets_index : MasterAppPage
         foreach (var x in data)
         {
             dr = dt.NewRow();
-            dr["Assigned To"] = x.AssignTo;
+            //dr["Assigned To"] = x.AssignTo;
             dr["Open At"] = x.OpenAt;
             if (_scope == "resolved" || _scope == "closed")
             {
@@ -105,7 +105,7 @@ public partial class Tickets_index : MasterAppPage
     protected void GetHeader()
     {
         dt = new DataTable();
-        dt.Columns.Add(new DataColumn("Assigned To", typeof(string)));
+        //dt.Columns.Add(new DataColumn("Assigned To", typeof(string)));
         dt.Columns.Add(new DataColumn("Open At", typeof(string)));
         if (_scope == "resolved")
         {

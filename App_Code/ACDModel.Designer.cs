@@ -18,13 +18,14 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Categories_Users", "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.tbl_Users), "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Category), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Sub_Categories_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Category), "Sub_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Sub_Categories), true)]
+[assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_tbl_Users_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Acig_Help_DeskModel.Category), "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.tbl_Users), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Comments_tbl_Users", "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.tbl_Users), "Comment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Comment), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Events_tbl_Users", "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.tbl_Users), "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Event), true)]
-[assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Sub_Categories_Users", "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.tbl_Users), "Sub_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Sub_Categories), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Tickets_Sub_Categories", "Sub_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Sub_Categories), "Ticket", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Ticket), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Tickets_Users", "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.tbl_Users), "Ticket", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Ticket), true)]
+[assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_User_Categories_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Category), "User_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.User_Categories), true)]
+[assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_User_Categories_tbl_Users", "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.tbl_Users), "User_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.User_Categories), true)]
 
 #endregion
 
@@ -171,6 +172,22 @@ namespace Acig_Help_DeskModel
             }
         }
         private ObjectSet<Ticket> _Tickets;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<User_Categories> User_Categories
+        {
+            get
+            {
+                if ((_User_Categories == null))
+                {
+                    _User_Categories = base.CreateObjectSet<User_Categories>("User_Categories");
+                }
+                return _User_Categories;
+            }
+        }
+        private ObjectSet<User_Categories> _User_Categories;
 
         #endregion
         #region AddTo Methods
@@ -221,6 +238,14 @@ namespace Acig_Help_DeskModel
         public void AddToTickets(Ticket ticket)
         {
             base.AddObject("Tickets", ticket);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the User_Categories EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToUser_Categories(User_Categories user_Categories)
+        {
+            base.AddObject("User_Categories", user_Categories);
         }
 
         #endregion
@@ -422,44 +447,6 @@ namespace Acig_Help_DeskModel
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Categories_Users", "tbl_Users")]
-        public tbl_Users tbl_Users
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tbl_Users>("Acig_Help_DeskModel.FK_Categories_Users", "tbl_Users").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tbl_Users>("Acig_Help_DeskModel.FK_Categories_Users", "tbl_Users").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<tbl_Users> tbl_UsersReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tbl_Users>("Acig_Help_DeskModel.FK_Categories_Users", "tbl_Users");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<tbl_Users>("Acig_Help_DeskModel.FK_Categories_Users", "tbl_Users", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Sub_Categories_Categories", "Sub_Categories")]
         public EntityCollection<Sub_Categories> Sub_Categories
         {
@@ -472,6 +459,50 @@ namespace Acig_Help_DeskModel
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Sub_Categories>("Acig_Help_DeskModel.FK_Sub_Categories_Categories", "Sub_Categories", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_tbl_Users_Categories", "tbl_Users")]
+        public EntityCollection<tbl_Users> tbl_Users
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tbl_Users>("Acig_Help_DeskModel.FK_tbl_Users_Categories", "tbl_Users");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tbl_Users>("Acig_Help_DeskModel.FK_tbl_Users_Categories", "tbl_Users", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_User_Categories_Categories", "User_Categories")]
+        public EntityCollection<User_Categories> User_Categories
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<User_Categories>("Acig_Help_DeskModel.FK_User_Categories_Categories", "User_Categories");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<User_Categories>("Acig_Help_DeskModel.FK_User_Categories_Categories", "User_Categories", value);
                 }
             }
         }
@@ -1182,44 +1213,6 @@ namespace Acig_Help_DeskModel
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Sub_Categories_Users", "tbl_Users")]
-        public tbl_Users tbl_Users
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tbl_Users>("Acig_Help_DeskModel.FK_Sub_Categories_Users", "tbl_Users").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tbl_Users>("Acig_Help_DeskModel.FK_Sub_Categories_Users", "tbl_Users").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<tbl_Users> tbl_UsersReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tbl_Users>("Acig_Help_DeskModel.FK_Sub_Categories_Users", "tbl_Users");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<tbl_Users>("Acig_Help_DeskModel.FK_Sub_Categories_Users", "tbl_Users", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Tickets_Sub_Categories", "Ticket")]
         public EntityCollection<Ticket> Tickets
         {
@@ -1257,10 +1250,9 @@ namespace Acig_Help_DeskModel
         /// <param name="user_Name">Initial value of the User_Name property.</param>
         /// <param name="active">Initial value of the Active property.</param>
         /// <param name="role">Initial value of the Role property.</param>
-        /// <param name="department">Initial value of the Department property.</param>
         /// <param name="created_At">Initial value of the Created_At property.</param>
         /// <param name="updated_At">Initial value of the Updated_At property.</param>
-        public static tbl_Users Createtbl_Users(global::System.Int64 id, global::System.String email, global::System.String user_Name, global::System.Boolean active, global::System.String role, global::System.String department, global::System.DateTime created_At, global::System.DateTime updated_At)
+        public static tbl_Users Createtbl_Users(global::System.Int64 id, global::System.String email, global::System.String user_Name, global::System.Boolean active, global::System.String role, global::System.DateTime created_At, global::System.DateTime updated_At)
         {
             tbl_Users tbl_Users = new tbl_Users();
             tbl_Users.Id = id;
@@ -1268,7 +1260,6 @@ namespace Acig_Help_DeskModel
             tbl_Users.User_Name = user_Name;
             tbl_Users.Active = active;
             tbl_Users.Role = role;
-            tbl_Users.Department = department;
             tbl_Users.Created_At = created_At;
             tbl_Users.Updated_At = updated_At;
             return tbl_Users;
@@ -1403,26 +1394,26 @@ namespace Acig_Help_DeskModel
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String Department
+        public Nullable<global::System.Int64> Category_Id
         {
             get
             {
-                return _Department;
+                return _Category_Id;
             }
             set
             {
-                OnDepartmentChanging(value);
-                ReportPropertyChanging("Department");
-                _Department = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Department");
-                OnDepartmentChanged();
+                OnCategory_IdChanging(value);
+                ReportPropertyChanging("Category_Id");
+                _Category_Id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Category_Id");
+                OnCategory_IdChanged();
             }
         }
-        private global::System.String _Department;
-        partial void OnDepartmentChanging(global::System.String value);
-        partial void OnDepartmentChanged();
+        private Nullable<global::System.Int64> _Category_Id;
+        partial void OnCategory_IdChanging(Nullable<global::System.Int64> value);
+        partial void OnCategory_IdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1482,18 +1473,34 @@ namespace Acig_Help_DeskModel
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Categories_Users", "Category")]
-        public EntityCollection<Category> Categories
+        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_tbl_Users_Categories", "Category")]
+        public Category Category
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Category>("Acig_Help_DeskModel.FK_Categories_Users", "Category");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Acig_Help_DeskModel.FK_tbl_Users_Categories", "Category").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Acig_Help_DeskModel.FK_tbl_Users_Categories", "Category").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Category> CategoryReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Acig_Help_DeskModel.FK_tbl_Users_Categories", "Category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Category>("Acig_Help_DeskModel.FK_Categories_Users", "Category", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("Acig_Help_DeskModel.FK_tbl_Users_Categories", "Category", value);
                 }
             }
         }
@@ -1548,28 +1555,6 @@ namespace Acig_Help_DeskModel
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Sub_Categories_Users", "Sub_Categories")]
-        public EntityCollection<Sub_Categories> Sub_Categories
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Sub_Categories>("Acig_Help_DeskModel.FK_Sub_Categories_Users", "Sub_Categories");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Sub_Categories>("Acig_Help_DeskModel.FK_Sub_Categories_Users", "Sub_Categories", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Tickets_Users", "Ticket")]
         public EntityCollection<Ticket> Tickets
         {
@@ -1582,6 +1567,28 @@ namespace Acig_Help_DeskModel
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Ticket>("Acig_Help_DeskModel.FK_Tickets_Users", "Ticket", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_User_Categories_tbl_Users", "User_Categories")]
+        public EntityCollection<User_Categories> User_Categories
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<User_Categories>("Acig_Help_DeskModel.FK_User_Categories_tbl_Users", "User_Categories");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<User_Categories>("Acig_Help_DeskModel.FK_User_Categories_tbl_Users", "User_Categories", value);
                 }
             }
         }
@@ -1755,30 +1762,6 @@ namespace Acig_Help_DeskModel
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int64> Assigned_To
-        {
-            get
-            {
-                return _Assigned_To;
-            }
-            set
-            {
-                OnAssigned_ToChanging(value);
-                ReportPropertyChanging("Assigned_To");
-                _Assigned_To = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Assigned_To");
-                OnAssigned_ToChanged();
-            }
-        }
-        private Nullable<global::System.Int64> _Assigned_To;
-        partial void OnAssigned_ToChanging(Nullable<global::System.Int64> value);
-        partial void OnAssigned_ToChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int64 Created_By
@@ -1823,6 +1806,30 @@ namespace Acig_Help_DeskModel
         private global::System.String _Subject;
         partial void OnSubjectChanging(global::System.String value);
         partial void OnSubjectChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Rating
+        {
+            get
+            {
+                return _Rating;
+            }
+            set
+            {
+                OnRatingChanging(value);
+                ReportPropertyChanging("Rating");
+                _Rating = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Rating");
+                OnRatingChanged();
+            }
+        }
+        private global::System.String _Rating;
+        partial void OnRatingChanging(global::System.String value);
+        partial void OnRatingChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1996,6 +2003,192 @@ namespace Acig_Help_DeskModel
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<tbl_Users>("Acig_Help_DeskModel.FK_Tickets_Users", "tbl_Users", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Acig_Help_DeskModel", Name="User_Categories")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class User_Categories : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new User_Categories object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="user_Id">Initial value of the User_Id property.</param>
+        /// <param name="category_Id">Initial value of the Category_Id property.</param>
+        public static User_Categories CreateUser_Categories(global::System.Int64 id, global::System.Int64 user_Id, global::System.Int64 category_Id)
+        {
+            User_Categories user_Categories = new User_Categories();
+            user_Categories.Id = id;
+            user_Categories.User_Id = user_Id;
+            user_Categories.Category_Id = category_Id;
+            return user_Categories;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int64 _Id;
+        partial void OnIdChanging(global::System.Int64 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 User_Id
+        {
+            get
+            {
+                return _User_Id;
+            }
+            set
+            {
+                OnUser_IdChanging(value);
+                ReportPropertyChanging("User_Id");
+                _User_Id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("User_Id");
+                OnUser_IdChanged();
+            }
+        }
+        private global::System.Int64 _User_Id;
+        partial void OnUser_IdChanging(global::System.Int64 value);
+        partial void OnUser_IdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 Category_Id
+        {
+            get
+            {
+                return _Category_Id;
+            }
+            set
+            {
+                OnCategory_IdChanging(value);
+                ReportPropertyChanging("Category_Id");
+                _Category_Id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Category_Id");
+                OnCategory_IdChanged();
+            }
+        }
+        private global::System.Int64 _Category_Id;
+        partial void OnCategory_IdChanging(global::System.Int64 value);
+        partial void OnCategory_IdChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_User_Categories_Categories", "Category")]
+        public Category Category
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Acig_Help_DeskModel.FK_User_Categories_Categories", "Category").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Acig_Help_DeskModel.FK_User_Categories_Categories", "Category").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Category> CategoryReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Acig_Help_DeskModel.FK_User_Categories_Categories", "Category");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("Acig_Help_DeskModel.FK_User_Categories_Categories", "Category", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_User_Categories_tbl_Users", "tbl_Users")]
+        public tbl_Users tbl_Users
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tbl_Users>("Acig_Help_DeskModel.FK_User_Categories_tbl_Users", "tbl_Users").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tbl_Users>("Acig_Help_DeskModel.FK_User_Categories_tbl_Users", "tbl_Users").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<tbl_Users> tbl_UsersReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tbl_Users>("Acig_Help_DeskModel.FK_User_Categories_tbl_Users", "tbl_Users");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<tbl_Users>("Acig_Help_DeskModel.FK_User_Categories_tbl_Users", "tbl_Users", value);
                 }
             }
         }

@@ -29,16 +29,16 @@ public partial class Tickets_show : MasterAppPage
                              on sc.Category_Id equals c.Id
                              join u in _entity.tbl_Users
                              on t.Created_By equals u.Id
-                             join u1 in _entity.tbl_Users
-                             on t.Assigned_To equals u1.Id
+                             //join u1 in _entity.tbl_Users
+                             //on t.Assigned_To equals u1.Id
                              where t.Id == _id
                              select new
                              {
                                  Id = t.Id,
                                  AssignFromId = u.Id,
-                                 AssignToId = u1.Id,
+                                 //AssignToId = u1.Id,
                                  AssignFrom = u.Email,
-                                 AssignTo = u1.Email,
+                                 //AssignTo = u1.Email,
                                  CategoryName = c.Name,
                                  SubCategoryName = sc.Name,
                                  Priority = t.Priority,
@@ -65,12 +65,12 @@ public partial class Tickets_show : MasterAppPage
             currentUserId = CurrentUser.Id();
             foreach (var x in ticketData)
             {
-                NewCommentDiv.Visible = currentUserId == x.AssignFromId || currentUserId == x.AssignToId;
+                NewCommentDiv.Visible = currentUserId == x.AssignFromId;//|| currentUserId == x.AssignToId;
                 if (currentUserId == x.AssignFromId && x.State == "Resolved")
                 {
                     btnCloseTicket.Visible = true;
                 }
-                else if (currentUserId == x.AssignToId && (x.State == "Open" || x.State == "Not Resolved"))
+                else if (false)//currentUserId == x.AssignToId && (x.State == "Open" || x.State == "Not Resolved"))
                 {
                     lnkBtnResolve.Visible = true;
                     lnkBtnResolve.PostBackUrl = routePath + "tickets/resolve.aspx?id=" + x.Id;

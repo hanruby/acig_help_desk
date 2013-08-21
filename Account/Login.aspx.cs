@@ -91,7 +91,6 @@ public partial class Account_Login : MasterAppPage
             Active = true,
             Created_At = DateTime.Now,
             Updated_At = DateTime.Now,
-            Department = "non_it",
             Email = email,
             Role = "normal_user",
             User_Name = userName

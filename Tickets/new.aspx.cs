@@ -32,7 +32,7 @@ public partial class Tickets_new : MasterAppPage
             Type = ddlType.SelectedValue,
             Updated_At = DateTime.Now
         };
-        _ticket.Assigned_To = long.Parse(ddlAssignTo.SelectedValue);
+        //_ticket.Assigned_To = long.Parse(ddlAssignTo.SelectedValue);
         _ticket.Created_By = currentUserId;
         _ticket.Sub_Category_Id = long.Parse(ddlSubCategory.SelectedValue);
         _entity.AddToTickets(_ticket);

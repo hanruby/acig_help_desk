@@ -30,16 +30,16 @@ public partial class Tickets_resolve : MasterAppPage
                              on sc.Category_Id equals c.Id
                              join u in _entity.tbl_Users
                              on t.Created_By equals u.Id
-                             join u1 in _entity.tbl_Users
-                             on t.Assigned_To equals u1.Id
-                             where t.Id == _id && t.Assigned_To == currentUserId && (t.State == "Open" || t.State == "Not Resolved")
+                             //join u1 in _entity.tbl_Users
+                             //on t.Assigned_To equals u1.Id
+                             where t.Id == _id && (t.State == "Open" || t.State == "Not Resolved")
                              select new
                              {
                                  Id = t.Id,
                                  AssignFromId = u.Id,
-                                 AssignToId = u1.Id,
+                                 //AssignToId = u1.Id,
                                  AssignFrom = u.Email,
-                                 AssignTo = u1.Email,
+                                 //AssignTo = u1.Email,
                                  CategoryName = c.Name,
                                  SubCategoryName = sc.Name,
                                  Priority = t.Priority,
