@@ -29,16 +29,12 @@ public partial class Tickets_show : MasterAppPage
                              on sc.Category_Id equals c.Id
                              join u in _entity.tbl_Users
                              on t.Created_By equals u.Id
-                             //join u1 in _entity.tbl_Users
-                             //on t.Assigned_To equals u1.Id
                              where t.Id == _id
                              select new
                              {
                                  Id = t.Id,
                                  AssignFromId = u.Id,
-                                 //AssignToId = u1.Id,
                                  AssignFrom = u.Email,
-                                 //AssignTo = u1.Email,
                                  CategoryName = c.Name,
                                  SubCategoryName = sc.Name,
                                  Priority = t.Priority,
@@ -60,18 +56,21 @@ public partial class Tickets_show : MasterAppPage
             gvEvents.DataSource = data;
             gvEvents.DataBind();
 
+            BindAssignedUsers();
+
             BindGVComments();
 
             currentUserId = CurrentUser.Id();
             foreach (var x in ticketData)
             {
-                NewCommentDiv.Visible = currentUserId == x.AssignFromId;//|| currentUserId == x.AssignToId;
+                NewCommentDiv.Visible = currentUserId == x.AssignFromId;
                 if (currentUserId == x.AssignFromId && x.State == "Resolved")
                 {
                     btnCloseTicket.Visible = true;
                 }
-                else if (false)//currentUserId == x.AssignToId && (x.State == "Open" || x.State == "Not Resolved"))
+                else if (CanResolve(_id))
                 {
+                    NewCommentDiv.Visible = true;
                     lnkBtnResolve.Visible = true;
                     lnkBtnResolve.PostBackUrl = routePath + "tickets/resolve.aspx?id=" + x.Id;
                 }
@@ -152,5 +151,16 @@ public partial class Tickets_show : MasterAppPage
         _entity.AddToEvents(_event);
         _entity.SaveChanges();
         SuccessRedirect(Route.GetRootPath("tickets/index.aspx"), "Successfully Closed Ticket!");
+    }
+
+    protected void BindAssignedUsers()
+    {
+        var data = from ut in _entity.User_Tickets
+                   join u in _entity.tbl_Users
+                   on ut.User_Id equals u.Id
+                   where ut.Ticket_Id == _id
+                   select new { Name = u.Email };
+        rptrAssignedUsers.DataSource = data;
+        rptrAssignedUsers.DataBind();
     }
 }

@@ -28,4 +28,9 @@ public class MasterAppPage : System.Web.UI.Page
         Session["NoticeMessage"] = message;
         Response.Redirect(path);
     }
+    
+    protected bool CanResolve(long ticketId)
+    {
+        return _entity.User_Tickets.Where(x => x.User_Id == currentUserId && x.Ticket_Id == ticketId).Count() > 0;
+    }
 }

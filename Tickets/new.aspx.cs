@@ -11,6 +11,9 @@ public partial class Tickets_new : MasterAppPage
     Ticket _ticket;
     Event _event;
     Comment _comment;
+    User_Tickets _user_Tickets;
+    Category _category;
+    long _category_Id, _sub_Category_Id;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -22,6 +25,8 @@ public partial class Tickets_new : MasterAppPage
     protected void btnSave_Click(object sender, EventArgs e)
     {
         currentUserId = CurrentUser.Id();
+        _sub_Category_Id = long.Parse(ddlSubCategory.SelectedValue);
+        _category_Id = long.Parse(ddlCategory.SelectedValue);
         _entity = GetEntity();
         _ticket = new Ticket
         {
@@ -32,9 +37,8 @@ public partial class Tickets_new : MasterAppPage
             Type = ddlType.SelectedValue,
             Updated_At = DateTime.Now
         };
-        //_ticket.Assigned_To = long.Parse(ddlAssignTo.SelectedValue);
         _ticket.Created_By = currentUserId;
-        _ticket.Sub_Category_Id = long.Parse(ddlSubCategory.SelectedValue);
+        _ticket.Sub_Category_Id = _sub_Category_Id;
         _entity.AddToTickets(_ticket);
         _entity.SaveChanges();
 
@@ -48,6 +52,19 @@ public partial class Tickets_new : MasterAppPage
         _entity.AddToEvents(_event);
         _entity.SaveChanges();
 
+        _category = _entity.Categories.Where(x => x.Id == _category_Id).First();
+        foreach (var x in _category.tbl_Users)
+        {
+            if (x.Id != currentUserId && x.Active)
+            {
+                _user_Tickets = new User_Tickets();
+                _user_Tickets.User_Id = x.Id;
+                _user_Tickets.Ticket_Id = _ticket.Id;
+                _entity.AddToUser_Tickets(_user_Tickets);
+                _entity.SaveChanges();
+            }
+        }
+
         _comment = new Comment
         {
             Created_At = DateTime.Now,
@@ -55,8 +72,9 @@ public partial class Tickets_new : MasterAppPage
             Notes = txtNotes.Text
         };
         _comment.Ticket_Id = _ticket.Id;
+
         HttpPostedFile postedFile = Request.Files["uploadFile"];
-        if (postedFile != null)
+        if (postedFile != null && postedFile.ContentLength > 0)
         {
             var outputFile = FileHelper.SaveFile(postedFile, _ticket.Id);
             _comment.File_Name = (string)outputFile["FileName"];

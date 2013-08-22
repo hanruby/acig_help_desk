@@ -29,10 +29,7 @@
                     <%# Eval("AssignFrom") %>
                 </td>
                 <td>
-                    <label>
-                        Assigned To:
-                    </label>
-                    <%# Eval("AssignTo") %>
+                    
                 </td>
             </tr>
             <tr>

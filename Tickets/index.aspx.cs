@@ -36,17 +36,14 @@ public partial class Tickets_index : MasterAppPage
         GetHeader();
         _entity = GetEntity();
         var data = from t in _entity.Tickets
-                   //join u in _entity.tbl_Users
-                   //on t.Assigned_To equals u.Id
                    join sc in _entity.Sub_Categories
                    on t.Sub_Category_Id equals sc.Id
                    join c in _entity.Categories
                    on sc.Category_Id equals c.Id
-                   where (t.Created_By == currentUserId) && t.State == _scope
+                   where (t.Created_By == currentUserId) && t.State == _customScope
                    orderby t.Created_By
                    select new
                    {
-                       //AssignTo = u.Email,
                        OpenAt = t.Created_At,
                        ResolvedAt = t.Resolved_Date,
                        ClosedAt = t.Closed_Date,
@@ -57,8 +54,9 @@ public partial class Tickets_index : MasterAppPage
         foreach (var x in data)
         {
             dr = dt.NewRow();
-            //dr["Assigned To"] = x.AssignTo;
             dr["Open At"] = x.OpenAt;
+            dr["Category"] = x.CategoryName;
+            dr["Sub Category"] = x.SubCategoryName;
             if (_scope == "resolved" || _scope == "closed")
             {
                 dr["Resolved At"] = x.ResolvedAt;
@@ -82,14 +80,14 @@ public partial class Tickets_index : MasterAppPage
     protected void gvTickets_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         if (e.Row.RowType != DataControlRowType.DataRow) return;
-        int index = 2;
+        int index = 3;
         if (hdnFldScope.Value == "resolved")
         {
-            index = 3;
+            index = 4;
         }
         else if (hdnFldScope.Value == "closed")
         {
-            index = 4;
+            index = 5;
         }
         var text = e.Row.Cells[index].Text;
         LinkButton lb;
@@ -105,8 +103,9 @@ public partial class Tickets_index : MasterAppPage
     protected void GetHeader()
     {
         dt = new DataTable();
-        //dt.Columns.Add(new DataColumn("Assigned To", typeof(string)));
         dt.Columns.Add(new DataColumn("Open At", typeof(string)));
+        dt.Columns.Add(new DataColumn("Category", typeof(string)));
+        dt.Columns.Add(new DataColumn("Sub Category", typeof(string)));
         if (_scope == "resolved")
         {
             dt.Columns.Add(new DataColumn("Resolved At", typeof(string)));

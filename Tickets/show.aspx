@@ -9,7 +9,7 @@
         Ticket Details
         <asp:LinkButton ID="lnkBtnResolve" runat="server" CausesValidation="false">Resolve Ticket</asp:LinkButton>
         <asp:Button ID="btnCloseTicket" runat="server" Text="Close Ticket" CausesValidation="false"
-            OnClientClick="return confirm('Are you sure?')" onclick="btnCloseTicket_Click" />
+            OnClientClick="return confirm('Are you sure?')" OnClick="btnCloseTicket_Click" />
     </h2>
     <hr />
     <h4>
@@ -29,6 +29,31 @@
             </asp:TemplateField>
         </Columns>
     </asp:GridView>
+    <hr />
+    <asp:Repeater ID="rptrAssignedUsers" runat="server">
+        <HeaderTemplate>
+            <table width="100%" CssClass="table table-bordered">
+                <tr>
+                    <th>
+                        Assigned To
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+        </HeaderTemplate>
+        <ItemTemplate>
+          <%# Eval("Name") %>
+        </ItemTemplate>
+        <SeparatorTemplate>
+          ,
+        </SeparatorTemplate>
+        <FooterTemplate>
+            </td>
+            </tr>
+          </table>
+        </FooterTemplate>
+    </asp:Repeater>
+    <hr />
     <h4>
         Details</h4>
     <asp:Repeater ID="rptrTickets" runat="server">
@@ -36,22 +61,62 @@
             <table width="100%">
         </HeaderTemplate>
         <ItemTemplate>
-           <tr>
-             <td><label>Created By: </label><%# Eval("AssignFrom") %></td>
-             <td><label>Assigned To: </label><%# Eval("AssignTo") %></td>
-           </tr>
-           <tr>
-             <td><label>Category: </label><%# Eval("CategoryName") %></td>
-             <td><label>Sub Category: </label><%# Eval("SubCategoryName") %></td>
-           </tr>
-           <tr>
-             <td><label>Type: </label><%# Eval("Type") %></td>
-             <td><label>Priority: </label><%# Eval("Priority") %></td>
-           </tr>
-           <tr>
-             <td><label>Subject: </label><%# Eval("Subject") %></td>
-             <td><label>Current State: </label><%# Eval("State") %></td>
-           </tr>
+            <tr>
+                <td>
+                    <label>
+                        Created By:
+                    </label>
+                    <%# Eval("AssignFrom") %>
+                </td>
+                <td>
+                    <label>
+                        Assigned To:
+                    </label>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>
+                        Category:
+                    </label>
+                    <%# Eval("CategoryName") %>
+                </td>
+                <td>
+                    <label>
+                        Sub Category:
+                    </label>
+                    <%# Eval("SubCategoryName") %>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>
+                        Type:
+                    </label>
+                    <%# Eval("Type") %>
+                </td>
+                <td>
+                    <label>
+                        Priority:
+                    </label>
+                    <%# Eval("Priority") %>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>
+                        Subject:
+                    </label>
+                    <%# Eval("Subject") %>
+                </td>
+                <td>
+                    <label>
+                        Current State:
+                    </label>
+                    <%# Eval("State") %>
+                </td>
+            </tr>
         </ItemTemplate>
         <FooterTemplate>
             </table>
@@ -82,7 +147,7 @@
         </Columns>
     </asp:GridView>
     <div id="NewCommentDiv" runat="server">
-      <fieldset class="login">
+        <fieldset class="login">
             <legend>New Comment</legend>
             <p>
                 <asp:Label ID="lblDescription" runat="server" Text="Description" AssociatedControlID="txtDescription"></asp:Label>
@@ -92,7 +157,7 @@
             </p>
             <p>
                 <asp:Label ID="lblFile" runat="server" Text="File"></asp:Label>
-                 <input type="file" id="uploadFile" name="uploadFile" />
+                <input type="file" id="uploadFile" name="uploadFile" />
             </p>
             <p>
                 <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Add" CssClass="btn btn-primary" />
