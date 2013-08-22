@@ -31,7 +31,7 @@
     <hr />
     <asp:Repeater ID="rptrAssignedUsers" runat="server">
         <HeaderTemplate>
-            <table width="100%" CssClass="table table-bordered">
+            <table width="100%" Class="table table-bordered">
                 <tr>
                     <th>
                         Assigned To
@@ -57,7 +57,7 @@
         Details</h4>
     <asp:Repeater ID="rptrTickets" runat="server">
         <HeaderTemplate>
-            <table width="100%">
+            <table Class="table table-bordered">
         </HeaderTemplate>
         <ItemTemplate>
             <tr>
@@ -125,7 +125,7 @@
     <h4>
         Comments</h4>
     <asp:GridView ID="gvComments" runat="server" CssClass="table table-bordered" AutoGenerateColumns="false"
-        ShowHeader="true" Width="100%">
+        ShowHeader="true">
         <Columns>
             <asp:TemplateField HeaderText="Created At">
                 <ItemTemplate>

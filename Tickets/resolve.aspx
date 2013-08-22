@@ -18,7 +18,7 @@
         Details</h4>
     <asp:Repeater ID="rptrTickets" runat="server">
         <HeaderTemplate>
-            <table width="100%">
+            <table class="table table-bordered">
         </HeaderTemplate>
         <ItemTemplate>
             <tr>

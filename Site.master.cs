@@ -54,7 +54,7 @@ public partial class SiteMaster : System.Web.UI.MasterPage
                 {
                     toRemoveItems.Add(menuItem);
                 }
-                else if (CurrentUser.Department() == "non_it" && menuItem.Value == "non_it")
+                else if (CurrentUser.Department() == "non_it" && menuItem.Value == "it")
                 {
                     toRemoveItems.Add(menuItem);
                 }
