@@ -18,6 +18,7 @@
     </asp:UpdateProgress>
     <asp:UpdatePanel ID="updatePanel" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
+            <h3>All Users</h3>
             <asp:GridView ID="gvUsers" runat="server" AutoGenerateColumns="false" OnRowEditing="EditUser"
                 OnRowUpdating="UpdateUser" OnRowCancelingEdit="CancelEdit" EmptyDataText="No Records"
                 Width="100%" OnRowDataBound="RowDataBound" ShowFooter="true" CssClass="table table-bordered">
