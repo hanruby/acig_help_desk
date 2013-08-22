@@ -28,7 +28,11 @@ public partial class Account_Login : MasterAppPage
         user = ActiveDirectoryAuthentication();
         if (user == null)
         {
-            Session["ErrorMessage"] = "Username or Password is incorrect !";
+            return;
+        }
+        if (!user.Active)
+        {
+            Session["ErrorMessage"] = "Your account has been deactivated !";
             return;
         }
         FormsAuthentication.SetAuthCookie(user.User_Name, false);
@@ -60,43 +64,20 @@ public partial class Account_Login : MasterAppPage
             ds.Filter = "(sAMAccountName=" + txtUserName.Text + ")";
             SearchResult sr = ds.FindOne();
             DirectoryEntry dsresult = sr.GetDirectoryEntry();
-            var customUser = CheckUser(dsresult.Properties["mail"][0].ToString());
+            _entity = GetEntity();
+            var customUser = _entity.tbl_Users.Where(x => x.Email == dsresult.Properties["mail"][0].ToString()).FirstOrDefault();
+            if (customUser == null)
+            {
+                Session["ErrorMessage"] = "Your login credentials does not exist in this system please contact admin to create!";
+                return customUser;
+            }
             return customUser;
         }
         catch (Exception e)
         {
+            Session["ErrorMessage"] = "Username or Password is incorrect !";
             return null;
         }
     }
 
-    protected tbl_Users CheckUser(string email)
-    {
-        _entity = GetEntity();
-        var customUser = _entity.tbl_Users.Where(x => x.Email == email).FirstOrDefault();
-        if (customUser != null)
-        {
-            return customUser;
-        }
-        customUser = CreateUser(email);
-        return customUser;
-    }
-
-    protected tbl_Users CreateUser(string email)
-    {
-        var userName = txtUserName.Text;
-        var array = userName.Split('\\');
-        userName = array[array.Length - 1].Trim();
-        _entity = GetEntity();
-        var customUser = new tbl_Users { 
-            Active = true,
-            Created_At = DateTime.Now,
-            Updated_At = DateTime.Now,
-            Email = email,
-            Role = "normal_user",
-            User_Name = userName
-        };
-        _entity.AddTotbl_Users(customUser);
-        _entity.SaveChanges();
-        return customUser;
-    }
 }
