@@ -3,8 +3,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head runat="server">
-    <title></title>
+    <title>Acig IT Help Desk</title>
     <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Styles/jquery-ui-1.9.0.custom.css" rel="stylesheet" type="text/css" />
+    <link href="~/Styles/Custom.css" rel="stylesheet" type="text/css" />
+    <link href="~/Styles/Form.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/SMS_EMAIL_App/Scripts/jquery-1.8.2.js"></script>
+    <script type="text/javascript" src="/SMS_EMAIL_App/Scripts/jquery-ui-1.9.0.custom.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".close").click(function () {
+                $(this).parent().parent().remove();
+            });
+        });
+    </script>
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -14,7 +26,7 @@
         <div class="header">
             <div class="title">
                 <h1>
-                   ACIG IT Help Desk
+                    ACIG IT Help Desk
                 </h1>
             </div>
             <div class="loginDisplay">
@@ -22,30 +34,47 @@
                 <asp:HyperLink ID="hprLinkLoginStatus" runat="server">Text</asp:HyperLink>
             </div>
             <div class="clear hideSkiplink">
-                <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false"
+                    IncludeStyleBlock="false" Orientation="Horizontal">
                     <Items>
-                        <asp:MenuItem NavigateUrl="~/admin/users/index.aspx" Text="Users" Value="admin"/>
-                        <asp:MenuItem NavigateUrl="~/admin/categories/index.aspx" Text="Categories" Value="admin"/>
-                        <asp:MenuItem NavigateUrl="~/tickets/index.aspx?scope=pending" Text="Pending Tickets" Value="non_it"/>
-                        <asp:MenuItem NavigateUrl="~/tickets/index.aspx?scope=resolved" Text="Resolved Tickets" Value="non_it"/>
-                        <asp:MenuItem NavigateUrl="~/tickets/index.aspx?scope=closed" Text="Closed Tickets" Value="non_it"/>
-                        <asp:MenuItem NavigateUrl="~/tickets/assigned.aspx?scope=pending" Text="Assigned Pending Tickets" Value="it"/>
-                        <asp:MenuItem NavigateUrl="~/tickets/assigned.aspx?scope=resolved" Text="Assigned Resolved Tickets" Value="it"/>
-                        <asp:MenuItem NavigateUrl="~/tickets/assigned.aspx?scope=closed" Text="Assigned Closed Tickets" Value="it"/>
-                        <asp:MenuItem NavigateUrl="~/tickets/new.aspx" Text="New Ticket" Value=""/>
+                        <asp:MenuItem NavigateUrl="~/admin/users/index.aspx" Text="Users" Value="admin" />
+                        <asp:MenuItem NavigateUrl="~/admin/categories/index.aspx" Text="Categories" Value="admin" />
+                        <asp:MenuItem NavigateUrl="~/tickets/index.aspx?scope=pending" Text="Pending Tickets"
+                            Value="non_it" />
+                        <asp:MenuItem NavigateUrl="~/tickets/index.aspx?scope=resolved" Text="Resolved Tickets"
+                            Value="non_it" />
+                        <asp:MenuItem NavigateUrl="~/tickets/index.aspx?scope=closed" Text="Closed Tickets"
+                            Value="non_it" />
+                        <asp:MenuItem NavigateUrl="~/tickets/assigned.aspx?scope=pending" Text="Assigned Pending Tickets"
+                            Value="it" />
+                        <asp:MenuItem NavigateUrl="~/tickets/assigned.aspx?scope=resolved" Text="Assigned Resolved Tickets"
+                            Value="it" />
+                        <asp:MenuItem NavigateUrl="~/tickets/assigned.aspx?scope=closed" Text="Assigned Closed Tickets"
+                            Value="it" />
+                        <asp:MenuItem NavigateUrl="~/tickets/new.aspx" Text="New Ticket" Value="" />
                     </Items>
                 </asp:Menu>
             </div>
         </div>
         <div class="main">
             <asp:Label ID="lblNotification" runat="server" Text="" Visible="false"></asp:Label>
-            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
         </div>
         <div class="clear">
         </div>
-    </div>
-    <div class="footer">
-        
+        <hr />
+        <div class="footer">
+            <p class="left" style="margin-left: 11px;">
+                &copy Copyright
+                <%= DateTime.Now.Year %>
+                Acig
+            </p>
+            <p class="right" style="margin-right: 11px;">
+                V 1.0
+            </p>
+            <div class="clear">
+            </div>
+        </div>
     </div>
     </form>
 </body>
