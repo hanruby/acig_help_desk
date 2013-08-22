@@ -52,6 +52,7 @@ public partial class Admin_Users_index : MasterAppPage
         _user.User_Name = ((TextBox)(gvUsers.Rows[e.RowIndex].FindControl("txtUserNameEdit"))).Text;
         _user.Email = _email;
         _user.Active = bool.Parse(((DropDownList)(gvUsers.Rows[e.RowIndex].FindControl("ddlActiveEdit"))).SelectedValue);
+        _user.Department = ((DropDownList)(gvUsers.Rows[e.RowIndex].FindControl("ddlDepartmentEdit"))).SelectedValue;
         if (ddlCategory.SelectedValue == "0")
         {
             _user.Category_Id = null;
@@ -83,7 +84,9 @@ public partial class Admin_Users_index : MasterAppPage
                        Role = u.Role,
                        Active = u.Active,
                        Role_Text = u.Role == "admin" ? "Admin" : "Normal",
-                       Category_Name = x.Name
+                       Category_Name = x.Name,
+                       Department_Text = u.Department == "it" ? "IT" : "Non IT",
+                       Department = u.Department,
                    };
         gvUsers.DataSource = data;
         gvUsers.DataBind();
@@ -140,6 +143,7 @@ public partial class Admin_Users_index : MasterAppPage
         var ddlActive = ((DropDownList)(gvUsers.FooterRow.FindControl("ddlActiveNew")));
         ddlCategory = ((DropDownList)(gvUsers.FooterRow.FindControl("ddlCategoryNew")));
         var ddlRole = ((DropDownList)(gvUsers.FooterRow.FindControl("ddlRoleNew")));
+        var ddlDeparment = ((DropDownList)(gvUsers.FooterRow.FindControl("ddlDepartmentNew")));
         _email = txtEmail.Text.Trim();
         if (_entity.tbl_Users.Where(x => x.Email == _email).Count() > 0)
         {
@@ -159,6 +163,7 @@ public partial class Admin_Users_index : MasterAppPage
             _user.Category_Id = long.Parse(ddlCategory.SelectedValue);
         }
         _user.Role = ddlRole.SelectedValue;
+        _user.Department = ddlDeparment.SelectedValue;
         _user.Created_At = DateTime.Now;
         _user.Updated_At = DateTime.Now;
         _entity.AddTotbl_Users(_user);

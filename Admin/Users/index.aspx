@@ -78,6 +78,29 @@
                         ForeColor="#FF3300" SetFocusOnError="True" InitialValue="0" ValidationGroup="NewUser">*</asp:RequiredFieldValidator>
                 </FooterTemplate>
             </asp:TemplateField>
+            <asp:TemplateField HeaderText="Department">
+                <ItemTemplate>
+                    <asp:Label ID="lblDepartment" runat="server" Text='<%# Eval("Department_Text")%>'></asp:Label>
+                </ItemTemplate>
+                <EditItemTemplate>
+                    <asp:DropDownList ID="ddlDepartmentEdit" runat="server" SelectedValue='<%# Eval("Department") %>'>
+                        <asp:ListItem Value="0">Select</asp:ListItem>
+                        <asp:ListItem Value="it">IT</asp:ListItem>
+                        <asp:ListItem Value="non_it">Non IT</asp:ListItem>
+                    </asp:DropDownList>
+                    <asp:RequiredFieldValidator ID="rfvDeparmentEdit" runat="server" ControlToValidate="ddlDepartmentEdit"
+                        ForeColor="#FF3300" SetFocusOnError="True" InitialValue="0">*</asp:RequiredFieldValidator>
+                </EditItemTemplate>
+                <FooterTemplate>
+                    <asp:DropDownList ID="ddlDepartmentNew" runat="server">
+                        <asp:ListItem Value="0">Select</asp:ListItem>
+                        <asp:ListItem Value="it">IT</asp:ListItem>
+                        <asp:ListItem Value="non_it">Non IT</asp:ListItem>
+                    </asp:DropDownList>
+                    <asp:RequiredFieldValidator ID="rfvDepartmentNew" runat="server" ControlToValidate="ddlDepartmentNew"
+                        ForeColor="#FF3300" SetFocusOnError="True" InitialValue="0" ValidationGroup="NewUser">*</asp:RequiredFieldValidator>
+                </FooterTemplate>
+            </asp:TemplateField>
             <asp:TemplateField HeaderText="Active?">
                 <ItemTemplate>
                     <asp:Label ID="lblActive" runat="server" Text='<%# Eval("Active")%>'></asp:Label>
@@ -108,7 +131,7 @@
                 </ItemTemplate>
                 <EditItemTemplate>
                     <asp:LinkButton ID="UpdateButton" runat="server" CssClass="button" CommandName="Update"
-                        Text="Update" ValidationGroup="EditUser"/>&nbsp;
+                        Text="Update" ValidationGroup="EditUser" />&nbsp;
                     <asp:LinkButton ID="Cancel" runat="server" CssClass="button" CommandName="Cancel"
                         Text="Cancel" CausesValidation="false"></asp:LinkButton>
                 </EditItemTemplate>

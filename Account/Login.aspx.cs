@@ -65,7 +65,8 @@ public partial class Account_Login : MasterAppPage
             SearchResult sr = ds.FindOne();
             DirectoryEntry dsresult = sr.GetDirectoryEntry();
             _entity = GetEntity();
-            var customUser = _entity.tbl_Users.Where(x => x.Email == dsresult.Properties["mail"][0].ToString()).FirstOrDefault();
+            var email = dsresult.Properties["mail"][0].ToString();
+            var customUser = _entity.tbl_Users.Where(x => x.Email == email).FirstOrDefault();
             if (customUser == null)
             {
                 Session["ErrorMessage"] = "Your login credentials does not exist in this system please contact admin to create!";

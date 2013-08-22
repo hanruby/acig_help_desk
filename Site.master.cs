@@ -24,6 +24,18 @@ public partial class SiteMaster : System.Web.UI.MasterPage
             hprLinkLoginStatus.NavigateUrl = Route.GetRootPath("account/login.aspx");
             hprLinkLoginStatus.Text = "Sign In";
         }
+        if (Session["NoticeMessage"] != null)
+        {
+            lblNotification.Text = Session["NoticeMessage"].ToString();
+            lblNotification.Visible = true;
+            Session["NoticeMessage"] = null;
+        }
+        if (Session["ErrorMessage"] != null)
+        {
+            lblNotification.Text = Session["ErrorMessage"].ToString();
+            lblNotification.Visible = true;
+            Session["ErrorMessage"] = null;
+        }
     }
 
     protected void MenuItems(bool authenticated)
