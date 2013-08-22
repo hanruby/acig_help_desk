@@ -8,8 +8,7 @@
     <h2>
         Ticket Details
         <asp:LinkButton ID="lnkBtnResolve" runat="server" CausesValidation="false">Resolve Ticket</asp:LinkButton>
-        <asp:Button ID="btnCloseTicket" runat="server" Text="Close Ticket" CausesValidation="false"
-            OnClientClick="return confirm('Are you sure?')" OnClick="btnCloseTicket_Click" />
+        <asp:LinkButton ID="lnkBtnClose" runat="server" CausesValidation="false">Close Ticket</asp:LinkButton>
     </h2>
     <hr />
     <h4>
