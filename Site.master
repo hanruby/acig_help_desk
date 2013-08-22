@@ -24,6 +24,7 @@
             <div class="clear hideSkiplink">
                 <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
                     <Items>
+                        <asp:MenuItem NavigateUrl="~/admin/users/index.aspx" Text="Users" Value="admin"/>
                         <asp:MenuItem NavigateUrl="~/admin/categories/index.aspx" Text="Categories" Value="admin"/>
                         <asp:MenuItem NavigateUrl="~/tickets/index.aspx" Text="All Tickets" Value=""/>
                         <asp:MenuItem NavigateUrl="~/tickets/index.aspx?scope=pending" Text="Pending Tickets" Value=""/>
