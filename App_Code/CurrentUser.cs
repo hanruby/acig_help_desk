@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
+using Acig_Help_DeskModel;
 
 public static class CurrentUser
 {
@@ -17,6 +18,20 @@ public static class CurrentUser
     {
         var cookie = FormsAuthentication.Decrypt(HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData;
         return cookie.Split('#')[1];
+    }
+
+    public static string Department()
+    {
+        string department = HttpContext.Current.Session["Current_Usr_Department"] as string;
+        if (!string.IsNullOrEmpty(department))
+        {
+            return department;
+        }
+        var id = CurrentUser.Id();
+        var entity = new Acig_Help_DeskEntities();
+        var user = entity.tbl_Users.Where(x => x.Id == id).First();
+        HttpContext.Current.Session["Current_Usr_Department"] = user.Department;
+        return user.Department;
     }
 
     public static string GetRedirectPath(string role)

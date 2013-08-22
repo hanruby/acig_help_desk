@@ -54,7 +54,7 @@ public partial class Tickets_resolve : MasterAppPage
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        routePath = Route.GetRootPath("tickets/index.aspx");
+        routePath = Route.GetRootPath("tickets/assigned.aspx?scope=resolved");
         _id = long.Parse(hdnFldTicketId.Value);
         currentUserId = CurrentUser.Id();
         _entity = GetEntity();

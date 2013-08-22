@@ -26,10 +26,12 @@
                     <Items>
                         <asp:MenuItem NavigateUrl="~/admin/users/index.aspx" Text="Users" Value="admin"/>
                         <asp:MenuItem NavigateUrl="~/admin/categories/index.aspx" Text="Categories" Value="admin"/>
-                        <asp:MenuItem NavigateUrl="~/tickets/index.aspx" Text="All Tickets" Value=""/>
-                        <asp:MenuItem NavigateUrl="~/tickets/index.aspx?scope=pending" Text="Pending Tickets" Value=""/>
-                        <asp:MenuItem NavigateUrl="~/tickets/index.aspx?scope=resolved" Text="Resolved Tickets" Value=""/>
-                        <asp:MenuItem NavigateUrl="~/tickets/index.aspx?scope=closed" Text="Closed Tickets" Value=""/>
+                        <asp:MenuItem NavigateUrl="~/tickets/index.aspx?scope=pending" Text="Pending Tickets" Value="non_it"/>
+                        <asp:MenuItem NavigateUrl="~/tickets/index.aspx?scope=resolved" Text="Resolved Tickets" Value="non_it"/>
+                        <asp:MenuItem NavigateUrl="~/tickets/index.aspx?scope=closed" Text="Closed Tickets" Value="non_it"/>
+                        <asp:MenuItem NavigateUrl="~/tickets/assigned.aspx?scope=pending" Text="Assigned Pending Tickets" Value="it"/>
+                        <asp:MenuItem NavigateUrl="~/tickets/assigned.aspx?scope=resolved" Text="Assigned Resolved Tickets" Value="it"/>
+                        <asp:MenuItem NavigateUrl="~/tickets/assigned.aspx?scope=closed" Text="Assigned Closed Tickets" Value="it"/>
                         <asp:MenuItem NavigateUrl="~/tickets/new.aspx" Text="New Ticket" Value=""/>
                     </Items>
                 </asp:Menu>
