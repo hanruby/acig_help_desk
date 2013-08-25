@@ -118,17 +118,19 @@
             </table>
         </FooterTemplate>
     </asp:Repeater>
-    <hr />
     <h4>
         Comments</h4>
+    <hr />
     <asp:Repeater ID="rptrComments" runat="server">
         <HeaderTemplate>
         </HeaderTemplate>
         <ItemTemplate>
-            Created At:  <asp:Label ID="lblCreatedAt" runat="server" Text='<%# Eval("CreatedAt")%>'></asp:Label>
-            <br />
+            <div class="left">
+              Created At: <asp:Label ID="lblCreatedAt" runat="server" Text='<%# Eval("CreatedAt")%>'></asp:Label>
+            </div>
             <asp:HyperLink ID="hprLinkFile" runat="server" Visible='<%# FileLinkVisibile(Eval("Visible")) %>'
-                NavigateUrl='<%# FileDownloadUrl(Eval("Url")) %>'>Download</asp:HyperLink>
+                NavigateUrl='<%# FileDownloadUrl(Eval("Url")) %>' CssClass="right">File Download</asp:HyperLink>
+            <div class="clear"></div>
             <br />
             <asp:Label ID="lblNotes" runat="server" Text='<%# Eval("Notes")%>'></asp:Label>
         </ItemTemplate>
