@@ -31,7 +31,7 @@
     <hr />
     <asp:Repeater ID="rptrAssignedUsers" runat="server">
         <HeaderTemplate>
-            <table width="100%" Class="table table-bordered">
+            <table width="100%" class="table table-bordered">
                 <tr>
                     <th>
                         Assigned To
@@ -41,15 +41,13 @@
                     <td>
         </HeaderTemplate>
         <ItemTemplate>
-          <%# Eval("Name") %>
+            <%# Eval("Name") %>
         </ItemTemplate>
         <SeparatorTemplate>
-          ,
+            ,
         </SeparatorTemplate>
         <FooterTemplate>
-            </td>
-            </tr>
-          </table>
+            </td> </tr> </table>
         </FooterTemplate>
     </asp:Repeater>
     <hr />
@@ -57,7 +55,7 @@
         Details</h4>
     <asp:Repeater ID="rptrTickets" runat="server">
         <HeaderTemplate>
-            <table Class="table table-bordered">
+            <table class="table table-bordered">
         </HeaderTemplate>
         <ItemTemplate>
             <tr>
@@ -71,7 +69,6 @@
                     <label>
                         Assigned To:
                     </label>
-                    
                 </td>
             </tr>
             <tr>
@@ -124,33 +121,30 @@
     <hr />
     <h4>
         Comments</h4>
-    <asp:GridView ID="gvComments" runat="server" CssClass="table table-bordered" AutoGenerateColumns="false"
-        ShowHeader="true">
-        <Columns>
-            <asp:TemplateField HeaderText="Created At">
-                <ItemTemplate>
-                    <asp:Label ID="lblCreatedAt" runat="server" Text='<%# Eval("CreatedAt")%>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="Notes">
-                <ItemTemplate>
-                    <asp:Label ID="lblNotes" runat="server" Text='<%# Eval("Notes")%>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="File">
-                <ItemTemplate>
-                    <asp:HyperLink ID="hprLinkFile" runat="server" Visible='<%# FileLinkVisibile(Eval("Visible")) %>'
-                        NavigateUrl='<%# FileDownloadUrl(Eval("Url")) %>'>Download</asp:HyperLink>
-                </ItemTemplate>
-            </asp:TemplateField>
-        </Columns>
-    </asp:GridView>
+    <asp:Repeater ID="rptrComments" runat="server">
+        <HeaderTemplate>
+        </HeaderTemplate>
+        <ItemTemplate>
+            Created At:  <asp:Label ID="lblCreatedAt" runat="server" Text='<%# Eval("CreatedAt")%>'></asp:Label>
+            <br />
+            <asp:HyperLink ID="hprLinkFile" runat="server" Visible='<%# FileLinkVisibile(Eval("Visible")) %>'
+                NavigateUrl='<%# FileDownloadUrl(Eval("Url")) %>'>Download</asp:HyperLink>
+            <br />
+            <asp:Label ID="lblNotes" runat="server" Text='<%# Eval("Notes")%>'></asp:Label>
+        </ItemTemplate>
+        <SeparatorTemplate>
+            <hr />
+        </SeparatorTemplate>
+        <FooterTemplate>
+        </FooterTemplate>
+    </asp:Repeater>
+    <hr />
     <div id="NewCommentDiv" runat="server">
         <fieldset class="login">
             <legend>New Comment</legend>
             <p>
                 <asp:Label ID="lblDescription" runat="server" Text="Description" AssociatedControlID="txtDescription"></asp:Label>
-                <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Rows="5" Columns="95"></asp:TextBox>
+                <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Rows="5" Columns="95" Width="100%"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvDescription" runat="server" ControlToValidate="txtDescription"
                     ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
             </p>

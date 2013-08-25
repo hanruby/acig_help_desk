@@ -130,8 +130,8 @@ public partial class Tickets_show : MasterAppPage
                               Visible = c.File_Path,
                               Url = c.Id
                           };
-        gvComments.DataSource = commentData;
-        gvComments.DataBind();
+        rptrComments.DataSource = commentData;
+        rptrComments.DataBind();
     }
 
     protected void btnCloseTicket_Click(object sender, EventArgs e)
