@@ -30,6 +30,7 @@
                         <EditItemTemplate>
                             <asp:HiddenField ID="hdnUserId" runat="server" Value='<%# Eval("Id") %>' />
                             <asp:HiddenField ID="hdnFldCategoryId" runat="server" Value='<%# Eval("Category_Id") %>' />
+                            <asp:HiddenField ID="hdnFldDepartmentId" runat="server" Value='<%# Eval("Department_Id") %>' />
                             <asp:TextBox ID="txtUserNameEdit" runat="server" Text='<%# Eval("User_Name")%>' MaxLength="100" Width="150px"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvUserNameEdit" runat="server" ControlToValidate="txtUserNameEdit"
                                 ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
@@ -98,10 +99,8 @@
                             <asp:Label ID="lblDepartment" runat="server" Text='<%# Eval("Department_Text")%>'></asp:Label>
                         </ItemTemplate>
                         <EditItemTemplate>
-                            <asp:DropDownList ID="ddlDepartmentEdit" runat="server" SelectedValue='<%# Eval("Department") %>' Width="150px">
+                            <asp:DropDownList ID="ddlDepartmentEdit" runat="server" Width="150px">
                                 <asp:ListItem Value="0">Select</asp:ListItem>
-                                <asp:ListItem Value="it">IT</asp:ListItem>
-                                <asp:ListItem Value="non_it">Non IT</asp:ListItem>
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator ID="rfvDeparmentEdit" runat="server" ControlToValidate="ddlDepartmentEdit"
                                 ForeColor="#FF3300" SetFocusOnError="True" InitialValue="0">*</asp:RequiredFieldValidator>
@@ -109,8 +108,6 @@
                         <FooterTemplate>
                             <asp:DropDownList ID="ddlDepartmentNew" runat="server" Width="150px">
                                 <asp:ListItem Value="0">Select</asp:ListItem>
-                                <asp:ListItem Value="it">IT</asp:ListItem>
-                                <asp:ListItem Value="non_it">Non IT</asp:ListItem>
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator ID="rfvDepartmentNew" runat="server" ControlToValidate="ddlDepartmentNew"
                                 ForeColor="#FF3300" SetFocusOnError="True" InitialValue="0" ValidationGroup="NewUser">*</asp:RequiredFieldValidator>
@@ -156,6 +153,6 @@
                     </asp:TemplateField>
                 </Columns>
             </asp:GridView>
-        </ContentTemplate>
+      </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

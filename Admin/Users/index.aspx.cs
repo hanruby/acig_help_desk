@@ -52,7 +52,7 @@ public partial class Admin_Users_index : MasterAppPage
         _user.User_Name = ((TextBox)(gvUsers.Rows[e.RowIndex].FindControl("txtUserNameEdit"))).Text;
         _user.Email = _email;
         _user.Active = bool.Parse(((DropDownList)(gvUsers.Rows[e.RowIndex].FindControl("ddlActiveEdit"))).SelectedValue);
-        //_user.Department = ((DropDownList)(gvUsers.Rows[e.RowIndex].FindControl("ddlDepartmentEdit"))).SelectedValue;
+        _user.Department_Id = long.Parse(((DropDownList)(gvUsers.Rows[e.RowIndex].FindControl("ddlDepartmentEdit"))).SelectedValue);
         if (ddlCategory.SelectedValue == "0")
         {
             _user.Category_Id = null;
@@ -86,7 +86,7 @@ public partial class Admin_Users_index : MasterAppPage
                        Role_Text = u.Role == "admin" ? "Admin" : "Normal",
                        Category_Name = x.Name,
                        Department_Text = u.Department.Name,
-                       Department = u.Department,
+                       Department_Id = u.Department_Id
                    };
         gvUsers.DataSource = data;
         gvUsers.DataBind();
@@ -98,12 +98,17 @@ public partial class Admin_Users_index : MasterAppPage
         {
             DropDownList ddlCategories = (DropDownList)e.Row.FindControl("ddlCategoryEdit");
             HiddenField hdnFldId = (HiddenField)e.Row.FindControl("hdnFldCategoryId");
-            BindCategoriesDdl(ddlCategories);
+            HiddenField hdnFldDepartmentId = (HiddenField)e.Row.FindControl("hdnFldDepartmentId");
+            BindDdl(ddlCategories, "category");
+            DropDownList ddlDepartment = (DropDownList)e.Row.FindControl("ddlDepartmentEdit");
+            BindDdl(ddlDepartment, "department");
             ddlCategories.SelectedValue = hdnFldId.Value;
+            ddlDepartment.SelectedValue = hdnFldDepartmentId.Value;
         }
         if (e.Row.RowType == DataControlRowType.Footer)
         {
-            BindCategoriesDdl((DropDownList)e.Row.FindControl("ddlCategoryNew"));
+            BindDdl((DropDownList)e.Row.FindControl("ddlCategoryNew"), "category");
+            BindDdl((DropDownList)e.Row.FindControl("ddlDepartmentNew"), "department");
         }
     }
 
@@ -111,7 +116,7 @@ public partial class Admin_Users_index : MasterAppPage
     {
     }
 
-    void BindCategoriesDdl(DropDownList ddl)
+    void BindDdl(DropDownList ddl, string type)
     {
         _entity = GetEntity();
         table = new DataTable();
@@ -121,12 +126,25 @@ public partial class Admin_Users_index : MasterAppPage
         dr["Text"] = "Select";
         dr["Value"] = 0;
         table.Rows.Add(dr);
-        foreach (var x in _entity.Categories)
+        if (type == "category")
         {
-            dr = table.NewRow();
-            dr["Text"] = x.Name;
-            dr["Value"] = x.Id.ToString();
-            table.Rows.Add(dr);
+            foreach (var x in _entity.Categories)
+            {
+                dr = table.NewRow();
+                dr["Text"] = x.Name;
+                dr["Value"] = x.Id.ToString();
+                table.Rows.Add(dr);
+            }
+        }
+        else
+        {
+            foreach (var x in _entity.Departments)
+            {
+                dr = table.NewRow();
+                dr["Text"] = x.Name;
+                dr["Value"] = x.Id.ToString();
+                table.Rows.Add(dr);
+            }
         }
         ddl.DataSource = table;
         ddl.DataTextField = table.Columns["Text"].ColumnName;
@@ -163,7 +181,7 @@ public partial class Admin_Users_index : MasterAppPage
             _user.Category_Id = long.Parse(ddlCategory.SelectedValue);
         }
         _user.Role = ddlRole.SelectedValue;
-        //_user.Department = ddlDeparment.SelectedValue;
+        _user.Department_Id = long.Parse(ddlDeparment.SelectedValue);
         _user.Created_At = DateTime.Now;
         _user.Updated_At = DateTime.Now;
         _entity.AddTotbl_Users(_user);
