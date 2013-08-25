@@ -128,7 +128,7 @@ public partial class Admin_Users_index : MasterAppPage
         table.Rows.Add(dr);
         if (type == "category")
         {
-            foreach (var x in _entity.Categories)
+            foreach (var x in _entity.Categories.OrderBy(x => x.Name))
             {
                 dr = table.NewRow();
                 dr["Text"] = x.Name;
@@ -138,7 +138,7 @@ public partial class Admin_Users_index : MasterAppPage
         }
         else
         {
-            foreach (var x in _entity.Departments)
+            foreach (var x in _entity.Departments.OrderBy(x => x.Name))
             {
                 dr = table.NewRow();
                 dr["Text"] = x.Name;
