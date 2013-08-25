@@ -189,6 +189,6 @@ public partial class Admin_Users_index : MasterAppPage
         BindDataToGridView();
 
         txtUserName.Text = txtEmail.Text = string.Empty;
-        ddlActive.SelectedValue = ddlCategory.SelectedValue = ddlRole.SelectedValue = "0";
+        ddlActive.SelectedValue = ddlCategory.SelectedValue = ddlRole.SelectedValue = ddlDeparment.SelectedValue = "0";
     }
 }
