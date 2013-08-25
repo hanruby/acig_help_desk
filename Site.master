@@ -42,6 +42,7 @@
                     <Items>
                         <asp:MenuItem NavigateUrl="~/admin/users/index.aspx" Text="Users" Value="admin" />
                         <asp:MenuItem NavigateUrl="~/admin/categories/index.aspx" Text="Categories" Value="admin" />
+                        <asp:MenuItem NavigateUrl="~/admin/departments/index.aspx" Text="Departments" Value="admin" />
                         <asp:MenuItem NavigateUrl="~/tickets/index.aspx" Text="Tickets" Value="non_it" />
                         <asp:MenuItem NavigateUrl="~/tickets/assigned.aspx" Text="Assigned Tickets"
                             Value="it" />

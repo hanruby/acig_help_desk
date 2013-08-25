@@ -20,18 +20,18 @@ public static class CurrentUser
         return cookie.Split('#')[1];
     }
 
-    public static string Department()
+    public static long DepartmentId()
     {
-        string department = HttpContext.Current.Session["Current_Usr_Department"] as string;
-        if (!string.IsNullOrEmpty(department))
+        string departmentId = HttpContext.Current.Session["Current_Usr_Department"] as string;
+        if (!string.IsNullOrEmpty(departmentId))
         {
-            return department;
+            return long.Parse(departmentId);
         }
         var id = CurrentUser.Id();
         var entity = new Acig_Help_DeskEntities();
         var user = entity.tbl_Users.Where(x => x.Id == id).First();
-        HttpContext.Current.Session["Current_Usr_Department"] = user.Department;
-        return user.Department;
+        HttpContext.Current.Session["Current_Usr_Department"] = user.Department.Id;
+        return user.Department.Id;
     }
 
     public static string GetRedirectPath(string role)

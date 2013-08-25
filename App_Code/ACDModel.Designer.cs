@@ -22,8 +22,10 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_tbl_Users_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Acig_Help_DeskModel.Category), "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.tbl_Users), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Comments_tbl_Users", "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.tbl_Users), "Comment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Comment), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Comments_Tickets", "Ticket", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Ticket), "Comment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Comment), true)]
+[assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_tbl_Users_Departments", "Department", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Department), "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.tbl_Users), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Events_tbl_Users", "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.tbl_Users), "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Event), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Events_Tickets", "Ticket", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Ticket), "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Event), true)]
+[assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Sub_Sub_Categories_Sub_Categories", "Sub_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Sub_Categories), "Sub_Sub_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Sub_Sub_Categories), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Tickets_Sub_Categories", "Sub_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Sub_Categories), "Ticket", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Ticket), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Tickets_Users", "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.tbl_Users), "Ticket", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Ticket), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_User_Tickets_tbl_Users", "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.tbl_Users), "User_Tickets", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.User_Tickets), true)]
@@ -114,6 +116,22 @@ namespace Acig_Help_DeskModel
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<Department> Departments
+        {
+            get
+            {
+                if ((_Departments == null))
+                {
+                    _Departments = base.CreateObjectSet<Department>("Departments");
+                }
+                return _Departments;
+            }
+        }
+        private ObjectSet<Department> _Departments;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Event> Events
         {
             get
@@ -142,6 +160,22 @@ namespace Acig_Help_DeskModel
             }
         }
         private ObjectSet<Sub_Categories> _Sub_Categories;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Sub_Sub_Categories> Sub_Sub_Categories
+        {
+            get
+            {
+                if ((_Sub_Sub_Categories == null))
+                {
+                    _Sub_Sub_Categories = base.CreateObjectSet<Sub_Sub_Categories>("Sub_Sub_Categories");
+                }
+                return _Sub_Sub_Categories;
+            }
+        }
+        private ObjectSet<Sub_Sub_Categories> _Sub_Sub_Categories;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -211,6 +245,14 @@ namespace Acig_Help_DeskModel
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the Departments EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToDepartments(Department department)
+        {
+            base.AddObject("Departments", department);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the Events EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToEvents(Event @event)
@@ -224,6 +266,14 @@ namespace Acig_Help_DeskModel
         public void AddToSub_Categories(Sub_Categories sub_Categories)
         {
             base.AddObject("Sub_Categories", sub_Categories);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Sub_Sub_Categories EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSub_Sub_Categories(Sub_Sub_Categories sub_Sub_Categories)
+        {
+            base.AddObject("Sub_Sub_Categories", sub_Sub_Categories);
         }
     
         /// <summary>
@@ -779,6 +829,216 @@ namespace Acig_Help_DeskModel
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Acig_Help_DeskModel", Name="Department")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Department : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Department object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        /// <param name="created_At">Initial value of the Created_At property.</param>
+        /// <param name="updated_At">Initial value of the Updated_At property.</param>
+        /// <param name="created_By">Initial value of the Created_By property.</param>
+        /// <param name="updated_By">Initial value of the Updated_By property.</param>
+        public static Department CreateDepartment(global::System.Int64 id, global::System.String name, global::System.DateTime created_At, global::System.DateTime updated_At, global::System.Int64 created_By, global::System.Int64 updated_By)
+        {
+            Department department = new Department();
+            department.Id = id;
+            department.Name = name;
+            department.Created_At = created_At;
+            department.Updated_At = updated_At;
+            department.Created_By = created_By;
+            department.Updated_By = updated_By;
+            return department;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int64 _Id;
+        partial void OnIdChanging(global::System.Int64 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime Created_At
+        {
+            get
+            {
+                return _Created_At;
+            }
+            set
+            {
+                OnCreated_AtChanging(value);
+                ReportPropertyChanging("Created_At");
+                _Created_At = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Created_At");
+                OnCreated_AtChanged();
+            }
+        }
+        private global::System.DateTime _Created_At;
+        partial void OnCreated_AtChanging(global::System.DateTime value);
+        partial void OnCreated_AtChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime Updated_At
+        {
+            get
+            {
+                return _Updated_At;
+            }
+            set
+            {
+                OnUpdated_AtChanging(value);
+                ReportPropertyChanging("Updated_At");
+                _Updated_At = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Updated_At");
+                OnUpdated_AtChanged();
+            }
+        }
+        private global::System.DateTime _Updated_At;
+        partial void OnUpdated_AtChanging(global::System.DateTime value);
+        partial void OnUpdated_AtChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 Created_By
+        {
+            get
+            {
+                return _Created_By;
+            }
+            set
+            {
+                OnCreated_ByChanging(value);
+                ReportPropertyChanging("Created_By");
+                _Created_By = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Created_By");
+                OnCreated_ByChanged();
+            }
+        }
+        private global::System.Int64 _Created_By;
+        partial void OnCreated_ByChanging(global::System.Int64 value);
+        partial void OnCreated_ByChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 Updated_By
+        {
+            get
+            {
+                return _Updated_By;
+            }
+            set
+            {
+                OnUpdated_ByChanging(value);
+                ReportPropertyChanging("Updated_By");
+                _Updated_By = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Updated_By");
+                OnUpdated_ByChanged();
+            }
+        }
+        private global::System.Int64 _Updated_By;
+        partial void OnUpdated_ByChanging(global::System.Int64 value);
+        partial void OnUpdated_ByChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_tbl_Users_Departments", "tbl_Users")]
+        public EntityCollection<tbl_Users> tbl_Users
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tbl_Users>("Acig_Help_DeskModel.FK_tbl_Users_Departments", "tbl_Users");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tbl_Users>("Acig_Help_DeskModel.FK_tbl_Users_Departments", "tbl_Users", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="Acig_Help_DeskModel", Name="Event")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -1269,6 +1529,28 @@ namespace Acig_Help_DeskModel
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Sub_Sub_Categories_Sub_Categories", "Sub_Sub_Categories")]
+        public EntityCollection<Sub_Sub_Categories> Sub_Sub_Categories
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Sub_Sub_Categories>("Acig_Help_DeskModel.FK_Sub_Sub_Categories_Sub_Categories", "Sub_Sub_Categories");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Sub_Sub_Categories>("Acig_Help_DeskModel.FK_Sub_Sub_Categories_Sub_Categories", "Sub_Sub_Categories", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Tickets_Sub_Categories", "Ticket")]
         public EntityCollection<Ticket> Tickets
         {
@@ -1281,6 +1563,258 @@ namespace Acig_Help_DeskModel
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Ticket>("Acig_Help_DeskModel.FK_Tickets_Sub_Categories", "Ticket", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Acig_Help_DeskModel", Name="Sub_Sub_Categories")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Sub_Sub_Categories : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Sub_Sub_Categories object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        /// <param name="sub_Category_Id">Initial value of the Sub_Category_Id property.</param>
+        /// <param name="created_At">Initial value of the Created_At property.</param>
+        /// <param name="updated_At">Initial value of the Updated_At property.</param>
+        /// <param name="created_By">Initial value of the Created_By property.</param>
+        /// <param name="updated_By">Initial value of the Updated_By property.</param>
+        public static Sub_Sub_Categories CreateSub_Sub_Categories(global::System.Int64 id, global::System.String name, global::System.Int64 sub_Category_Id, global::System.DateTime created_At, global::System.DateTime updated_At, global::System.Int64 created_By, global::System.Int64 updated_By)
+        {
+            Sub_Sub_Categories sub_Sub_Categories = new Sub_Sub_Categories();
+            sub_Sub_Categories.Id = id;
+            sub_Sub_Categories.Name = name;
+            sub_Sub_Categories.Sub_Category_Id = sub_Category_Id;
+            sub_Sub_Categories.Created_At = created_At;
+            sub_Sub_Categories.Updated_At = updated_At;
+            sub_Sub_Categories.Created_By = created_By;
+            sub_Sub_Categories.Updated_By = updated_By;
+            return sub_Sub_Categories;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int64 _Id;
+        partial void OnIdChanging(global::System.Int64 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 Sub_Category_Id
+        {
+            get
+            {
+                return _Sub_Category_Id;
+            }
+            set
+            {
+                OnSub_Category_IdChanging(value);
+                ReportPropertyChanging("Sub_Category_Id");
+                _Sub_Category_Id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Sub_Category_Id");
+                OnSub_Category_IdChanged();
+            }
+        }
+        private global::System.Int64 _Sub_Category_Id;
+        partial void OnSub_Category_IdChanging(global::System.Int64 value);
+        partial void OnSub_Category_IdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime Created_At
+        {
+            get
+            {
+                return _Created_At;
+            }
+            set
+            {
+                OnCreated_AtChanging(value);
+                ReportPropertyChanging("Created_At");
+                _Created_At = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Created_At");
+                OnCreated_AtChanged();
+            }
+        }
+        private global::System.DateTime _Created_At;
+        partial void OnCreated_AtChanging(global::System.DateTime value);
+        partial void OnCreated_AtChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime Updated_At
+        {
+            get
+            {
+                return _Updated_At;
+            }
+            set
+            {
+                OnUpdated_AtChanging(value);
+                ReportPropertyChanging("Updated_At");
+                _Updated_At = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Updated_At");
+                OnUpdated_AtChanged();
+            }
+        }
+        private global::System.DateTime _Updated_At;
+        partial void OnUpdated_AtChanging(global::System.DateTime value);
+        partial void OnUpdated_AtChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 Created_By
+        {
+            get
+            {
+                return _Created_By;
+            }
+            set
+            {
+                OnCreated_ByChanging(value);
+                ReportPropertyChanging("Created_By");
+                _Created_By = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Created_By");
+                OnCreated_ByChanged();
+            }
+        }
+        private global::System.Int64 _Created_By;
+        partial void OnCreated_ByChanging(global::System.Int64 value);
+        partial void OnCreated_ByChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 Updated_By
+        {
+            get
+            {
+                return _Updated_By;
+            }
+            set
+            {
+                OnUpdated_ByChanging(value);
+                ReportPropertyChanging("Updated_By");
+                _Updated_By = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Updated_By");
+                OnUpdated_ByChanged();
+            }
+        }
+        private global::System.Int64 _Updated_By;
+        partial void OnUpdated_ByChanging(global::System.Int64 value);
+        partial void OnUpdated_ByChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Sub_Sub_Categories_Sub_Categories", "Sub_Categories")]
+        public Sub_Categories Sub_Categories
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Sub_Categories>("Acig_Help_DeskModel.FK_Sub_Sub_Categories_Sub_Categories", "Sub_Categories").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Sub_Categories>("Acig_Help_DeskModel.FK_Sub_Sub_Categories_Sub_Categories", "Sub_Categories").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Sub_Categories> Sub_CategoriesReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Sub_Categories>("Acig_Help_DeskModel.FK_Sub_Sub_Categories_Sub_Categories", "Sub_Categories");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Sub_Categories>("Acig_Help_DeskModel.FK_Sub_Sub_Categories_Sub_Categories", "Sub_Categories", value);
                 }
             }
         }
@@ -1306,10 +1840,10 @@ namespace Acig_Help_DeskModel
         /// <param name="user_Name">Initial value of the User_Name property.</param>
         /// <param name="active">Initial value of the Active property.</param>
         /// <param name="role">Initial value of the Role property.</param>
-        /// <param name="department">Initial value of the Department property.</param>
+        /// <param name="department_Id">Initial value of the Department_Id property.</param>
         /// <param name="created_At">Initial value of the Created_At property.</param>
         /// <param name="updated_At">Initial value of the Updated_At property.</param>
-        public static tbl_Users Createtbl_Users(global::System.Int64 id, global::System.String email, global::System.String user_Name, global::System.Boolean active, global::System.String role, global::System.String department, global::System.DateTime created_At, global::System.DateTime updated_At)
+        public static tbl_Users Createtbl_Users(global::System.Int64 id, global::System.String email, global::System.String user_Name, global::System.Boolean active, global::System.String role, global::System.Int64 department_Id, global::System.DateTime created_At, global::System.DateTime updated_At)
         {
             tbl_Users tbl_Users = new tbl_Users();
             tbl_Users.Id = id;
@@ -1317,7 +1851,7 @@ namespace Acig_Help_DeskModel
             tbl_Users.User_Name = user_Name;
             tbl_Users.Active = active;
             tbl_Users.Role = role;
-            tbl_Users.Department = department;
+            tbl_Users.Department_Id = department_Id;
             tbl_Users.Created_At = created_At;
             tbl_Users.Updated_At = updated_At;
             return tbl_Users;
@@ -1454,24 +1988,24 @@ namespace Acig_Help_DeskModel
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String Department
+        public global::System.Int64 Department_Id
         {
             get
             {
-                return _Department;
+                return _Department_Id;
             }
             set
             {
-                OnDepartmentChanging(value);
-                ReportPropertyChanging("Department");
-                _Department = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Department");
-                OnDepartmentChanged();
+                OnDepartment_IdChanging(value);
+                ReportPropertyChanging("Department_Id");
+                _Department_Id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Department_Id");
+                OnDepartment_IdChanged();
             }
         }
-        private global::System.String _Department;
-        partial void OnDepartmentChanging(global::System.String value);
-        partial void OnDepartmentChanged();
+        private global::System.Int64 _Department_Id;
+        partial void OnDepartment_IdChanging(global::System.Int64 value);
+        partial void OnDepartment_IdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1605,6 +2139,44 @@ namespace Acig_Help_DeskModel
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Comment>("Acig_Help_DeskModel.FK_Comments_tbl_Users", "Comment", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_tbl_Users_Departments", "Department")]
+        public Department Department
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Department>("Acig_Help_DeskModel.FK_tbl_Users_Departments", "Department").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Department>("Acig_Help_DeskModel.FK_tbl_Users_Departments", "Department").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Department> DepartmentReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Department>("Acig_Help_DeskModel.FK_tbl_Users_Departments", "Department");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Department>("Acig_Help_DeskModel.FK_tbl_Users_Departments", "Department", value);
                 }
             }
         }
