@@ -16,6 +16,7 @@ public partial class SiteMaster : System.Web.UI.MasterPage
             lblUserName.Text = "Logged in as " + Page.User.Identity.Name + " | ";
             hprLinkLoginStatus.NavigateUrl = Route.GetRootPath("account/log_out.aspx");
             hprLinkLoginStatus.Text = "Sign Out";
+            hprLinkCreateProfile.Visible = false;
         }
         else
         {
@@ -23,6 +24,8 @@ public partial class SiteMaster : System.Web.UI.MasterPage
             lblUserName.Visible = false;
             hprLinkLoginStatus.NavigateUrl = Route.GetRootPath("account/login.aspx");
             hprLinkLoginStatus.Text = "Sign In";
+            hprLinkCreateProfile.NavigateUrl = Route.GetRootPath("account/create_profile.aspx");
+            hprLinkCreateProfile.Visible = true;
         }
         DisplayNotifications();
     }

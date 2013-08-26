@@ -35,6 +35,7 @@
             <div class="loginDisplay">
                 <asp:Label ID="lblUserName" runat="server" Text=""></asp:Label>
                 <asp:HyperLink ID="hprLinkLoginStatus" runat="server">Text</asp:HyperLink>
+                <asp:HyperLink ID="hprLinkCreateProfile" runat="server"> | Create New Profile</asp:HyperLink>
             </div>
             <div class="clear hideSkiplink">
                 <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false"
