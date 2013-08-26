@@ -10,12 +10,15 @@ public partial class Admin_Categories_index : MasterAppPage
 {
     Category _category;
     Sub_Categories _subCategory;
+    Sub_Sub_Categories _subSubCategory;
     long categoryId;
+    long subCategoryId;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
             HideSubCategory();
+            HideSubSubCategory();
             BindDataToGridView();
         }
     }
@@ -23,6 +26,7 @@ public partial class Admin_Categories_index : MasterAppPage
     protected void EditCategory(object sender, GridViewEditEventArgs e)
     {
         HideSubCategory();
+        HideSubSubCategory();
         gvCategories.EditIndex = e.NewEditIndex;
         BindDataToGridView();
     }
@@ -60,6 +64,7 @@ public partial class Admin_Categories_index : MasterAppPage
     protected void btnSaveCategory_Click(object sender, EventArgs e)
     {
         HideSubCategory();
+        HideSubSubCategory();
         currentUserId = CurrentUser.Id();
         _entity = GetEntity();
         _category = new Category
@@ -78,8 +83,9 @@ public partial class Admin_Categories_index : MasterAppPage
 
     protected void ViewSubCategories(object sender, EventArgs e)
     {
-        LinkButton lnkRemove = (LinkButton)sender;
-        hdnCategoryId.Value = lnkRemove.CommandArgument;
+        HideSubSubCategory();
+        LinkButton lnk = (LinkButton)sender;
+        hdnCategoryId.Value = lnk.CommandArgument;
         subCategoryDiv.Visible = true;
         BindDataToGvSubCategory();
     }
@@ -119,6 +125,7 @@ public partial class Admin_Categories_index : MasterAppPage
 
     protected void btnSaveSubCategory_Click(object sender, EventArgs e)
     {
+        HideSubSubCategory();
         currentUserId = CurrentUser.Id();
         categoryId = long.Parse(hdnCategoryId.Value);
         _entity = GetEntity();
@@ -137,8 +144,74 @@ public partial class Admin_Categories_index : MasterAppPage
         txtSubCategoryName.Text = string.Empty;
     }
 
+    protected void ViewSubSubCategories(object sender, EventArgs e)
+    {
+        LinkButton lnkRemove = (LinkButton)sender;
+        hdnSubCategoryId.Value = lnkRemove.CommandArgument;
+        subSubCategoryDiv.Visible = true;
+        BindDataToGvSubSubCategory();
+    }
+
+    protected void EditSubSubCategory(object sender, GridViewEditEventArgs e)
+    {
+        gvSubSubCategories.EditIndex = e.NewEditIndex;
+        BindDataToGvSubSubCategory();
+    }
+    protected void CancelEditSubSubCategory(object sender, GridViewCancelEditEventArgs e)
+    {
+        gvSubSubCategories.EditIndex = -1;
+        BindDataToGvSubSubCategory();
+    }
+
+    protected void UpdateSubSubCategory(object sender, GridViewUpdateEventArgs e)
+    {
+        currentUserId = CurrentUser.Id();
+        var id = long.Parse(((HiddenField)(gvSubSubCategories.Rows[e.RowIndex].FindControl("hdnSubSubCategoryId"))).Value.ToString());
+        _entity = GetEntity();
+        _subSubCategory = _entity.Sub_Sub_Categories.Where(x => x.Id == id).First();
+        _subSubCategory.Updated_At = DateTime.Now;
+        _subSubCategory.Updated_By = currentUserId;
+        _subSubCategory.Name = ((TextBox)gvSubSubCategories.Rows[e.RowIndex].FindControl("txtSubSubCategoryNameEdit")).Text;
+        _entity.SaveChanges();
+        gvSubSubCategories.EditIndex = -1;
+        BindDataToGvSubSubCategory();
+    }
+
+    protected void BindDataToGvSubSubCategory()
+    {
+        subCategoryId = long.Parse(hdnSubCategoryId.Value);
+        _entity = GetEntity();
+        gvSubSubCategories.DataSource = _entity.Sub_Sub_Categories.Where(x => x.Sub_Category_Id == subCategoryId).OrderBy(x => x.Created_At).ToList();
+        gvSubSubCategories.DataBind();
+    }
+
+    protected void btnSaveSubSubCategory_Click(object sender, EventArgs e)
+    {
+        currentUserId = CurrentUser.Id();
+        subCategoryId = long.Parse(hdnSubCategoryId.Value);
+        _entity = GetEntity();
+        _subSubCategory = new Sub_Sub_Categories
+        {
+            Name = txtSubSubCategoryName.Text,
+            Sub_Category_Id = subCategoryId,
+            Created_At = DateTime.Now,
+            Updated_At = DateTime.Now,
+            Created_By = currentUserId,
+            Updated_By = currentUserId
+        };
+        _entity.AddToSub_Sub_Categories(_subSubCategory);
+        _entity.SaveChanges();
+        BindDataToGvSubSubCategory();
+        txtSubSubCategoryName.Text = string.Empty;
+    }
+
     protected void HideSubCategory()
     {
         subCategoryDiv.Visible = false;
+    }
+
+    protected void HideSubSubCategory()
+    {
+        subSubCategoryDiv.Visible = false;
     }
 }

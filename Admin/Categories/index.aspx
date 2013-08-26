@@ -57,8 +57,7 @@
                         <ItemTemplate>
                             <asp:LinkButton ID="EditButton" runat="server" CssClass="button" CommandName="Edit"
                                 Text="Edit" />
-                            | <a href='<%# Route.GetRootPath("admin/sub_categories/index.aspx") %>?id=<%# Eval("Id") %>'>
-                                Sub Categories</a> |
+                            |
                             <asp:LinkButton ID="lnkBtnViewSubCategories" runat="server" CommandArgument='<%# Eval("Id")%>'
                                 Text="View Sub Categories" OnClick="ViewSubCategories" CausesValidation="false"></asp:LinkButton>
                         </ItemTemplate>
@@ -110,10 +109,64 @@
                                 <ItemTemplate>
                                     <asp:LinkButton ID="EditButton" runat="server" CssClass="button" CommandName="Edit"
                                         Text="Edit" />
+                                    |
+                                    <asp:LinkButton ID="lnkBtnViewSubSubCategories" runat="server" CommandArgument='<%# Eval("Id")%>'
+                                        Text="View Target Sub Categories" OnClick="ViewSubSubCategories" CausesValidation="false"></asp:LinkButton>
                                 </ItemTemplate>
                                 <EditItemTemplate>
                                     <asp:LinkButton ID="UpdateButton" runat="server" CssClass="button" CommandName="Update"
                                         Text="Update" ValidationGroup="EditSubCategory" />&nbsp;
+                                    <asp:LinkButton ID="Cancel" runat="server" CssClass="button" CommandName="Cancel"
+                                        Text="Cancel" CausesValidation="false"></asp:LinkButton>
+                                </EditItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                </fieldset>
+            </div>
+            <div id="subSubCategoryDiv" runat="server">
+                <fieldset>
+                    <legend id="Legend1" runat="server">Target Sub Category</legend>
+                    <table class="table table-bordered">
+                        <tr>
+                            <td>
+                                Target Sub Category Name
+                                <br />
+                                <asp:TextBox ID="txtSubSubCategoryName" runat="server" MaxLength="200"></asp:TextBox>
+                                <asp:HiddenField ID="hdnSubCategoryId" runat="server" />
+                                <asp:RequiredFieldValidator ID="rfvSubSubCategoryName" runat="server" ControlToValidate="txtSubSubCategoryName"
+                                    ForeColor="#FF3300" SetFocusOnError="True" ValidationGroup="NewSubSubCategory">*</asp:RequiredFieldValidator>
+                            </td>
+                            <td>
+                                <asp:Button ID="btnSaveSubSubCategory" runat="server" Text="Save" ValidationGroup="NewSubSubCategory"
+                                    OnClick="btnSaveSubSubCategory_Click" CssClass="btn btn-primary" />
+                            </td>
+                        </tr>
+                    </table>
+                    <asp:GridView ID="gvSubSubCategories" runat="server" AutoGenerateColumns="false"
+                        OnRowEditing="EditSubSubCategory" OnRowUpdating="UpdateSubSubCategory" OnRowCancelingEdit="CancelEditSubSubCategory"
+                        EmptyDataText="No Records" Width="100%" CssClass="table table-bordered">
+                        <Columns>
+                            <asp:TemplateField HeaderText="Name">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblName" runat="server" Text='<%# Eval("Name")%>'></asp:Label>
+                                </ItemTemplate>
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txtSubSubCategoryNameEdit" runat="server" Text='<%# Eval("Name")%>'
+                                        MaxLength="200"></asp:TextBox>
+                                    <asp:HiddenField ID="hdnSubSubCategoryId" runat="server" Value='<%# Eval("Id") %>' />
+                                    <asp:RequiredFieldValidator ID="rfvSubSubCategoryNameEdit" runat="server" ControlToValidate="txtSubSubCategoryNameEdit"
+                                        ForeColor="#FF3300" SetFocusOnError="True" ValidationGroup="EditSubSubCategory">*</asp:RequiredFieldValidator>
+                                </EditItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField ShowHeader="False">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="EditButton" runat="server" CssClass="button" CommandName="Edit"
+                                        Text="Edit" />
+                                </ItemTemplate>
+                                <EditItemTemplate>
+                                    <asp:LinkButton ID="UpdateButton" runat="server" CssClass="button" CommandName="Update"
+                                        Text="Update" ValidationGroup="EditSubSubCategory" />&nbsp;
                                     <asp:LinkButton ID="Cancel" runat="server" CssClass="button" CommandName="Cancel"
                                         Text="Cancel" CausesValidation="false"></asp:LinkButton>
                                 </EditItemTemplate>
