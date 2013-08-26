@@ -24,18 +24,7 @@ public partial class SiteMaster : System.Web.UI.MasterPage
             hprLinkLoginStatus.NavigateUrl = Route.GetRootPath("account/login.aspx");
             hprLinkLoginStatus.Text = "Sign In";
         }
-        if (Session["NoticeMessage"] != null)
-        {
-            lblNotification.Text = Session["NoticeMessage"].ToString();
-            lblNotification.Visible = true;
-            Session["NoticeMessage"] = null;
-        }
-        if (Session["ErrorMessage"] != null)
-        {
-            lblNotification.Text = Session["ErrorMessage"].ToString();
-            lblNotification.Visible = true;
-            Session["ErrorMessage"] = null;
-        }
+        DisplayNotifications();
     }
 
     protected void MenuItems(bool authenticated)
@@ -69,6 +58,30 @@ public partial class SiteMaster : System.Web.UI.MasterPage
         foreach (MenuItem menuItemx in toRemoveItems)
         {
             menuItems.Remove(menuItemx);
+        }
+    }
+
+    protected void DisplayNotifications()
+    {
+        if (Session["NoticeMessage"] != null)
+        {
+            alertSuccess.Visible = true;
+            successMessage.InnerText = Session["NoticeMessage"].ToString();
+            Session["NoticeMessage"] = null;
+        }
+        else
+        {
+            alertSuccess.Visible = false;
+        }
+        if (Session["ErrorMessage"] != null)
+        {
+            alertError.Visible = true;
+            errorMessage.InnerText = Session["ErrorMessage"].ToString();
+            Session["ErrorMessage"] = null;
+        }
+        else
+        {
+            alertError.Visible = false;
         }
     }
 }
