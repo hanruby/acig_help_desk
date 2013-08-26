@@ -45,20 +45,6 @@ public partial class Tickets_index : MasterAppPage
     protected void gvTicketsOpen_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         if (e.Row.RowType != DataControlRowType.DataRow) return;
-        var text = e.Row.Cells[3].Text;
-        LinkButton lb;
-        lb = new LinkButton();
-        lb.CommandArgument = text;
-        lb.CommandName = "NumClick";
-        lb.Text = "Details";
-        lb.PostBackUrl = "show.aspx?id=" + text;
-        lb.CssClass = "blue-link";
-        e.Row.Cells[3].Controls.Add((Control)lb);
-    }
-
-    protected void gvTicketsResolved_RowDataBound(object sender, GridViewRowEventArgs e)
-    {
-        if (e.Row.RowType != DataControlRowType.DataRow) return;
         var text = e.Row.Cells[4].Text;
         LinkButton lb;
         lb = new LinkButton();
@@ -70,7 +56,7 @@ public partial class Tickets_index : MasterAppPage
         e.Row.Cells[4].Controls.Add((Control)lb);
     }
 
-    protected void gvTicketsClosed_RowDataBound(object sender, GridViewRowEventArgs e)
+    protected void gvTicketsResolved_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         if (e.Row.RowType != DataControlRowType.DataRow) return;
         var text = e.Row.Cells[5].Text;
@@ -84,9 +70,24 @@ public partial class Tickets_index : MasterAppPage
         e.Row.Cells[5].Controls.Add((Control)lb);
     }
 
+    protected void gvTicketsClosed_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType != DataControlRowType.DataRow) return;
+        var text = e.Row.Cells[6].Text;
+        LinkButton lb;
+        lb = new LinkButton();
+        lb.CommandArgument = text;
+        lb.CommandName = "NumClick";
+        lb.Text = "Details";
+        lb.PostBackUrl = "show.aspx?id=" + text;
+        lb.CssClass = "blue-link";
+        e.Row.Cells[6].Controls.Add((Control)lb);
+    }
+
     protected void GetHeader(string scope)
     {
         dt = new DataTable();
+        dt.Columns.Add(new DataColumn("ID", typeof(string)));
         dt.Columns.Add(new DataColumn("Open At", typeof(string)));
         if (scope == "resolved")
         {
@@ -116,7 +117,7 @@ public partial class Tickets_index : MasterAppPage
                    join c in _entity.Categories
                    on sc.Category_Id equals c.Id
                    where (t.Created_By == currentUserId) && t.State == "Open"
-                   orderby t.Created_By
+                   orderby t.Id descending
                    select new
                    {
                        OpenAt = t.Created_At,
@@ -124,13 +125,15 @@ public partial class Tickets_index : MasterAppPage
                        ClosedAt = t.Closed_Date,
                        CategoryName = c.Name,
                        SubCategoryName = sc.Name,
+                       SubSubCategoryName = ssc.Name,
                        Id = t.Id
                    };
         foreach (var x in data)
         {
             dr = dt.NewRow();
+            dr["ID"] = x.Id;
             dr["Open At"] = x.OpenAt;
-            dr["Category"] = x.CategoryName + " >> " + x.SubCategoryName;
+            dr["Category"] = x.CategoryName + " >> " + x.SubCategoryName + " >> " + x.SubSubCategoryName;
             dr["Details"] = x.Id;
             dt.Rows.Add(dr);
         }
@@ -152,7 +155,7 @@ public partial class Tickets_index : MasterAppPage
                    join c in _entity.Categories
                    on sc.Category_Id equals c.Id
                    where (t.Created_By == currentUserId) && t.State == "Resolved"
-                   orderby t.Created_By
+                   orderby t.Created_By descending
                    select new
                    {
                        OpenAt = t.Created_At,
@@ -160,13 +163,15 @@ public partial class Tickets_index : MasterAppPage
                        ClosedAt = t.Closed_Date,
                        CategoryName = c.Name,
                        SubCategoryName = sc.Name,
+                       SubSubCategoryName = ssc.Name,
                        Id = t.Id
                    };
         foreach (var x in data)
         {
             dr = dt.NewRow();
+            dr["ID"] = x.Id;
             dr["Open At"] = x.OpenAt;
-            dr["Category"] = x.CategoryName + " >> " + x.SubCategoryName;
+            dr["Category"] = x.CategoryName + " >> " + x.SubCategoryName + " >> " + x.SubSubCategoryName; ;
             dr["Resolved At"] = x.ResolvedAt;
             dr["Details"] = x.Id;
             dt.Rows.Add(dr);
@@ -189,7 +194,7 @@ public partial class Tickets_index : MasterAppPage
                    join c in _entity.Categories
                    on sc.Category_Id equals c.Id
                    where (t.Created_By == currentUserId) && t.State == "Closed"
-                   orderby t.Created_By
+                   orderby t.Created_By descending
                    select new
                    {
                        OpenAt = t.Created_At,
@@ -197,13 +202,15 @@ public partial class Tickets_index : MasterAppPage
                        ClosedAt = t.Closed_Date,
                        CategoryName = c.Name,
                        SubCategoryName = sc.Name,
+                       SubSubCategoryName = ssc.Name,
                        Id = t.Id
                    };
         foreach (var x in data)
         {
             dr = dt.NewRow();
+            dr["ID"] = x.Id;
             dr["Open At"] = x.OpenAt;
-            dr["Category"] = x.CategoryName + " >> " + x.SubCategoryName;
+            dr["Category"] = x.CategoryName + " >> " + x.SubCategoryName + " >> " + x.SubSubCategoryName; ;
             dr["Resolved At"] = x.ResolvedAt;
             dr["Closed At"] = x.ClosedAt;
             dr["Details"] = x.Id;
