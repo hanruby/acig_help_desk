@@ -81,7 +81,7 @@
                 <td>
                     <asp:Label ID="lblSubSubCategory" runat="server" Text='Target Sub Category'></asp:Label>
                     <br />
-                    <asp:ListBox ID="lstBoxSubSubCategory" runat="server" AppendDataBoundItems="True"
+                    <asp:ListBox ID="lstBoxSubSubCategory" runat="server" AppendDataBoundItems="True" SelectionMode="Multiple"
                         DataSourceID="SqlDataSource3" DataTextField="Name" DataValueField="Id" EnableViewState="False">
                     </asp:ListBox>
                     <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:Acig_Help_DeskConnectionString %>"

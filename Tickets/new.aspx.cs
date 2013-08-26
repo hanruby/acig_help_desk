@@ -53,17 +53,17 @@ public partial class Tickets_new : MasterAppPage
         _entity.SaveChanges();
 
         _category = _entity.Categories.Where(x => x.Id == _category_Id).First();
-        foreach (var x in _category.tbl_Users)
-        {
-            if (x.Id != currentUserId && x.Active)
-            {
-                _user_Tickets = new User_Tickets();
-                _user_Tickets.User_Id = x.Id;
-                _user_Tickets.Ticket_Id = _ticket.Id;
-                _entity.AddToUser_Tickets(_user_Tickets);
-                _entity.SaveChanges();
-            }
-        }
+        //foreach (var x in _category.tbl_Users)
+        //{
+        //    if (x.Id != currentUserId && x.Active)
+        //    {
+        //        _user_Tickets = new User_Tickets();
+        //        _user_Tickets.User_Id = x.Id;
+        //        _user_Tickets.Ticket_Id = _ticket.Id;
+        //        _entity.AddToUser_Tickets(_user_Tickets);
+        //        _entity.SaveChanges();
+        //    }
+        //}
 
         _comment = new Comment
         {

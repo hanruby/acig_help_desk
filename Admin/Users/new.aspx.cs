@@ -46,12 +46,16 @@ public partial class Admin_Users_new : MasterAppPage
         _user.Updated_At = DateTime.Now;
         _entity.AddTotbl_Users(_user);
         _entity.SaveChanges();
-        foreach (var x in lstBoxSubSubCategory.SelectedValue)
+        foreach (ListItem x in lstBoxSubSubCategory.Items)
         {
-            _sc = new User_Sub_Sub_Categories();
-            _sc.User_Id = _user.Id;
-            _sc.Sub_Sub_Category_Id = long.Parse(x.ToString());
-            _entity.AddToUser_Sub_Sub_Categories(_sc);
+            if (x.Selected)
+            {
+                _sc = new User_Sub_Sub_Categories();
+                _sc.User_Id = _user.Id;
+                _sc.Sub_Sub_Category_Id = long.Parse(x.Value);
+                _entity.AddToUser_Sub_Sub_Categories(_sc);
+                _entity.SaveChanges();
+            }
         }
         Session["NoticeMessage"] = "Successfully created new user!";
         Response.Redirect(Route.GetRootPath("admin/users/index.aspx"));

@@ -56,65 +56,66 @@
                         ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
                 </td>
                 <td>
-                    <asp:Label ID="lblAssignTo" runat="server" Text="Assign To" AssociatedControlID="ddlAssignTo">
-                    </asp:Label>
-                    <asp:DropDownList ID="ddlAssignTo" runat="server" AppendDataBoundItems="True" DataSourceID="SqlDataSource1"
-                        DataTextField="Email" DataValueField="Id">
+                    <asp:Label ID="lblCategory" runat="server" Text="Category" AssociatedControlID="ddlCategory"></asp:Label>
+                    <asp:DropDownList ID="ddlCategory" runat="server" AppendDataBoundItems="True" AutoPostBack="True"
+                        DataSourceID="SqlDataSource2" DataTextField="Name" DataValueField="Id">
                         <asp:ListItem Value="0">Select</asp:ListItem>
                     </asp:DropDownList>
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Acig_Help_DeskConnectionString %>"
-                        SelectCommand="SELECT [Id], [Email] FROM [tbl_Users] WHERE (([Department] = @Department) AND ([Id] &lt;&gt; @Id))">
-                        <SelectParameters>
-                            <asp:Parameter DefaultValue="it" Name="Department" Type="String" />
-                            <asp:ControlParameter ControlID="hdnFldId" Name="Id" PropertyName="Value" Type="Int64" />
-                        </SelectParameters>
-                    </asp:SqlDataSource>
-                    <asp:RequiredFieldValidator ID="rfvAssignTo" runat="server" ControlToValidate="ddlAssignTo"
+                    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:Acig_Help_DeskConnectionString %>"
+                        SelectCommand="SELECT [Id], [Name] FROM [Categories]"></asp:SqlDataSource>
+                    <asp:RequiredFieldValidator ID="rfvCategory" runat="server" ControlToValidate="ddlCategory"
                         ForeColor="#FF3300" SetFocusOnError="True" InitialValue="0">*</asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
-                <asp:UpdatePanel ID="updatePanel" runat="server" UpdateMode="Conditional">
-                    <ContentTemplate>
-                        <td>
-                            <asp:Label ID="lblCategory" runat="server" Text="Category" AssociatedControlID="ddlCategory"></asp:Label>
-                            <asp:DropDownList ID="ddlCategory" runat="server" AppendDataBoundItems="True" AutoPostBack="True"
-                                DataSourceID="SqlDataSource2" DataTextField="Name" DataValueField="Id">
-                                <asp:ListItem Value="0">Select</asp:ListItem>
-                            </asp:DropDownList>
-                            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:Acig_Help_DeskConnectionString %>"
-                                SelectCommand="SELECT [Id], [Name] FROM [Categories]"></asp:SqlDataSource>
-                            <asp:RequiredFieldValidator ID="rfvCategory" runat="server" ControlToValidate="ddlCategory"
-                                ForeColor="#FF3300" SetFocusOnError="True" InitialValue="0">*</asp:RequiredFieldValidator>
-                        </td>
-                        <td>
-                            <asp:Label ID="lblSubCategory" runat="server" Text="Sub Category" AssociatedControlID="ddlSubCategory"></asp:Label>
-                            <asp:DropDownList ID="ddlSubCategory" runat="server" AppendDataBoundItems="True"
-                                DataSourceID="SqlDataSource3" DataTextField="Name" DataValueField="Id" EnableViewState="False">
-                                <asp:ListItem Value="0">Select</asp:ListItem>
-                            </asp:DropDownList>
-                            <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:Acig_Help_DeskConnectionString %>"
-                                SelectCommand="SELECT [Id], [Name] FROM [Sub_Categories] WHERE ([Category_Id] = @Category_Id)">
-                                <SelectParameters>
-                                    <asp:ControlParameter ControlID="ddlCategory" Name="Category_Id" PropertyName="SelectedValue"
-                                        Type="Int64" />
-                                </SelectParameters>
-                            </asp:SqlDataSource>
-                            <asp:RequiredFieldValidator ID="rfvSubCategory" runat="server" ControlToValidate="ddlSubCategory"
-                                ForeColor="#FF3300" SetFocusOnError="True" InitialValue="0">*</asp:RequiredFieldValidator>
-                        </td>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-            </tr>
-            <tr>
                 <td>
-                    <asp:Label ID="lblNotes" runat="server" Text="Description" AssociatedControlID="txtNotes">
-                    </asp:Label>
-                    <asp:TextBox ID="txtNotes" runat="server" TextMode="MultiLine"></asp:TextBox>
+                    <asp:Label ID="lblSubCategory" runat="server" Text="Sub Category" AssociatedControlID="ddlSubCategory"></asp:Label>
+                    <asp:DropDownList ID="ddlSubCategory" runat="server" AppendDataBoundItems="True"
+                        DataSourceID="SqlDataSource3" DataTextField="Name" DataValueField="Id" EnableViewState="False"
+                        AutoPostBack="true">
+                        <asp:ListItem Value="0">Select</asp:ListItem>
+                    </asp:DropDownList>
+                    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:Acig_Help_DeskConnectionString %>"
+                        SelectCommand="SELECT [Id], [Name] FROM [Sub_Categories] WHERE ([Category_Id] = @Category_Id)">
+                        <SelectParameters>
+                            <asp:ControlParameter ControlID="ddlCategory" Name="Category_Id" PropertyName="SelectedValue"
+                                Type="Int64" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:RequiredFieldValidator ID="rfvSubCategory" runat="server" ControlToValidate="ddlSubCategory"
+                        ForeColor="#FF3300" SetFocusOnError="True" InitialValue="0">*</asp:RequiredFieldValidator>
                 </td>
                 <td>
+                    <asp:Label ID="lblSubSubCategory" runat="server" Text='Target Sub Category'></asp:Label>
+                    <br />
+                    <asp:DropDownList ID="ddlSubSubCategory" runat="server" AppendDataBoundItems="True" DataSourceID="SqlDataSource5"
+                        DataTextField="Name" DataValueField="Id" EnableViewState="False">
+                        <asp:ListItem Value="0">Select</asp:ListItem>
+                    </asp:DropDownList>
+                    <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:Acig_Help_DeskConnectionString %>"
+                        
+                        SelectCommand="SELECT [Id], [Name] FROM [Sub_Sub_Categories] WHERE ([Sub_Category_Id] = @Sub_Category_Id) AND [ID] IN (SELECT [Sub_Sub_Category_Id] FROM User_Sub_Sub_Categories)">
+                        <SelectParameters>
+                            <asp:ControlParameter ControlID="ddlSubCategory" Name="Sub_Category_Id" PropertyName="SelectedValue"
+                                Type="Int64" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:RequiredFieldValidator ID="rfvSubSubCategory" runat="server" ControlToValidate="ddlSubSubCategory"
+                        ForeColor="#FF3300" SetFocusOnError="True" InitialValue="0">*</asp:RequiredFieldValidator>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <asp:Label ID="lblNotes" runat="server" Text="Description" AssociatedControlID="txtNotes">
+                    </asp:Label>
+                    <asp:TextBox ID="txtNotes" runat="server" TextMode="MultiLine" Width="95%"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
                     <asp:Label ID="lblUploadFile" runat="server" Text="File">
                     </asp:Label>
+                    <br />
                     <input type="file" id="uploadFile" name="uploadFile" />
                 </td>
             </tr>

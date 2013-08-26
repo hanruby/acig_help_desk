@@ -353,14 +353,11 @@
           <EntitySet Name="Sub_Sub_Categories" EntityType="Acig_Help_DeskModel.Sub_Sub_Categories" />
           <EntitySet Name="tbl_Users" EntityType="Acig_Help_DeskModel.tbl_Users" />
           <EntitySet Name="Tickets" EntityType="Acig_Help_DeskModel.Ticket" />
+          <EntitySet Name="User_Sub_Sub_Categories" EntityType="Acig_Help_DeskModel.User_Sub_Sub_Categories" />
           <EntitySet Name="User_Tickets" EntityType="Acig_Help_DeskModel.User_Tickets" />
           <AssociationSet Name="FK_Sub_Categories_Categories" Association="Acig_Help_DeskModel.FK_Sub_Categories_Categories">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Sub_Categories" EntitySet="Sub_Categories" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tbl_Users_Categories" Association="Acig_Help_DeskModel.FK_tbl_Users_Categories">
-            <End Role="Category" EntitySet="Categories" />
-            <End Role="tbl_Users" EntitySet="tbl_Users" />
           </AssociationSet>
           <AssociationSet Name="FK_Comments_tbl_Users" Association="Acig_Help_DeskModel.FK_Comments_tbl_Users">
             <End Role="tbl_Users" EntitySet="tbl_Users" />
@@ -390,9 +387,17 @@
             <End Role="Sub_Categories" EntitySet="Sub_Categories" />
             <End Role="Ticket" EntitySet="Tickets" />
           </AssociationSet>
+          <AssociationSet Name="FK_User_Sub_Sub_Categories_Sub_Sub_Categories" Association="Acig_Help_DeskModel.FK_User_Sub_Sub_Categories_Sub_Sub_Categories">
+            <End Role="Sub_Sub_Categories" EntitySet="Sub_Sub_Categories" />
+            <End Role="User_Sub_Sub_Categories" EntitySet="User_Sub_Sub_Categories" />
+          </AssociationSet>
           <AssociationSet Name="FK_Tickets_Users" Association="Acig_Help_DeskModel.FK_Tickets_Users">
             <End Role="tbl_Users" EntitySet="tbl_Users" />
             <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Sub_Sub_Categories_tbl_Users" Association="Acig_Help_DeskModel.FK_User_Sub_Sub_Categories_tbl_Users">
+            <End Role="tbl_Users" EntitySet="tbl_Users" />
+            <End Role="User_Sub_Sub_Categories" EntitySet="User_Sub_Sub_Categories" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Tickets_tbl_Users" Association="Acig_Help_DeskModel.FK_User_Tickets_tbl_Users">
             <End Role="tbl_Users" EntitySet="tbl_Users" />
@@ -401,15 +406,6 @@
           <AssociationSet Name="FK_User_Tickets_Tickets" Association="Acig_Help_DeskModel.FK_User_Tickets_Tickets">
             <End Role="Ticket" EntitySet="Tickets" />
             <End Role="User_Tickets" EntitySet="User_Tickets" />
-          </AssociationSet>
-          <EntitySet Name="User_Sub_Sub_Categories" EntityType="Acig_Help_DeskModel.User_Sub_Sub_Categories" />
-          <AssociationSet Name="FK_User_Sub_Sub_Categories_Sub_Sub_Categories" Association="Acig_Help_DeskModel.FK_User_Sub_Sub_Categories_Sub_Sub_Categories">
-            <End Role="Sub_Sub_Categories" EntitySet="Sub_Sub_Categories" />
-            <End Role="User_Sub_Sub_Categories" EntitySet="User_Sub_Sub_Categories" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_Sub_Sub_Categories_tbl_Users" Association="Acig_Help_DeskModel.FK_User_Sub_Sub_Categories_tbl_Users">
-            <End Role="tbl_Users" EntitySet="tbl_Users" />
-            <End Role="User_Sub_Sub_Categories" EntitySet="User_Sub_Sub_Categories" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Category">
@@ -423,7 +419,6 @@
           <Property Type="Int64" Name="Created_By" Nullable="false" />
           <Property Type="Int64" Name="Updated_By" Nullable="false" />
           <NavigationProperty Name="Sub_Categories" Relationship="Acig_Help_DeskModel.FK_Sub_Categories_Categories" FromRole="Category" ToRole="Sub_Categories" />
-          <NavigationProperty Name="tbl_Users" Relationship="Acig_Help_DeskModel.FK_tbl_Users_Categories" FromRole="Category" ToRole="tbl_Users" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
@@ -505,13 +500,12 @@
           <Property Type="Int64" Name="Category_Id" />
           <Property Type="DateTime" Name="Created_At" Nullable="false" />
           <Property Type="DateTime" Name="Updated_At" Nullable="false" />
-          <NavigationProperty Name="Category" Relationship="Acig_Help_DeskModel.FK_tbl_Users_Categories" FromRole="tbl_Users" ToRole="Category" />
           <NavigationProperty Name="Comments" Relationship="Acig_Help_DeskModel.FK_Comments_tbl_Users" FromRole="tbl_Users" ToRole="Comment" />
           <NavigationProperty Name="Department" Relationship="Acig_Help_DeskModel.FK_tbl_Users_Departments" FromRole="tbl_Users" ToRole="Department" />
           <NavigationProperty Name="Events" Relationship="Acig_Help_DeskModel.FK_Events_tbl_Users" FromRole="tbl_Users" ToRole="Event" />
           <NavigationProperty Name="Tickets" Relationship="Acig_Help_DeskModel.FK_Tickets_Users" FromRole="tbl_Users" ToRole="Ticket" />
-          <NavigationProperty Name="User_Tickets" Relationship="Acig_Help_DeskModel.FK_User_Tickets_tbl_Users" FromRole="tbl_Users" ToRole="User_Tickets" />
           <NavigationProperty Name="User_Sub_Sub_Categories" Relationship="Acig_Help_DeskModel.FK_User_Sub_Sub_Categories_tbl_Users" FromRole="tbl_Users" ToRole="User_Sub_Sub_Categories" />
+          <NavigationProperty Name="User_Tickets" Relationship="Acig_Help_DeskModel.FK_User_Tickets_tbl_Users" FromRole="tbl_Users" ToRole="User_Tickets" />
         </EntityType>
         <EntityType Name="Ticket">
           <Key>
@@ -535,6 +529,16 @@
           <NavigationProperty Name="tbl_Users" Relationship="Acig_Help_DeskModel.FK_Tickets_Users" FromRole="Ticket" ToRole="tbl_Users" />
           <NavigationProperty Name="User_Tickets" Relationship="Acig_Help_DeskModel.FK_User_Tickets_Tickets" FromRole="Ticket" ToRole="User_Tickets" />
         </EntityType>
+        <EntityType Name="User_Sub_Sub_Categories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="User_Id" Nullable="false" />
+          <Property Type="Int64" Name="Sub_Sub_Category_Id" Nullable="false" />
+          <NavigationProperty Name="Sub_Sub_Categories" Relationship="Acig_Help_DeskModel.FK_User_Sub_Sub_Categories_Sub_Sub_Categories" FromRole="User_Sub_Sub_Categories" ToRole="Sub_Sub_Categories" />
+          <NavigationProperty Name="tbl_Users" Relationship="Acig_Help_DeskModel.FK_User_Sub_Sub_Categories_tbl_Users" FromRole="User_Sub_Sub_Categories" ToRole="tbl_Users" />
+        </EntityType>
         <EntityType Name="User_Tickets">
           <Key>
             <PropertyRef Name="Id" />
@@ -553,18 +557,6 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Sub_Categories">
-              <PropertyRef Name="Category_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tbl_Users_Categories">
-          <End Type="Acig_Help_DeskModel.Category" Role="Category" Multiplicity="0..1" />
-          <End Type="Acig_Help_DeskModel.tbl_Users" Role="tbl_Users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="tbl_Users">
               <PropertyRef Name="Category_Id" />
             </Dependent>
           </ReferentialConstraint>
@@ -653,6 +645,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_User_Sub_Sub_Categories_Sub_Sub_Categories">
+          <End Type="Acig_Help_DeskModel.Sub_Sub_Categories" Role="Sub_Sub_Categories" Multiplicity="1" />
+          <End Type="Acig_Help_DeskModel.User_Sub_Sub_Categories" Role="User_Sub_Sub_Categories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sub_Sub_Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User_Sub_Sub_Categories">
+              <PropertyRef Name="Sub_Sub_Category_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Tickets_Users">
           <End Type="Acig_Help_DeskModel.tbl_Users" Role="tbl_Users" Multiplicity="1" />
           <End Type="Acig_Help_DeskModel.Ticket" Role="Ticket" Multiplicity="*" />
@@ -662,6 +666,18 @@
             </Principal>
             <Dependent Role="Ticket">
               <PropertyRef Name="Created_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Sub_Sub_Categories_tbl_Users">
+          <End Type="Acig_Help_DeskModel.tbl_Users" Role="tbl_Users" Multiplicity="1" />
+          <End Type="Acig_Help_DeskModel.User_Sub_Sub_Categories" Role="User_Sub_Sub_Categories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User_Sub_Sub_Categories">
+              <PropertyRef Name="User_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -686,40 +702,6 @@
             </Principal>
             <Dependent Role="User_Tickets">
               <PropertyRef Name="Ticket_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="User_Sub_Sub_Categories">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int64" Name="User_Id" Nullable="false" />
-          <Property Type="Int64" Name="Sub_Sub_Category_Id" Nullable="false" />
-          <NavigationProperty Name="Sub_Sub_Categories" Relationship="Acig_Help_DeskModel.FK_User_Sub_Sub_Categories_Sub_Sub_Categories" FromRole="User_Sub_Sub_Categories" ToRole="Sub_Sub_Categories" />
-          <NavigationProperty Name="tbl_Users" Relationship="Acig_Help_DeskModel.FK_User_Sub_Sub_Categories_tbl_Users" FromRole="User_Sub_Sub_Categories" ToRole="tbl_Users" />
-        </EntityType>
-        <Association Name="FK_User_Sub_Sub_Categories_Sub_Sub_Categories">
-          <End Type="Acig_Help_DeskModel.Sub_Sub_Categories" Role="Sub_Sub_Categories" Multiplicity="1" />
-          <End Type="Acig_Help_DeskModel.User_Sub_Sub_Categories" Role="User_Sub_Sub_Categories" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sub_Sub_Categories">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="User_Sub_Sub_Categories">
-              <PropertyRef Name="Sub_Sub_Category_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_User_Sub_Sub_Categories_tbl_Users">
-          <End Type="Acig_Help_DeskModel.tbl_Users" Role="tbl_Users" Multiplicity="1" />
-          <End Type="Acig_Help_DeskModel.User_Sub_Sub_Categories" Role="User_Sub_Sub_Categories" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbl_Users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="User_Sub_Sub_Categories">
-              <PropertyRef Name="User_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -836,19 +818,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="User_Tickets">
-            <EntityTypeMapping TypeName="Acig_Help_DeskModel.User_Tickets">
-              <MappingFragment StoreEntitySet="User_Tickets">
-                <ScalarProperty Name="Ticket_Id" ColumnName="Ticket_Id" />
+          <EntitySetMapping Name="User_Sub_Sub_Categories">
+            <EntityTypeMapping TypeName="Acig_Help_DeskModel.User_Sub_Sub_Categories">
+              <MappingFragment StoreEntitySet="User_Sub_Sub_Categories">
+                <ScalarProperty Name="Sub_Sub_Category_Id" ColumnName="Sub_Sub_Category_Id" />
                 <ScalarProperty Name="User_Id" ColumnName="User_Id" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="User_Sub_Sub_Categories">
-            <EntityTypeMapping TypeName="Acig_Help_DeskModel.User_Sub_Sub_Categories">
-              <MappingFragment StoreEntitySet="User_Sub_Sub_Categories">
-                <ScalarProperty Name="Sub_Sub_Category_Id" ColumnName="Sub_Sub_Category_Id" />
+          <EntitySetMapping Name="User_Tickets">
+            <EntityTypeMapping TypeName="Acig_Help_DeskModel.User_Tickets">
+              <MappingFragment StoreEntitySet="User_Tickets">
+                <ScalarProperty Name="Ticket_Id" ColumnName="Ticket_Id" />
                 <ScalarProperty Name="User_Id" ColumnName="User_Id" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -875,97 +857,111 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="ACDModel">
-        <EntityTypeShape EntityType="Acig_Help_DeskModel.Category" Width="1.5" PointX="0.75" PointY="8.625" Height="2.5571907552083353" />
-        <EntityTypeShape EntityType="Acig_Help_DeskModel.Comment" Width="1.5" PointX="10.5" PointY="6.625" Height="2.7494921875000031" />
-        <EntityTypeShape EntityType="Acig_Help_DeskModel.Department" Width="1.5" PointX="3.75" PointY="4.75" Height="2.3648893229166745" />
-        <EntityTypeShape EntityType="Acig_Help_DeskModel.Event" Width="1.5" PointX="13.5" PointY="6.875" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="Acig_Help_DeskModel.Sub_Categories" Width="1.5" PointX="3" PointY="8.5" Height="2.9417936197916674" />
-        <EntityTypeShape EntityType="Acig_Help_DeskModel.Sub_Sub_Categories" Width="1.5" PointX="5.25" PointY="8.625" Height="2.5571907552083388" />
-        <EntityTypeShape EntityType="Acig_Help_DeskModel.tbl_Users" Width="1.5" PointX="6" PointY="4" Height="3.9033007812500031" />
-        <EntityTypeShape EntityType="Acig_Help_DeskModel.Ticket" Width="1.5" PointX="8.25" PointY="7.75" Height="4.2879036458333388" />
-        <EntityTypeShape EntityType="Acig_Help_DeskModel.User_Tickets" Width="1.5" PointX="13.5" PointY="4" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="Acig_Help_DeskModel.Category" Width="1.5" PointX="0.75" PointY="2.125" Height="2.3648893229166745" />
+        <EntityTypeShape EntityType="Acig_Help_DeskModel.Comment" Width="1.5" PointX="5.25" PointY="7" Height="2.7494921875000031" />
+        <EntityTypeShape EntityType="Acig_Help_DeskModel.Department" Width="1.5" PointX="0.75" PointY="7.125" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="Acig_Help_DeskModel.Event" Width="1.5" PointX="8.25" PointY="7.125" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="Acig_Help_DeskModel.Sub_Categories" Width="1.5" PointX="3" PointY="1.875" Height="2.9417936197916674" />
+        <EntityTypeShape EntityType="Acig_Help_DeskModel.Sub_Sub_Categories" Width="1.5" PointX="6" PointY="11" Height="2.749492187499996" />
+        <EntityTypeShape EntityType="Acig_Help_DeskModel.tbl_Users" Width="1.5" PointX="3" PointY="6.375" Height="3.9033007812500031" />
+        <EntityTypeShape EntityType="Acig_Help_DeskModel.Ticket" Width="1.5" PointX="5.25" PointY="1.125" Height="4.2879036458333388" />
+        <EntityTypeShape EntityType="Acig_Help_DeskModel.User_Sub_Sub_Categories" Width="1.5" PointX="8.25" PointY="4.375" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="Acig_Help_DeskModel.User_Tickets" Width="1.5" PointX="10.5" PointY="4.75" Height="1.9802864583333388" />
         <AssociationConnector Association="Acig_Help_DeskModel.FK_Sub_Categories_Categories" >
-          <ConnectorPoint PointX="2.25" PointY="9.9035953776041676" />
-          <ConnectorPoint PointX="3" PointY="9.9035953776041676" />
-        </AssociationConnector>
-        <AssociationConnector Association="Acig_Help_DeskModel.FK_tbl_Users_Categories" >
-          <ConnectorPoint PointX="1.5" PointY="8.625" />
-          <ConnectorPoint PointX="1.5" PointY="7.63649576822917" />
-          <ConnectorPoint PointX="6" PointY="7.63649576822917" />
+          <ConnectorPoint PointX="2.25" PointY="3.3074446614583373" />
+          <ConnectorPoint PointX="3" PointY="3.3074446614583373" />
         </AssociationConnector>
         <AssociationConnector Association="Acig_Help_DeskModel.FK_Comments_tbl_Users" >
-          <ConnectorPoint PointX="7.5" PointY="7.2401432291666659" />
-          <ConnectorPoint PointX="7.666666666666667" PointY="7.240143229166665" />
-          <ConnectorPoint PointX="7.833333333333333" PointY="7.2401432291666659" />
-          <ConnectorPoint PointX="10.041666666666666" PointY="7.240143229166665" />
-          <ConnectorPoint PointX="10.208333333333334" PointY="7.2401432291666659" />
-          <ConnectorPoint PointX="10.5" PointY="7.2401432291666659" />
+          <ConnectorPoint PointX="4.5" PointY="8.3747460937500016" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="8.3747460937500016" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="8.3747460937500016" />
+          <ConnectorPoint PointX="5.25" PointY="8.3747460937500016" />
         </AssociationConnector>
         <AssociationConnector Association="Acig_Help_DeskModel.FK_Comments_Tickets" >
-          <ConnectorPoint PointX="9.75" PointY="8.5622460937500016" />
-          <ConnectorPoint PointX="10.5" PointY="8.5622460937500016" />
+          <ConnectorPoint PointX="6" PointY="5.4129036458333388" />
+          <ConnectorPoint PointX="6" PointY="7" />
         </AssociationConnector>
         <AssociationConnector Association="Acig_Help_DeskModel.FK_tbl_Users_Departments" >
-          <ConnectorPoint PointX="5.25" PointY="5.9324446614583373" />
-          <ConnectorPoint PointX="6" PointY="5.9324446614583373" />
+          <ConnectorPoint PointX="2.25" PointY="8.3074446614583337" />
+          <ConnectorPoint PointX="3" PointY="8.3074446614583337" />
         </AssociationConnector>
         <AssociationConnector Association="Acig_Help_DeskModel.FK_Events_tbl_Users" >
-          <ConnectorPoint PointX="7.5" PointY="5.39843775" />
-          <ConnectorPoint PointX="8" PointY="5.39843775" />
-          <ConnectorPoint PointX="8" PointY="6.9802864583333317" />
-          <ConnectorPoint PointX="10.041666666666666" PointY="6.9802864583333308" />
-          <ConnectorPoint PointX="10.208333333333334" PointY="6.9802864583333317" />
-          <ConnectorPoint PointX="10.25" PointY="6.9802864583333317" />
-          <ConnectorPoint PointX="10.25" PointY="6.375" />
-          <ConnectorPoint PointX="14.25" PointY="6.375" />
-          <ConnectorPoint PointX="14.25" PointY="6.875" />
+          <ConnectorPoint PointX="4.5" PointY="10.045146484375003" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="10.045146484375003" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="10.045146484375003" />
+          <ConnectorPoint PointX="7.229166666666667" PointY="10.045146484375003" />
+          <ConnectorPoint PointX="7.395833333333333" PointY="10.045146484375003" />
+          <ConnectorPoint PointX="9" PointY="10.045146484375003" />
+          <ConnectorPoint PointX="9" PointY="9.4898893229166674" />
         </AssociationConnector>
         <AssociationConnector Association="Acig_Help_DeskModel.FK_Events_Tickets" >
-          <ConnectorPoint PointX="9.75" PointY="10.737447916666671" />
-          <ConnectorPoint PointX="14.25" PointY="10.737447916666671" />
-          <ConnectorPoint PointX="14.25" PointY="9.2398893229166674" />
+          <ConnectorPoint PointX="6.75" PointY="5.4129036458333388" />
+          <ConnectorPoint PointX="7.125" PointY="5.7879036458333388" />
+          <ConnectorPoint PointX="7.125" PointY="8.3074446614583337" />
+          <ConnectorPoint PointX="7.229166666666667" PointY="8.3074446614583337" />
+          <ConnectorPoint PointX="7.395833333333333" PointY="8.3074446614583337" />
+          <ConnectorPoint PointX="8.25" PointY="8.3074446614583337" />
         </AssociationConnector>
         <AssociationConnector Association="Acig_Help_DeskModel.FK_Sub_Sub_Categories_Sub_Categories" >
-          <ConnectorPoint PointX="4.5" PointY="9.9216210937500016" />
-          <ConnectorPoint PointX="5.25" PointY="9.9216210937500016" />
+          <ConnectorPoint PointX="4.5" PointY="4.8167936197916674" />
+          <ConnectorPoint PointX="4.875" PointY="5.1917936197916674" />
+          <ConnectorPoint PointX="4.875" PointY="12.374746093749998" />
+          <ConnectorPoint PointX="6" PointY="12.374746093749998" />
         </AssociationConnector>
         <AssociationConnector Association="Acig_Help_DeskModel.FK_Tickets_Sub_Categories" >
-          <ConnectorPoint PointX="4.5" PointY="11.343242187500003" />
-          <ConnectorPoint PointX="8.25" PointY="11.343242187500003" />
+          <ConnectorPoint PointX="4.5" PointY="3.31464430989584" />
+          <ConnectorPoint PointX="4.979166666666667" PointY="3.3146443098958396" />
+          <ConnectorPoint PointX="5.145833333333333" PointY="3.31464430989584" />
+          <ConnectorPoint PointX="5.25" PointY="3.31464430989584" />
+        </AssociationConnector>
+        <AssociationConnector Association="Acig_Help_DeskModel.FK_User_Sub_Sub_Categories_Sub_Sub_Categories" >
+          <ConnectorPoint PointX="7.3125" PointY="11" />
+          <ConnectorPoint PointX="7.3125" PointY="5.9153450520833388" />
+          <ConnectorPoint PointX="8.25" PointY="5.9153450520833388" />
         </AssociationConnector>
         <AssociationConnector Association="Acig_Help_DeskModel.FK_Tickets_Users" >
-          <ConnectorPoint PointX="7.5" PointY="7.9228011067708328" />
-          <ConnectorPoint PointX="7.666666666666667" PointY="7.9228011067708319" />
-          <ConnectorPoint PointX="7.833333333333333" PointY="7.9228011067708328" />
-          <ConnectorPoint PointX="8.25" PointY="7.9228011067708328" />
-        </AssociationConnector>
-        <AssociationConnector Association="Acig_Help_DeskModel.FK_User_Tickets_tbl_Users" >
-          <ConnectorPoint PointX="7.5" PointY="4.34375" />
-          <ConnectorPoint PointX="13.5" PointY="4.34375" />
-        </AssociationConnector>
-        <AssociationConnector Association="Acig_Help_DeskModel.FK_User_Tickets_Tickets" >
-          <ConnectorPoint PointX="9.75" PointY="7.75" />
-          <ConnectorPoint PointX="10.125" PointY="7.375" />
-          <ConnectorPoint PointX="10.125" PointY="5.19327022916667" />
-          <ConnectorPoint PointX="13.5" PointY="5.19327022916667" />
-        </AssociationConnector>
-        <EntityTypeShape EntityType="Acig_Help_DeskModel.User_Sub_Sub_Categories" Width="1.5" PointX="8.25" PointY="4.75" Height="1.9802864583333317" />
-        <AssociationConnector Association="Acig_Help_DeskModel.FK_User_Sub_Sub_Categories_Sub_Sub_Categories" >
-          <ConnectorPoint PointX="6" PointY="8.625" />
-          <ConnectorPoint PointX="6" PointY="8.3456022135416656" />
-          <ConnectorPoint PointX="7.75" PointY="8.3456022135416656" />
-          <ConnectorPoint PointX="7.75" PointY="6.0643616041666659" />
-          <ConnectorPoint PointX="7.916666666666667" PointY="6.064361604166665" />
-          <ConnectorPoint PointX="8.0833333333333339" PointY="6.0643616041666659" />
-          <ConnectorPoint PointX="8.25" PointY="6.0643616041666659" />
+          <ConnectorPoint PointX="4.4757692307692309" PointY="6.375" />
+          <ConnectorPoint PointX="4.8160744349011209" PointY="6.0346947958681092" />
+          <ConnectorPoint PointX="4.9339255650988791" PointY="5.9168436656703518" />
+          <ConnectorPoint PointX="5.0625" PointY="5.7882692307692309" />
+          <ConnectorPoint PointX="5.0625" PointY="2.1885701549479259" />
+          <ConnectorPoint PointX="5.25" PointY="2.1885701549479259" />
         </AssociationConnector>
         <AssociationConnector Association="Acig_Help_DeskModel.FK_User_Sub_Sub_Categories_tbl_Users" >
-          <ConnectorPoint PointX="7.5" PointY="6.4598240312499993" />
-          <ConnectorPoint PointX="7.666666666666667" PointY="6.4598240312499984" />
-          <ConnectorPoint PointX="7.833333333333333" PointY="6.4598240312499993" />
-          <ConnectorPoint PointX="7.916666666666667" PointY="6.4598240312499984" />
-          <ConnectorPoint PointX="8.0833333333333339" PointY="6.4598240312499993" />
-          <ConnectorPoint PointX="8.25" PointY="6.4598240312499993" />
+          <ConnectorPoint PointX="4.5" PointY="6.4315374615384613" />
+          <ConnectorPoint PointX="4.65625" PointY="6.2752874615384613" />
+          <ConnectorPoint PointX="4.65625" PointY="6.7302864583333388" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="6.7302864583333379" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="6.7302864583333388" />
+          <ConnectorPoint PointX="5.916666666666667" PointY="6.7302864583333379" />
+          <ConnectorPoint PointX="6.083333333333333" PointY="6.7302864583333388" />
+          <ConnectorPoint PointX="7.041666666666667" PointY="6.7302864583333379" />
+          <ConnectorPoint PointX="7.208333333333333" PointY="6.7302864583333388" />
+          <ConnectorPoint PointX="7.229166666666667" PointY="6.7302864583333379" />
+          <ConnectorPoint PointX="7.395833333333333" PointY="6.7302864583333388" />
+          <ConnectorPoint PointX="7.875" PointY="6.7302864583333388" />
+          <ConnectorPoint PointX="8.25" PointY="6.3552864583333388" />
+        </AssociationConnector>
+        <AssociationConnector Association="Acig_Help_DeskModel.FK_User_Tickets_tbl_Users" >
+          <ConnectorPoint PointX="4.5" PointY="6.4345212307692243" />
+          <ConnectorPoint PointX="4.572916666666667" PointY="6.4345212307692234" />
+          <ConnectorPoint PointX="4.739583333333333" PointY="6.4345212307692243" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="6.4345212307692234" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="6.4345212307692243" />
+          <ConnectorPoint PointX="5.916666666666667" PointY="6.4345212307692234" />
+          <ConnectorPoint PointX="6.083333333333333" PointY="6.4345212307692243" />
+          <ConnectorPoint PointX="7.041666666666667" PointY="6.4345212307692234" />
+          <ConnectorPoint PointX="7.208333333333333" PointY="6.4345212307692243" />
+          <ConnectorPoint PointX="7.229166666666667" PointY="6.4345212307692234" />
+          <ConnectorPoint PointX="7.395833333333333" PointY="6.4345212307692243" />
+          <ConnectorPoint PointX="8.08743189423078" PointY="6.4345212307692234" />
+          <ConnectorPoint PointX="8.2540985608974484" PointY="6.4345212307692243" />
+          <ConnectorPoint PointX="10.5" PointY="6.4345212307692243" />
+        </AssociationConnector>
+        <AssociationConnector Association="Acig_Help_DeskModel.FK_User_Tickets_Tickets" >
+          <ConnectorPoint PointX="6.75" PointY="2.71875" />
+          <ConnectorPoint PointX="11.25" PointY="2.71875" />
+          <ConnectorPoint PointX="11.25" PointY="4.75" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
