@@ -36,11 +36,6 @@
                             <asp:Label ID="lblEmail" runat="server" Text='<%# Eval("Email")%>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Category">
-                        <ItemTemplate>
-                            <asp:Label ID="lblCategory" runat="server" Text='<%# Eval("Category_Name")%>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
                     <asp:TemplateField HeaderText="Role">
                         <ItemTemplate>
                             <asp:Label ID="lblRole" runat="server" Text='<%# Eval("Role_Text")%>'></asp:Label>

@@ -28,8 +28,10 @@ public partial class Tickets_resolve : MasterAppPage
                 return;
             }
             var ticketData = from t in _entity.Tickets
+                             join ssc in _entity.Sub_Sub_Categories
+                             on t.Sub_Sub_Category_Id equals ssc.Id
                              join sc in _entity.Sub_Categories
-                             on t.Sub_Category_Id equals sc.Id
+                             on ssc.Sub_Category_Id equals sc.Id
                              join c in _entity.Categories
                              on sc.Category_Id equals c.Id
                              join u in _entity.tbl_Users

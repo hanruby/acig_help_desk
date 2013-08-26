@@ -114,8 +114,10 @@ public partial class Tickets_assigned : MasterAppPage
         GetHeader("open");
         _entity = GetEntity();
         var data = from t in _entity.Tickets
+                   join ssc in _entity.Sub_Sub_Categories
+                   on t.Sub_Sub_Category_Id equals ssc.Id
                    join sc in _entity.Sub_Categories
-                   on t.Sub_Category_Id equals sc.Id
+                   on ssc.Sub_Category_Id equals sc.Id
                    join c in _entity.Categories
                    on sc.Category_Id equals c.Id
                    join ut in _entity.User_Tickets
@@ -152,8 +154,10 @@ public partial class Tickets_assigned : MasterAppPage
         GetHeader("resolved");
         _entity = GetEntity();
         var data = from t in _entity.Tickets
+                   join ssc in _entity.Sub_Sub_Categories
+                   on t.Sub_Sub_Category_Id equals ssc.Id
                    join sc in _entity.Sub_Categories
-                   on t.Sub_Category_Id equals sc.Id
+                   on ssc.Sub_Category_Id equals sc.Id
                    join c in _entity.Categories
                    on sc.Category_Id equals c.Id
                    join ut in _entity.User_Tickets
@@ -191,8 +195,10 @@ public partial class Tickets_assigned : MasterAppPage
         GetHeader("closed");
         _entity = GetEntity();
         var data = from t in _entity.Tickets
+                   join ssc in _entity.Sub_Sub_Categories
+                   on t.Sub_Sub_Category_Id equals ssc.Id
                    join sc in _entity.Sub_Categories
-                   on t.Sub_Category_Id equals sc.Id
+                   on ssc.Sub_Category_Id equals sc.Id
                    join c in _entity.Categories
                    on sc.Category_Id equals c.Id
                    join ut in _entity.User_Tickets

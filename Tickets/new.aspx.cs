@@ -12,8 +12,7 @@ public partial class Tickets_new : MasterAppPage
     Event _event;
     Comment _comment;
     User_Tickets _user_Tickets;
-    Category _category;
-    long _category_Id, _sub_Category_Id;
+    long _sub_sub_Category_Id;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -25,8 +24,7 @@ public partial class Tickets_new : MasterAppPage
     protected void btnSave_Click(object sender, EventArgs e)
     {
         currentUserId = CurrentUser.Id();
-        _sub_Category_Id = long.Parse(ddlSubCategory.SelectedValue);
-        _category_Id = long.Parse(ddlCategory.SelectedValue);
+        _sub_sub_Category_Id = long.Parse(ddlSubSubCategory.SelectedValue);
         _entity = GetEntity();
         _ticket = new Ticket
         {
@@ -38,7 +36,7 @@ public partial class Tickets_new : MasterAppPage
             Updated_At = DateTime.Now
         };
         _ticket.Created_By = currentUserId;
-        _ticket.Sub_Category_Id = _sub_Category_Id;
+        _ticket.Sub_Sub_Category_Id = _sub_sub_Category_Id;
         _entity.AddToTickets(_ticket);
         _entity.SaveChanges();
 
@@ -52,18 +50,19 @@ public partial class Tickets_new : MasterAppPage
         _entity.AddToEvents(_event);
         _entity.SaveChanges();
 
-        _category = _entity.Categories.Where(x => x.Id == _category_Id).First();
-        //foreach (var x in _category.tbl_Users)
-        //{
-        //    if (x.Id != currentUserId && x.Active)
-        //    {
-        //        _user_Tickets = new User_Tickets();
-        //        _user_Tickets.User_Id = x.Id;
-        //        _user_Tickets.Ticket_Id = _ticket.Id;
-        //        _entity.AddToUser_Tickets(_user_Tickets);
-        //        _entity.SaveChanges();
-        //    }
-        //}
+        foreach (var y in _entity.User_Sub_Sub_Categories.Where(x => x.Sub_Sub_Category_Id == _sub_sub_Category_Id).Select(x => x.User_Id).ToList().Distinct())
+        {
+            if (currentUserId != y)
+            {
+                _user_Tickets = new User_Tickets
+                {
+                    Ticket_Id = _ticket.Id,
+                    User_Id = y
+                };
+                _entity.AddToUser_Tickets(_user_Tickets);
+                _entity.SaveChanges();
+            }
+        }
 
         _comment = new Comment
         {

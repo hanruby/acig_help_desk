@@ -25,7 +25,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Events_tbl_Users", "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.tbl_Users), "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Event), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Events_Tickets", "Ticket", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Ticket), "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Event), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Sub_Sub_Categories_Sub_Categories", "Sub_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Sub_Categories), "Sub_Sub_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Sub_Sub_Categories), true)]
-[assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Tickets_Sub_Categories", "Sub_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Sub_Categories), "Ticket", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Ticket), true)]
+[assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Tickets_Sub_Categories", "Sub_Sub_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Sub_Sub_Categories), "Ticket", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Ticket), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_User_Sub_Sub_Categories_Sub_Sub_Categories", "Sub_Sub_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Sub_Sub_Categories), "User_Sub_Sub_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.User_Sub_Sub_Categories), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Tickets_Users", "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.tbl_Users), "Ticket", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Ticket), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_User_Sub_Sub_Categories_tbl_Users", "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.tbl_Users), "User_Sub_Sub_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.User_Sub_Sub_Categories), true)]
@@ -1547,28 +1547,6 @@ namespace Acig_Help_DeskModel
                 }
             }
         }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Tickets_Sub_Categories", "Ticket")]
-        public EntityCollection<Ticket> Tickets
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Ticket>("Acig_Help_DeskModel.FK_Tickets_Sub_Categories", "Ticket");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Ticket>("Acig_Help_DeskModel.FK_Tickets_Sub_Categories", "Ticket", value);
-                }
-            }
-        }
 
         #endregion
     }
@@ -1828,6 +1806,28 @@ namespace Acig_Help_DeskModel
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Tickets_Sub_Categories", "Ticket")]
+        public EntityCollection<Ticket> Tickets
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Ticket>("Acig_Help_DeskModel.FK_Tickets_Sub_Categories", "Ticket");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Ticket>("Acig_Help_DeskModel.FK_Tickets_Sub_Categories", "Ticket", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_User_Sub_Sub_Categories_Sub_Sub_Categories", "User_Sub_Sub_Categories")]
         public EntityCollection<User_Sub_Sub_Categories> User_Sub_Sub_Categories
         {
@@ -2031,30 +2031,6 @@ namespace Acig_Help_DeskModel
         private global::System.Int64 _Department_Id;
         partial void OnDepartment_IdChanging(global::System.Int64 value);
         partial void OnDepartment_IdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int64> Category_Id
-        {
-            get
-            {
-                return _Category_Id;
-            }
-            set
-            {
-                OnCategory_IdChanging(value);
-                ReportPropertyChanging("Category_Id");
-                _Category_Id = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Category_Id");
-                OnCategory_IdChanged();
-            }
-        }
-        private Nullable<global::System.Int64> _Category_Id;
-        partial void OnCategory_IdChanging(Nullable<global::System.Int64> value);
-        partial void OnCategory_IdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -2276,19 +2252,19 @@ namespace Acig_Help_DeskModel
         /// <param name="type">Initial value of the Type property.</param>
         /// <param name="priority">Initial value of the Priority property.</param>
         /// <param name="state">Initial value of the State property.</param>
-        /// <param name="sub_Category_Id">Initial value of the Sub_Category_Id property.</param>
+        /// <param name="sub_Sub_Category_Id">Initial value of the Sub_Sub_Category_Id property.</param>
         /// <param name="created_By">Initial value of the Created_By property.</param>
         /// <param name="subject">Initial value of the Subject property.</param>
         /// <param name="created_At">Initial value of the Created_At property.</param>
         /// <param name="updated_At">Initial value of the Updated_At property.</param>
-        public static Ticket CreateTicket(global::System.Int64 id, global::System.String type, global::System.String priority, global::System.String state, global::System.Int64 sub_Category_Id, global::System.Int64 created_By, global::System.String subject, global::System.DateTime created_At, global::System.DateTime updated_At)
+        public static Ticket CreateTicket(global::System.Int64 id, global::System.String type, global::System.String priority, global::System.String state, global::System.Int64 sub_Sub_Category_Id, global::System.Int64 created_By, global::System.String subject, global::System.DateTime created_At, global::System.DateTime updated_At)
         {
             Ticket ticket = new Ticket();
             ticket.Id = id;
             ticket.Type = type;
             ticket.Priority = priority;
             ticket.State = state;
-            ticket.Sub_Category_Id = sub_Category_Id;
+            ticket.Sub_Sub_Category_Id = sub_Sub_Category_Id;
             ticket.Created_By = created_By;
             ticket.Subject = subject;
             ticket.Created_At = created_At;
@@ -2403,24 +2379,24 @@ namespace Acig_Help_DeskModel
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 Sub_Category_Id
+        public global::System.Int64 Sub_Sub_Category_Id
         {
             get
             {
-                return _Sub_Category_Id;
+                return _Sub_Sub_Category_Id;
             }
             set
             {
-                OnSub_Category_IdChanging(value);
-                ReportPropertyChanging("Sub_Category_Id");
-                _Sub_Category_Id = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Sub_Category_Id");
-                OnSub_Category_IdChanged();
+                OnSub_Sub_Category_IdChanging(value);
+                ReportPropertyChanging("Sub_Sub_Category_Id");
+                _Sub_Sub_Category_Id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Sub_Sub_Category_Id");
+                OnSub_Sub_Category_IdChanged();
             }
         }
-        private global::System.Int64 _Sub_Category_Id;
-        partial void OnSub_Category_IdChanging(global::System.Int64 value);
-        partial void OnSub_Category_IdChanged();
+        private global::System.Int64 _Sub_Sub_Category_Id;
+        partial void OnSub_Sub_Category_IdChanging(global::System.Int64 value);
+        partial void OnSub_Sub_Category_IdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -2644,16 +2620,16 @@ namespace Acig_Help_DeskModel
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Tickets_Sub_Categories", "Sub_Categories")]
-        public Sub_Categories Sub_Categories
+        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Tickets_Sub_Categories", "Sub_Sub_Categories")]
+        public Sub_Sub_Categories Sub_Sub_Categories
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Sub_Categories>("Acig_Help_DeskModel.FK_Tickets_Sub_Categories", "Sub_Categories").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Sub_Sub_Categories>("Acig_Help_DeskModel.FK_Tickets_Sub_Categories", "Sub_Sub_Categories").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Sub_Categories>("Acig_Help_DeskModel.FK_Tickets_Sub_Categories", "Sub_Categories").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Sub_Sub_Categories>("Acig_Help_DeskModel.FK_Tickets_Sub_Categories", "Sub_Sub_Categories").Value = value;
             }
         }
         /// <summary>
@@ -2661,17 +2637,17 @@ namespace Acig_Help_DeskModel
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Sub_Categories> Sub_CategoriesReference
+        public EntityReference<Sub_Sub_Categories> Sub_Sub_CategoriesReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Sub_Categories>("Acig_Help_DeskModel.FK_Tickets_Sub_Categories", "Sub_Categories");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Sub_Sub_Categories>("Acig_Help_DeskModel.FK_Tickets_Sub_Categories", "Sub_Sub_Categories");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Sub_Categories>("Acig_Help_DeskModel.FK_Tickets_Sub_Categories", "Sub_Categories", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Sub_Sub_Categories>("Acig_Help_DeskModel.FK_Tickets_Sub_Categories", "Sub_Sub_Categories", value);
                 }
             }
         }

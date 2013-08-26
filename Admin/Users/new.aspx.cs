@@ -32,14 +32,6 @@ public partial class Admin_Users_new : MasterAppPage
         _user.User_Name = txtUserName.Text;
         _user.Email = _email;
         _user.Active = bool.Parse(ddlActive.SelectedValue);
-        if (ddlCategory.SelectedValue == "0" || ddlSubCategory.SelectedValue == "0")
-        {
-            _user.Category_Id = null;
-        }
-        else
-        {
-            _user.Category_Id = long.Parse(ddlCategory.SelectedValue);
-        }
         _user.Role = ddlRole.SelectedValue;
         _user.Department_Id = long.Parse(ddlDepartment.SelectedValue);
         _user.Created_At = DateTime.Now;
