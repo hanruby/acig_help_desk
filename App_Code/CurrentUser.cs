@@ -37,17 +37,13 @@ public static class CurrentUser
     public static string GetRedirectPath(string role)
     {
         String returnUrl = "";
-        if (role == "Admin")
+        if (role == "admin")
         {
-            returnUrl = Route.GetRootPath("default.aspx");
-        }
-        else if (role == "It_User")
-        {
-            returnUrl = Route.GetRootPath("default.aspx");
+            returnUrl = Route.GetRootPath("admin/users/index.aspx");
         }
         else
         {
-            returnUrl = Route.GetRootPath("default.aspx");
+            returnUrl = Route.GetRootPath("tickets/new.aspx");
         }
         return returnUrl;
     }
