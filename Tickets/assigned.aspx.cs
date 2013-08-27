@@ -50,6 +50,28 @@ public partial class Tickets_assigned : MasterAppPage
     protected void gvTicketsOpen_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         if (e.Row.RowType != DataControlRowType.DataRow) return;
+        var text = e.Row.Cells[3].Text;
+        LinkButton lb;
+        lb = new LinkButton();
+        lb.CommandArgument = text;
+        lb.CommandName = "NumClick";
+        lb.Text = "Details";
+        lb.PostBackUrl = "show.aspx?id=" + text;
+        lb.CssClass = "blue-link";
+        e.Row.Cells[3].Controls.Add((Control)lb);
+
+        lb = new LinkButton();
+        lb.CommandArgument = text;
+        lb.CommandName = "NumClick";
+        lb.Text = "Resolve";
+        lb.PostBackUrl = "resolve.aspx?id=" + text;
+        lb.CssClass = "blue-link";
+        e.Row.Cells[4].Controls.Add((Control)lb);
+    }
+
+    protected void gvTicketsResolved_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType != DataControlRowType.DataRow) return;
         var text = e.Row.Cells[4].Text;
         LinkButton lb;
         lb = new LinkButton();
@@ -61,7 +83,7 @@ public partial class Tickets_assigned : MasterAppPage
         e.Row.Cells[4].Controls.Add((Control)lb);
     }
 
-    protected void gvTicketsResolved_RowDataBound(object sender, GridViewRowEventArgs e)
+    protected void gvTicketsClosed_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         if (e.Row.RowType != DataControlRowType.DataRow) return;
         var text = e.Row.Cells[5].Text;
@@ -73,20 +95,6 @@ public partial class Tickets_assigned : MasterAppPage
         lb.PostBackUrl = "show.aspx?id=" + text;
         lb.CssClass = "blue-link";
         e.Row.Cells[5].Controls.Add((Control)lb);
-    }
-
-    protected void gvTicketsClosed_RowDataBound(object sender, GridViewRowEventArgs e)
-    {
-        if (e.Row.RowType != DataControlRowType.DataRow) return;
-        var text = e.Row.Cells[6].Text;
-        LinkButton lb;
-        lb = new LinkButton();
-        lb.CommandArgument = text;
-        lb.CommandName = "NumClick";
-        lb.Text = "Details";
-        lb.PostBackUrl = "show.aspx?id=" + text;
-        lb.CssClass = "blue-link";
-        e.Row.Cells[6].Controls.Add((Control)lb);
     }
 
     protected void GetHeader(string scope)
@@ -104,8 +112,11 @@ public partial class Tickets_assigned : MasterAppPage
             dt.Columns.Add(new DataColumn("Closed At", typeof(string)));
         }
         dt.Columns.Add(new DataColumn("Category", typeof(string)));
-        dt.Columns.Add(new DataColumn("Assigned To", typeof(string)));
         dt.Columns.Add(new DataColumn("Details", typeof(string)));
+        if (scope == "open")
+        {
+            dt.Columns.Add(new DataColumn("Resolve?", typeof(string)));
+        }
     }
 
     protected void BindGvOpenTickets()
@@ -144,6 +155,7 @@ public partial class Tickets_assigned : MasterAppPage
             dr["Open At"] = x.OpenAt;
             dr["Category"] = x.CategoryName + " >> " + x.SubCategoryName + " >> " + x.SubSubCategoryName; ;
             dr["Details"] = x.Id;
+            dr["Resolve?"] = x.Id;
             dt.Rows.Add(dr);
         }
         gvTicketsOpen.DataSource = dt;

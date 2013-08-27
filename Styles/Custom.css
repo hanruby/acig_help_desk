@@ -366,4 +366,10 @@ span.unread-asterisk{
      padding-top: 14px;
  }
  
- 
+ .ui-table td label
+ {
+     color: #000;
+     font-weight: bold;
+     display: inline-block;
+     margin-right: 3px;
+ }

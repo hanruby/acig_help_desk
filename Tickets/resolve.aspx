@@ -18,18 +18,19 @@
         Details</h4>
     <asp:Repeater ID="rptrTickets" runat="server">
         <HeaderTemplate>
-            <table class="table table-bordered">
+            <table class="table table-bordered ui-table">
         </HeaderTemplate>
         <ItemTemplate>
             <tr>
+                <td>
+                  <label>ID#:</label>
+                  <%# Eval("Id") %>
+                </td>
                 <td>
                     <label>
                         Created By:
                     </label>
                     <%# Eval("AssignFrom") %>
-                </td>
-                <td>
-                    
                 </td>
             </tr>
             <tr>

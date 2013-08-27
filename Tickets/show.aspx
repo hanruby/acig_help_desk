@@ -6,9 +6,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
     <asp:HiddenField ID="hdnFldTicketId" runat="server" />
     <h2>
-        Ticket Details
-        <asp:LinkButton ID="lnkBtnResolve" runat="server" CausesValidation="false">Resolve Ticket</asp:LinkButton>
-        <asp:LinkButton ID="lnkBtnClose" runat="server" CausesValidation="false">Close Ticket</asp:LinkButton>
+        <span class="left">Ticket Details</span>
+        <asp:LinkButton ID="lnkBtnResolve" runat="server" CausesValidation="false" CssClass="btn btn-info right">Resolve Ticket</asp:LinkButton>
+        <asp:LinkButton ID="lnkBtnClose" runat="server" CausesValidation="false" CssClass="btn btn-info right">Close Ticket</asp:LinkButton>
+        <div class="clear">
+        </div>
     </h2>
     <hr />
     <h4>
@@ -55,20 +57,21 @@
         Details</h4>
     <asp:Repeater ID="rptrTickets" runat="server">
         <HeaderTemplate>
-            <table class="table table-bordered">
+            <table class="table table-bordered ui-table">
         </HeaderTemplate>
         <ItemTemplate>
             <tr>
                 <td>
                     <label>
-                        Created By:
+                        ID#:
                     </label>
-                    <%# Eval("AssignFrom") %>
+                    <%# Eval("Id") %>
                 </td>
                 <td>
                     <label>
-                        Assigned To:
+                        Created By:
                     </label>
+                    <%# Eval("AssignFrom") %>
                 </td>
             </tr>
             <tr>
@@ -126,11 +129,13 @@
         </HeaderTemplate>
         <ItemTemplate>
             <div class="left">
-              Created At: <asp:Label ID="lblCreatedAt" runat="server" Text='<%# Eval("CreatedAt")%>'></asp:Label>
+                Created At:
+                <asp:Label ID="lblCreatedAt" runat="server" Text='<%# Eval("CreatedAt")%>'></asp:Label>
             </div>
             <asp:HyperLink ID="hprLinkFile" runat="server" Visible='<%# FileLinkVisibile(Eval("Visible")) %>'
                 NavigateUrl='<%# FileDownloadUrl(Eval("Url")) %>' CssClass="right">File Download</asp:HyperLink>
-            <div class="clear"></div>
+            <div class="clear">
+            </div>
             <br />
             <asp:Label ID="lblNotes" runat="server" Text='<%# Eval("Notes")%>'></asp:Label>
         </ItemTemplate>
@@ -146,7 +151,8 @@
             <legend>New Comment</legend>
             <p>
                 <asp:Label ID="lblDescription" runat="server" Text="Description" AssociatedControlID="txtDescription"></asp:Label>
-                <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Rows="5" Columns="95" Width="100%"></asp:TextBox>
+                <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Rows="5" Columns="95"
+                    Width="100%"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvDescription" runat="server" ControlToValidate="txtDescription"
                     ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
             </p>

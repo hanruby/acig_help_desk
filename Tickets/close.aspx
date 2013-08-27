@@ -18,17 +18,20 @@
         Details</h4>
     <asp:Repeater ID="rptrTickets" runat="server">
         <HeaderTemplate>
-            <table class="table table-bordered">
+            <table class="table table-bordered ui-table">
         </HeaderTemplate>
         <ItemTemplate>
             <tr>
                 <td>
                     <label>
+                        ID#:</label>
+                    <%# Eval("Id") %>
+                </td>
+                <td>
+                    <label>
                         Created By:
                     </label>
                     <%# Eval("AssignFrom") %>
-                </td>
-                <td>
                 </td>
             </tr>
             <tr>
@@ -83,13 +86,13 @@
         <legend>Close Ticket</legend>
         <p>
             <asp:Label ID="lblRating" runat="server" Text="Rating" AssociatedControlID="ddlRating"></asp:Label>
-             <asp:DropDownList ID="ddlRating" runat="server">
-                        <asp:ListItem Value="0">Select</asp:ListItem>
-                        <asp:ListItem>Low</asp:ListItem>
-                        <asp:ListItem>Medium</asp:ListItem>
-                        <asp:ListItem>High</asp:ListItem>
-                        <asp:ListItem>Excellent</asp:ListItem>
-                    </asp:DropDownList>
+            <asp:DropDownList ID="ddlRating" runat="server">
+                <asp:ListItem Value="0">Select</asp:ListItem>
+                <asp:ListItem>Low</asp:ListItem>
+                <asp:ListItem>Medium</asp:ListItem>
+                <asp:ListItem>High</asp:ListItem>
+                <asp:ListItem>Excellent</asp:ListItem>
+            </asp:DropDownList>
             <asp:RequiredFieldValidator ID="rfvRating" runat="server" ControlToValidate="ddlRating"
                 ForeColor="#FF3300" SetFocusOnError="True" InitialValue="0">*</asp:RequiredFieldValidator>
         </p>
@@ -100,7 +103,8 @@
         <p>
             <asp:CustomValidator ID="CustomValidator" runat="server" ErrorMessage="" ClientValidationFunction="Validate"
                 Text="" ForeColor="#FF3300"></asp:CustomValidator>
-            <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Close Ticket" CssClass="btn btn-primary" />
+            <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Close Ticket"
+                CssClass="btn btn-primary" />
         </p>
     </fieldset>
 </asp:Content>

@@ -52,7 +52,29 @@
             </div>
         </div>
         <div class="main">
-            <div class="alert alert-success" id="alertSuccess" runat="server">
+            <% if (Session["NoticeMessage"] != null)
+               {%>
+            <div class="alert alert-success">
+                <h4>
+                    <%= Session["NoticeMessage"]%>
+                    <a class="right close">X</a></h4>
+                <div class="clear">
+                </div>
+                <% Session["NoticeMessage"] = null; %>
+            </div>
+            <%} %>
+            <% if (Session["ErrorMessage"] != null)
+               {%>
+            <div class="alert alert-danger">
+                <h4>
+                    <%= Session["ErrorMessage"]%>
+                    <a class="right close">X</a></h4>
+                <div class="clear">
+                </div>
+                <% Session["ErrorMessage"] = null; %>
+            </div>
+            <%} %>
+           <%-- <div class="alert alert-success" id="alertSuccess" runat="server">
                 <h4>
                     <span runat="server" id="successMessage"></span><a class="right close">X</a></h4>
                 <div class="clear">
@@ -63,7 +85,7 @@
                     <span runat="server" id="errorMessage"></span><a class="right close">X</a></h4>
                 <div class="clear">
                 </div>
-            </div>
+            </div>--%>
             <asp:ContentPlaceHolder ID="MainContent" runat="server" />
         </div>
         <div class="clear">

@@ -66,10 +66,11 @@ public partial class Account_Login : MasterAppPage
             DirectoryEntry dsresult = sr.GetDirectoryEntry();
             _entity = GetEntity();
             var email = dsresult.Properties["mail"][0].ToString();
+            //var email = "ubaid@acig.com.sa";
             var customUser = _entity.tbl_Users.Where(x => x.Email == email).FirstOrDefault();
             if (customUser == null)
             {
-                Session["ErrorMessage"] = "Your login credentials does not exist in this system please contact admin to create!";
+                Session["ErrorMessage"] = "Your profile does not exist in this system please create Profile!";
                 return customUser;
             }
             return customUser;

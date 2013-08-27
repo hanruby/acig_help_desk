@@ -20,7 +20,7 @@
         <ContentTemplate>
             <h3>
               <span class="left">All Users</span>
-              <asp:LinkButton ID="lnkBtnNewUser" runat="server" CssClass="btn btn-primary right" CausesValidation="false">New User</asp:LinkButton>
+              <asp:LinkButton ID="lnkBtnNewUser" runat="server" CssClass="btn btn-primary right" CausesValidation="false">New User Profile</asp:LinkButton>
               <div class="clear"></div>
             </h3>
             <asp:GridView ID="gvUsers" runat="server" AutoGenerateColumns="false" EmptyDataText="No Records"

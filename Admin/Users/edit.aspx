@@ -1,11 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
-    CodeFile="new.aspx.cs" Inherits="Admin_Users_new" %>
+    CodeFile="edit.aspx.cs" Inherits="Admin_Users_edit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
     <fieldset>
-        <legend>New User Profile</legend>
+        <legend>Edit User Profile</legend>
+        <asp:HiddenField ID="hdnFldUserId" runat="server" />
         <table class="table table-bordered">
             <tr>
                 <td>
@@ -48,31 +49,16 @@
                 <td>
                     <asp:Label ID="lblCategory" runat="server" Text='Category'></asp:Label>
                     <br />
-                    <asp:DropDownList ID="ddlCategory" runat="server" Width="150px" DataSourceID="SqlDataSource1"
-                        DataTextField="Name" DataValueField="Id" AppendDataBoundItems="True" EnableViewState="False"
-                        AutoPostBack="true">
-                        <asp:ListItem Value="0">Select</asp:ListItem>
+                    <asp:DropDownList ID="ddlCategory" runat="server" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged">
                     </asp:DropDownList>
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Acig_Help_DeskConnectionString %>"
-                        SelectCommand="SELECT [Id], [Name] FROM [Categories]"></asp:SqlDataSource>
                     <asp:RequiredFieldValidator ID="rfvCategorty" runat="server" ControlToValidate="ddlCategory"
                         ForeColor="#FF3300" SetFocusOnError="True" InitialValue="0">*</asp:RequiredFieldValidator>
                 </td>
                 <td>
-                    <asp:Label ID="lblSubCategory" runat="server" Text='SubCategory'></asp:Label>
+                    <asp:Label ID="lblSubCategory" runat="server" Text='Sub Category'></asp:Label>
                     <br />
-                    <asp:DropDownList ID="ddlSubCategory" runat="server" Width="150px" AppendDataBoundItems="True"
-                        EnableViewState="False" AutoPostBack="true" DataSourceID="SqlDataSource2" DataTextField="Name"
-                        DataValueField="Id">
-                        <asp:ListItem Value="0">Select</asp:ListItem>
+                    <asp:DropDownList ID="ddlSubCategory" runat="server" OnSelectedIndexChanged="ddlSubCategory_SelectedIndexChanged">
                     </asp:DropDownList>
-                    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:Acig_Help_DeskConnectionString %>"
-                        SelectCommand="SELECT * FROM [Sub_Categories] WHERE ([Category_Id] = @Category_Id)">
-                        <SelectParameters>
-                            <asp:ControlParameter ControlID="ddlCategory" Name="Category_Id" PropertyName="SelectedValue"
-                                Type="Int64" />
-                        </SelectParameters>
-                    </asp:SqlDataSource>
                     <asp:RequiredFieldValidator ID="rfvSubCategory" runat="server" ControlToValidate="ddlSubCategory"
                         ForeColor="#FF3300" SetFocusOnError="True" InitialValue="0">*</asp:RequiredFieldValidator>
                 </td>
@@ -81,28 +67,19 @@
                 <td>
                     <asp:Label ID="lblSubSubCategory" runat="server" Text='Target Sub Category'></asp:Label>
                     <br />
-                    <asp:ListBox ID="lstBoxSubSubCategory" runat="server" AppendDataBoundItems="True" SelectionMode="Multiple"
-                        DataSourceID="SqlDataSource3" DataTextField="Name" DataValueField="Id" EnableViewState="False">
-                    </asp:ListBox>
-                    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:Acig_Help_DeskConnectionString %>"
-                        SelectCommand="SELECT [Id], [Name] FROM [Sub_Sub_Categories] WHERE ([Sub_Category_Id] = @Sub_Category_Id)">
-                        <SelectParameters>
-                            <asp:ControlParameter ControlID="ddlSubCategory" Name="Sub_Category_Id" PropertyName="SelectedValue"
-                                Type="Int64" />
-                        </SelectParameters>
-                    </asp:SqlDataSource>
+                    <asp:ListBox ID="lstBoxSubSubCategory" runat="server"
+                        SelectionMode="Multiple"></asp:ListBox>
                     <asp:RequiredFieldValidator ID="rfvSubSubCategory" runat="server" ControlToValidate="lstBoxSubSubCategory"
                         ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
                 </td>
                 <td>
                     <asp:Label ID="lblDepartment" runat="server" Text='Department'></asp:Label>
                     <br />
-                    <asp:DropDownList ID="ddlDepartment" runat="server" 
-                        DataSourceID="SqlDataSource4" DataTextField="Name" DataValueField="Id" AppendDataBoundItems="true">
+                    <asp:DropDownList ID="ddlDepartment" runat="server" DataSourceID="SqlDataSource4"
+                        DataTextField="Name" DataValueField="Id" AppendDataBoundItems="true">
                         <asp:ListItem Value="0">Select</asp:ListItem>
                     </asp:DropDownList>
-                    <asp:SqlDataSource ID="SqlDataSource4" runat="server" 
-                        ConnectionString="<%$ ConnectionStrings:Acig_Help_DeskConnectionString %>" 
+                    <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:Acig_Help_DeskConnectionString %>"
                         SelectCommand="SELECT [Id], [Name] FROM [Departments]"></asp:SqlDataSource>
                     <asp:RequiredFieldValidator ID="rfvDepartment" runat="server" ControlToValidate="ddlDepartment"
                         ForeColor="#FF3300" SetFocusOnError="True" InitialValue="0">*</asp:RequiredFieldValidator>
@@ -110,8 +87,8 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <asp:Button ID="btnAddNewUser" runat="server" Text="Add New User" CssClass="btn btn-primary"
-                        OnClick="btnAddNewUser_Click" />
+                    <asp:Button ID="btnUpdateUser" runat="server" Text="Update Profile" CssClass="btn btn-primary"
+                        OnClick="btnUpdateUser_Click" />
                 </td>
             </tr>
         </table>

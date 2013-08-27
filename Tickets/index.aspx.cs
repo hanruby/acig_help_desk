@@ -45,6 +45,20 @@ public partial class Tickets_index : MasterAppPage
     protected void gvTicketsOpen_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         if (e.Row.RowType != DataControlRowType.DataRow) return;
+        var text = e.Row.Cells[3].Text;
+        LinkButton lb;
+        lb = new LinkButton();
+        lb.CommandArgument = text;
+        lb.CommandName = "NumClick";
+        lb.Text = "Details";
+        lb.PostBackUrl = "show.aspx?id=" + text;
+        lb.CssClass = "blue-link";
+        e.Row.Cells[3].Controls.Add((Control)lb);
+    }
+
+    protected void gvTicketsResolved_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType != DataControlRowType.DataRow) return;
         var text = e.Row.Cells[4].Text;
         LinkButton lb;
         lb = new LinkButton();
@@ -54,9 +68,17 @@ public partial class Tickets_index : MasterAppPage
         lb.PostBackUrl = "show.aspx?id=" + text;
         lb.CssClass = "blue-link";
         e.Row.Cells[4].Controls.Add((Control)lb);
+
+        lb = new LinkButton();
+        lb.CommandArgument = text;
+        lb.CommandName = "NumClick";
+        lb.Text = "Close";
+        lb.PostBackUrl = "close.aspx?id=" + text;
+        lb.CssClass = "blue-link";
+        e.Row.Cells[5].Controls.Add((Control)lb);
     }
 
-    protected void gvTicketsResolved_RowDataBound(object sender, GridViewRowEventArgs e)
+    protected void gvTicketsClosed_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         if (e.Row.RowType != DataControlRowType.DataRow) return;
         var text = e.Row.Cells[5].Text;
@@ -68,20 +90,6 @@ public partial class Tickets_index : MasterAppPage
         lb.PostBackUrl = "show.aspx?id=" + text;
         lb.CssClass = "blue-link";
         e.Row.Cells[5].Controls.Add((Control)lb);
-    }
-
-    protected void gvTicketsClosed_RowDataBound(object sender, GridViewRowEventArgs e)
-    {
-        if (e.Row.RowType != DataControlRowType.DataRow) return;
-        var text = e.Row.Cells[6].Text;
-        LinkButton lb;
-        lb = new LinkButton();
-        lb.CommandArgument = text;
-        lb.CommandName = "NumClick";
-        lb.Text = "Details";
-        lb.PostBackUrl = "show.aspx?id=" + text;
-        lb.CssClass = "blue-link";
-        e.Row.Cells[6].Controls.Add((Control)lb);
     }
 
     protected void GetHeader(string scope)
@@ -99,8 +107,11 @@ public partial class Tickets_index : MasterAppPage
             dt.Columns.Add(new DataColumn("Closed At", typeof(string)));
         }
         dt.Columns.Add(new DataColumn("Category", typeof(string)));
-        dt.Columns.Add(new DataColumn("Assigned To", typeof(string)));
         dt.Columns.Add(new DataColumn("Details", typeof(string)));
+        if (scope == "resolved")
+        {
+            dt.Columns.Add(new DataColumn("Close?", typeof(string)));
+        }
     }
 
     protected void BindGvOpenTickets()
@@ -174,6 +185,7 @@ public partial class Tickets_index : MasterAppPage
             dr["Category"] = x.CategoryName + " >> " + x.SubCategoryName + " >> " + x.SubSubCategoryName; ;
             dr["Resolved At"] = x.ResolvedAt;
             dr["Details"] = x.Id;
+            dr["Close?"] = x.Id;
             dt.Rows.Add(dr);
         }
         gvTicketsResolved.DataSource = dt;

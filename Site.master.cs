@@ -66,25 +66,25 @@ public partial class SiteMaster : System.Web.UI.MasterPage
 
     protected void DisplayNotifications()
     {
-        if (Session["NoticeMessage"] != null)
-        {
-            alertSuccess.Visible = true;
-            successMessage.InnerText = Session["NoticeMessage"].ToString();
-            Session["NoticeMessage"] = null;
-        }
-        else
-        {
-            alertSuccess.Visible = false;
-        }
-        if (Session["ErrorMessage"] != null)
-        {
-            alertError.Visible = true;
-            errorMessage.InnerText = Session["ErrorMessage"].ToString();
-            Session["ErrorMessage"] = null;
-        }
-        else
-        {
-            alertError.Visible = false;
-        }
+        //if (Session["NoticeMessage"] != null)
+        //{
+        //    alertSuccess.Visible = true;
+        //    successMessage.InnerText = Session["NoticeMessage"].ToString();
+        //    Session["NoticeMessage"] = null;
+        //}
+        //else
+        //{
+        //    alertSuccess.Visible = false;
+        //}
+        //if (Session["ErrorMessage"] != null)
+        //{
+        //    alertError.Visible = true;
+        //    errorMessage.InnerText = Session["ErrorMessage"].ToString();
+        //    Session["ErrorMessage"] = null;
+        //}
+        //else
+        //{
+        //    alertError.Visible = false;
+        //}
     }
 }

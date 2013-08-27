@@ -49,7 +49,7 @@ public partial class Admin_Users_new : MasterAppPage
                 _entity.SaveChanges();
             }
         }
-        Session["NoticeMessage"] = "Successfully created new user!";
+        Session["NoticeMessage"] = "Successfully created new user profile!";
         Response.Redirect(Route.GetRootPath("admin/users/index.aspx"));
     }
 
