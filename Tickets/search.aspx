@@ -52,7 +52,7 @@
                                 <asp:ListItem>Created By</asp:ListItem>
                                 <asp:ListItem>Assigned To</asp:ListItem>
                                 <asp:ListItem>Subject</asp:ListItem>
-                                <asp:ListItem Value="date">Open Date</asp:ListItem>
+                                <asp:ListItem>Open Date</asp:ListItem>
                             </asp:DropDownList>
                         </td>
                         <td>
@@ -64,15 +64,47 @@
                                 ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
                         </td>
                         <td>
-                            <asp:Button ID="btnSearch" runat="server" Text="Search" 
-                                CssClass="btn btn-primary" onclick="btnSearch_Click" />
+                            <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary"
+                                OnClick="btnSearch_Click" />
                         </td>
                     </tr>
                 </table>
             </fieldset>
             <asp:HiddenField ID="hdnFldTicketType" runat="server" />
             <asp:GridView ID="gvTickets" runat="server" Width="100%" CssClass="table table-bordered"
-                EmptyDataText="No Records" OnRowDataBound="gvTickets_RowDataBound">
+                EmptyDataText="No Records" AutoGenerateColumns="false">
+                <Columns>
+                    <asp:TemplateField HeaderText="Ticket ID">
+                        <ItemTemplate>
+                            <asp:Label ID="lblTicketId" runat="server" Text='<%# Eval("Id")%>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Open At">
+                        <ItemTemplate>
+                            <asp:Label ID="lblTicketOpenAt" runat="server" Text='<%# Eval("Opened_At")%>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Open By">
+                        <ItemTemplate>
+                            <asp:Label ID="lblCreatedBy" runat="server" Text='<%# Eval("Opened_By")%>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Assigned To">
+                        <ItemTemplate>
+                            <asp:Label ID="lblAssignedTo" runat="server" Text='<%# Eval("Assigned_To")%>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Category">
+                        <ItemTemplate>
+                            <asp:Label ID="lblCategory" runat="server" Text='<%# Eval("Full_Category")%>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Details">
+                        <ItemTemplate>
+                            <asp:Label ID="lblDetails" runat="server" Text='<%# Eval("Id")%>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
             </asp:GridView>
         </ContentTemplate>
     </asp:UpdatePanel>
