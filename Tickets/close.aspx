@@ -98,7 +98,7 @@
         </p>
         <p>
             <asp:Label ID="lblDescription" runat="server" Text="Description" AssociatedControlID="txtDescription"></asp:Label>
-            <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Rows="5" Columns="95"></asp:TextBox>
+            <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Width="100%" Height="90px"></asp:TextBox>
         </p>
         <p>
             <asp:CustomValidator ID="CustomValidator" runat="server" ErrorMessage="" ClientValidationFunction="Validate"

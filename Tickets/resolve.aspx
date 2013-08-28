@@ -85,7 +85,7 @@
         <legend>Resolve Ticket</legend>
         <p>
             <asp:Label ID="lblDescription" runat="server" Text="Description" AssociatedControlID="txtDescription"></asp:Label>
-            <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Rows="5" Columns="95"></asp:TextBox>
+            <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" width="100%" Height="90px"></asp:TextBox>
             <asp:RequiredFieldValidator ID="rfvDescription" runat="server" ControlToValidate="txtDescription"
                 ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
         </p>
