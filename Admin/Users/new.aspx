@@ -55,8 +55,6 @@
                     </asp:DropDownList>
                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Acig_Help_DeskConnectionString %>"
                         SelectCommand="SELECT [Id], [Name] FROM [Categories]"></asp:SqlDataSource>
-                    <asp:RequiredFieldValidator ID="rfvCategorty" runat="server" ControlToValidate="ddlCategory"
-                        ForeColor="#FF3300" SetFocusOnError="True" InitialValue="0">*</asp:RequiredFieldValidator>
                 </td>
                 <td>
                     <asp:Label ID="lblSubCategory" runat="server" Text='SubCategory'></asp:Label>
@@ -73,8 +71,6 @@
                                 Type="Int64" />
                         </SelectParameters>
                     </asp:SqlDataSource>
-                    <asp:RequiredFieldValidator ID="rfvSubCategory" runat="server" ControlToValidate="ddlSubCategory"
-                        ForeColor="#FF3300" SetFocusOnError="True" InitialValue="0">*</asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -91,8 +87,6 @@
                                 Type="Int64" />
                         </SelectParameters>
                     </asp:SqlDataSource>
-                    <asp:RequiredFieldValidator ID="rfvSubSubCategory" runat="server" ControlToValidate="lstBoxSubSubCategory"
-                        ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
                 </td>
                 <td>
                     <asp:Label ID="lblDepartment" runat="server" Text='Department'></asp:Label>

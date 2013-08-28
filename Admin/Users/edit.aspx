@@ -51,16 +51,12 @@
                     <br />
                     <asp:DropDownList ID="ddlCategory" runat="server" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged">
                     </asp:DropDownList>
-                    <asp:RequiredFieldValidator ID="rfvCategorty" runat="server" ControlToValidate="ddlCategory"
-                        ForeColor="#FF3300" SetFocusOnError="True" InitialValue="0">*</asp:RequiredFieldValidator>
                 </td>
                 <td>
                     <asp:Label ID="lblSubCategory" runat="server" Text='Sub Category'></asp:Label>
                     <br />
                     <asp:DropDownList ID="ddlSubCategory" runat="server" OnSelectedIndexChanged="ddlSubCategory_SelectedIndexChanged">
                     </asp:DropDownList>
-                    <asp:RequiredFieldValidator ID="rfvSubCategory" runat="server" ControlToValidate="ddlSubCategory"
-                        ForeColor="#FF3300" SetFocusOnError="True" InitialValue="0">*</asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -69,8 +65,6 @@
                     <br />
                     <asp:ListBox ID="lstBoxSubSubCategory" runat="server"
                         SelectionMode="Multiple"></asp:ListBox>
-                    <asp:RequiredFieldValidator ID="rfvSubSubCategory" runat="server" ControlToValidate="lstBoxSubSubCategory"
-                        ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
                 </td>
                 <td>
                     <asp:Label ID="lblDepartment" runat="server" Text='Department'></asp:Label>

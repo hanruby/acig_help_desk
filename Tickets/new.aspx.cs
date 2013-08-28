@@ -13,6 +13,7 @@ public partial class Tickets_new : MasterAppPage
     Comment _comment;
     User_Tickets _user_Tickets;
     long _sub_sub_Category_Id;
+    string assigned_To_Emails;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -33,7 +34,8 @@ public partial class Tickets_new : MasterAppPage
             State = "Open",
             Subject = txtSubject.Text,
             Type = ddlType.SelectedValue,
-            Updated_At = DateTime.Now
+            Updated_At = DateTime.Now,
+            Assigned_To_Emails = "Remove"
         };
         _ticket.Created_By = currentUserId;
         _ticket.Sub_Sub_Category_Id = _sub_sub_Category_Id;
@@ -50,19 +52,29 @@ public partial class Tickets_new : MasterAppPage
         _entity.AddToEvents(_event);
         _entity.SaveChanges();
 
-        foreach (var y in _entity.User_Sub_Sub_Categories.Where(x => x.Sub_Sub_Category_Id == _sub_sub_Category_Id).Select(x => x.User_Id).ToList().Distinct())
+        var data = from u in _entity.tbl_Users
+                join us in _entity.User_Sub_Sub_Categories
+                on u.Id equals us.User_Id
+                where us.Sub_Sub_Category_Id == _sub_sub_Category_Id
+                select new { Email = u.Email, Id = u.Id };
+        var dataList = data.ToList();
+
+        foreach (var x in dataList)
         {
-            if (currentUserId != y)
+            if (currentUserId != x.Id)
             {
                 _user_Tickets = new User_Tickets
                 {
                     Ticket_Id = _ticket.Id,
-                    User_Id = y
+                    User_Id = x.Id
                 };
                 _entity.AddToUser_Tickets(_user_Tickets);
                 _entity.SaveChanges();
+                assigned_To_Emails += x.Email + ",";
             }
         }
+        _ticket.Assigned_To_Emails = assigned_To_Emails;
+        _entity.SaveChanges();
 
         _comment = new Comment
         {

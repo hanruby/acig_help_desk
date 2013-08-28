@@ -20,16 +20,16 @@ using System.Runtime.Serialization;
 
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Sub_Categories_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Category), "Sub_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Sub_Categories), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Comments_tbl_Users", "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.tbl_Users), "Comment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Comment), true)]
-[assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Comments_Tickets", "Ticket", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Ticket), "Comment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Comment), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_tbl_Users_Departments", "Department", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Department), "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.tbl_Users), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Events_tbl_Users", "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.tbl_Users), "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Event), true)]
-[assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Events_Tickets", "Ticket", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Ticket), "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Event), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Sub_Sub_Categories_Sub_Categories", "Sub_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Sub_Categories), "Sub_Sub_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Sub_Sub_Categories), true)]
-[assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Tickets_Sub_Categories", "Sub_Sub_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Sub_Sub_Categories), "Ticket", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Ticket), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_User_Sub_Sub_Categories_Sub_Sub_Categories", "Sub_Sub_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Sub_Sub_Categories), "User_Sub_Sub_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.User_Sub_Sub_Categories), true)]
-[assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Tickets_Users", "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.tbl_Users), "Ticket", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Ticket), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_User_Sub_Sub_Categories_tbl_Users", "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.tbl_Users), "User_Sub_Sub_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.User_Sub_Sub_Categories), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_User_Tickets_tbl_Users", "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.tbl_Users), "User_Tickets", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.User_Tickets), true)]
+[assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Comments_Tickets", "Ticket", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Ticket), "Comment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Comment), true)]
+[assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Events_Tickets", "Ticket", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Ticket), "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Event), true)]
+[assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Tickets_Sub_Categories", "Sub_Sub_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Sub_Sub_Categories), "Ticket", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Ticket), true)]
+[assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Tickets_Users", "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.tbl_Users), "Ticket", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Ticket), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_User_Tickets_Tickets", "Ticket", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Ticket), "User_Tickets", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.User_Tickets), true)]
 
 #endregion
@@ -197,22 +197,6 @@ namespace Acig_Help_DeskModel
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Ticket> Tickets
-        {
-            get
-            {
-                if ((_Tickets == null))
-                {
-                    _Tickets = base.CreateObjectSet<Ticket>("Tickets");
-                }
-                return _Tickets;
-            }
-        }
-        private ObjectSet<Ticket> _Tickets;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<User_Sub_Sub_Categories> User_Sub_Sub_Categories
         {
             get
@@ -241,6 +225,22 @@ namespace Acig_Help_DeskModel
             }
         }
         private ObjectSet<User_Tickets> _User_Tickets;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Ticket> Tickets
+        {
+            get
+            {
+                if ((_Tickets == null))
+                {
+                    _Tickets = base.CreateObjectSet<Ticket>("Tickets");
+                }
+                return _Tickets;
+            }
+        }
+        private ObjectSet<Ticket> _Tickets;
 
         #endregion
         #region AddTo Methods
@@ -302,14 +302,6 @@ namespace Acig_Help_DeskModel
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Tickets EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToTickets(Ticket ticket)
-        {
-            base.AddObject("Tickets", ticket);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the User_Sub_Sub_Categories EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToUser_Sub_Sub_Categories(User_Sub_Sub_Categories user_Sub_Sub_Categories)
@@ -323,6 +315,14 @@ namespace Acig_Help_DeskModel
         public void AddToUser_Tickets(User_Tickets user_Tickets)
         {
             base.AddObject("User_Tickets", user_Tickets);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Tickets EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToTickets(Ticket ticket)
+        {
+            base.AddObject("Tickets", ticket);
         }
 
         #endregion
@@ -1806,28 +1806,6 @@ namespace Acig_Help_DeskModel
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Tickets_Sub_Categories", "Ticket")]
-        public EntityCollection<Ticket> Tickets
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Ticket>("Acig_Help_DeskModel.FK_Tickets_Sub_Categories", "Ticket");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Ticket>("Acig_Help_DeskModel.FK_Tickets_Sub_Categories", "Ticket", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_User_Sub_Sub_Categories_Sub_Sub_Categories", "User_Sub_Sub_Categories")]
         public EntityCollection<User_Sub_Sub_Categories> User_Sub_Sub_Categories
         {
@@ -1840,6 +1818,28 @@ namespace Acig_Help_DeskModel
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<User_Sub_Sub_Categories>("Acig_Help_DeskModel.FK_User_Sub_Sub_Categories_Sub_Sub_Categories", "User_Sub_Sub_Categories", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Tickets_Sub_Categories", "Ticket")]
+        public EntityCollection<Ticket> Tickets
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Ticket>("Acig_Help_DeskModel.FK_Tickets_Sub_Categories", "Ticket");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Ticket>("Acig_Help_DeskModel.FK_Tickets_Sub_Categories", "Ticket", value);
                 }
             }
         }
@@ -2172,28 +2172,6 @@ namespace Acig_Help_DeskModel
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Tickets_Users", "Ticket")]
-        public EntityCollection<Ticket> Tickets
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Ticket>("Acig_Help_DeskModel.FK_Tickets_Users", "Ticket");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Ticket>("Acig_Help_DeskModel.FK_Tickets_Users", "Ticket", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_User_Sub_Sub_Categories_tbl_Users", "User_Sub_Sub_Categories")]
         public EntityCollection<User_Sub_Sub_Categories> User_Sub_Sub_Categories
         {
@@ -2231,6 +2209,28 @@ namespace Acig_Help_DeskModel
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Acig_Help_DeskModel", "FK_Tickets_Users", "Ticket")]
+        public EntityCollection<Ticket> Tickets
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Ticket>("Acig_Help_DeskModel.FK_Tickets_Users", "Ticket");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Ticket>("Acig_Help_DeskModel.FK_Tickets_Users", "Ticket", value);
+                }
+            }
+        }
 
         #endregion
     }
@@ -2254,10 +2254,11 @@ namespace Acig_Help_DeskModel
         /// <param name="state">Initial value of the State property.</param>
         /// <param name="sub_Sub_Category_Id">Initial value of the Sub_Sub_Category_Id property.</param>
         /// <param name="created_By">Initial value of the Created_By property.</param>
+        /// <param name="assigned_To_Emails">Initial value of the Assigned_To_Emails property.</param>
         /// <param name="subject">Initial value of the Subject property.</param>
         /// <param name="created_At">Initial value of the Created_At property.</param>
         /// <param name="updated_At">Initial value of the Updated_At property.</param>
-        public static Ticket CreateTicket(global::System.Int64 id, global::System.String type, global::System.String priority, global::System.String state, global::System.Int64 sub_Sub_Category_Id, global::System.Int64 created_By, global::System.String subject, global::System.DateTime created_At, global::System.DateTime updated_At)
+        public static Ticket CreateTicket(global::System.Int64 id, global::System.String type, global::System.String priority, global::System.String state, global::System.Int64 sub_Sub_Category_Id, global::System.Int64 created_By, global::System.String assigned_To_Emails, global::System.String subject, global::System.DateTime created_At, global::System.DateTime updated_At)
         {
             Ticket ticket = new Ticket();
             ticket.Id = id;
@@ -2266,6 +2267,7 @@ namespace Acig_Help_DeskModel
             ticket.State = state;
             ticket.Sub_Sub_Category_Id = sub_Sub_Category_Id;
             ticket.Created_By = created_By;
+            ticket.Assigned_To_Emails = assigned_To_Emails;
             ticket.Subject = subject;
             ticket.Created_At = created_At;
             ticket.Updated_At = updated_At;
@@ -2421,6 +2423,30 @@ namespace Acig_Help_DeskModel
         private global::System.Int64 _Created_By;
         partial void OnCreated_ByChanging(global::System.Int64 value);
         partial void OnCreated_ByChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Assigned_To_Emails
+        {
+            get
+            {
+                return _Assigned_To_Emails;
+            }
+            set
+            {
+                OnAssigned_To_EmailsChanging(value);
+                ReportPropertyChanging("Assigned_To_Emails");
+                _Assigned_To_Emails = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Assigned_To_Emails");
+                OnAssigned_To_EmailsChanged();
+            }
+        }
+        private global::System.String _Assigned_To_Emails;
+        partial void OnAssigned_To_EmailsChanging(global::System.String value);
+        partial void OnAssigned_To_EmailsChanged();
     
         /// <summary>
         /// No Metadata Documentation available.

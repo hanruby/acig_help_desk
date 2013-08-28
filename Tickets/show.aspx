@@ -14,7 +14,7 @@
     </h2>
     <hr />
     <h4>
-        Ticket Events</h4>
+        Ticket States</h4>
     <asp:GridView ID="gvEvents" runat="server" CssClass="table table-bordered" AutoGenerateColumns="false"
         ShowHeader="true" Width="100%">
         <Columns>
