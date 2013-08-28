@@ -15,6 +15,7 @@ public partial class Admin_Users_edit : MasterAppPage
     Sub_Categories _sub_Category;
     Sub_Sub_Categories _sub_Sub_Category;
     long _id, _category_Id, _sub_CategoryId, _sub_Sub_CategoryId;
+    bool email_Changed;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -149,8 +150,10 @@ public partial class Admin_Users_edit : MasterAppPage
         _entity = GetEntity();
         _user = _entity.tbl_Users.Where(x => x.Id == _id).First();
         string email = txtEmail.Text.Trim();
+        email_Changed = false;
         if (_user.Email != email)
         {
+            email_Changed = true;
             if (_entity.tbl_Users.Where(x => x.Email == email).Count() > 0)
             {
                 Session["ErrorMessage"] = "Email already taken!";
@@ -182,7 +185,26 @@ public partial class Admin_Users_edit : MasterAppPage
         _user.Role = ddlRole.SelectedValue;
         _user.Updated_At = DateTime.Now;
         _entity.SaveChanges();
+        if (email_Changed)
+        {
+            UpdateTicketsAssignedEmails();
+        }
         Session["NoticeMessage"] = "Successfully updated information!";
         Response.Redirect(Route.GetRootPath("admin/users/index.aspx"));
+    }
+
+    protected void UpdateTicketsAssignedEmails()
+    {
+        var data = from t in _entity.Tickets
+                   join ut in _entity.User_Tickets
+                   on t.Id equals ut.Ticket_Id
+                   where ut.User_Id == _user.Id
+                   select new {Ticket = t};
+        var dataLst = data.ToList();
+        foreach (var x in dataLst)
+        {
+            x.Ticket.Assigned_To_Emails = x.Ticket.Assigned_To_Emails + "," + _user.Email;
+            _entity.SaveChanges();
+        }
     }
 }
