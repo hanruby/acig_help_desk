@@ -16,6 +16,7 @@ public partial class Admin_Users_edit : MasterAppPage
     Sub_Sub_Categories _sub_Sub_Category;
     long _id, _category_Id, _sub_CategoryId, _sub_Sub_CategoryId;
     bool email_Changed;
+    string old_Email, new_Email;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -149,12 +150,13 @@ public partial class Admin_Users_edit : MasterAppPage
         _id = long.Parse(hdnFldUserId.Value);
         _entity = GetEntity();
         _user = _entity.tbl_Users.Where(x => x.Id == _id).First();
-        string email = txtEmail.Text.Trim();
+        new_Email = txtEmail.Text.Trim();
+        old_Email = _user.Email;
         email_Changed = false;
-        if (_user.Email != email)
+        if (old_Email != new_Email)
         {
             email_Changed = true;
-            if (_entity.tbl_Users.Where(x => x.Email == email).Count() > 0)
+            if (_entity.tbl_Users.Where(x => x.Email == new_Email).Count() > 0)
             {
                 Session["ErrorMessage"] = "Email already taken!";
                 return;
@@ -178,7 +180,7 @@ public partial class Admin_Users_edit : MasterAppPage
                 _entity.SaveChanges();
             }
         }
-        _user.Email = email;
+        _user.Email = new_Email;
         _user.User_Name = txtUserName.Text;
         _user.Active = bool.Parse(ddlActive.SelectedValue);
         _user.Department_Id = long.Parse(ddlDepartment.SelectedValue);
@@ -203,7 +205,7 @@ public partial class Admin_Users_edit : MasterAppPage
         var dataLst = data.ToList();
         foreach (var x in dataLst)
         {
-            x.Ticket.Assigned_To_Emails = x.Ticket.Assigned_To_Emails + "," + _user.Email;
+            x.Ticket.Assigned_To_Emails = x.Ticket.Assigned_To_Emails.Replace(old_Email, new_Email);
             _entity.SaveChanges();
         }
     }
