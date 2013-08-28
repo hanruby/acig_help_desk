@@ -1,32 +1,39 @@
 ﻿<%@ Application Language="C#" %>
+<script RunAt="server">
 
-<script runat="server">
-
-    void Application_Start(object sender, EventArgs e) 
+    void Application_Start(object sender, EventArgs e)
     {
         // Code that runs on application startup
 
     }
-    
-    void Application_End(object sender, EventArgs e) 
+
+    void Application_End(object sender, EventArgs e)
     {
         //  Code that runs on application shutdown
 
     }
-        
-    void Application_Error(object sender, EventArgs e) 
-    { 
-        // Code that runs when an unhandled error occurs
 
+    void Application_Error(object sender, EventArgs e)
+    {
+        Exception exc = Server.GetLastError();
+
+        if (exc is HttpUnhandledException)
+        {
+            if (exc.InnerException != null)
+            {
+                exc = new Exception(exc.InnerException.Message);
+                Server.Transfer("error.aspx?handler=Application_Error%20-%20Global.asax", true);
+            }
+        }
     }
 
-    void Session_Start(object sender, EventArgs e) 
+    void Session_Start(object sender, EventArgs e)
     {
         // Code that runs when a new session is started
 
     }
 
-    void Session_End(object sender, EventArgs e) 
+    void Session_End(object sender, EventArgs e)
     {
         // Code that runs when a session ends. 
         // Note: The Session_End event is raised only when the sessionstate mode
