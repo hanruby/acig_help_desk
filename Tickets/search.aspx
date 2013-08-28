@@ -23,6 +23,16 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
+    <asp:UpdateProgress ID="updateProgress" runat="server">
+        <ProgressTemplate>
+            <div style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0;
+                right: 0; left: 0; z-index: 9999999; background-color: #000000; opacity: 0.7;">
+                <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="~/images/ajax-loader.gif"
+                    AlternateText="Loading ..." ToolTip="Loading ..." Style="padding: 10px; position: fixed;
+                    top: 39%; left: 42%;" />
+            </div>
+        </ProgressTemplate>
+    </asp:UpdateProgress>
     <asp:UpdatePanel ID="updatePanelCity" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <fieldset class="login">
