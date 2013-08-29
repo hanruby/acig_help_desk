@@ -19,7 +19,7 @@
         <ContentTemplate>
             <fieldset>
                 <legend>New Department</legend>
-                <table class="table table-bordered">
+                <table class="table table-bordered" style="width:30%">
                     <tr>
                         <td>
                             Department Name
@@ -27,8 +27,7 @@
                             <asp:TextBox ID="txtDepartmentName" runat="server" MaxLength="200"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvDepartmentName" runat="server" ControlToValidate="txtDepartmentName"
                                 ForeColor="#FF3300" SetFocusOnError="True" ValidationGroup="NewDepartment">*</asp:RequiredFieldValidator>
-                        </td>
-                        <td>
+                            <br />
                             <asp:Button ID="btnSaveDepartment" runat="server" Text="Save" ValidationGroup="NewDepartment"
                                 OnClick="btnSaveDepartment_Click" CssClass="btn btn-primary" />
                         </td>

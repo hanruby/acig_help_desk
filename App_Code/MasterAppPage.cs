@@ -31,6 +31,11 @@ public class MasterAppPage : System.Web.UI.Page
     
     protected bool CanResolve(long ticketId)
     {
-        return _entity.User_Tickets.Where(x => x.User_Id == currentUserId && x.Ticket_Id == ticketId).Count() > 0;
+        var count = (from t in _entity.Tickets
+                 join ut in _entity.User_Tickets
+                 on t.Id equals ut.Ticket_Id
+                 where ut.User_Id == currentUserId && ut.Ticket_Id == ticketId && t.State == "Open"
+                 select new { tckt = t }).Count();
+        return count > 0;
     }
 }

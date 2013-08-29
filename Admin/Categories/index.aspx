@@ -20,7 +20,7 @@
         <ContentTemplate>
             <fieldset>
                 <legend>New Category</legend>
-                <table class="table table-bordered">
+                <table class="table table-bordered" style="width:30%">
                     <tr>
                         <td>
                             Category Name
@@ -28,8 +28,7 @@
                             <asp:TextBox ID="txtCategoryName" runat="server" MaxLength="200"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvCategoryName" runat="server" ControlToValidate="txtCategoryName"
                                 ForeColor="#FF3300" SetFocusOnError="True" ValidationGroup="NewCategory">*</asp:RequiredFieldValidator>
-                        </td>
-                        <td>
+                            <br />
                             <asp:Button ID="btnSaveCategory" runat="server" Text="Save" ValidationGroup="NewCategory"
                                 OnClick="btnSaveCategory_Click" CssClass="btn btn-primary" />
                         </td>
@@ -73,7 +72,7 @@
             <div id="subCategoryDiv" runat="server">
                 <fieldset>
                     <legend runat="server">Sub Category</legend>
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" style="width:30%">
                         <tr>
                             <td>
                                 Sub Category Name
@@ -82,8 +81,7 @@
                                 <asp:HiddenField ID="hdnCategoryId" runat="server" />
                                 <asp:RequiredFieldValidator ID="rfvSubCategoryName" runat="server" ControlToValidate="txtSubCategoryName"
                                     ForeColor="#FF3300" SetFocusOnError="True" ValidationGroup="NewSubCategory">*</asp:RequiredFieldValidator>
-                            </td>
-                            <td>
+                                <br />
                                 <asp:Button ID="btnSaveSubCategory" runat="server" Text="Save" ValidationGroup="NewSubCategory"
                                     OnClick="btnSaveSubCategory_Click" CssClass="btn btn-primary" />
                             </td>
@@ -127,7 +125,7 @@
             <div id="subSubCategoryDiv" runat="server">
                 <fieldset>
                     <legend id="Legend1" runat="server">Target Sub Category</legend>
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" style="width:30%">
                         <tr>
                             <td>
                                 Target Sub Category Name
@@ -136,8 +134,7 @@
                                 <asp:HiddenField ID="hdnSubCategoryId" runat="server" />
                                 <asp:RequiredFieldValidator ID="rfvSubSubCategoryName" runat="server" ControlToValidate="txtSubSubCategoryName"
                                     ForeColor="#FF3300" SetFocusOnError="True" ValidationGroup="NewSubSubCategory">*</asp:RequiredFieldValidator>
-                            </td>
-                            <td>
+                                <br />
                                 <asp:Button ID="btnSaveSubSubCategory" runat="server" Text="Save" ValidationGroup="NewSubSubCategory"
                                     OnClick="btnSaveSubSubCategory_Click" CssClass="btn btn-primary" />
                             </td>
