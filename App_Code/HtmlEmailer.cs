@@ -17,8 +17,8 @@ public class HtmlEmailer
         _entity = e;
         ticket = _t;
         rootPath = ConfigurationManager.AppSettings["RootPath"];
-        category = ticket.Sub_Sub_Categories.Sub_Categories.Category.Name + " " + ticket.Sub_Sub_Categories.Sub_Categories.Category.Name + " " +
-            " >>> " + ticket.Sub_Sub_Categories.Sub_Categories.Category.Name + " ";
+        category = ticket.Sub_Sub_Categories.Sub_Categories.Category.Name + " " + ticket.Sub_Sub_Categories.Sub_Categories.Name + " " +
+            " >>> " + ticket.Sub_Sub_Categories.Sub_Categories.Name + " ";
         Id = ticket.Id.ToString();
         subject = ticket.Subject;
         user = _entity.tbl_Users.Where(x => x.Id == ticket.Created_By).First();
@@ -32,7 +32,7 @@ public class HtmlEmailer
         url = ConfigurationManager.AppSettings["RootPath"] + "/tickets/assigned.aspx";
         foreach (var x in ticket.User_Tickets)
         {
-            using (StreamReader reader = new StreamReader(GetPath("~/EmailTemplates/Ticket_Assigned.htm")))
+            using (StreamReader reader = new StreamReader(GetPath("~/Email_Templates/Ticket_Assigned.htm")))
             {
                 body = reader.ReadToEnd();
             }
@@ -42,8 +42,7 @@ public class HtmlEmailer
             body = body.Replace("{Url}", url);
             body = body.Replace("{Category}", category);
             body = body.Replace("{AssignedUser}", createdBy);
-            Notifier.SendEmail("crmmailadmin@acig.com.sa", "ubaidkhan88@gmail.com", "New Ticket Assigned", body);
-            //Notifier.SendEmail("crmmailadmin@acig.com.sa", x.tbl_Users.Email, "New Ticket Assigned", body);
+            Notifier.SendEmail("crmmailadmin@acig.com.sa", x.tbl_Users.Email, "New Ticket Assigned", body);
         }
         return;
     }
@@ -61,8 +60,7 @@ public class HtmlEmailer
         body = body.Replace("{Url}", url);
         body = body.Replace("{Category}", category);
         body = body.Replace("{ResolvedUser}", createdBy);
-        Notifier.SendEmail("crmmailadmin@acig.com.sa", "ubaidkhan88@gmail.com", "Ticket Resolved", body);
-        //Notifier.SendEmail("crmmailadmin@acig.com.sa", createdByEmail, "Ticket Resolved", body);
+        Notifier.SendEmail("crmmailadmin@acig.com.sa", createdByEmail, "Ticket Resolved", body);
         return;
     }
 
@@ -81,8 +79,7 @@ public class HtmlEmailer
             body = body.Replace("{Url}", url);
             body = body.Replace("{Category}", category);
             body = body.Replace("{ClosedUser}", createdBy);
-            Notifier.SendEmail("crmmailadmin@acig.com.sa", "ubaidkhan88@gmail.com", "Ticket Closed", body);
-            //Notifier.SendEmail("crmmailadmin@acig.com.sa", x.tbl_Users.Email, "Ticket Closed", body);
+            Notifier.SendEmail("crmmailadmin@acig.com.sa", x.tbl_Users.Email, "Ticket Closed", body);
         }
         return;
     }
@@ -102,8 +99,7 @@ public class HtmlEmailer
             body = body.Replace("{Url}", url);
             body = body.Replace("{Category}", category);
             body = body.Replace("{CommentUser}", createdBy);
-            Notifier.SendEmail("crmmailadmin@acig.com.sa", "ubaidkhan88@gmail.com", "New Comment / Notes on Ticket", body);
-            //Notifier.SendEmail("crmmailadmin@acig.com.sa", createdByEmail, "New Comment / Notes on Ticket", body);
+            Notifier.SendEmail("crmmailadmin@acig.com.sa", createdByEmail, "New Comment / Notes on Ticket", body);
         }
         else
         {
@@ -118,7 +114,6 @@ public class HtmlEmailer
                 body = body.Replace("{Url}", url);
                 body = body.Replace("{Category}", category);
                 body = body.Replace("{CommentUser}", createdBy);
-                Notifier.SendEmail("crmmailadmin@acig.com.sa", "ubaidkhan88@gmail.com", "New Comment / Notes On Ticket", body);
                 Notifier.SendEmail("crmmailadmin@acig.com.sa", x.tbl_Users.Email, "New Comment / Notes On Ticket", body);
             }
         }
