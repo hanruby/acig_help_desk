@@ -15,7 +15,6 @@ public class ExceptionUtility
         string body = string.Empty;
         string logFile = "~/App_Data/ErrorLog.txt";
         logFile = HttpContext.Current.Server.MapPath(logFile);
-        var exis = File.Exists(logFile);
 
         StreamWriter sw = new StreamWriter(logFile, true);
         //StreamWriter sw = new StreamWriter(@"I:\it-Backup2\ubaid\ErrorLog.txt", true);
