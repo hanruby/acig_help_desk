@@ -95,6 +95,9 @@ public partial class Tickets_close : MasterAppPage
         _entity.AddToEvents(_event);
         _entity.SaveChanges();
 
+        HtmlEmailer emailer = new HtmlEmailer(_entity, _ticket);
+        emailer.Closed_Ticket_EMail();
+
         SuccessRedirect(routePath, "Successfully updated !");
     }
 }

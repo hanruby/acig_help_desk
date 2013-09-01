@@ -94,6 +94,9 @@ public partial class Tickets_new : MasterAppPage
         _entity.AddToComments(_comment);
         _entity.SaveChanges();
 
+        HtmlEmailer emailer = new HtmlEmailer(_entity, _ticket);
+        emailer.New_Ticket_EMail();
+
         Session["NoticeMessage"] = "Successfully created a new ticket!";
         Response.Redirect(Route.GetRootPath("tickets/show.aspx?id=" + _ticket.Id.ToString()));
     }

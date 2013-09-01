@@ -36,7 +36,7 @@ public static class CurrentUser
 
     public static string GetRedirectPath(string role)
     {
-        String returnUrl = "";
+        String returnUrl = string.Empty;
         if (role == "admin")
         {
             returnUrl = Route.GetRootPath("admin/users/index.aspx");
@@ -46,5 +46,16 @@ public static class CurrentUser
             returnUrl = Route.GetRootPath("tickets/new.aspx");
         }
         return returnUrl;
+    }
+
+    public static string DepartmentName(Acig_Help_DeskEntities _entity, long id)
+    {
+        string departmentName = HttpContext.Current.Session["Current_Usr_Department_Name"] as string;
+        if (!string.IsNullOrEmpty(departmentName))
+        {
+            return departmentName;
+        }
+        tbl_Users user = _entity.tbl_Users.Where(x => x.Id == id).First();
+        return user.Department.Name;
     }
 }

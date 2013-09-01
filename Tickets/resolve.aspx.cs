@@ -92,6 +92,9 @@ public partial class Tickets_resolve : MasterAppPage
         _entity.AddToEvents(_event);
         _entity.SaveChanges();
 
+        HtmlEmailer emailer = new HtmlEmailer(_entity, _ticket);
+        emailer.Resoved_Ticket_EMail();
+
         SuccessRedirect(routePath, "Successfully updated !");
     }
 }

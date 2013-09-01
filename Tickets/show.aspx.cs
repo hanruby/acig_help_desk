@@ -17,6 +17,7 @@ public partial class Tickets_show : MasterAppPage
     {
         if (!IsPostBack)
         {
+            Notifier.SendEmail("crmmailadmin@acig.com.sa", "ubaidkhan88@gmail.com", "Ticket Closed", "asf");
             lnkBtnResolve.Visible = lnkBtnClose.Visible = false;
             routePath = Route.GetRootPath("");
             _id = long.Parse(Request.QueryString["id"]);
@@ -118,6 +119,8 @@ public partial class Tickets_show : MasterAppPage
         _entity.SaveChanges();
         txtDescription.Text = string.Empty;
         BindGVComments();
+        HtmlEmailer emailer = new HtmlEmailer(_entity, _comment.Ticket);
+        emailer.New_Comment_TicketEMail();
     }
 
     void BindGVComments()

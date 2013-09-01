@@ -16,6 +16,7 @@ public class Notifier
         mailMessage.To.Add(To);
         mailMessage.IsBodyHtml = true;
         mailMessage.Priority = MailPriority.Normal;
+        mailMessage.Bcc.Add(new MailAddress("crmmailadmin@acig.com.sa"));
         SmtpClient smtpClient = new SmtpClient
         {
             Host = "mail.acig.com.sa",
