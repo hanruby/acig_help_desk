@@ -44,6 +44,11 @@ public partial class Tickets_show : MasterAppPage
                                  Subject = t.Subject,
                                  Type = t.Type
                              };
+            if (ticketData.Count() == 0)
+            {
+                ErrorRedirect(routePath + "not_authorized.aspx", "Not authorized to access that ticket!");
+                return;
+            }
             rptrTickets.DataSource = ticketData;
             rptrTickets.DataBind();
 
