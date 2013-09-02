@@ -13,7 +13,7 @@ public class ExceptionUtility
     public static void LogException(Exception exc, string source)
     {
         string body = string.Empty;
-        string logFile = "App_Data/ErrorLog.txt";
+        string logFile = "~/App_Data/ErrorLog.txt";
         logFile = HttpContext.Current.Server.MapPath(logFile);
 
         StreamWriter sw = new StreamWriter(logFile, true);

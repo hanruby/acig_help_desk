@@ -13,7 +13,6 @@ public partial class Tickets_close : MasterAppPage
     Event _event;
     long _id;
     string routePath;
-    bool found;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -45,12 +44,7 @@ public partial class Tickets_close : MasterAppPage
                                  Subject = t.Subject,
                                  Type = t.Type
                              };
-            found = false;
-            foreach (var x in ticketData)
-            {
-                found = true;
-            }
-            if (!found)
+            if (ticketData.Count() == 0)
             {
                 ErrorRedirect(routePath + "not_authorized.aspx", "Not authorized to access that ticket!");
                 return;
