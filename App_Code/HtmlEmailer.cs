@@ -42,7 +42,7 @@ public class HtmlEmailer
             body = body.Replace("{Url}", url);
             body = body.Replace("{Category}", category);
             body = body.Replace("{AssignedUser}", createdBy);
-            Notifier.SendEmail("crmmailadmin@acig.com.sa", x.tbl_Users.Email, "New Ticket Assigned", body);
+            Notifier.SendEmail("crmmailadmin@acig.com.sa", x.tbl_Users.Email, "IT Help Desk - New Ticket Assigned", body);
         }
         return;
     }
@@ -60,7 +60,7 @@ public class HtmlEmailer
         body = body.Replace("{Url}", url);
         body = body.Replace("{Category}", category);
         body = body.Replace("{ResolvedUser}", createdBy);
-        Notifier.SendEmail("crmmailadmin@acig.com.sa", createdByEmail, "Ticket Resolved", body);
+        Notifier.SendEmail("crmmailadmin@acig.com.sa", createdByEmail, "IT Help Desk - Ticket Resolved", body);
         return;
     }
 
@@ -79,7 +79,7 @@ public class HtmlEmailer
             body = body.Replace("{Url}", url);
             body = body.Replace("{Category}", category);
             body = body.Replace("{ClosedUser}", createdBy);
-            Notifier.SendEmail("crmmailadmin@acig.com.sa", x.tbl_Users.Email, "Ticket Closed", body);
+            Notifier.SendEmail("crmmailadmin@acig.com.sa", x.tbl_Users.Email, "IT Help Desk - Ticket Closed", body);
         }
         return;
     }
@@ -99,7 +99,7 @@ public class HtmlEmailer
             body = body.Replace("{Url}", url);
             body = body.Replace("{Category}", category);
             body = body.Replace("{CommentUser}", createdBy);
-            Notifier.SendEmail("crmmailadmin@acig.com.sa", createdByEmail, "New Comment / Notes on Ticket", body);
+            Notifier.SendEmail("crmmailadmin@acig.com.sa", createdByEmail, "IT Help Desk - New Comment / Notes on Ticket", body);
         }
         else
         {
@@ -114,7 +114,7 @@ public class HtmlEmailer
                 body = body.Replace("{Url}", url);
                 body = body.Replace("{Category}", category);
                 body = body.Replace("{CommentUser}", createdBy);
-                Notifier.SendEmail("crmmailadmin@acig.com.sa", x.tbl_Users.Email, "New Comment / Notes On Ticket", body);
+                Notifier.SendEmail("crmmailadmin@acig.com.sa", x.tbl_Users.Email, "IT Help Desk - New Comment / Notes On Ticket", body);
             }
         }
         return;
