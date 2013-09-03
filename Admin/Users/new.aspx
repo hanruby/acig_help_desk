@@ -28,7 +28,7 @@
                         onselectedindexchanged="ddlRole_SelectedIndexChanged">
                         <asp:ListItem Value="0">Select</asp:ListItem>
                         <asp:ListItem Value="user">User</asp:ListItem>
-                        <asp:ListItem Value="engineer">Engineer</asp:ListItem>
+                        <asp:ListItem Value="engineer" Selected="True">Engineer</asp:ListItem>
                         <asp:ListItem Value="manager">Manager</asp:ListItem>
                         <asp:ListItem Value="supervisor">Supervisor</asp:ListItem>
                     </asp:DropDownList>

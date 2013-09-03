@@ -25,7 +25,8 @@
             <tr>
                 <td>
                     <asp:Label ID="lblRole" runat="server" Text="Role" AssociatedControlID="ddlRole"></asp:Label>
-                    <asp:DropDownList ID="ddlRole" runat="server" Width="150px">
+                    <asp:DropDownList ID="ddlRole" runat="server" Width="150px" AutoPostBack="True" 
+                        onselectedindexchanged="ddlRole_SelectedIndexChanged">
                         <asp:ListItem Value="0">Select</asp:ListItem>
                         <asp:ListItem Value="user">User</asp:ListItem>
                         <asp:ListItem Value="engineer">Engineer</asp:ListItem>

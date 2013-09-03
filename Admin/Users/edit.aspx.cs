@@ -40,6 +40,7 @@ public partial class Admin_Users_edit : MasterAppPage
                     }
                 }
             }
+            UpdateCategoryBox();
         }
     }
 
@@ -122,6 +123,14 @@ public partial class Admin_Users_edit : MasterAppPage
         {
             UpdateTicketsAssignedEmails();
         }
+        if (ddlRole.SelectedValue != "engineer")
+        {
+            foreach (var x in _user.User_Sub_Sub_Categories.ToList())
+            {
+                _entity.DeleteObject(x);
+                _entity.SaveChanges();
+            }
+        }
         Session["NoticeMessage"] = "Successfully updated information!";
         Response.Redirect(Route.GetRootPath("admin/users/index.aspx"));
     }
@@ -138,6 +147,23 @@ public partial class Admin_Users_edit : MasterAppPage
         {
             x.Ticket.Assigned_To_Emails = x.Ticket.Assigned_To_Emails.Replace(old_Email, new_Email);
             _entity.SaveChanges();
+        }
+    }
+
+    protected void ddlRole_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        UpdateCategoryBox();
+    }
+
+    protected void UpdateCategoryBox()
+    {
+        if (ddlRole.SelectedValue == "engineer")
+        {
+            lstBoxSubSubCategory.Visible = true;
+        }
+        else
+        {
+            lstBoxSubSubCategory.Visible = false;
         }
     }
 }
