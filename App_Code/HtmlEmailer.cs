@@ -56,10 +56,11 @@ public class HtmlEmailer
             body = reader.ReadToEnd();
         }
         body = body.Replace("{Id}", Id);
+        body = body.Replace("{Subject}", subject);
         body = body.Replace("{UserName}", createdBy);
         body = body.Replace("{Url}", url);
         body = body.Replace("{Category}", category);
-        body = body.Replace("{ResolvedUser}", createdBy);
+        body = body.Replace("{ResolvedUser}", CurrentUser.User().User_Name);
         Notifier.SendEmail("crmmailadmin@acig.com.sa", createdByEmail, "IT Help Desk - Ticket Resolved", body);
         return;
     }
@@ -75,6 +76,7 @@ public class HtmlEmailer
                 body = reader.ReadToEnd();
             }
             body = body.Replace("{Id}", Id);
+            body = body.Replace("{Subject}", subject);
             body = body.Replace("{UserName}", x.tbl_Users.User_Name);
             body = body.Replace("{Url}", url);
             body = body.Replace("{Category}", category);
@@ -88,20 +90,7 @@ public class HtmlEmailer
     {
         string body = string.Empty;
         url = ConfigurationManager.AppSettings["RootPath"] + "/tickets/show.aspx?id=" + Id;
-        if (Id == ticket.Created_By.ToString())
-        {
-            using (StreamReader reader = new StreamReader(GetPath("~/Email_Templates/New_Comment_On_Ticket.htm")))
-            {
-                body = reader.ReadToEnd();
-            }
-            body = body.Replace("{Id}", Id);
-            body = body.Replace("{UserName}", "");
-            body = body.Replace("{Url}", url);
-            body = body.Replace("{Category}", category);
-            body = body.Replace("{CommentUser}", createdBy);
-            Notifier.SendEmail("crmmailadmin@acig.com.sa", createdByEmail, "IT Help Desk - New Comment / Notes on Ticket", body);
-        }
-        else
+        if (CurrentUser.Id().ToString() == ticket.Created_By.ToString())
         {
             foreach (var x in ticket.User_Tickets)
             {
@@ -110,12 +99,27 @@ public class HtmlEmailer
                     body = reader.ReadToEnd();
                 }
                 body = body.Replace("{Id}", Id);
+                body = body.Replace("{Subject}", subject);
                 body = body.Replace("{UserName}", x.tbl_Users.User_Name);
                 body = body.Replace("{Url}", url);
                 body = body.Replace("{Category}", category);
                 body = body.Replace("{CommentUser}", createdBy);
                 Notifier.SendEmail("crmmailadmin@acig.com.sa", x.tbl_Users.Email, "IT Help Desk - New Comment / Notes On Ticket", body);
             }
+        }
+        else
+        {
+            using (StreamReader reader = new StreamReader(GetPath("~/Email_Templates/New_Comment_On_Ticket.htm")))
+            {
+                body = reader.ReadToEnd();
+            }
+            body = body.Replace("{Id}", Id);
+            body = body.Replace("{Subject}", subject);
+            body = body.Replace("{UserName}", createdBy);
+            body = body.Replace("{Url}", url);
+            body = body.Replace("{Category}", category);
+            body = body.Replace("{CommentUser}", CurrentUser.User().User_Name);
+            Notifier.SendEmail("crmmailadmin@acig.com.sa", createdByEmail, "IT Help Desk - New Comment / Notes on Ticket", body);
         }
         return;
     }

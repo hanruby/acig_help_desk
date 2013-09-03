@@ -72,4 +72,18 @@ public static class CurrentUser
         tbl_Users user = _entity.tbl_Users.Where(x => x.Id == id).First();
         return user.Department.Name;
     }
+
+    public static tbl_Users User()
+    {
+        tbl_Users user = HttpContext.Current.Session["Current_Usr"] as tbl_Users;
+        if (user != null)
+        {
+            return user;
+        }
+        var id = CurrentUser.Id();
+        var entity = new Acig_Help_DeskEntities();
+        user = entity.tbl_Users.Where(x => x.Id == id).First();
+        HttpContext.Current.Session["Current_Usr"] = user.Department.Id;
+        return user;
+    }
 }
