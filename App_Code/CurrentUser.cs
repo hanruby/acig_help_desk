@@ -16,6 +16,20 @@ public static class CurrentUser
 
     public static string Role()
     {
+        string role = HttpContext.Current.Session["Current_Usr_Role"] as string;
+        if (!string.IsNullOrEmpty(role))
+        {
+            return role.Trim();
+        }
+        var id = CurrentUser.Id();
+        var entity = new Acig_Help_DeskEntities();
+        var user = entity.tbl_Users.Where(x => x.Id == id).First();
+        HttpContext.Current.Session["Current_Usr_Role"] = user.Role.Trim();
+        return user.Role.Trim();
+    }
+
+    public static string Role2()
+    {
         var cookie = FormsAuthentication.Decrypt(HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData;
         return cookie.Split('#')[1];
     }

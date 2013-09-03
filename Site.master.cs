@@ -42,11 +42,11 @@ public partial class SiteMaster : System.Web.UI.MasterPage
             }
             else
             {
-                if (CurrentUser.Role() == "normal_user" && menuItem.Value == "admin")
+                if (menuItem.Value == "admin" && CurrentUser.Role2() != "admin")
                 {
                     toRemoveItems.Add(menuItem);
                 }
-                else if (CurrentUser.DepartmentId() != 1 && menuItem.Value == "it")
+                else if (menuItem.Value == "engineer" && CurrentUser.Role() != "engineer")
                 {
                     toRemoveItems.Add(menuItem);
                 }

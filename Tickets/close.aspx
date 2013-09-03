@@ -88,10 +88,9 @@
             <asp:Label ID="lblRating" runat="server" Text="Rating" AssociatedControlID="ddlRating"></asp:Label>
             <asp:DropDownList ID="ddlRating" runat="server">
                 <asp:ListItem Value="0">Select</asp:ListItem>
-                <asp:ListItem>Low</asp:ListItem>
-                <asp:ListItem>Medium</asp:ListItem>
-                <asp:ListItem>High</asp:ListItem>
-                <asp:ListItem>Excellent</asp:ListItem>
+                <asp:ListItem>Poor</asp:ListItem>
+                <asp:ListItem>Good</asp:ListItem>
+                <asp:ListItem Selected="True">Excellent</asp:ListItem>
             </asp:DropDownList>
             <asp:RequiredFieldValidator ID="rfvRating" runat="server" ControlToValidate="ddlRating"
                 ForeColor="#FF3300" SetFocusOnError="True" InitialValue="0">*</asp:RequiredFieldValidator>

@@ -26,8 +26,10 @@
                     <asp:Label ID="lblRole" runat="server" Text="Role" AssociatedControlID="ddlRole"></asp:Label>
                     <asp:DropDownList ID="ddlRole" runat="server" Width="150px">
                         <asp:ListItem Value="0">Select</asp:ListItem>
-                        <asp:ListItem Value="admin">Admin</asp:ListItem>
-                        <asp:ListItem Value="normal_user">Normal User</asp:ListItem>
+                        <asp:ListItem Value="user">User</asp:ListItem>
+                        <asp:ListItem Value="engineer">Engineer</asp:ListItem>
+                        <asp:ListItem Value="manager">Manager</asp:ListItem>
+                        <asp:ListItem Value="supervisor">Supervisor</asp:ListItem>
                     </asp:DropDownList>
                     <asp:RequiredFieldValidator ID="rfvRole" runat="server" ControlToValidate="ddlRole"
                         ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>

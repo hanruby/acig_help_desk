@@ -43,13 +43,13 @@ public partial class Account_Login : MasterAppPage
                 DateTime.Now,                        // issue time is now
                 DateTime.Now.AddHours(11),         // expires in 10 minutes
                 false,      // cookie is not persistent
-                user.Id.ToString() + "#" + user.Role // role assignment is stored
+                user.Id.ToString() + "#" + user.Role2 // role assignment is stored
                 );
         HttpCookie cookie1 = new HttpCookie(
           FormsAuthentication.FormsCookieName,
           FormsAuthentication.Encrypt(ticket1));
         Response.Cookies.Add(cookie1);
-        string returnUrl = CurrentUser.GetRedirectPath(user.Role);
+        string returnUrl = CurrentUser.GetRedirectPath(user.Role2);
         Session["NoticeMessage"] = "Successfully logged in !";
         Response.Redirect(returnUrl);
     }

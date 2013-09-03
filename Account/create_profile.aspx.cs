@@ -29,7 +29,8 @@ public partial class Account_create_profile : MasterAppPage
         _user.User_Name = txtUserName.Text;
         _user.Email = _email;
         _user.Active = true;
-        _user.Role = "normal_user";
+        _user.Role = "user";
+        _user.Role2 = "user";
         _user.Department_Id = long.Parse(ddlDepartment.SelectedValue);
         _user.Created_At = DateTime.Now;
         _user.Updated_At = DateTime.Now;

@@ -31,7 +31,7 @@ public partial class Admin_Users_index : MasterAppPage
                        Email = u.Email,
                        Role = u.Role,
                        Active = u.Active,
-                       Role_Text = u.Role == "admin" ? "Admin" : "Normal",
+                       Role_Text = u.Role,
                        Department_Text = u.Department.Name,
                        Department_Id = u.Department_Id
                    };

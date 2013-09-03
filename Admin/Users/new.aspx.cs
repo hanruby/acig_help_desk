@@ -33,6 +33,7 @@ public partial class Admin_Users_new : MasterAppPage
         _user.Email = _email;
         _user.Active = bool.Parse(ddlActive.SelectedValue);
         _user.Role = ddlRole.SelectedValue;
+        _user.Role2 = "user";
         _user.Department_Id = long.Parse(ddlDepartment.SelectedValue);
         _user.Created_At = DateTime.Now;
         _user.Updated_At = DateTime.Now;
