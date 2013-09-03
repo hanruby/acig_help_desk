@@ -8,6 +8,7 @@
     <h2>
         <span class="left">Ticket Details</span>
         <asp:LinkButton ID="lnkBtnResolve" runat="server" CausesValidation="false" CssClass="btn btn-info right">Resolve Ticket</asp:LinkButton>
+        <asp:LinkButton ID="lnkBtnReOpen" runat="server" CausesValidation="false" CssClass="btn btn-info right">Reopen Ticket</asp:LinkButton>
         <asp:LinkButton ID="lnkBtnClose" runat="server" CausesValidation="false" CssClass="btn btn-info right">Close Ticket</asp:LinkButton>
         <div class="clear">
         </div>

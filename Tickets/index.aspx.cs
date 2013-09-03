@@ -72,6 +72,14 @@ public partial class Tickets_index : MasterAppPage
         lb = new LinkButton();
         lb.CommandArgument = text;
         lb.CommandName = "NumClick";
+        lb.Text = "Re Open";
+        lb.PostBackUrl = "re_open.aspx?id=" + text;
+        lb.CssClass = "blue-link";
+        e.Row.Cells[6].Controls.Add((Control)lb);
+        
+        lb = new LinkButton();
+        lb.CommandArgument = text;
+        lb.CommandName = "NumClick";
         lb.Text = "Close";
         lb.PostBackUrl = "close.aspx?id=" + text;
         lb.CssClass = "blue-link";

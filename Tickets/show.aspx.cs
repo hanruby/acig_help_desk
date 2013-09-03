@@ -75,6 +75,9 @@ public partial class Tickets_show : MasterAppPage
                 {
                     lnkBtnClose.Visible = true;
                     lnkBtnClose.PostBackUrl = routePath + "tickets/close.aspx?id=" + x.Id;
+
+                    lnkBtnReOpen.Visible = true;
+                    lnkBtnReOpen.PostBackUrl = routePath + "tickets/re_open.aspx?id=" + x.Id;
                 }
                 else if (CanResolve(_id))
                 {
