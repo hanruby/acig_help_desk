@@ -49,24 +49,11 @@
             </tr>
             <tr>
                 <td>
-                    <asp:Label ID="lblCategory" runat="server" Text='Category'></asp:Label>
-                    <br />
-                    <asp:DropDownList ID="ddlCategory" runat="server" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged">
-                    </asp:DropDownList>
-                </td>
-                <td>
-                    <asp:Label ID="lblSubCategory" runat="server" Text='Sub Category'></asp:Label>
-                    <br />
-                    <asp:DropDownList ID="ddlSubCategory" runat="server" OnSelectedIndexChanged="ddlSubCategory_SelectedIndexChanged">
-                    </asp:DropDownList>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:Label ID="lblSubSubCategory" runat="server" Text='Target Sub Category'></asp:Label>
+                    <asp:Label ID="lblSubSubCategory" runat="server" Text='Category(ies)'></asp:Label>
                     <br />
                     <asp:ListBox ID="lstBoxSubSubCategory" runat="server"
-                        SelectionMode="Multiple"></asp:ListBox>
+                        Width="75%" SelectionMode="Multiple">
+                    </asp:ListBox>
                 </td>
                 <td>
                     <asp:Label ID="lblDepartment" runat="server" Text='Department'></asp:Label>

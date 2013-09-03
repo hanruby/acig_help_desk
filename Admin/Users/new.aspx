@@ -24,7 +24,8 @@
             <tr>
                 <td>
                     <asp:Label ID="lblRole" runat="server" Text="Role" AssociatedControlID="ddlRole"></asp:Label>
-                    <asp:DropDownList ID="ddlRole" runat="server" Width="150px">
+                    <asp:DropDownList ID="ddlRole" runat="server" Width="150px" AutoPostBack="True" 
+                        onselectedindexchanged="ddlRole_SelectedIndexChanged">
                         <asp:ListItem Value="0">Select</asp:ListItem>
                         <asp:ListItem Value="user">User</asp:ListItem>
                         <asp:ListItem Value="engineer">Engineer</asp:ListItem>
@@ -48,46 +49,13 @@
             </tr>
             <tr>
                 <td>
-                    <asp:Label ID="lblCategory" runat="server" Text='Category'></asp:Label>
+                    <asp:Label ID="lblSubSubCategory" runat="server" Text='Category(ies)'></asp:Label>
                     <br />
-                    <asp:DropDownList ID="ddlCategory" runat="server" Width="150px" DataSourceID="SqlDataSource1"
-                        DataTextField="Name" DataValueField="Id" AppendDataBoundItems="True" EnableViewState="False"
-                        AutoPostBack="true">
-                        <asp:ListItem Value="0">Select</asp:ListItem>
-                    </asp:DropDownList>
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Acig_Help_DeskConnectionString %>"
-                        SelectCommand="SELECT [Id], [Name] FROM [Categories]"></asp:SqlDataSource>
-                </td>
-                <td>
-                    <asp:Label ID="lblSubCategory" runat="server" Text='SubCategory'></asp:Label>
-                    <br />
-                    <asp:DropDownList ID="ddlSubCategory" runat="server" Width="150px" AppendDataBoundItems="True"
-                        EnableViewState="False" AutoPostBack="true" DataSourceID="SqlDataSource2" DataTextField="Name"
-                        DataValueField="Id">
-                        <asp:ListItem Value="0">Select</asp:ListItem>
-                    </asp:DropDownList>
-                    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:Acig_Help_DeskConnectionString %>"
-                        SelectCommand="SELECT * FROM [Sub_Categories] WHERE ([Category_Id] = @Category_Id)">
-                        <SelectParameters>
-                            <asp:ControlParameter ControlID="ddlCategory" Name="Category_Id" PropertyName="SelectedValue"
-                                Type="Int64" />
-                        </SelectParameters>
-                    </asp:SqlDataSource>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:Label ID="lblSubSubCategory" runat="server" Text='Target Sub Category'></asp:Label>
-                    <br />
-                    <asp:ListBox ID="lstBoxSubSubCategory" runat="server" AppendDataBoundItems="True" SelectionMode="Multiple"
-                        DataSourceID="SqlDataSource3" DataTextField="Name" DataValueField="Id" EnableViewState="False">
-                    </asp:ListBox>
-                    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:Acig_Help_DeskConnectionString %>"
-                        SelectCommand="SELECT [Id], [Name] FROM [Sub_Sub_Categories] WHERE ([Sub_Category_Id] = @Sub_Category_Id)">
-                        <SelectParameters>
-                            <asp:ControlParameter ControlID="ddlSubCategory" Name="Sub_Category_Id" PropertyName="SelectedValue"
-                                Type="Int64" />
-                        </SelectParameters>
+                    <asp:ListBox ID="lstBoxSubSubCategory" runat="server" DataSourceID="SqlDataSource5" 
+                        DataTextField="TEXT" DataValueField="ID" Width="75%" SelectionMode="Multiple"></asp:ListBox>
+                    <asp:SqlDataSource ID="SqlDataSource5" runat="server" 
+                        ConnectionString="<%$ ConnectionStrings:Acig_Help_DeskConnectionString %>" 
+                        SelectCommand="select  (c.name + ' - ' + s.Name + ' - ' + ss.Name) as TEXT, ss.Id as ID  from Categories c inner join Sub_Categories s on c.Id = s.Category_Id inner join Sub_Sub_Categories ss on s.Id = ss.Sub_Category_Id order by c.Name, s.Name, ss.Name">
                     </asp:SqlDataSource>
                 </td>
                 <td>

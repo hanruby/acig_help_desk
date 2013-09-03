@@ -10,11 +10,9 @@ using System.Data;
 public partial class Admin_Users_edit : MasterAppPage
 {
     tbl_Users _user;
-    Category _category;
     User_Sub_Sub_Categories _user_Sub_Sub_Categories;
-    Sub_Categories _sub_Category;
     Sub_Sub_Categories _sub_Sub_Category;
-    long _id, _category_Id, _sub_CategoryId, _sub_Sub_CategoryId;
+    long _id, _sub_Sub_CategoryId;
     bool email_Changed;
     string old_Email, new_Email;
     protected void Page_Load(object sender, EventArgs e)
@@ -31,23 +29,9 @@ public partial class Admin_Users_edit : MasterAppPage
             ddlActive.SelectedValue = _user.Active.ToString();
             ddlDepartment.SelectedValue = _user.Department_Id.ToString();
             var _subSubCategoryIds = _entity.User_Sub_Sub_Categories.Where(x => x.User_Id == _id).ToList().Select(x => x.Sub_Sub_Category_Id).ToList();
-            _category_Id = _sub_CategoryId = _sub_Sub_CategoryId = 0;
+            BindSubSubCategoryDdl();
             if (_subSubCategoryIds.Count > 0)
             {
-                _sub_Sub_CategoryId = _subSubCategoryIds.First();
-                _sub_Sub_Category = _entity.Sub_Sub_Categories.Where(x => x.Id == _sub_Sub_CategoryId).First();
-                _sub_Category = _sub_Sub_Category.Sub_Categories;
-                _category = _sub_Category.Category;
-                _category_Id = _category.Id;
-                _sub_CategoryId = _sub_Category.Id;
-            }
-            BindCategoryDdl();
-            BindSubCategoryDdl(_category_Id);
-            BindSubSubCategoryDdl(_sub_CategoryId);
-            if (_subSubCategoryIds.Count > 0)
-            {
-                ddlCategory.SelectedValue = _category.Id.ToString();
-                ddlSubCategory.SelectedValue = _sub_Category.Id.ToString();
                 foreach (ListItem x in lstBoxSubSubCategory.Items)
                 {
                     if (_subSubCategoryIds.Contains(long.Parse(x.Value)))
@@ -63,86 +47,32 @@ public partial class Admin_Users_edit : MasterAppPage
     {
     }
 
-    protected void BindCategoryDdl()
+    protected void BindSubSubCategoryDdl()
     {
         _entity = GetEntity();
         DataTable table = new DataTable();
 
         table.Columns.Add("Text");
         table.Columns.Add("Value");
-        DataRow defaultRow = table.NewRow();
-        defaultRow["Text"] = "Select";
-        defaultRow["Value"] = 0;
-        table.Rows.Add(defaultRow);
-        foreach (var x in _entity.Categories)
+        var data = from c in _entity.Categories
+                   join s in _entity.Sub_Categories
+                   on c.Id equals s.Category_Id
+                   join ss in _entity.Sub_Sub_Categories
+                   on s.Id equals ss.Sub_Category_Id
+                   orderby c.Name, s.Name, ss.Name
+                   select new { Text = c.Name + " - " + s.Name + " - " + ss.Name, Id = ss.Id };
+
+        foreach (var x in data)
         {
             DataRow dr1 = table.NewRow();
             dr1["Value"] = x.Id;
-            dr1["Text"] = x.Name;
-            table.Rows.Add(dr1);
-        }
-        ddlCategory.DataSource = table;
-        ddlCategory.DataTextField = table.Columns["Text"].ColumnName;
-        ddlCategory.DataValueField = table.Columns["Value"].ColumnName;
-        ddlCategory.DataBind();
-        ddlCategory.AutoPostBack = true;
-        ddlCategory.SelectedIndexChanged += new System.EventHandler(BindCategories);
-    }
-
-    protected void BindSubCategoryDdl(long categoryId)
-    {
-        _entity = GetEntity();
-        DataTable table = new DataTable();
-
-        table.Columns.Add("Text");
-        table.Columns.Add("Value");
-        DataRow defaultRow = table.NewRow();
-        defaultRow["Text"] = "Select";
-        defaultRow["Value"] = 0;
-        table.Rows.Add(defaultRow);
-        foreach (var x in _entity.Sub_Categories.Where(x => x.Category_Id == categoryId))
-        {
-            DataRow dr1 = table.NewRow();
-            dr1["Value"] = x.Id;
-            dr1["Text"] = x.Name;
-            table.Rows.Add(dr1);
-        }
-        ddlSubCategory.DataSource = table;
-        ddlSubCategory.DataTextField = table.Columns["Text"].ColumnName;
-        ddlSubCategory.DataValueField = table.Columns["Value"].ColumnName;
-        ddlSubCategory.DataBind();
-        ddlSubCategory.AutoPostBack = true;
-        ddlSubCategory.SelectedIndexChanged += new System.EventHandler(BindCategories);
-    }
-
-    protected void BindSubSubCategoryDdl(long SubCategoryId)
-    {
-        _entity = GetEntity();
-        DataTable table = new DataTable();
-
-        table.Columns.Add("Text");
-        table.Columns.Add("Value");
-        foreach (var x in _entity.Sub_Sub_Categories.Where(x => x.Sub_Category_Id == SubCategoryId))
-        {
-            DataRow dr1 = table.NewRow();
-            dr1["Value"] = x.Id;
-            dr1["Text"] = x.Name;
+            dr1["Text"] = x.Text;
             table.Rows.Add(dr1);
         }
         lstBoxSubSubCategory.DataSource = table;
         lstBoxSubSubCategory.DataTextField = table.Columns["Text"].ColumnName;
         lstBoxSubSubCategory.DataValueField = table.Columns["Value"].ColumnName;
         lstBoxSubSubCategory.DataBind();
-    }
-
-    protected void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        BindSubCategoryDdl(long.Parse(ddlCategory.SelectedValue));
-    }
-
-    protected void ddlSubCategory_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        BindSubSubCategoryDdl(long.Parse(ddlSubCategory.SelectedValue));
     }
 
     protected void btnUpdateUser_Click(object sender, EventArgs e)
@@ -172,7 +102,8 @@ public partial class Admin_Users_edit : MasterAppPage
             }
             else if (x.Selected && !ids.Contains(_sub_Sub_CategoryId))
             {
-                _user_Sub_Sub_Categories = new User_Sub_Sub_Categories { 
+                _user_Sub_Sub_Categories = new User_Sub_Sub_Categories
+                {
                     Sub_Sub_Category_Id = _sub_Sub_CategoryId,
                     User_Id = _user.Id
                 };
@@ -201,7 +132,7 @@ public partial class Admin_Users_edit : MasterAppPage
                    join ut in _entity.User_Tickets
                    on t.Id equals ut.Ticket_Id
                    where ut.User_Id == _user.Id
-                   select new {Ticket = t};
+                   select new { Ticket = t };
         var dataLst = data.ToList();
         foreach (var x in dataLst)
         {
