@@ -50,6 +50,10 @@ public partial class Account_Login : MasterAppPage
           FormsAuthentication.Encrypt(ticket1));
         Response.Cookies.Add(cookie1);
         string returnUrl = CurrentUser.GetRedirectPath(user.Role);
+        if (!string.IsNullOrEmpty(Request.QueryString["ReturnUrl"]))
+        {
+            returnUrl = Request.QueryString["ReturnUrl"];
+        }
         Session["NoticeMessage"] = "Successfully logged in !";
         Response.Redirect(returnUrl);
     }
