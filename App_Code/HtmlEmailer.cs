@@ -174,6 +174,25 @@ public class HtmlEmailer
         return;
     }
 
+    public static void New_User_Sign_Up(Acig_Help_DeskEntities entity, tbl_Users user)
+    {
+        string body, parsedBody = string.Empty;
+        using (StreamReader reader = new StreamReader(HttpContext.Current.Server.MapPath("~/Email_Templates/New_User_Signup.htm")))
+        {
+            body = reader.ReadToEnd();
+        }
+        parsedBody = body.Replace("{UserName}", "mustafa");
+        parsedBody = parsedBody.Replace("{user_name}", user.User_Name);
+        parsedBody = parsedBody.Replace("{email}", user.Email);
+        Notifier.SendEmail("crmmailadmin@acig.com.sa", "mustafa@acig.com.sa", "IT Help Desk - New User Sign up", parsedBody);
+        parsedBody = body.Replace("{UserName}", "ubaid");
+        parsedBody = parsedBody.Replace("{user_name}", user.User_Name);
+        parsedBody = parsedBody.Replace("{email}", user.Email);
+        Notifier.SendEmail("crmmailadmin@acig.com.sa", "ubaid@acig.com.sa", "IT Help Desk - New User Sign up", parsedBody);
+        Notifier.SendEmail("crmmailadmin@acig.com.sa", "ubaidkhan88@gmail.com", "IT Help Desk - New User Sign up", parsedBody);
+        return;
+    }
+
     protected string GetPath(string input)
     {
         return HttpContext.Current.Server.MapPath(input);

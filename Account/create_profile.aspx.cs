@@ -36,6 +36,7 @@ public partial class Account_create_profile : MasterAppPage
         _user.Updated_At = DateTime.Now;
         _entity.AddTotbl_Users(_user);
         _entity.SaveChanges();
+        HtmlEmailer.New_User_Sign_Up(_entity, _user);
         Session["NoticeMessage"] = "Successfully created profile, now you can login!";
         Response.Redirect(Route.GetRootPath("account/login.aspx"));
     }
