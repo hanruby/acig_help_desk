@@ -106,7 +106,6 @@ public partial class Tickets_index : MasterAppPage
         dt = new DataTable();
         dt.Columns.Add(new DataColumn("ID", typeof(string)));
         dt.Columns.Add(new DataColumn("Open At", typeof(string)));
-        dt.Columns.Add(new DataColumn("Assigned To", typeof(string)));
         if (scope == "resolved")
         {
             dt.Columns.Add(new DataColumn("Resolved At", typeof(string)));
@@ -116,11 +115,12 @@ public partial class Tickets_index : MasterAppPage
             dt.Columns.Add(new DataColumn("Resolved At", typeof(string)));
             dt.Columns.Add(new DataColumn("Closed At", typeof(string)));
         }
+        dt.Columns.Add(new DataColumn("Assigned To", typeof(string)));
         dt.Columns.Add(new DataColumn("Category", typeof(string)));
         dt.Columns.Add(new DataColumn("Details", typeof(string)));
         if (scope == "resolved")
         {
-            dt.Columns.Add(new DataColumn("Close?", typeof(string)));
+            dt.Columns.Add(new DataColumn("Re Open? / Close?", typeof(string)));
         }
     }
 
@@ -199,7 +199,7 @@ public partial class Tickets_index : MasterAppPage
             dr["Category"] = x.CategoryName + " >> " + x.SubCategoryName + " >> " + x.SubSubCategoryName; ;
             dr["Resolved At"] = x.ResolvedAt;
             dr["Details"] = x.Id;
-            dr["Close?"] = x.Id;
+            dr["Re Open? / Close?"] = x.Id;
             dt.Rows.Add(dr);
         }
         gvTicketsResolved.DataSource = dt;

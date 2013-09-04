@@ -49,7 +49,7 @@ public partial class Account_Login : MasterAppPage
           FormsAuthentication.FormsCookieName,
           FormsAuthentication.Encrypt(ticket1));
         Response.Cookies.Add(cookie1);
-        string returnUrl = CurrentUser.GetRedirectPath(user.Role2);
+        string returnUrl = CurrentUser.GetRedirectPath(user.Role);
         Session["NoticeMessage"] = "Successfully logged in !";
         Response.Redirect(returnUrl);
     }
