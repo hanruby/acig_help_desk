@@ -2455,24 +2455,24 @@ namespace Acig_Help_DeskModel
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int64> Created_By_Engineer
+        public Nullable<global::System.Int64> On_Behalf
         {
             get
             {
-                return _Created_By_Engineer;
+                return _On_Behalf;
             }
             set
             {
-                OnCreated_By_EngineerChanging(value);
-                ReportPropertyChanging("Created_By_Engineer");
-                _Created_By_Engineer = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Created_By_Engineer");
-                OnCreated_By_EngineerChanged();
+                OnOn_BehalfChanging(value);
+                ReportPropertyChanging("On_Behalf");
+                _On_Behalf = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("On_Behalf");
+                OnOn_BehalfChanged();
             }
         }
-        private Nullable<global::System.Int64> _Created_By_Engineer;
-        partial void OnCreated_By_EngineerChanging(Nullable<global::System.Int64> value);
-        partial void OnCreated_By_EngineerChanged();
+        private Nullable<global::System.Int64> _On_Behalf;
+        partial void OnOn_BehalfChanging(Nullable<global::System.Int64> value);
+        partial void OnOn_BehalfChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
