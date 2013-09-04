@@ -95,7 +95,7 @@
                                 <asp:ListItem Value="0">Select</asp:ListItem>
                             </asp:DropDownList>
                             <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:Acig_Help_DeskConnectionString %>"
-                                SelectCommand="SELECT Id, Name FROM Sub_Sub_Categories WHERE (Sub_Category_Id = @Sub_Category_Id) AND (Id IN (SELECT User_Sub_Sub_Categories.Sub_Sub_Category_Id FROM User_Sub_Sub_Categories INNER JOIN tbl_Users ON User_Sub_Sub_Categories.User_Id = tbl_Users.Id WHERE (tbl_Users.Active = 1)))">
+                                SelectCommand="SELECT Id, Name FROM Sub_Sub_Categories WHERE (Sub_Category_Id = @Sub_Category_Id) AND (Id IN (SELECT User_Sub_Sub_Categories.Sub_Sub_Category_Id FROM User_Sub_Sub_Categories INNER JOIN tbl_Users ON User_Sub_Sub_Categories.User_Id = tbl_Users.Id WHERE (tbl_Users.Active = 'True')))">
                                 <SelectParameters>
                                     <asp:ControlParameter ControlID="ddlSubCategory" Name="Sub_Category_Id" PropertyName="SelectedValue"
                                         Type="Int64" />
