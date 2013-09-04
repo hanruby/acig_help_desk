@@ -111,7 +111,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Details">
                         <ItemTemplate>
-                            <asp:Label ID="lblDetails" runat="server" Text='<%# Eval("Id")%>'></asp:Label>
+                            <a href='show.aspx?id=<%# Eval("Id") %>'>Details</a>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
