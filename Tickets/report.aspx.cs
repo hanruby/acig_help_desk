@@ -23,9 +23,7 @@ public partial class Tickets_report : MasterAppPage
         var data = from t in _entity.Tickets
                    join ut in _entity.User_Tickets
                    on t.Id equals ut.Ticket_Id
-                   join u in _entity.tbl_Users
-                   on ut.User_Id equals u.Id
-                   where u.Id == currentUserId
+                   where ut.User_Id == currentUserId
                    group t by t.State into Grp
                    select new { Count = Grp.Count(), State = Grp.Key };
         foreach (var x in data)
