@@ -13,7 +13,7 @@ public partial class Tickets_assigned : MasterAppPage
     DataRow dr;
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (CurrentUser.DepartmentId() != 1)
+        if (!CurrentUser.Is_Engineer())
         {
             ErrorRedirect(Route.GetRootPath("") + "not_authorized.aspx", "Not authorized to access that ticket!");
             return;

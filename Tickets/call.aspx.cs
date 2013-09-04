@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Acig_Help_DeskModel;
 
-public partial class Tickets_new : MasterAppPage
+public partial class Tickets_call : MasterAppPage
 {
     Ticket _ticket;
     Event _event;
@@ -16,9 +16,10 @@ public partial class Tickets_new : MasterAppPage
     string assigned_To_Emails;
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        if (!CurrentUser.Is_Engineer())
         {
-            hdnFldId.Value = CurrentUser.Id().ToString();
+            ErrorRedirect(Route.GetRootPath("") + "not_authorized.aspx", "Not authorized to access that ticket!");
+            return;
         }
     }
 
@@ -37,7 +38,7 @@ public partial class Tickets_new : MasterAppPage
             Updated_At = DateTime.Now,
             Assigned_To_Emails = "Remove"
         };
-        _ticket.Created_By = currentUserId;
+        _ticket.Created_By = long.Parse(ddlCreatedBy.SelectedValue);
         _ticket.Sub_Sub_Category_Id = _sub_sub_Category_Id;
         _entity.AddToTickets(_ticket);
         _entity.SaveChanges();

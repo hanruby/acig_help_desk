@@ -1,10 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
-    CodeFile="new.aspx.cs" Inherits="Tickets_new" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="call.aspx.cs" Inherits="Tickets_call" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
+ <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     <asp:UpdateProgress ID="updateProgress" runat="server">
         <ProgressTemplate>
@@ -104,6 +103,24 @@
                 </td>
             </tr>
             <tr>
+              <td colspan="2">
+                    <asp:Label ID="lblCreatedBy" runat="server" Text="Create Ticket For" AssociatedControlID="ddlCreatedBy"></asp:Label>
+                    <asp:DropDownList ID="ddlCreatedBy" runat="server" AppendDataBoundItems="True" 
+                        DataSourceID="SqlDataSource1" DataTextField="Email" DataValueField="Id">
+                        <asp:ListItem Value="0">Select</asp:ListItem>
+                    </asp:DropDownList>
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+                        ConnectionString="<%$ ConnectionStrings:Acig_Help_DeskConnectionString %>" 
+                        SelectCommand="SELECT [Id], [Email] FROM [tbl_Users] WHERE ([Role] = @Role)">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="Supervisor" Name="Role" Type="String" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:RequiredFieldValidator ID="rfvCreatedBy" runat="server" ControlToValidate="ddlCreatedBy"
+                        ForeColor="#FF3300" SetFocusOnError="True" InitialValue="0">*</asp:RequiredFieldValidator>
+                </td>
+            </tr>
+            <tr>
                 <td colspan="2">
                     <asp:Label ID="lblNotes" runat="server" Text="Description" AssociatedControlID="txtNotes">
                     </asp:Label>
@@ -128,3 +145,4 @@
         </table>
     </fieldset>
 </asp:Content>
+
