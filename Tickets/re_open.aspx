@@ -1,14 +1,15 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="re_open.aspx.cs" Inherits="Tickets_re_open" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
+    CodeFile="re_open.aspx.cs" Inherits="Tickets_re_open" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
-<script type="text/javascript">
-    function Validate(sender, args) {
-        args.IsValid = confirm("Are you sure ?");
-    }
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
+    <script type="text/javascript">
+        function Validate(sender, args) {
+            args.IsValid = confirm("Are you sure ?");
+        }
     </script>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
-<asp:HiddenField ID="hdnFldTicketId" runat="server" />
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
+    <asp:HiddenField ID="hdnFldTicketId" runat="server" />
     <h2>
         Ticket Details
     </h2>
@@ -81,29 +82,36 @@
         </FooterTemplate>
     </asp:Repeater>
     <hr />
+    <table width="100%" class="table table-bordered">
+        <tr>
+            <th>
+                Assigned To
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <asp:Label ID="lblAssignedTo" runat="server" Text="Label"></asp:Label>
+            </td>
+        </tr>
+    </table>
+    <hr />
     <fieldset class="login">
-        <legend>Close Ticket</legend>
-        <p>
-            <asp:Label ID="lblRating" runat="server" Text="Rating" AssociatedControlID="ddlRating"></asp:Label>
-            <asp:DropDownList ID="ddlRating" runat="server">
-                <asp:ListItem Value="0">Select</asp:ListItem>
-                <asp:ListItem>Poor</asp:ListItem>
-                <asp:ListItem>Good</asp:ListItem>
-                <asp:ListItem Selected="True">Excellent</asp:ListItem>
-            </asp:DropDownList>
-            <asp:RequiredFieldValidator ID="rfvRating" runat="server" ControlToValidate="ddlRating"
-                ForeColor="#FF3300" SetFocusOnError="True" InitialValue="0">*</asp:RequiredFieldValidator>
-        </p>
+        <legend>Re Open Ticket</legend>
         <p>
             <asp:Label ID="lblDescription" runat="server" Text="Description" AssociatedControlID="txtDescription"></asp:Label>
-            <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Width="100%" Height="90px"></asp:TextBox>
+            <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Width="100%"
+                Height="90px"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="rfvDescription" runat="server" ControlToValidate="txtDescription"
+                ForeColor="#FF3300" SetFocusOnError="True">Required</asp:RequiredFieldValidator>
+        </p>
+        <p>
+            <asp:Label ID="lblFile" runat="server" Text="File"></asp:Label>
+            <input type="file" id="uploadFile" name="uploadFile" />
         </p>
         <p>
             <asp:CustomValidator ID="CustomValidator" runat="server" ErrorMessage="" ClientValidationFunction="Validate"
                 Text="" ForeColor="#FF3300"></asp:CustomValidator>
-            <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Close Ticket"
-                CssClass="btn btn-primary" />
+            <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Add" CssClass="btn btn-primary" />
         </p>
     </fieldset>
 </asp:Content>
-

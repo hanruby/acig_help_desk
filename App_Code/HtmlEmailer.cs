@@ -17,19 +17,19 @@ public class HtmlEmailer
         _entity = e;
         ticket = _t;
         rootPath = ConfigurationManager.AppSettings["RootPath"];
-        category = ticket.Sub_Sub_Categories.Sub_Categories.Category.Name + " " + ticket.Sub_Sub_Categories.Sub_Categories.Name + " " +
-            " >>> " + ticket.Sub_Sub_Categories.Sub_Categories.Name + " ";
+        category = ticket.Sub_Sub_Categories.Sub_Categories.Category.Name + " >>> " + ticket.Sub_Sub_Categories.Sub_Categories.Name +
+            " >>> " + ticket.Sub_Sub_Categories.Name + " ";
         Id = ticket.Id.ToString();
         subject = ticket.Subject;
         user = _entity.tbl_Users.Where(x => x.Id == ticket.Created_By).First();
         createdBy = user.User_Name;
         createdByEmail = user.Email;
+        url = ConfigurationManager.AppSettings["RootPath"] + "/tickets/show.aspx?id=" + Id;
     }
 
     public void New_Ticket_EMail()
     {
         string body = string.Empty;
-        url = ConfigurationManager.AppSettings["RootPath"] + "/tickets/assigned.aspx";
         foreach (var x in ticket.User_Tickets)
         {
             using (StreamReader reader = new StreamReader(GetPath("~/Email_Templates/Ticket_Assigned.htm")))
@@ -50,7 +50,6 @@ public class HtmlEmailer
     public void Resoved_Ticket_EMail()
     {
         string body = string.Empty;
-        url = ConfigurationManager.AppSettings["RootPath"] + "/tickets/show.aspx?id=" + Id;
         using (StreamReader reader = new StreamReader(GetPath("~/Email_Templates/Ticket_Resolved.htm")))
         {
             body = reader.ReadToEnd();
@@ -68,7 +67,6 @@ public class HtmlEmailer
     public void Closed_Ticket_EMail()
     {
         string body = string.Empty;
-        url = ConfigurationManager.AppSettings["RootPath"] + "/tickets/show.aspx?id=" + Id;
         foreach (var x in ticket.User_Tickets)
         {
             using (StreamReader reader = new StreamReader(GetPath("~/Email_Templates/Ticket_Closed.htm")))
@@ -89,7 +87,6 @@ public class HtmlEmailer
     public void New_Comment_TicketEMail()
     {
         string body = string.Empty;
-        url = ConfigurationManager.AppSettings["RootPath"] + "/tickets/show.aspx?id=" + Id;
         if (CurrentUser.Id().ToString() == ticket.Created_By.ToString())
         {
             foreach (var x in ticket.User_Tickets)
@@ -120,6 +117,26 @@ public class HtmlEmailer
             body = body.Replace("{Category}", category);
             body = body.Replace("{CommentUser}", CurrentUser.User().User_Name);
             Notifier.SendEmail("crmmailadmin@acig.com.sa", createdByEmail, "IT Help Desk - New Comment / Notes on Ticket", body);
+        }
+        return;
+    }
+
+    public void Re_Open_Ticket_EMail()
+    {
+        string body = string.Empty;
+        foreach (var x in ticket.User_Tickets)
+        {
+            using (StreamReader reader = new StreamReader(GetPath("~/Email_Templates/Ticket_Re_Open.htm")))
+            {
+                body = reader.ReadToEnd();
+            }
+            body = body.Replace("{Id}", Id);
+            body = body.Replace("{Subject}", subject);
+            body = body.Replace("{UserName}", x.tbl_Users.User_Name);
+            body = body.Replace("{Url}", url);
+            body = body.Replace("{Category}", category);
+            body = body.Replace("{ClosedUser}", createdBy);
+            Notifier.SendEmail("crmmailadmin@acig.com.sa", x.tbl_Users.Email, "IT Help Desk - Ticket Re Open", body);
         }
         return;
     }

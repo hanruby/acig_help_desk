@@ -36,7 +36,7 @@ public partial class Tickets_resolve : MasterAppPage
                              on sc.Category_Id equals c.Id
                              join u in _entity.tbl_Users
                              on t.Created_By equals u.Id
-                             where t.Id == _id && (t.State == "Open" || t.State == "Not Resolved")
+                             where t.Id == _id && (t.State == "Pending" || t.State == "Not Resolved")
                              select new
                              {
                                  Id = t.Id,

@@ -31,7 +31,7 @@ public partial class Tickets_new : MasterAppPage
         {
             Created_At = DateTime.Now,
             Priority = ddlPriority.SelectedValue,
-            State = "Open",
+            State = "Pending",
             Subject = txtSubject.Text,
             Type = ddlType.SelectedValue,
             Updated_At = DateTime.Now,

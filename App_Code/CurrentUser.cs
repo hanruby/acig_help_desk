@@ -86,4 +86,9 @@ public static class CurrentUser
         HttpContext.Current.Session["Current_Usr"] = user.Department.Id;
         return user;
     }
+
+    public static bool Is_Engineer()
+    {
+        return CurrentUser.Role() == "engineer";
+    }
 }

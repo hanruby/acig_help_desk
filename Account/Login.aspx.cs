@@ -68,6 +68,7 @@ public partial class Account_Login : MasterAppPage
             var email = dsresult.Properties["mail"][0].ToString();
             //var email = "ubaid@acig.com.sa";
             var customUser = _entity.tbl_Users.Where(x => x.Email == email).FirstOrDefault();
+            //var customUser = _entity.tbl_Users.Where(x => x.Email.Contains(txtUserName.Text)).FirstOrDefault();
             if (customUser == null)
             {
                 Session["ErrorMessage"] = "Your profile does not exist in this system please create Profile!";

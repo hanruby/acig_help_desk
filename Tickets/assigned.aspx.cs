@@ -23,6 +23,7 @@ public partial class Tickets_assigned : MasterAppPage
             BindGvOpenTickets();
             BindGvResolvedTickets();
             BindGvClosedTickets();
+            lblMainHeader.Text = "Tickets Assigned To Me !";
             lblOpen.Text = "Pending Tickets!";
             lblResolved.Text = "Resolved Tickets!";
             lblClosed.Text = "Closed Tickets!";
@@ -136,7 +137,7 @@ public partial class Tickets_assigned : MasterAppPage
                    on t.Id equals ut.Ticket_Id
                    join u in _entity.tbl_Users
                    on ut.User_Id equals u.Id
-                   where u.Id == currentUserId && t.State == "Open"
+                   where u.Id == currentUserId && t.State == "Pending"
                    orderby t.Id descending
                    select new
                    {

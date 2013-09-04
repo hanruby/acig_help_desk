@@ -34,7 +34,7 @@ public class MasterAppPage : System.Web.UI.Page
         var count = (from t in _entity.Tickets
                  join ut in _entity.User_Tickets
                  on t.Id equals ut.Ticket_Id
-                 where ut.User_Id == currentUserId && ut.Ticket_Id == ticketId && t.State == "Open"
+                 where ut.User_Id == currentUserId && ut.Ticket_Id == ticketId && t.State == "Pending"
                  select new { tckt = t }).Count();
         return count > 0;
     }

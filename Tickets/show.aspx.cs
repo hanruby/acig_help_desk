@@ -17,7 +17,7 @@ public partial class Tickets_show : MasterAppPage
     {
         if (!IsPostBack)
         {
-            lnkBtnResolve.Visible = lnkBtnClose.Visible = false;
+            lnkBtnResolve.Visible = lnkBtnClose.Visible = lnkBtnReOpen.Visible = false;
             routePath = Route.GetRootPath("");
             _id = long.Parse(Request.QueryString["id"]);
             hdnFldTicketId.Value = _id.ToString();
@@ -70,7 +70,6 @@ public partial class Tickets_show : MasterAppPage
             currentUserId = CurrentUser.Id();
             foreach (var x in ticketData)
             {
-                NewCommentDiv.Visible = currentUserId == x.AssignFromId;
                 if (currentUserId == x.AssignFromId && x.State == "Resolved")
                 {
                     lnkBtnClose.Visible = true;
@@ -85,6 +84,7 @@ public partial class Tickets_show : MasterAppPage
                     lnkBtnResolve.Visible = true;
                     lnkBtnResolve.PostBackUrl = routePath + "tickets/resolve.aspx?id=" + x.Id;
                 }
+                ShowOrHideCommentDiv(x.AssignFromId);
             }
         }
     }
@@ -175,5 +175,15 @@ public partial class Tickets_show : MasterAppPage
                    select new { Name = u.Email };
         rptrAssignedUsers.DataSource = data;
         rptrAssignedUsers.DataBind();
+    }
+
+    void ShowOrHideCommentDiv(long createdBy)
+    {
+        if (currentUserId == createdBy)
+        {
+            NewCommentDiv.Visible = true;
+            return;
+        }
+        NewCommentDiv.Visible = _entity.User_Tickets.Where(x => x.User_Id == currentUserId && x.Ticket_Id == _id).Count() > 0;
     }
 }

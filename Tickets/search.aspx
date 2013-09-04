@@ -52,7 +52,7 @@
                     <tr>
                         <td>
                             <asp:DropDownList ID="ddlTicketType" runat="server">
-                                <asp:ListItem Value="Open">Pending</asp:ListItem>
+                                <asp:ListItem Value="Pending">Pending</asp:ListItem>
                                 <asp:ListItem Value="Resolved">Resolved</asp:ListItem>
                                 <asp:ListItem Value="Closed">Closed</asp:ListItem>
                             </asp:DropDownList>

@@ -87,7 +87,7 @@
             <asp:Label ID="lblDescription" runat="server" Text="Description" AssociatedControlID="txtDescription"></asp:Label>
             <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" width="100%" Height="90px"></asp:TextBox>
             <asp:RequiredFieldValidator ID="rfvDescription" runat="server" ControlToValidate="txtDescription"
-                ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
+                ForeColor="#FF3300" SetFocusOnError="True">Required</asp:RequiredFieldValidator>
         </p>
         <p>
             <asp:Label ID="lblFile" runat="server" Text="File"></asp:Label>

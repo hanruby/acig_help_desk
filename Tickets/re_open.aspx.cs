@@ -42,7 +42,8 @@ public partial class Tickets_re_open : MasterAppPage
                                  Priority = t.Priority,
                                  State = t.State,
                                  Subject = t.Subject,
-                                 Type = t.Type
+                                 Type = t.Type,
+                                 AssignedToEmails = t.Assigned_To_Emails
                              };
             if (ticketData.Count() == 0)
             {
@@ -51,38 +52,35 @@ public partial class Tickets_re_open : MasterAppPage
             }
             rptrTickets.DataSource = ticketData;
             rptrTickets.DataBind();
+            lblAssignedTo.Text = ticketData.First().AssignedToEmails;
         }
     }
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        routePath = Route.GetRootPath("tickets/index.aspx");
+        routePath = Route.GetRootPath("tickets/show.aspx?id="+hdnFldTicketId.Value);
         _id = long.Parse(hdnFldTicketId.Value);
         currentUserId = CurrentUser.Id();
         _entity = GetEntity();
 
         _ticket = _entity.Tickets.Where(x => x.Id == _id).First();
-        _ticket.Rating = ddlRating.SelectedValue;
         _ticket.Closed_Date = DateTime.Now;
-        _ticket.State = "Closed";
+        _ticket.State = "Pending";
 
-        if (txtDescription.Text.Trim().Length > 0)
+        _comment = new Comment
         {
-            _comment = new Comment
-            {
-                Created_At = DateTime.Now,
-                Created_By = currentUserId,
-                Notes = txtDescription.Text,
-                Ticket_Id = _id
-            };
-            _entity.AddToComments(_comment);
-            _entity.SaveChanges();
-        }
+            Created_At = DateTime.Now,
+            Created_By = currentUserId,
+            Notes = txtDescription.Text,
+            Ticket_Id = _id
+        };
+        _entity.AddToComments(_comment);
+        _entity.SaveChanges();
 
         _event = new Event
         {
             Created_At = DateTime.Now,
-            State = "Closed",
+            State = "Re Open",
             Created_By = currentUserId,
             Ticket_Id = _id
         };
@@ -90,8 +88,8 @@ public partial class Tickets_re_open : MasterAppPage
         _entity.SaveChanges();
 
         HtmlEmailer emailer = new HtmlEmailer(_entity, _ticket);
-        emailer.Closed_Ticket_EMail();
+        emailer.Re_Open_Ticket_EMail();
 
-        SuccessRedirect(routePath, "Successfully updated !");
+        SuccessRedirect(routePath, "Successfully reopened the ticket !");
     }
 }

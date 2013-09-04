@@ -18,6 +18,7 @@ public partial class Tickets_index : MasterAppPage
             BindGvOpenTickets();
             BindGvResolvedTickets();
             BindGvClosedTickets();
+            lblMainHeader.Text = "Tickets Created By Me !";
             lblOpen.Text = "Pending Tickets!";
             lblResolved.Text = "Resolved Tickets!";
             lblClosed.Text = "Closed Tickets!";
@@ -72,7 +73,7 @@ public partial class Tickets_index : MasterAppPage
         lb = new LinkButton();
         lb.CommandArgument = text;
         lb.CommandName = "NumClick";
-        lb.Text = "Re Open";
+        lb.Text = "Re Open | ";
         lb.PostBackUrl = "re_open.aspx?id=" + text;
         lb.CssClass = "blue-link";
         e.Row.Cells[6].Controls.Add((Control)lb);
@@ -136,7 +137,7 @@ public partial class Tickets_index : MasterAppPage
                    on ssc.Sub_Category_Id equals sc.Id
                    join c in _entity.Categories
                    on sc.Category_Id equals c.Id
-                   where (t.Created_By == currentUserId) && t.State == "Open"
+                   where (t.Created_By == currentUserId) && t.State == "Pending"
                    orderby t.Id descending
                    select new
                    {
