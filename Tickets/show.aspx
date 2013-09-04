@@ -9,9 +9,9 @@
         <span class="left">Ticket Details</span>
         <asp:LinkButton ID="lnkBtnResolve" runat="server" CausesValidation="false" CssClass="btn btn-info right">Resolve Ticket</asp:LinkButton>
         <div class="right">
-          <asp:LinkButton ID="lnkBtnReOpen" runat="server" CausesValidation="false" CssClass="btn btn-info">Reopen Ticket</asp:LinkButton>
-          &nbsp;
-          <asp:LinkButton ID="lnkBtnClose" runat="server" CausesValidation="false" CssClass="btn btn-info">Close Ticket</asp:LinkButton>
+            <asp:LinkButton ID="lnkBtnReOpen" runat="server" CausesValidation="false" CssClass="btn btn-info">Reopen Ticket</asp:LinkButton>
+            &nbsp;
+            <asp:LinkButton ID="lnkBtnClose" runat="server" CausesValidation="false" CssClass="btn btn-info">Close Ticket</asp:LinkButton>
         </div>
         <div class="clear">
         </div>
@@ -133,18 +133,20 @@
         </HeaderTemplate>
         <ItemTemplate>
             <div class="left">
-                Created At:
                 <asp:Label ID="lblCreatedAt" runat="server" Text='<%# Eval("CreatedAt")%>'></asp:Label>
+                &nbsp; | &nbsp;
+                <asp:Label ID="lblCreatedBy" runat="server" Text='<%# Eval("CreatedBy")%>'></asp:Label>
+                &nbsp; | &nbsp;
+                <asp:HyperLink ID="hprLinkFile" runat="server" Visible='<%# FileLinkVisibile(Eval("Visible")) %>'
+                    NavigateUrl='<%# FileDownloadUrl(Eval("Url")) %>'>File Download </asp:HyperLink>
             </div>
-            <asp:HyperLink ID="hprLinkFile" runat="server" Visible='<%# FileLinkVisibile(Eval("Visible")) %>'
-                NavigateUrl='<%# FileDownloadUrl(Eval("Url")) %>' CssClass="right">File Download</asp:HyperLink>
             <div class="clear">
             </div>
-            <br />
-            <asp:Label ID="lblNotes" runat="server" Text='<%# Eval("Notes")%>'></asp:Label>
+            <p style="border-bottom: solid 1px #CCC;padding-bottom:15px;">
+                <asp:Label ID="lblNotes" runat="server" Text='<%# Eval("Notes")%>'></asp:Label>
+            </p>
         </ItemTemplate>
         <SeparatorTemplate>
-            <hr />
         </SeparatorTemplate>
         <FooterTemplate>
         </FooterTemplate>

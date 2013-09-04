@@ -133,10 +133,13 @@ public partial class Tickets_show : MasterAppPage
     void BindGVComments()
     {
         var commentData = from c in _entity.Comments
+                          join u in _entity.tbl_Users
+                          on c.Created_By equals u.Id
                           where c.Ticket_Id == _id
                           orderby c.Created_At
                           select new
                           {
+                              CreatedBy = u.Email,
                               CreatedAt = c.Created_At,
                               Notes = c.Notes,
                               Visible = c.File_Path,
