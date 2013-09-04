@@ -181,6 +181,7 @@ public class HtmlEmailer
         {
             body = reader.ReadToEnd();
         }
+        string url = ConfigurationManager.AppSettings["RootPath"] + "/users/index.aspx" ;
         parsedBody = body.Replace("{UserName}", "mustafa");
         parsedBody = parsedBody.Replace("{user_name}", user.User_Name);
         parsedBody = parsedBody.Replace("{email}", user.Email);
@@ -188,6 +189,7 @@ public class HtmlEmailer
         parsedBody = body.Replace("{UserName}", "ubaid");
         parsedBody = parsedBody.Replace("{user_name}", user.User_Name);
         parsedBody = parsedBody.Replace("{email}", user.Email);
+        parsedBody = parsedBody.Replace("{Url}", url);
         Notifier.SendEmail("crmmailadmin@acig.com.sa", "ubaid@acig.com.sa", "IT Help Desk - New User Sign up", parsedBody);
         Notifier.SendEmail("crmmailadmin@acig.com.sa", "ubaidkhan88@gmail.com", "IT Help Desk - New User Sign up", parsedBody);
         return;
