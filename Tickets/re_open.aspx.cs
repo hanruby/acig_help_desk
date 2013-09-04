@@ -31,7 +31,7 @@ public partial class Tickets_re_open : MasterAppPage
                              on sc.Category_Id equals c.Id
                              join u in _entity.tbl_Users
                              on t.Created_By equals u.Id
-                             where t.Id == _id && t.State == "Resolved" && t.Created_By == currentUserId
+                             where t.Id == _id && t.State == "Resolved" && (t.Created_By == currentUserId || t.On_Behalf == currentUserId)
                              select new
                              {
                                  Id = t.Id,

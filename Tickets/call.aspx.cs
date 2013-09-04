@@ -38,7 +38,8 @@ public partial class Tickets_call : MasterAppPage
             Updated_At = DateTime.Now,
             Assigned_To_Emails = "Remove"
         };
-        _ticket.Created_By = long.Parse(ddlCreatedBy.SelectedValue);
+        _ticket.Created_By = currentUserId;
+        _ticket.On_Behalf = long.Parse(ddlCreatedBy.SelectedValue);
         _ticket.Sub_Sub_Category_Id = _sub_sub_Category_Id;
         _entity.AddToTickets(_ticket);
         _entity.SaveChanges();

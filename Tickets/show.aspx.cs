@@ -36,6 +36,7 @@ public partial class Tickets_show : MasterAppPage
                              {
                                  Id = t.Id,
                                  AssignFromId = u.Id,
+                                 BehalfOf = t.On_Behalf,
                                  AssignFrom = u.Email,
                                  CategoryName = c.Name,
                                  SubCategoryName = sc.Name,
@@ -70,7 +71,7 @@ public partial class Tickets_show : MasterAppPage
             currentUserId = CurrentUser.Id();
             foreach (var x in ticketData)
             {
-                if (currentUserId == x.AssignFromId && x.State == "Resolved")
+                if ((currentUserId == x.AssignFromId || currentUserId == x.BehalfOf) && x.State == "Resolved")
                 {
                     lnkBtnClose.Visible = true;
                     lnkBtnClose.PostBackUrl = routePath + "tickets/close.aspx?id=" + x.Id;
@@ -84,7 +85,7 @@ public partial class Tickets_show : MasterAppPage
                     lnkBtnResolve.Visible = true;
                     lnkBtnResolve.PostBackUrl = routePath + "tickets/resolve.aspx?id=" + x.Id;
                 }
-                ShowOrHideCommentDiv(x.AssignFromId);
+                ShowOrHideCommentDiv(x.AssignFromId, x.BehalfOf);
             }
         }
     }
@@ -180,9 +181,9 @@ public partial class Tickets_show : MasterAppPage
         rptrAssignedUsers.DataBind();
     }
 
-    void ShowOrHideCommentDiv(long createdBy)
+    void ShowOrHideCommentDiv(long createdBy, long? behalfOf)
     {
-        if (currentUserId == createdBy)
+        if (currentUserId == createdBy || currentUserId == behalfOf)
         {
             NewCommentDiv.Visible = true;
             return;

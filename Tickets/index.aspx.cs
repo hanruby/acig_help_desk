@@ -137,7 +137,7 @@ public partial class Tickets_index : MasterAppPage
                    on ssc.Sub_Category_Id equals sc.Id
                    join c in _entity.Categories
                    on sc.Category_Id equals c.Id
-                   where (t.Created_By == currentUserId) && t.State == "Pending"
+                   where (t.Created_By == currentUserId || t.On_Behalf == currentUserId) && t.State == "Pending"
                    orderby t.Id descending
                    select new
                    {
@@ -177,7 +177,7 @@ public partial class Tickets_index : MasterAppPage
                    on ssc.Sub_Category_Id equals sc.Id
                    join c in _entity.Categories
                    on sc.Category_Id equals c.Id
-                   where (t.Created_By == currentUserId) && t.State == "Resolved"
+                   where (t.Created_By == currentUserId || t.On_Behalf == currentUserId) && t.State == "Resolved"
                    orderby t.Created_By descending
                    select new
                    {
@@ -219,7 +219,7 @@ public partial class Tickets_index : MasterAppPage
                    on ssc.Sub_Category_Id equals sc.Id
                    join c in _entity.Categories
                    on sc.Category_Id equals c.Id
-                   where (t.Created_By == currentUserId) && t.State == "Closed"
+                   where (t.Created_By == currentUserId || t.On_Behalf == currentUserId) && t.State == "Closed"
                    orderby t.Created_By descending
                    select new
                    {
