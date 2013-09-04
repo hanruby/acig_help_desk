@@ -134,12 +134,6 @@
                             <input type="file" id="uploadFile" name="uploadFile" />
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                    </tr>
                 </table>
             </ContentTemplate>
         </asp:UpdatePanel>
