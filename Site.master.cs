@@ -43,10 +43,11 @@ public partial class SiteMaster : System.Web.UI.MasterPage
             else
             {
                 var role2 = CurrentUser.Role2();
+                var role = CurrentUser.Role();
                 if (!string.IsNullOrEmpty(menuItem.Value))
                 {
                     var value = menuItem.Value;
-                    if (value == "supervisor" || (!value.Contains(CurrentUser.Role()) && role2 != "admin"))
+                    if (!value.Contains(CurrentUser.Role()) && role2 != "admin")
                     {
                         toRemoveItems.Add(menuItem);
                     }
