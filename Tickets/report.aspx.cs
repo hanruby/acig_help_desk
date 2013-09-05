@@ -15,9 +15,11 @@ public partial class Tickets_report : MasterAppPage
         lblTotalPending.Text = _entity.Tickets.Where(x => x.State == "Pending" && x.Created_By == currentUserId).Count().ToString();
         lblTotalResolved.Text = _entity.Tickets.Where(x => x.State == "Resolved" && x.Created_By == currentUserId).Count().ToString();
         lblTotalClosed.Text = _entity.Tickets.Where(x => x.State == "Closed" && x.Created_By == currentUserId).Count().ToString();
+        lblTotalCount.Text = (long.Parse(lblTotalPending.Text) + long.Parse(lblTotalResolved.Text) + long.Parse(lblTotalClosed.Text)).ToString();
         if (!CurrentUser.Is_Engineer())
         {
-            divEngineer.Visible = false;
+            divEngineer1.Visible = false;
+            divEngineer2.Visible = false;
             return;
         }
         var data = from t in _entity.Tickets
@@ -41,6 +43,7 @@ public partial class Tickets_report : MasterAppPage
                 lblAssignedClosed.Text = x.Count.ToString();
             }
         }
+        lblAssignedTotal.Text = (long.Parse(lblAssignedPending.Text) + long.Parse(lblAssignedResolved.Text) + long.Parse(lblAssignedClosed.Text)).ToString();
         var data2 = from t in _entity.Tickets
                    join ut in _entity.User_Tickets
                    on t.Id equals ut.Ticket_Id
