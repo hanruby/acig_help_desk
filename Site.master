@@ -49,7 +49,9 @@
                         <asp:MenuItem NavigateUrl="~/tickets/new.aspx" Text="New Ticket" Value="" />
                         <asp:MenuItem NavigateUrl="~/tickets/call.aspx" Text="New Call Ticket" Value="engineer" />
                         <asp:MenuItem NavigateUrl="~/tickets/search.aspx" Text="Search Tickets" Value="" />
-                        <asp:MenuItem NavigateUrl="~/tickets/report.aspx" Text="Report" Value="user,engineer" />
+                        <asp:MenuItem NavigateUrl="~/tickets/report.aspx" Text="Report" Value="" />
+                        <asp:MenuItem NavigateUrl="~/tickets/sreport.aspx" Text="Report II" Value="supervisor" />
+                        <asp:MenuItem NavigateUrl="~/tickets/report.aspx" Text="Full Report" Value="manager" />
                     </Items>
                 </asp:Menu>
             </div>

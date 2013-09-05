@@ -15,7 +15,7 @@ public partial class Tickets_assigned : MasterAppPage
     {
         if (!CurrentUser.Is_Engineer())
         {
-            ErrorRedirect(Route.GetRootPath("") + "not_authorized.aspx", "Not authorized to access that ticket!");
+            ErrorRedirect(Route.GetRootPath("") + "not_authorized.aspx", "Not authorized to access that page !!");
             return;
         }
         if (!IsPostBack)

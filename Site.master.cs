@@ -42,12 +42,25 @@ public partial class SiteMaster : System.Web.UI.MasterPage
             }
             else
             {
+                var role2 = CurrentUser.Role2();
                 if (!string.IsNullOrEmpty(menuItem.Value))
                 {
                     var value = menuItem.Value;
-                    if (!value.Contains(CurrentUser.Role()) && CurrentUser.Role2() != "admin")
+                    if (value == "supervisor" || (!value.Contains(CurrentUser.Role()) && role2 != "admin"))
                     {
                         toRemoveItems.Add(menuItem);
+                    }
+                }
+                if (role2 == "admin")
+                {
+                    switch (menuItem.Value)
+                    {
+                        case "supervisor":
+                            menuItem.Text = "Report For Supervisor";
+                            break;
+                        case "manager":
+                            menuItem.Text = "Full Report";
+                            break;
                     }
                 }
             }
