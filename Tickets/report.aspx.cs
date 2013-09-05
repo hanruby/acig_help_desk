@@ -12,12 +12,12 @@ public partial class Tickets_report : MasterAppPage
     {
         _entity = GetEntity();
         currentUserId = CurrentUser.Id();
-        lblTotalPending.Text = _entity.Tickets.Where(x => x.State == "Pending").Count().ToString();
-        lblTotalResolved.Text = _entity.Tickets.Where(x => x.State == "Resolved").Count().ToString();
-        lblTotalClosed.Text = _entity.Tickets.Where(x => x.State == "Closed").Count().ToString();
+        lblTotalPending.Text = _entity.Tickets.Where(x => x.State == "Pending" && x.Created_By == currentUserId).Count().ToString();
+        lblTotalResolved.Text = _entity.Tickets.Where(x => x.State == "Resolved" && x.Created_By == currentUserId).Count().ToString();
+        lblTotalClosed.Text = _entity.Tickets.Where(x => x.State == "Closed" && x.Created_By == currentUserId).Count().ToString();
         if (!CurrentUser.Is_Engineer())
         {
-            tblAssigned.Visible = false;
+            divEngineer.Visible = false;
             return;
         }
         var data = from t in _entity.Tickets
@@ -41,5 +41,17 @@ public partial class Tickets_report : MasterAppPage
                 lblAssignedClosed.Text = x.Count.ToString();
             }
         }
+        var data2 = from t in _entity.Tickets
+                   join ut in _entity.User_Tickets
+                   on t.Id equals ut.Ticket_Id
+                   join u in _entity.tbl_Users
+                   on t.Created_By equals u.Id
+                   join d in _entity.Departments
+                   on u.Department_Id equals d.Id
+                   where ut.User_Id == currentUserId
+                   group t by d.Name into Grp
+                   select new { Count = Grp.Count(), Department = Grp.Key };
+        rptrDeptTickets.DataSource = data2;
+        rptrDeptTickets.DataBind();
     }
 }
