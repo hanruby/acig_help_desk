@@ -181,7 +181,7 @@ public class HtmlEmailer
         {
             body = reader.ReadToEnd();
         }
-        string url = ConfigurationManager.AppSettings["RootPath"] + "/users/index.aspx" ;
+        string url = ConfigurationManager.AppSettings["RootPath"] + "/admin/users/index.aspx" ;
         parsedBody = body.Replace("{UserName}", "mustafa");
         parsedBody = parsedBody.Replace("{user_name}", user.User_Name);
         parsedBody = parsedBody.Replace("{email}", user.Email);
