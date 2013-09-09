@@ -60,19 +60,19 @@ public partial class Account_Login : MasterAppPage
 
     protected tbl_Users ActiveDirectoryAuthentication()
     {
-        //DirectoryEntry d1 = new DirectoryEntry("LDAP://acig.local/dc=acig,dc=local", txtUserName.Text, txtPassword.Text, AuthenticationTypes.Secure);
+        DirectoryEntry d1 = new DirectoryEntry("LDAP://acig.local/dc=acig,dc=local", txtUserName.Text, txtPassword.Text, AuthenticationTypes.Secure);
         try
         {
-            //DirectorySearcher ds = new DirectorySearcher(d1);
-            //ds.FindOne();
-            //ds.Filter = "(sAMAccountName=" + txtUserName.Text + ")";
-            //SearchResult sr = ds.FindOne();
-            //DirectoryEntry dsresult = sr.GetDirectoryEntry();
+            DirectorySearcher ds = new DirectorySearcher(d1);
+            ds.FindOne();
+            ds.Filter = "(sAMAccountName=" + txtUserName.Text + ")";
+            SearchResult sr = ds.FindOne();
+            DirectoryEntry dsresult = sr.GetDirectoryEntry();
             _entity = GetEntity();
-            //var email = dsresult.Properties["mail"][0].ToString();
+            var email = dsresult.Properties["mail"][0].ToString();
             //var email = "ubaid@acig.com.sa";
-            //var customUser = _entity.tbl_Users.Where(x => x.Email == email).FirstOrDefault();
-            var customUser = _entity.tbl_Users.Where(x => x.Email.Contains(txtUserName.Text)).FirstOrDefault();
+            var customUser = _entity.tbl_Users.Where(x => x.Email == email).FirstOrDefault();
+            //var customUser = _entity.tbl_Users.Where(x => x.Email.Contains(txtUserName.Text)).FirstOrDefault();
             if (customUser == null)
             {
                 Session["ErrorMessage"] = "Your profile does not exist in this system please create Profile!";
