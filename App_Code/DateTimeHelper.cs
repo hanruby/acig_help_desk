@@ -60,4 +60,16 @@ public static class DateTimeHelper
     {
         return dateTime.ToString("dd-MM-yyyy hh:mm tt");
     }
+
+    public static Hashtable GetSartAndEndWeekDay(DateTime dt)
+    {
+        int deltaStart = DayOfWeek.Sunday - dt.DayOfWeek;
+        int deltaEnd = DayOfWeek.Saturday - dt.DayOfWeek;
+        DateTime start = dt.AddDays(deltaStart);
+        DateTime end = dt.AddDays(deltaEnd);
+        Hashtable h = new Hashtable();
+        h.Add("StartDate", start);
+        h.Add("EndDate", end);
+        return h;
+    }
 }

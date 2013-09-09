@@ -28,6 +28,7 @@ public partial class Tickets_report : MasterAppPage
                    where ut.User_Id == currentUserId
                    group t by t.State into Grp
                    select new { Count = Grp.Count(), State = Grp.Key };
+        lblAssignedPending.Text = lblAssignedResolved.Text = lblAssignedClosed.Text = "0";
         foreach (var x in data)
         {
             if (x.State == "Pending")
