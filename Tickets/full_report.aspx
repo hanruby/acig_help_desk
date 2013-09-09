@@ -19,10 +19,40 @@
     </asp:UpdateProgress>
     <asp:UpdatePanel ID="updatePanel" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
+            <div class="left">
+                <h3 style="margin: 0;">
+                    <a href="#">
+                        <asp:Label ID="lblTicketsCreated" runat="server" Text=""></asp:Label></a></h3>
+            </div>
+            <div class="right">
+                <asp:LinkButton ID="lnkBtnAllTC" runat="server" 
+                    onclick="lnkBtnAllTC_Click">All</asp:LinkButton>
+                &nbsp;
+                <asp:LinkButton ID="lnkBtnThisWeekTC" runat="server" 
+                    onclick="lnkBtnThisWeekTC_Click">This Week</asp:LinkButton>
+                &nbsp;
+                <asp:LinkButton ID="lnkBtnLastWeekTC" runat="server" 
+                    onclick="lnkBtnLastWeekTC_Click">Last Week</asp:LinkButton>
+                &nbsp;
+                <asp:LinkButton ID="lnkBtnThisMonthTC" runat="server" 
+                    onclick="lnkBtnThisMonthTC_Click">This Month</asp:LinkButton>
+                &nbsp;
+                <asp:LinkButton ID="lnkBtnLastMonthTC" runat="server" 
+                    onclick="lnkBtnLastMonthTC_Click">Last Month</asp:LinkButton>
+                &nbsp;
+                <asp:TextBox ID="txtStartDateTC" runat="server" CssClass="input-small start-date"></asp:TextBox>
+                 <asp:RequiredFieldValidator ID="rfvStartDateTC" runat="server" ControlToValidate="txtStartDateTC"
+                                ForeColor="#FF3300" SetFocusOnError="True" ValidationGroup="created">*</asp:RequiredFieldValidator>
+                <asp:TextBox ID="txtEndDateTC" runat="server" CssClass="input-small end-date"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvEndDateTC" runat="server" ControlToValidate="txtEndDateTC"
+                                ForeColor="#FF3300" SetFocusOnError="True" ValidationGroup="created">*</asp:RequiredFieldValidator>
+                <asp:Button ID="btnSearchTC" runat="server" Text="Search" 
+                    CssClass="btn btn-success" onclick="btnSearchTC_Click" ValidationGroup="created" />
+            </div>
+            <div class="clear">
+            </div>
             <asp:Repeater ID="rptrFull" runat="server">
                 <HeaderTemplate>
-                    <h3>
-                        <a href="#">Tickets Created By Department !!</a></h3>
                     <table class="table table-bordered">
                         <tr>
                             <th>

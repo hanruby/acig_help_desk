@@ -1050,3 +1050,61 @@ Stack Trace:
    at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
    at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
 
+********** 09/09/2013 11:58:16 AM **********
+Inner Exception Type: System.IndexOutOfRangeException
+Inner Exception: Index was outside the bounds of the array.
+Inner Source: App_Code.hcmtkibs
+Inner Stack Trace: 
+   at DateTimeHelper.GetStartAndEndDateByTwoValues(String FromDate, String ToDate) in e:\repos\acig_help_desk\App_Code\DateTimeHelper.cs:line 52
+   at Tickets_full_report.GetStartAndEndDate(String type) in e:\repos\acig_help_desk\Tickets\full_report.aspx.cs:line 281
+   at Tickets_full_report.BindCreatedGridViewCustom(String type) in e:\repos\acig_help_desk\Tickets\full_report.aspx.cs:line 70
+   at Tickets_full_report.btnSearchTC_Click(Object sender, EventArgs e) in e:\repos\acig_help_desk\Tickets\full_report.aspx.cs:line 208
+   at System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_full_report_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid Khan\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\231ead17\4363d2e5\App_Web_3pvokbtw.8.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 09/09/2013 12:00:30 PM **********
+Inner Exception Type: System.IndexOutOfRangeException
+Inner Exception: Index was outside the bounds of the array.
+Inner Source: App_Code.hcmtkibs
+Inner Stack Trace: 
+   at DateTimeHelper.GetStartAndEndDateByTwoValues(String FromDate, String ToDate) in e:\repos\acig_help_desk\App_Code\DateTimeHelper.cs:line 51
+   at Tickets_full_report.GetStartAndEndDate(String type, String ticket_type) in e:\repos\acig_help_desk\Tickets\full_report.aspx.cs:line 289
+   at Tickets_full_report.BindAssignGridViewCustom(String type) in e:\repos\acig_help_desk\Tickets\full_report.aspx.cs:line 140
+   at Tickets_full_report.btnSearch_Click(Object sender, EventArgs e) in e:\repos\acig_help_desk\Tickets\full_report.aspx.cs:line 178
+   at System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_full_report_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid Khan\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\231ead17\4363d2e5\App_Web_ujbyrhzd.16.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
