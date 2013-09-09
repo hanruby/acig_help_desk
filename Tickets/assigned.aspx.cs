@@ -67,7 +67,7 @@ public partial class Tickets_assigned : MasterAppPage
         lb.Text = "Resolve";
         lb.PostBackUrl = "resolve.aspx?id=" + text;
         lb.CssClass = "blue-link";
-        e.Row.Cells[4].Controls.Add((Control)lb);
+        e.Row.Cells[5].Controls.Add((Control)lb);
     }
 
     protected void gvTicketsResolved_RowDataBound(object sender, GridViewRowEventArgs e)
