@@ -51,7 +51,7 @@ public partial class Tickets_assigned : MasterAppPage
     protected void gvTicketsOpen_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         if (e.Row.RowType != DataControlRowType.DataRow) return;
-        var text = e.Row.Cells[3].Text;
+        var text = e.Row.Cells[4].Text;
         LinkButton lb;
         lb = new LinkButton();
         lb.CommandArgument = text;
@@ -59,7 +59,7 @@ public partial class Tickets_assigned : MasterAppPage
         lb.Text = "Details";
         lb.PostBackUrl = "show.aspx?id=" + text;
         lb.CssClass = "blue-link";
-        e.Row.Cells[3].Controls.Add((Control)lb);
+        e.Row.Cells[4].Controls.Add((Control)lb);
 
         lb = new LinkButton();
         lb.CommandArgument = text;
@@ -73,20 +73,6 @@ public partial class Tickets_assigned : MasterAppPage
     protected void gvTicketsResolved_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         if (e.Row.RowType != DataControlRowType.DataRow) return;
-        var text = e.Row.Cells[4].Text;
-        LinkButton lb;
-        lb = new LinkButton();
-        lb.CommandArgument = text;
-        lb.CommandName = "NumClick";
-        lb.Text = "Details";
-        lb.PostBackUrl = "show.aspx?id=" + text;
-        lb.CssClass = "blue-link";
-        e.Row.Cells[4].Controls.Add((Control)lb);
-    }
-
-    protected void gvTicketsClosed_RowDataBound(object sender, GridViewRowEventArgs e)
-    {
-        if (e.Row.RowType != DataControlRowType.DataRow) return;
         var text = e.Row.Cells[5].Text;
         LinkButton lb;
         lb = new LinkButton();
@@ -96,6 +82,20 @@ public partial class Tickets_assigned : MasterAppPage
         lb.PostBackUrl = "show.aspx?id=" + text;
         lb.CssClass = "blue-link";
         e.Row.Cells[5].Controls.Add((Control)lb);
+    }
+
+    protected void gvTicketsClosed_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType != DataControlRowType.DataRow) return;
+        var text = e.Row.Cells[6].Text;
+        LinkButton lb;
+        lb = new LinkButton();
+        lb.CommandArgument = text;
+        lb.CommandName = "NumClick";
+        lb.Text = "Details";
+        lb.PostBackUrl = "show.aspx?id=" + text;
+        lb.CssClass = "blue-link";
+        e.Row.Cells[6].Controls.Add((Control)lb);
     }
 
     protected void GetHeader(string scope)
@@ -113,6 +113,7 @@ public partial class Tickets_assigned : MasterAppPage
             dt.Columns.Add(new DataColumn("Closed At", typeof(string)));
         }
         dt.Columns.Add(new DataColumn("Category", typeof(string)));
+        dt.Columns.Add(new DataColumn("Subject", typeof(string)));
         dt.Columns.Add(new DataColumn("Details", typeof(string)));
         if (scope == "open")
         {
@@ -147,14 +148,16 @@ public partial class Tickets_assigned : MasterAppPage
                        CategoryName = c.Name,
                        SubCategoryName = sc.Name,
                        SubSubCategoryName = ssc.Name,
-                       Id = t.Id
+                       Id = t.Id,
+                       Subject = t.Subject
                    };
         foreach (var x in data)
         {
             dr = dt.NewRow();
             dr["ID"] = x.Id;
             dr["Open At"] = x.OpenAt;
-            dr["Category"] = x.CategoryName + " >> " + x.SubCategoryName + " >> " + x.SubSubCategoryName; ;
+            dr["Category"] = x.CategoryName + " >> " + x.SubCategoryName + " >> " + x.SubSubCategoryName;
+            dr["Subject"] = x.Subject;
             dr["Details"] = x.Id;
             dr["Resolve?"] = x.Id;
             dt.Rows.Add(dr);
@@ -190,14 +193,16 @@ public partial class Tickets_assigned : MasterAppPage
                        CategoryName = c.Name,
                        SubCategoryName = sc.Name,
                        SubSubCategoryName = ssc.Name,
-                       Id = t.Id
+                       Id = t.Id,
+                       Subject = t.Subject
                    };
         foreach (var x in data)
         {
             dr = dt.NewRow();
             dr["ID"] = x.Id;
             dr["Open At"] = x.OpenAt;
-            dr["Category"] = x.CategoryName + " >> " + x.SubCategoryName + " >> " + x.SubSubCategoryName; ;
+            dr["Category"] = x.CategoryName + " >> " + x.SubCategoryName + " >> " + x.SubSubCategoryName;
+            dr["Subject"] = x.Subject;
             dr["Resolved At"] = x.ResolvedAt;
             dr["Details"] = x.Id;
             dt.Rows.Add(dr);
@@ -233,14 +238,16 @@ public partial class Tickets_assigned : MasterAppPage
                        CategoryName = c.Name,
                        SubCategoryName = sc.Name,
                        SubSubCategoryName = ssc.Name,
-                       Id = t.Id
+                       Id = t.Id,
+                       Subject = t.Subject
                    };
         foreach (var x in data)
         {
             dr = dt.NewRow();
             dr["ID"] = x.Id;
             dr["Open At"] = x.OpenAt;
-            dr["Category"] = x.CategoryName + " >> " + x.SubCategoryName + " >> " + x.SubSubCategoryName; ;
+            dr["Category"] = x.CategoryName + " >> " + x.SubCategoryName + " >> " + x.SubSubCategoryName;
+            dr["Subject"] = x.Subject;
             dr["Resolved At"] = x.ResolvedAt;
             dr["Closed At"] = x.ClosedAt;
             dr["Details"] = x.Id;

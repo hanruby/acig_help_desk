@@ -70,6 +70,7 @@ public partial class Tickets_search : MasterAppPage
         dt.Columns.Add(new DataColumn("ID", typeof(string)));
         dt.Columns.Add(new DataColumn("Open At", typeof(string)));
         dt.Columns.Add(new DataColumn("Category", typeof(string)));
+        dt.Columns.Add(new DataColumn("Subject", typeof(string)));
         dt.Columns.Add(new DataColumn("Open By", typeof(string)));
         dt.Columns.Add(new DataColumn("Assigned To", typeof(string)));
         dt.Columns.Add(new DataColumn("Details", typeof(string)));
@@ -82,7 +83,7 @@ public partial class Tickets_search : MasterAppPage
                    on t.Created_By equals u.Id
                    where ((u.User_Name.Contains(txtString.Text) || u.Email.Contains(txtString.Text)) && t.State == ddlTicketType.SelectedValue)
                    orderby t.Id descending
-                   select new { Id = t.Id, Opened_At = t.Created_At, Opened_By = u.Email, Assigned_To = t.Assigned_To_Emails, Full_Category = (t.Sub_Sub_Categories.Sub_Categories.Category.Name + " >> " + t.Sub_Sub_Categories.Sub_Categories.Name + " >> " + t.Sub_Sub_Categories.Name) };
+                   select new { Id = t.Id, Opened_At = t.Created_At, Opened_By = u.Email, Assigned_To = t.Assigned_To_Emails, Full_Category = (t.Sub_Sub_Categories.Sub_Categories.Category.Name + " >> " + t.Sub_Sub_Categories.Sub_Categories.Name + " >> " + t.Sub_Sub_Categories.Name), Subject = t.Subject };
         gvTickets.DataSource = data;
         gvTickets.DataBind();
     }
@@ -94,7 +95,7 @@ public partial class Tickets_search : MasterAppPage
                    on t.Created_By equals u.Id
                    where t.Assigned_To_Emails.Contains(txtString.Text) && t.State == ddlTicketType.SelectedValue
                    orderby t.Id descending
-                   select new { Id = t.Id, Opened_At = t.Created_At, Opened_By = u.Email, Assigned_To = t.Assigned_To_Emails, Full_Category = (t.Sub_Sub_Categories.Sub_Categories.Category.Name + " >> " + t.Sub_Sub_Categories.Sub_Categories.Name + " >> " + t.Sub_Sub_Categories.Name) };
+                   select new { Id = t.Id, Opened_At = t.Created_At, Opened_By = u.Email, Assigned_To = t.Assigned_To_Emails, Full_Category = (t.Sub_Sub_Categories.Sub_Categories.Category.Name + " >> " + t.Sub_Sub_Categories.Sub_Categories.Name + " >> " + t.Sub_Sub_Categories.Name), Subject = t.Subject };
         gvTickets.DataSource = data;
         gvTickets.DataBind();
     }
@@ -106,7 +107,7 @@ public partial class Tickets_search : MasterAppPage
                    on t.Created_By equals u.Id
                    where t.Subject.Contains(txtString.Text) && t.State == ddlTicketType.SelectedValue
                    orderby t.Id descending
-                   select new { Id = t.Id, Opened_At = t.Created_At, Opened_By = u.Email, Assigned_To = t.Assigned_To_Emails, Full_Category = (t.Sub_Sub_Categories.Sub_Categories.Category.Name + " >> " + t.Sub_Sub_Categories.Sub_Categories.Name + " >> " + t.Sub_Sub_Categories.Name) };
+                   select new { Id = t.Id, Opened_At = t.Created_At, Opened_By = u.Email, Assigned_To = t.Assigned_To_Emails, Full_Category = (t.Sub_Sub_Categories.Sub_Categories.Category.Name + " >> " + t.Sub_Sub_Categories.Sub_Categories.Name + " >> " + t.Sub_Sub_Categories.Name), Subject = t.Subject };
         gvTickets.DataSource = data;
         gvTickets.DataBind();
     }
@@ -120,7 +121,7 @@ public partial class Tickets_search : MasterAppPage
                    on t.Created_By equals u.Id
                    where t.Created_At >= startTime && t.Created_At <= endTime && t.State == ddlTicketType.SelectedValue
                    orderby t.Id descending
-                   select new { Id = t.Id, Opened_At = t.Created_At, Opened_By = u.Email, Assigned_To = t.Assigned_To_Emails, Full_Category = (t.Sub_Sub_Categories.Sub_Categories.Category.Name + " >> " + t.Sub_Sub_Categories.Sub_Categories.Name + " >> " + t.Sub_Sub_Categories.Name) };
+                   select new { Id = t.Id, Opened_At = t.Created_At, Opened_By = u.Email, Assigned_To = t.Assigned_To_Emails, Full_Category = (t.Sub_Sub_Categories.Sub_Categories.Category.Name + " >> " + t.Sub_Sub_Categories.Sub_Categories.Name + " >> " + t.Sub_Sub_Categories.Name), Subject = t.Subject };
         gvTickets.DataSource = data;
         gvTickets.DataBind();
     }

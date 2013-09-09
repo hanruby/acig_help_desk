@@ -109,6 +109,11 @@
                             <asp:Label ID="lblCategory" runat="server" Text='<%# Eval("Full_Category")%>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Subject">
+                        <ItemTemplate>
+                            <asp:Label ID="lblSubject" runat="server" Text='<%# Eval("Subject")%>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:TemplateField HeaderText="Details">
                         <ItemTemplate>
                             <a href='show.aspx?id=<%# Eval("Id") %>'>Details</a>
