@@ -30,7 +30,7 @@
                             <asp:Label ID="lblType" runat="server" Text="Type" AssociatedControlID="ddlType"></asp:Label>
                             <asp:DropDownList ID="ddlType" runat="server">
                                 <asp:ListItem Value="0">Select</asp:ListItem>
-                                <asp:ListItem>Issue</asp:ListItem>
+                                <asp:ListItem Selected="True">Issue</asp:ListItem>
                                 <asp:ListItem>New Feature</asp:ListItem>
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator ID="rfvType" runat="server" ControlToValidate="ddlType"
@@ -41,7 +41,7 @@
                             </asp:Label>
                             <asp:DropDownList ID="ddlPriority" runat="server">
                                 <asp:ListItem Value="0">Select</asp:ListItem>
-                                <asp:ListItem>Low</asp:ListItem>
+                                <asp:ListItem Selected="True">Low</asp:ListItem>
                                 <asp:ListItem>Medium</asp:ListItem>
                                 <asp:ListItem>High</asp:ListItem>
                             </asp:DropDownList>
