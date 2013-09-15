@@ -105,6 +105,7 @@ public partial class Tickets_index : MasterAppPage
     {
         dt = new DataTable();
         dt.Columns.Add(new DataColumn("ID", typeof(string)));
+        dt.Columns.Add(new DataColumn("Subject", typeof(string)));
         dt.Columns.Add(new DataColumn("Open At", typeof(string)));
         if (scope == "resolved")
         {
@@ -117,7 +118,6 @@ public partial class Tickets_index : MasterAppPage
         }
         dt.Columns.Add(new DataColumn("Assigned To", typeof(string)));
         dt.Columns.Add(new DataColumn("Category", typeof(string)));
-        dt.Columns.Add(new DataColumn("Subject", typeof(string)));
         dt.Columns.Add(new DataColumn("Details", typeof(string)));
         if (scope == "resolved")
         {
@@ -156,9 +156,9 @@ public partial class Tickets_index : MasterAppPage
         {
             dr = dt.NewRow();
             dr["ID"] = x.Id;
+            dr["Subject"] = x.Subject;
             dr["Open At"] = x.OpenAt;
             dr["Category"] = x.CategoryName + " >> " + x.SubCategoryName + " >> " + x.SubSubCategoryName;
-            dr["Subject"] = x.Subject;
             dr["Assigned To"] = x.Assigned_To;
             dr["Details"] = x.Id;
             dt.Rows.Add(dr);
@@ -198,10 +198,10 @@ public partial class Tickets_index : MasterAppPage
         {
             dr = dt.NewRow();
             dr["ID"] = x.Id;
+            dr["Subject"] = x.Subject;
             dr["Open At"] = x.OpenAt;
             dr["Assigned To"] = x.Assigned_To;
             dr["Category"] = x.CategoryName + " >> " + x.SubCategoryName + " >> " + x.SubSubCategoryName; ;
-            dr["Subject"] = x.Subject;
             dr["Resolved At"] = x.ResolvedAt;
             dr["Details"] = x.Id;
             dr["Re Open? / Close?"] = x.Id;
@@ -242,10 +242,10 @@ public partial class Tickets_index : MasterAppPage
         {
             dr = dt.NewRow();
             dr["ID"] = x.Id;
+            dr["Subject"] = x.Subject;
             dr["Open At"] = x.OpenAt;
             dr["Assigned To"] = x.Assigned_To;
             dr["Category"] = x.CategoryName + " >> " + x.SubCategoryName + " >> " + x.SubSubCategoryName; ;
-            dr["Subject"] = x.Subject;
             dr["Resolved At"] = x.ResolvedAt;
             dr["Closed At"] = x.ClosedAt;
             dr["Details"] = x.Id;

@@ -102,6 +102,7 @@ public partial class Tickets_assigned : MasterAppPage
     {
         dt = new DataTable();
         dt.Columns.Add(new DataColumn("ID", typeof(string)));
+        dt.Columns.Add(new DataColumn("Subject", typeof(string)));
         dt.Columns.Add(new DataColumn("Open At", typeof(string)));
         if (scope == "resolved")
         {
@@ -113,7 +114,6 @@ public partial class Tickets_assigned : MasterAppPage
             dt.Columns.Add(new DataColumn("Closed At", typeof(string)));
         }
         dt.Columns.Add(new DataColumn("Category", typeof(string)));
-        dt.Columns.Add(new DataColumn("Subject", typeof(string)));
         dt.Columns.Add(new DataColumn("Details", typeof(string)));
         if (scope == "open")
         {
@@ -155,9 +155,9 @@ public partial class Tickets_assigned : MasterAppPage
         {
             dr = dt.NewRow();
             dr["ID"] = x.Id;
+            dr["Subject"] = x.Subject;
             dr["Open At"] = x.OpenAt;
             dr["Category"] = x.CategoryName + " >> " + x.SubCategoryName + " >> " + x.SubSubCategoryName;
-            dr["Subject"] = x.Subject;
             dr["Details"] = x.Id;
             dr["Resolve?"] = x.Id;
             dt.Rows.Add(dr);
@@ -200,9 +200,9 @@ public partial class Tickets_assigned : MasterAppPage
         {
             dr = dt.NewRow();
             dr["ID"] = x.Id;
+            dr["Subject"] = x.Subject;
             dr["Open At"] = x.OpenAt;
             dr["Category"] = x.CategoryName + " >> " + x.SubCategoryName + " >> " + x.SubSubCategoryName;
-            dr["Subject"] = x.Subject;
             dr["Resolved At"] = x.ResolvedAt;
             dr["Details"] = x.Id;
             dt.Rows.Add(dr);
@@ -245,9 +245,9 @@ public partial class Tickets_assigned : MasterAppPage
         {
             dr = dt.NewRow();
             dr["ID"] = x.Id;
+            dr["Subject"] = x.Subject;
             dr["Open At"] = x.OpenAt;
             dr["Category"] = x.CategoryName + " >> " + x.SubCategoryName + " >> " + x.SubSubCategoryName;
-            dr["Subject"] = x.Subject;
             dr["Resolved At"] = x.ResolvedAt;
             dr["Closed At"] = x.ClosedAt;
             dr["Details"] = x.Id;
