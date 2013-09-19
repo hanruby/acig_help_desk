@@ -41,7 +41,7 @@
                             </asp:Label>
                             <asp:DropDownList ID="ddlPriority" runat="server">
                                 <asp:ListItem Value="0">Select</asp:ListItem>
-                                <asp:ListItem>Low</asp:ListItem>
+                                <asp:ListItem Selected="True">Low</asp:ListItem>
                                 <asp:ListItem>Medium</asp:ListItem>
                                 <asp:ListItem>High</asp:ListItem>
                             </asp:DropDownList>
