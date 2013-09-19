@@ -16,9 +16,9 @@ public partial class Tickets_call : MasterAppPage
     string assigned_To_Emails;
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!CurrentUser.Is_Engineer())
+        if (!CurrentUser.Is_Engineer() && !CurrentUser.Is_IT_Consultant())
         {
-            ErrorRedirect(Route.GetRootPath("") + "not_authorized.aspx", "Not authorized to access that ticket!");
+            ErrorRedirect(Route.GetRootPath("") + "not_authorized.aspx", "Not authorized to access!");
             return;
         }
     }

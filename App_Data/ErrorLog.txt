@@ -1108,3 +1108,218 @@ Stack Trace:
    at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
    at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
 
+********** 19-Sep-13 2:03:12 PM **********
+Inner Exception Type: System.NullReferenceException
+Inner Exception: Object reference not set to an instance of an object.
+Inner Source: App_Web_iad3xzwx
+Inner Stack Trace: 
+   at Tickets_reassign.btnSearch_Click(Object sender, EventArgs e) in e:\repos\acig_help_desk\Tickets\reassign.aspx.cs:line 36
+   at System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_reassign_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\231ead17\4363d2e5\App_Web_iad3xzwx.26.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 19-Sep-13 2:34:36 PM **********
+Inner Exception Type: System.Data.UpdateException
+Inner Exception: An error occurred while updating the entries. See the inner exception for details.
+Inner Source: System.Data.Entity
+Inner Stack Trace: 
+   at System.Data.Mapping.Update.Internal.UpdateTranslator.Update(IEntityStateManager stateManager, IEntityAdapter adapter)
+   at System.Data.EntityClient.EntityAdapter.Update(IEntityStateManager entityCache)
+   at System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   at System.Data.Objects.ObjectContext.SaveChanges()
+   at Tickets_reassign.btnSave_Click(Object sender, EventArgs e) in e:\repos\acig_help_desk\Tickets\reassign.aspx.cs:line 112
+   at System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_reassign_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\231ead17\4363d2e5\App_Web_3e3kq2pi.4.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 19-Sep-13 2:35:26 PM **********
+Inner Exception Type: System.Data.EntityException
+Inner Exception: An error occurred while starting a transaction on the provider connection. See the inner exception for details.
+Inner Source: System.Data.Entity
+Inner Stack Trace: 
+   at System.Data.EntityClient.EntityConnection.BeginDbTransaction(IsolationLevel isolationLevel)
+   at System.Data.EntityClient.EntityConnection.BeginTransaction()
+   at System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   at System.Data.Objects.ObjectContext.SaveChanges()
+   at Tickets_reassign.btnSave_Click(Object sender, EventArgs e) in e:\repos\acig_help_desk\Tickets\reassign.aspx.cs:line 112
+   at System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_reassign_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\231ead17\4363d2e5\App_Web_qzqc5dj3.10.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 19-Sep-13 2:38:02 PM **********
+Inner Exception Type: System.Data.EntityException
+Inner Exception: An error occurred while starting a transaction on the provider connection. See the inner exception for details.
+Inner Source: System.Data.Entity
+Inner Stack Trace: 
+   at System.Data.EntityClient.EntityConnection.BeginDbTransaction(IsolationLevel isolationLevel)
+   at System.Data.EntityClient.EntityConnection.BeginTransaction()
+   at System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   at System.Data.Objects.ObjectContext.SaveChanges()
+   at Tickets_reassign.btnSave_Click(Object sender, EventArgs e) in e:\repos\acig_help_desk\Tickets\reassign.aspx.cs:line 116
+   at System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_reassign_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\231ead17\4363d2e5\App_Web_oonbajw5.20.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 19-Sep-13 2:40:12 PM **********
+Inner Exception Type: System.Data.EntityException
+Inner Exception: An error occurred while starting a transaction on the provider connection. See the inner exception for details.
+Inner Source: System.Data.Entity
+Inner Stack Trace: 
+   at System.Data.EntityClient.EntityConnection.BeginDbTransaction(IsolationLevel isolationLevel)
+   at System.Data.EntityClient.EntityConnection.BeginTransaction()
+   at System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   at System.Data.Objects.ObjectContext.SaveChanges()
+   at Tickets_reassign.btnSave_Click(Object sender, EventArgs e) in e:\repos\acig_help_desk\Tickets\reassign.aspx.cs:line 116
+   at System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_reassign_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\231ead17\4363d2e5\App_Web_1s4yg5nl.18.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 19-Sep-13 2:42:51 PM **********
+Inner Exception Type: System.Data.EntityException
+Inner Exception: An error occurred while starting a transaction on the provider connection. See the inner exception for details.
+Inner Source: System.Data.Entity
+Inner Stack Trace: 
+   at System.Data.EntityClient.EntityConnection.BeginDbTransaction(IsolationLevel isolationLevel)
+   at System.Data.EntityClient.EntityConnection.BeginTransaction()
+   at System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   at System.Data.Objects.ObjectContext.SaveChanges()
+   at Tickets_reassign.btnSave_Click(Object sender, EventArgs e) in e:\repos\acig_help_desk\Tickets\reassign.aspx.cs:line 112
+   at System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_reassign_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\231ead17\4363d2e5\App_Web_54m4tif1.4.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 19-Sep-13 2:44:40 PM **********
+Inner Exception Type: System.Data.EntityException
+Inner Exception: An error occurred while closing the provider connection. See the inner exception for details.
+Inner Source: System.Data.Entity
+Inner Stack Trace: 
+   at System.Data.EntityClient.EntityConnection.StoreCloseHelper()
+   at System.Data.EntityClient.EntityConnection.CloseHelper()
+   at System.Data.EntityClient.EntityConnection.Close()
+   at System.Data.Objects.ObjectContext.ReleaseConnection()
+   at System.Data.Common.Internal.Materialization.Shaper`1.Finally()
+   at System.Data.Common.Internal.Materialization.Shaper`1.SimpleEnumerator.Dispose()
+   at System.Data.Common.Internal.Materialization.Shaper`1.SimpleEnumerator.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Data.Objects.DataClasses.EntityReference`1.Load(MergeOption mergeOption)
+   at System.Data.Objects.DataClasses.RelatedEnd.Load()
+   at System.Data.Objects.DataClasses.RelatedEnd.DeferredLoad()
+   at System.Data.Objects.DataClasses.EntityReference`1.get_Value()
+   at Acig_Help_DeskModel.User_Tickets.get_tbl_Users() in e:\repos\acig_help_desk\App_Code\ACDModel.Designer.cs:line 3098
+   at Tickets_reassign.btnSave_Click(Object sender, EventArgs e) in e:\repos\acig_help_desk\Tickets\reassign.aspx.cs:line 133
+   at System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_reassign_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\231ead17\4363d2e5\App_Web_121kduzu.14.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+

@@ -181,7 +181,7 @@ public class HtmlEmailer
         {
             body = reader.ReadToEnd();
         }
-        string url = ConfigurationManager.AppSettings["RootPath"] + "/admin/users/index.aspx" ;
+        string url = ConfigurationManager.AppSettings["RootPath"] + "/admin/users/index.aspx";
         parsedBody = body.Replace("{UserName}", "mustafa");
         parsedBody = parsedBody.Replace("{user_name}", user.User_Name);
         parsedBody = parsedBody.Replace("{email}", user.Email);
@@ -192,6 +192,23 @@ public class HtmlEmailer
         parsedBody = parsedBody.Replace("{Url}", url);
         Notifier.SendEmail("crmmailadmin@acig.com.sa", "ubaid@acig.com.sa", "IT Help Desk - New User Sign up", parsedBody);
         Notifier.SendEmail("crmmailadmin@acig.com.sa", "ubaidkhan88@gmail.com", "IT Help Desk - New User Sign up", parsedBody);
+        return;
+    }
+
+    public void Reassign_Ticket_EMail(tbl_Users user)
+    {
+        string body = string.Empty;
+        using (StreamReader reader = new StreamReader(GetPath("~/Email_Templates/Ticket_ReAssigned.htm")))
+        {
+            body = reader.ReadToEnd();
+        }
+        body = body.Replace("{Id}", Id);
+        body = body.Replace("{UserName}", user.User_Name);
+        body = body.Replace("{Subject}", subject);
+        body = body.Replace("{Url}", url);
+        body = body.Replace("{Category}", category);
+        body = body.Replace("{AssignedUser}", createdBy);
+        Notifier.SendEmail("crmmailadmin@acig.com.sa", user.Email, "IT Help Desk - Ticket ReAssigned", body);
         return;
     }
 

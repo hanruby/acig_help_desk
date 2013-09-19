@@ -69,6 +69,10 @@ public static class CurrentUser
         {
             return departmentName;
         }
+        if (_entity == null)
+        {
+            _entity = new Acig_Help_DeskEntities();
+        }
         tbl_Users user = _entity.tbl_Users.Where(x => x.Id == id).First();
         return user.Department.Name;
     }
@@ -90,5 +94,15 @@ public static class CurrentUser
     public static bool Is_Engineer()
     {
         return CurrentUser.Role() == "engineer";
+    }
+
+    public static bool Is_IT_Consultant()
+    {
+        return CurrentUser.DepartmentName(null, CurrentUser.Id()) == "IT Consultant";
+    }
+
+    public static bool Is_Admin()
+    {
+        return CurrentUser.Role2() == "admin";
     }
 }
