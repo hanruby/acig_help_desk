@@ -19,6 +19,7 @@ public partial class Tickets_sreport : MasterAppPage
     Hashtable hash;
     protected void Page_Load(object sender, EventArgs e)
     {
+        HideReportLinks(lnkBtnReportSuperVisor, lnkBtnFullReport, lnkBtnReportByUser);
         if (!IsPostBack)
         {
             role = CurrentUser.Role();

@@ -50,9 +50,6 @@
                         <asp:MenuItem NavigateUrl="~/tickets/call.aspx" Text="New Call Ticket" Value="engineer" />
                         <asp:MenuItem NavigateUrl="~/tickets/search.aspx" Text="Search Tickets" Value="" />
                         <asp:MenuItem NavigateUrl="~/tickets/report.aspx" Text="Report" Value="" />
-                        <asp:MenuItem NavigateUrl="~/tickets/sreport.aspx" Text="Report II" Value="supervisor" />
-                        <asp:MenuItem NavigateUrl="~/tickets/full_report.aspx" Text="Full Report" Value="manager,vp,coo,ceo" />
-                        <asp:MenuItem NavigateUrl="~/tickets/full_report2.aspx" Text="Report By User" Value="manager,vp,coo,ceo" />
                     </Items>
                 </asp:Menu>
             </div>

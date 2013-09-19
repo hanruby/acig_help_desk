@@ -5,6 +5,22 @@
     <script type="text/javascript" src="../scripts/datepicker-range.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
+    <h3>
+        <asp:LinkButton ID="lnkBtnReport" runat="server" CausesValidation="false" CssClass="btn btn-inverse"
+            PostBackUrl="~/Tickets/report.aspx">Report</asp:LinkButton>
+        &nbsp;
+        <asp:LinkButton ID="lnkBtnReportSuperVisor" CommandArgument="supervisor" runat="server"
+            CausesValidation="false" CssClass="btn btn-inverse" PostBackUrl="~/Tickets/sreport.aspx">Report By Supervisor</asp:LinkButton>
+        &nbsp;
+        <asp:LinkButton ID="lnkBtnFullReport" CommandArgument="manager,vp,coo,ceo" runat="server"
+            CausesValidation="false" CssClass="btn btn-inverse" PostBackUrl="~/Tickets/full_report.aspx">Full Report</asp:LinkButton>
+        &nbsp;
+        <asp:LinkButton ID="lnkBtnReportByUser" CommandArgument="manager,vp,coo,ceo" runat="server"
+            CausesValidation="false" CssClass="btn btn-inverse" PostBackUrl="~/Tickets/full_report2.aspx">Report By User</asp:LinkButton>
+    </h3>
+    <div class="clear">
+    </div>
+    <br />
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     <asp:UpdateProgress ID="updateProgress" runat="server">
