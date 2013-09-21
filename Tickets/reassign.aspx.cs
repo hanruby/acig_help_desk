@@ -55,7 +55,7 @@ public partial class Tickets_reassign : MasterAppPage
         var data = from u in _entity.tbl_Users
                    join us in _entity.User_Sub_Sub_Categories
                    on u.Id equals us.User_Id
-                   where us.Sub_Sub_Category_Id == subCatId && u.Active == true && u.Id != currentUserId
+                   where us.Sub_Sub_Category_Id == subCatId && u.Active == true
                    select new { UserId = u.Id, UserName = u.User_Name };
         DataTable table = new DataTable();
         table.Columns.Add("Text");
@@ -63,19 +63,26 @@ public partial class Tickets_reassign : MasterAppPage
         DataRow dr;
         foreach (var x in data)
         {
-            if (!lst.Contains(x.UserId))
-            {
-                dr = table.NewRow();
-                dr["Text"] = x.UserName;
-                dr["Value"] = x.UserId;
-                table.Rows.Add(dr);
-            }
+            dr = table.NewRow();
+            dr["Text"] = x.UserName;
+            dr["Value"] = x.UserId;
+            table.Rows.Add(dr);
         }
         lstBxAssignTo.DataSource = table;
         lstBxAssignTo.DataTextField = table.Columns["Text"].ColumnName;
         lstBxAssignTo.DataValueField = table.Columns["Value"].ColumnName;
         lstBxAssignTo.DataBind();
         lstBxAssignTo.SelectedIndexChanged += new System.EventHandler(BindCategories);
+
+        long itemId;
+        foreach (ListItem i in lstBxAssignTo.Items)
+        {
+            itemId = long.Parse(i.Value);
+            if (lst.Contains(itemId))
+            {
+                i.Selected = true;
+            }
+        }
     }
 
     protected void btnSave_Click(object sender, EventArgs e)
@@ -83,31 +90,26 @@ public partial class Tickets_reassign : MasterAppPage
         _entity = GetEntity();
         id = long.Parse(hdnFldTicketId.Value);
         ticket = _entity.Tickets.Where(x => x.Id == id).First();
-        var lst = ticket.User_Tickets.ToList().Select(x => x.User_Id);
-        var userLst = new List<long>();
-        var dltLst = new List<long>();
         long selected;
         string emails = string.Empty;
-        foreach (ListItem i in lstBxAssignTo.Items)
+        var oldUserLst = ticket.User_Tickets.ToList().Select(x => x.User_Id);
+        var newUserLst = new List<long>();
+        var deleteUserLst = new List<long>();
+
+        foreach(ListItem i in lstBxAssignTo.Items)
         {
             selected = long.Parse(i.Value);
-            if (i.Selected && !lst.Contains(selected))
+            if (i.Selected && !oldUserLst.Contains(selected))
             {
-                userLst.Add(selected);
+                newUserLst.Add(selected);
+            }
+            else if (!i.Selected && oldUserLst.Contains(selected))
+            {
+                deleteUserLst.Add(selected);
             }
         }
 
-        foreach (var x in lst)
-        {
-            if (!userLst.Contains(x))
-            {
-                dltLst.Add(x);
-            }
-        }
-
-        HtmlEmailer emailer = new HtmlEmailer(_entity, ticket);
-
-        foreach (var x in userLst)
+        foreach (var x in newUserLst)
         {
             userTicket = new User_Tickets
             {
@@ -116,10 +118,9 @@ public partial class Tickets_reassign : MasterAppPage
             };
             _entity.AddToUser_Tickets(userTicket);
             _entity.SaveChanges();
-            emailer.Reassign_Ticket_EMail(userTicket.tbl_Users);
         }
 
-        foreach (var x in dltLst)
+        foreach (var x in deleteUserLst)
         {
             userTicket = _entity.User_Tickets.Where(y => y.User_Id == x && y.Ticket_Id == ticket.Id).First();
             _entity.DeleteObject(userTicket);
@@ -132,6 +133,12 @@ public partial class Tickets_reassign : MasterAppPage
         }
         ticket.Assigned_To_Emails = emails;
         _entity.SaveChanges();
+
+        HtmlEmailer emailer = new HtmlEmailer(_entity, ticket);
+        foreach (var x in newUserLst)
+        {
+            emailer.Reassign_Ticket_EMail(_entity.tbl_Users.Where(y => y.Id == x).First());
+        }
         SuccessRedirect(Route.GetRootPath("tickets/reassign.aspx"), "Successfully reassigned !");
     }
 
