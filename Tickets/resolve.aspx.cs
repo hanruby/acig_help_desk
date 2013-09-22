@@ -36,7 +36,7 @@ public partial class Tickets_resolve : MasterAppPage
                              on sc.Category_Id equals c.Id
                              join u in _entity.tbl_Users
                              on t.Created_By equals u.Id
-                             where t.Id == _id && (t.State == "Pending" || t.State == "Not Resolved" || t.State == "Clarified")
+                             where t.Id == _id && (t.State == "Pending" || t.State == "Not Resolved" || t.State == "Clarified" || t.State == "Clarification")
                              select new
                              {
                                  Id = t.Id,
@@ -61,7 +61,7 @@ public partial class Tickets_resolve : MasterAppPage
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        routePath = Route.GetRootPath("tickets/assigned.aspx?scope=resolved");
+        routePath = Route.GetRootPath("tickets/assigned.aspx");
         _id = long.Parse(hdnFldTicketId.Value);
         currentUserId = CurrentUser.Id();
         _entity = GetEntity();
@@ -69,6 +69,7 @@ public partial class Tickets_resolve : MasterAppPage
         _ticket = _entity.Tickets.Where(x => x.Id == _id).First();
         _ticket.Resolved_Date = DateTime.Now;
         _ticket.State = "Resolved";
+        _entity.SaveChanges();
 
         _comment = new Comment
         {

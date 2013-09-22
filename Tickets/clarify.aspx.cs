@@ -67,6 +67,7 @@ public partial class Tickets_clarify : MasterAppPage
         _ticket.Clarified_Date = DateTime.Now;
         _ticket.Updated_At = DateTime.Now;
         _ticket.State = "Clarified";
+        _entity.SaveChanges();
 
         _comment = new Comment
         {

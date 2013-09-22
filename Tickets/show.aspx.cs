@@ -79,7 +79,7 @@ public partial class Tickets_show : MasterAppPage
                     lnkBtnReOpen.Visible = true;
                     lnkBtnReOpen.PostBackUrl = routePath + "tickets/re_open.aspx?id=" + x.Id;
                 }
-                else if ((currentUserId == x.AssignFromId || currentUserId == x.BehalfOf) && x.State == "Clarificaton")
+                else if ((currentUserId == x.AssignFromId || currentUserId == x.BehalfOf) && x.State == "Clarification")
                 {
                     lnkBtnClarify.Visible = true;
                     lnkBtnClarify.PostBackUrl = routePath + "tickets/clarify.aspx?id=" + x.Id;

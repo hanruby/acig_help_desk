@@ -18,7 +18,7 @@ public partial class Tickets_responded : MasterAppPage
             BindGvOpenTickets();
             BindGvClarifiedTickets();
             BindGvClosedTickets();
-            lblMainHeader.Text = "Tickets Created By Me !";
+            lblMainHeader.Text = "Tickets Waiting Engineer's Response !";
             lblOpen.Text = "Pending Tickets!";
             lblClarified.Text = "Clarified Tickets!";
             lblClosed.Text = "Closed Tickets!";
@@ -60,7 +60,7 @@ public partial class Tickets_responded : MasterAppPage
     protected void gvTicketsClarified_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         if (e.Row.RowType != DataControlRowType.DataRow) return;
-        var text = e.Row.Cells[6].Text;
+        var text = e.Row.Cells[7].Text;
         LinkButton lb;
         lb = new LinkButton();
         lb.CommandArgument = text;
@@ -68,7 +68,7 @@ public partial class Tickets_responded : MasterAppPage
         lb.Text = "Details";
         lb.PostBackUrl = "show.aspx?id=" + text;
         lb.CssClass = "blue-link";
-        e.Row.Cells[6].Controls.Add((Control)lb);
+        e.Row.Cells[7].Controls.Add((Control)lb);
     }
 
     protected void gvTicketsClosed_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -93,6 +93,7 @@ public partial class Tickets_responded : MasterAppPage
         dt.Columns.Add(new DataColumn("Open At", typeof(string)));
         if (scope == "clarified")
         {
+            dt.Columns.Add(new DataColumn("Clarification Requested At", typeof(string)));
             dt.Columns.Add(new DataColumn("Clarified At", typeof(string)));
         }
         else if (scope == "closed")
@@ -165,6 +166,7 @@ public partial class Tickets_responded : MasterAppPage
                    select new
                    {
                        OpenAt = t.Created_At,
+                       ClarificationAt = t.Clarification_Date,
                        ClarifiedAt = t.Clarified_Date,
                        ClosedAt = t.Closed_Date,
                        CategoryName = c.Name,
@@ -181,7 +183,8 @@ public partial class Tickets_responded : MasterAppPage
             dr["Subject"] = x.Subject;
             dr["Open At"] = x.OpenAt;
             dr["Assigned To"] = x.Assigned_To;
-            dr["Category"] = x.CategoryName + " >> " + x.SubCategoryName + " >> " + x.SubSubCategoryName; ;
+            dr["Category"] = x.CategoryName + " >> " + x.SubCategoryName + " >> " + x.SubSubCategoryName;
+            dr["Clarification Requested At"] = x.ClarificationAt;
             dr["Clarified At"] = x.ClarifiedAt;
             dr["Details"] = x.Id;
             dt.Rows.Add(dr);

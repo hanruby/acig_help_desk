@@ -56,7 +56,7 @@ public partial class Tickets_close : MasterAppPage
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        routePath = Route.GetRootPath("tickets/index.aspx");
+        routePath = Route.GetRootPath("dashboard.aspx");
         _id = long.Parse(hdnFldTicketId.Value);
         currentUserId = CurrentUser.Id();
         _entity = GetEntity();
@@ -65,6 +65,7 @@ public partial class Tickets_close : MasterAppPage
         _ticket.Rating = ddlRating.SelectedValue;
         _ticket.Closed_Date = DateTime.Now;
         _ticket.State = "Closed";
+        _entity.SaveChanges();
 
         if (txtDescription.Text.Trim().Length > 0)
         {

@@ -5,19 +5,22 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
     <asp:HiddenField ID="hdnFldTicketId" runat="server" />
-    <h2>
-        <span class="left">Ticket Details</span> <span class="right">
-            <asp:LinkButton ID="lnkBtnClarification" runat="server" CausesValidation="false" CssClass="btn btn-info right">Need Clarification?</asp:LinkButton>
-            &nbsp;
-            <asp:LinkButton ID="lnkBtnClarify" runat="server" CausesValidation="false" CssClass="btn btn-info right">Clarify?</asp:LinkButton>
-            &nbsp;
-            <asp:LinkButton ID="lnkBtnResolve" runat="server" CausesValidation="false" CssClass="btn btn-info right">Resolve Ticket</asp:LinkButton>
-            &nbsp;
-            <asp:LinkButton ID="lnkBtnReOpen" runat="server" CausesValidation="false" CssClass="btn btn-info">Reopen Ticket</asp:LinkButton>
-            &nbsp;
-            <asp:LinkButton ID="lnkBtnClose" runat="server" CausesValidation="false" CssClass="btn btn-info">Close Ticket</asp:LinkButton>
-        </span><span class="clear"></span>
-    </h2>
+    <div class="left">
+        <h2>
+            Ticket Details
+        </h2>
+    </div><div class="right">
+        <asp:LinkButton ID="lnkBtnClarification" runat="server" CausesValidation="false"
+            CssClass="btn btn-info right">Need More Clarification?</asp:LinkButton>
+        &nbsp;&nbsp;&nbsp;
+        <asp:LinkButton ID="lnkBtnClarify" runat="server" CausesValidation="false" CssClass="btn btn-info right">Clarify?</asp:LinkButton>
+        &nbsp;&nbsp;&nbsp;
+        <asp:LinkButton ID="lnkBtnResolve" runat="server" CausesValidation="false" CssClass="btn btn-info right">Resolve Ticket</asp:LinkButton>
+        &nbsp;&nbsp;&nbsp;
+        <asp:LinkButton ID="lnkBtnReOpen" runat="server" CausesValidation="false" CssClass="btn btn-info">Reopen Ticket</asp:LinkButton>
+        &nbsp;&nbsp;&nbsp;
+        <asp:LinkButton ID="lnkBtnClose" runat="server" CausesValidation="false" CssClass="btn btn-info">Close Ticket</asp:LinkButton>
+    </div><div class="clear"></div>
     <hr />
     <h4>
         Ticket States</h4>

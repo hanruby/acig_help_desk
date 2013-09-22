@@ -64,8 +64,8 @@ public partial class Tickets_re_open : MasterAppPage
         _entity = GetEntity();
 
         _ticket = _entity.Tickets.Where(x => x.Id == _id).First();
-        _ticket.Closed_Date = DateTime.Now;
         _ticket.State = "Pending";
+        _entity.SaveChanges();
 
         _comment = new Comment
         {

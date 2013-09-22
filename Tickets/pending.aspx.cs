@@ -17,7 +17,7 @@ public partial class Tickets_pending : MasterAppPage
         {
             BindGvClarificationTickets();
             BindGvResolvedTickets();
-            lblMainHeader.Text = "Tickets Created By Me !";
+            lblMainHeader.Text = "Tickets Waiting My Response !";
             lblClarification.Text = "Need Clarification Tickets!";
             lblResolved.Text = "Resolved Tickets!";
         }
@@ -99,7 +99,7 @@ public partial class Tickets_pending : MasterAppPage
         }
         else if (scope == "clarification")
         {
-            dt.Columns.Add(new DataColumn("Clarification Request At", typeof(string)));
+            dt.Columns.Add(new DataColumn("Clarification Requested At", typeof(string)));
         }
         dt.Columns.Add(new DataColumn("Assigned To", typeof(string)));
         dt.Columns.Add(new DataColumn("Category", typeof(string)));
@@ -132,6 +132,7 @@ public partial class Tickets_pending : MasterAppPage
                    select new
                    {
                        OpenAt = t.Created_At,
+                       ClarificationAt = t.Clarification_Date,
                        ResolvedAt = t.Resolved_Date,
                        ClosedAt = t.Closed_Date,
                        CategoryName = c.Name,
@@ -146,6 +147,7 @@ public partial class Tickets_pending : MasterAppPage
             dr = dt.NewRow();
             dr["ID"] = x.Id;
             dr["Subject"] = x.Subject;
+            dr["Clarification Requested At"] = x.ClarificationAt;
             dr["Open At"] = x.OpenAt;
             dr["Category"] = x.CategoryName + " >> " + x.SubCategoryName + " >> " + x.SubSubCategoryName;
             dr["Assigned To"] = x.Assigned_To;

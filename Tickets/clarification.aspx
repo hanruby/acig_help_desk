@@ -81,7 +81,7 @@
     </asp:Repeater>
     <hr />
     <fieldset class="login">
-        <legend>Need Clarification Ticket</legend>
+        <legend>Need More Clarification</legend>
         <p>
             <asp:Label ID="lblDescription" runat="server" Text="Description" AssociatedControlID="txtDescription"></asp:Label>
             <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" width="100%" Height="90px"></asp:TextBox>

@@ -23,7 +23,7 @@ public partial class Tickets_assigned_responded : MasterAppPage
             BindGvClarificationTickets();
             BindGvResolvedTickets();
             BindGvClosedTickets();
-            lblMainHeader.Text = "Tickets Assigned To Me !";
+            lblMainHeader.Text = "Assigned Tickets Responded!";
             lblClarification.Text = "Clarification Tickets!";
             lblResolved.Text = "Resolved Tickets!";
             lblClosed.Text = "Closed Tickets!";

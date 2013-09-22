@@ -22,7 +22,7 @@ public partial class Tickets_assigned : MasterAppPage
         {
             BindGvOpenTickets();
             BindGvClarifiedTickets();
-            lblMainHeader.Text = "Tickets Assigned To Me !";
+            lblMainHeader.Text = "Assigned Tickets Waiting My Response !";
             lblOpen.Text = "Pending Tickets!";
             lblClarified.Text = "Clarified Tickets!";
         }
@@ -56,10 +56,18 @@ public partial class Tickets_assigned : MasterAppPage
         lb = new LinkButton();
         lb.CommandArgument = text;
         lb.CommandName = "NumClick";
+        lb.Text = "Clarification";
+        lb.PostBackUrl = "clarification.aspx?id=" + text;
+        lb.CssClass = "blue-link";
+        e.Row.Cells[5].Controls.Add((Control)lb);
+
+        lb = new LinkButton();
+        lb.CommandArgument = text;
+        lb.CommandName = "NumClick";
         lb.Text = "Resolve";
         lb.PostBackUrl = "resolve.aspx?id=" + text;
         lb.CssClass = "blue-link";
-        e.Row.Cells[5].Controls.Add((Control)lb);
+        e.Row.Cells[6].Controls.Add((Control)lb);
     }
 
     protected void gvTicketsClarified_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -93,10 +101,14 @@ public partial class Tickets_assigned : MasterAppPage
         if (scope == "clarified")
         {
             dt.Columns.Add(new DataColumn("Clarification Request Sent At", typeof(string)));
-            dt.Columns.Add(new DataColumn("Clarified Request Sent At", typeof(string)));
+            dt.Columns.Add(new DataColumn("Clarified At", typeof(string)));
         }
         dt.Columns.Add(new DataColumn("Category", typeof(string)));
         dt.Columns.Add(new DataColumn("Details", typeof(string)));
+        if (scope == "open")
+        {
+            dt.Columns.Add(new DataColumn("Need More Clarification?", typeof(string)));
+        }
         dt.Columns.Add(new DataColumn("Resolve?", typeof(string)));
     }
 
@@ -138,6 +150,7 @@ public partial class Tickets_assigned : MasterAppPage
             dr["Open At"] = x.OpenAt;
             dr["Category"] = x.CategoryName + " >> " + x.SubCategoryName + " >> " + x.SubSubCategoryName;
             dr["Details"] = x.Id;
+            dr["Need More Clarification?"] = x.Id;
             dr["Resolve?"] = x.Id;
             dt.Rows.Add(dr);
         }
@@ -149,7 +162,7 @@ public partial class Tickets_assigned : MasterAppPage
     {
         dr = null;
         currentUserId = CurrentUser.Id();
-        GetHeader("resolved");
+        GetHeader("clarified");
         _entity = GetEntity();
         var data = from t in _entity.Tickets
                    join ssc in _entity.Sub_Sub_Categories
