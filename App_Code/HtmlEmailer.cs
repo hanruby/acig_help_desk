@@ -207,6 +207,26 @@ public class HtmlEmailer
         return;
     }
 
+    public void Clarifed_Ticket_EMail()
+    {
+        string body = string.Empty;
+        foreach (var x in ticket.User_Tickets)
+        {
+            using (StreamReader reader = new StreamReader(GetPath("~/Email_Templates/Ticket_Clarified.htm")))
+            {
+                body = reader.ReadToEnd();
+            }
+            body = body.Replace("{Id}", Id);
+            body = body.Replace("{Subject}", subject);
+            body = body.Replace("{UserName}", x.tbl_Users.User_Name);
+            body = body.Replace("{Url}", url);
+            body = body.Replace("{Category}", category);
+            body = body.Replace("{User}", createdBy);
+            Notifier.SendEmail("crmmailadmin@acig.com.sa", x.tbl_Users.Email, "IT Help Desk - Ticket Clarified", body);
+        }
+        return;
+    }
+
     public static void New_User_Sign_Up(Acig_Help_DeskEntities entity, tbl_Users user)
     {
         string body, parsedBody = string.Empty;

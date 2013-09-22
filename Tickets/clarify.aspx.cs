@@ -89,7 +89,7 @@ public partial class Tickets_clarify : MasterAppPage
         _entity.SaveChanges();
 
         HtmlEmailer emailer = new HtmlEmailer(_entity, _ticket);
-        emailer.Re_Open_Ticket_EMail();
+        emailer.Clarifed_Ticket_EMail();
 
         SuccessRedirect(routePath, "Successfully clarified ticket !");
     }
