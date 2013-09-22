@@ -53,11 +53,11 @@ public static class CurrentUser
         String returnUrl = string.Empty;
         if (role == "engineer")
         {
-            returnUrl = Route.GetRootPath("tickets/assigned.aspx");
+            returnUrl = Route.GetRootPath("dashboard.aspx");
         }
         else
         {
-            returnUrl = Route.GetRootPath("tickets/index.aspx");
+            returnUrl = Route.GetRootPath("dashboard.aspx");
         }
         return returnUrl;
     }

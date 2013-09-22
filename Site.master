@@ -44,8 +44,7 @@
                         <asp:MenuItem NavigateUrl="~/admin/users/index.aspx" Text="Users" Value="admin" />
                         <asp:MenuItem NavigateUrl="~/admin/categories/index.aspx" Text="Categories" Value="admin" />
                         <asp:MenuItem NavigateUrl="~/admin/departments/index.aspx" Text="Departments" Value="admin" />
-                        <asp:MenuItem NavigateUrl="~/tickets/index.aspx" Text="Tickets" Value="" />
-                        <asp:MenuItem NavigateUrl="~/tickets/assigned.aspx" Text="Assigned Tickets" Value="engineer" />
+                        <asp:MenuItem NavigateUrl="~/dashboard.aspx" Text="Dashboard" Value="" />
                         <asp:MenuItem NavigateUrl="~/tickets/new.aspx" Text="New Ticket" Value="" />
                         <asp:MenuItem NavigateUrl="~/tickets/call.aspx" Text="New Call Ticket" Value="engineer" />
                         <asp:MenuItem NavigateUrl="~/tickets/reassign.aspx" Text="Reassign Ticket" Value="admin" />
