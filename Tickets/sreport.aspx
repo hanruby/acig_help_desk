@@ -17,6 +17,9 @@
         &nbsp;
         <asp:LinkButton ID="lnkBtnReportByUser" CommandArgument="manager,vp,coo,ceo" runat="server"
             CausesValidation="false" CssClass="btn btn-inverse" PostBackUrl="~/Tickets/full_report2.aspx">Report By User</asp:LinkButton>
+        &nbsp;
+        <asp:LinkButton ID="lnkBtnReportByEngineer" CommandArgument="manager,vp,coo,ceo"
+            runat="server" CausesValidation="false" CssClass="btn btn-inverse" PostBackUrl="~/Tickets/ereport.aspx">Report By Engineer</asp:LinkButton>
     </h3>
     <div class="clear">
     </div>

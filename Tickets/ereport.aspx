@@ -1,11 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
-    CodeFile="full_report.aspx.cs" Inherits="Tickets_full_report" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="ereport.aspx.cs" Inherits="Tickets_ereport" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
-    <script type="text/javascript" src="../scripts/datepicker-range.js"></script>
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
-    <h3>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
+   <h3>
         <asp:LinkButton ID="lnkBtnReport" runat="server" CausesValidation="false" CssClass="btn btn-inverse"
             PostBackUrl="~/Tickets/report.aspx">Report</asp:LinkButton>
         &nbsp;
@@ -18,8 +16,8 @@
         <asp:LinkButton ID="lnkBtnReportByUser" CommandArgument="manager,vp,coo,ceo" runat="server"
             CausesValidation="false" CssClass="btn btn-inverse" PostBackUrl="~/Tickets/full_report2.aspx">Report By User</asp:LinkButton>
         &nbsp;
-        <asp:LinkButton ID="lnkBtnReportByEngineer" CommandArgument="manager,vp,coo,ceo"
-            runat="server" CausesValidation="false" CssClass="btn btn-inverse" PostBackUrl="~/Tickets/ereport.aspx">Report By Engineer</asp:LinkButton>
+        <asp:LinkButton ID="lnkBtnReportByEngineer" CommandArgument="manager,vp,coo,ceo" runat="server"
+            CausesValidation="false" CssClass="btn btn-inverse" PostBackUrl="~/Tickets/ereport.aspx">Report By Engineer</asp:LinkButton>
     </h3>
     <div class="clear">
     </div>
@@ -70,84 +68,7 @@
                     <table class="table table-bordered">
                         <tr>
                             <th>
-                                Department
-                            </th>
-                            <th>
-                                Tickets
-                            </th>
-                        </tr>
-                </HeaderTemplate>
-                <ItemTemplate>
-                    <tr>
-                        <td>
-                            <%# Eval("email") %>
-                        </td>
-                        <asp:Repeater ID="rptrStates" runat="server" DataSource='<%# Eval("states") %>'>
-                            <HeaderTemplate>
-                                <td>
-                                    <table class="table table-bordered">
-                                        <tr>
-                                            <th>
-                                                State
-                                            </th>
-                                            <th>
-                                                Count
-                                            </th>
-                                        </tr>
-                            </HeaderTemplate>
-                            <ItemTemplate>
-                                <tr>
-                                    <td>
-                                        <%# Eval("state") %>
-                                    </td>
-                                    <td>
-                                        <%# Eval("count") %>
-                                    </td>
-                                </tr>
-                            </ItemTemplate>
-                            <FooterTemplate>
-                                </table> </td>
-                            </FooterTemplate>
-                        </asp:Repeater>
-                    </tr>
-                </ItemTemplate>
-                <FooterTemplate>
-                    </table> </hr>
-                </FooterTemplate>
-            </asp:Repeater>
-            <div class="left">
-                <h3 style="margin: 0;">
-                    <a href="#">
-                        <asp:Label ID="lblTicketsAssigned" runat="server" Text=""></asp:Label></a></h3>
-            </div>
-            <div class="right">
-                <asp:LinkButton ID="lnkBtnAll" runat="server" OnClick="lnkBtnAll_Click">All</asp:LinkButton>
-                &nbsp;
-                <asp:LinkButton ID="lnkBtnThisWeek" runat="server" OnClick="lnkBtnThisWeek_Click">This Week</asp:LinkButton>
-                &nbsp;
-                <asp:LinkButton ID="lnkBtnLastWeek" runat="server" OnClick="lnkBtnLastWeek_Click">Last Week</asp:LinkButton>
-                &nbsp;
-                <asp:LinkButton ID="lnkBtnThisMonth" runat="server" OnClick="lnkBtnThisMonth_Click">This Month</asp:LinkButton>
-                &nbsp;
-                <asp:LinkButton ID="lnkBtnLastMonth" runat="server" OnClick="lnkBtnLastMonth_Click">Last Month</asp:LinkButton>
-                &nbsp;
-                <asp:TextBox ID="txtStartDate" runat="server" CssClass="input-small start-date"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rfvStartDate" runat="server" ControlToValidate="txtStartDate"
-                    ForeColor="#FF3300" SetFocusOnError="True" ValidationGroup="assigned">*</asp:RequiredFieldValidator>
-                <asp:TextBox ID="txtEndDate" runat="server" CssClass="input-small end-date"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rfvEndDate" runat="server" ControlToValidate="txtEndDate"
-                    ForeColor="#FF3300" SetFocusOnError="True" ValidationGroup="assigned">*</asp:RequiredFieldValidator>
-                <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-success"
-                    OnClick="btnSearch_Click" ValidationGroup="assigned" />
-            </div>
-            <div class="clear">
-            </div>
-            <asp:Repeater ID="rptrFullReportAssigned" runat="server">
-                <HeaderTemplate>
-                    <table class="table table-bordered">
-                        <tr>
-                            <th>
-                                Department
+                                Engineer
                             </th>
                             <th>
                                 Tickets
@@ -195,3 +116,4 @@
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
+

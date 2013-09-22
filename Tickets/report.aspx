@@ -5,18 +5,23 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
     <h3>
-    <asp:LinkButton ID="lnkBtnReport" runat="server" CausesValidation="false" CssClass="btn btn-inverse" PostBackUrl="~/Tickets/report.aspx">Report</asp:LinkButton>
-    &nbsp;
-    <asp:LinkButton ID="lnkBtnReportSuperVisor" CommandArgument="supervisor" runat="server"
-     CausesValidation="false" CssClass="btn btn-inverse" PostBackUrl="~/Tickets/sreport.aspx">Report By Supervisor</asp:LinkButton>
-    &nbsp;
-    <asp:LinkButton ID="lnkBtnFullReport" CommandArgument="manager,vp,coo,ceo" runat="server"
-     CausesValidation="false" CssClass="btn btn-inverse" PostBackUrl="~/Tickets/full_report.aspx">Full Report</asp:LinkButton>
-    &nbsp;
-    <asp:LinkButton ID="lnkBtnReportByUser" CommandArgument="manager,vp,coo,ceo" runat="server" 
-    CausesValidation="false" CssClass="btn btn-inverse" PostBackUrl="~/Tickets/full_report2.aspx">Report By User</asp:LinkButton>
+        <asp:LinkButton ID="lnkBtnReport" runat="server" CausesValidation="false" CssClass="btn btn-inverse"
+            PostBackUrl="~/Tickets/report.aspx">Report</asp:LinkButton>
+        &nbsp;
+        <asp:LinkButton ID="lnkBtnReportSuperVisor" CommandArgument="supervisor" runat="server"
+            CausesValidation="false" CssClass="btn btn-inverse" PostBackUrl="~/Tickets/sreport.aspx">Report By Supervisor</asp:LinkButton>
+        &nbsp;
+        <asp:LinkButton ID="lnkBtnFullReport" CommandArgument="manager,vp,coo,ceo" runat="server"
+            CausesValidation="false" CssClass="btn btn-inverse" PostBackUrl="~/Tickets/full_report.aspx">Full Report</asp:LinkButton>
+        &nbsp;
+        <asp:LinkButton ID="lnkBtnReportByUser" CommandArgument="manager,vp,coo,ceo" runat="server"
+            CausesValidation="false" CssClass="btn btn-inverse" PostBackUrl="~/Tickets/full_report2.aspx">Report By User</asp:LinkButton>
+        &nbsp;
+        <asp:LinkButton ID="lnkBtnReportByEngineer" CommandArgument="manager,vp,coo,ceo"
+            runat="server" CausesValidation="false" CssClass="btn btn-inverse" PostBackUrl="~/Tickets/ereport.aspx">Report By Engineer</asp:LinkButton>
     </h3>
-    <div class="clear"></div>
+    <div class="clear">
+    </div>
     <br />
     <div id="divEngineer1" runat="server" class="left" style="width: 30%; margin-right: 10px;">
         <h3 style="display: inline;">
