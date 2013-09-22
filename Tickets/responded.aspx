@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
-    CodeFile="assigned.aspx.cs" Inherits="Tickets_assigned" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="responded.aspx.cs" Inherits="Tickets_responded" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
 </asp:Content>
@@ -26,4 +25,13 @@
         OnPageIndexChanging="gvTicketsClarified_PageIndexChanging" PageSize="10">
     </asp:GridView>
     <hr />
+    <h3>
+        <asp:Label ID="lblClosed" runat="server" Text="Label"></asp:Label>
+    </h3>
+    <asp:GridView ID="gvTicketsClosed" runat="server" Width="100%" CssClass="table table-bordered"
+        EmptyDataText="No Records" OnRowDataBound="gvTicketsClosed_RowDataBound" AllowPaging="true"
+        OnPageIndexChanging="gvTicketsClosed_PageIndexChanging" PageSize="10">
+    </asp:GridView>
+    <hr />
 </asp:Content>
+

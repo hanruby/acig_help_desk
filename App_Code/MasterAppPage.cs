@@ -41,6 +41,16 @@ public class MasterAppPage : System.Web.UI.Page
         return count > 0;
     }
 
+    protected bool CanClarify(long ticketId)
+    {
+        var count = (from t in _entity.Tickets
+                     join ut in _entity.User_Tickets
+                     on t.Id equals ut.Ticket_Id
+                     where ut.User_Id == currentUserId && ut.Ticket_Id == ticketId && (t.State == "Pending" || t.State == "Clarification")
+                     select new { tckt = t }).Count();
+        return count > 0;
+    }
+
     protected void HideReportLinks(LinkButton btnSupervisor, LinkButton btnFullReport, LinkButton btnReportByUser)
     {
         var role = CurrentUser.Role();

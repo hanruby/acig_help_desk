@@ -2597,6 +2597,54 @@ namespace Acig_Help_DeskModel
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> Clarification_Date
+        {
+            get
+            {
+                return _Clarification_Date;
+            }
+            set
+            {
+                OnClarification_DateChanging(value);
+                ReportPropertyChanging("Clarification_Date");
+                _Clarification_Date = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Clarification_Date");
+                OnClarification_DateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _Clarification_Date;
+        partial void OnClarification_DateChanging(Nullable<global::System.DateTime> value);
+        partial void OnClarification_DateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> Clarified_Date
+        {
+            get
+            {
+                return _Clarified_Date;
+            }
+            set
+            {
+                OnClarified_DateChanging(value);
+                ReportPropertyChanging("Clarified_Date");
+                _Clarified_Date = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Clarified_Date");
+                OnClarified_DateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _Clarified_Date;
+        partial void OnClarified_DateChanging(Nullable<global::System.DateTime> value);
+        partial void OnClarified_DateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.DateTime Created_At

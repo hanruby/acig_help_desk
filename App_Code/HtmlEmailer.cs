@@ -80,6 +80,39 @@ public class HtmlEmailer
         return;
     }
 
+    public void Ticket_Clarification_EMail()
+    {
+        string body = string.Empty;
+        using (StreamReader reader = new StreamReader(GetPath("~/Email_Templates/Ticket_Clarification.htm")))
+        {
+            body = reader.ReadToEnd();
+        }
+        body = body.Replace("{Id}", Id);
+        body = body.Replace("{Subject}", subject);
+        body = body.Replace("{UserName}", createdBy);
+        body = body.Replace("{Url}", url);
+        body = body.Replace("{Category}", category);
+        body = body.Replace("{User}", CurrentUser.User().User_Name);
+        Notifier.SendEmail("crmmailadmin@acig.com.sa", createdByEmail, "IT Help Desk - Ticket Clarification", body);
+        if (ticket.On_Behalf != null)
+        {
+            using (StreamReader reader = new StreamReader(GetPath("~/Email_Templates/Ticket_Clarification.htm")))
+            {
+                body = reader.ReadToEnd();
+            }
+            body = body.Replace("{Id}", Id);
+            body = body.Replace("{Subject}", subject);
+            var customId = long.Parse(ticket.On_Behalf.ToString());
+            var customUser = _entity.tbl_Users.Where(x => x.Id == customId).First();
+            body = body.Replace("{UserName}", customUser.Email);
+            body = body.Replace("{Url}", url);
+            body = body.Replace("{Category}", category);
+            body = body.Replace("{User}", CurrentUser.User().User_Name);
+            Notifier.SendEmail("crmmailadmin@acig.com.sa", createdByEmail, "IT Help Desk - Ticket Clarification", body);
+        }
+        return;
+    }
+
     public void Closed_Ticket_EMail()
     {
         string body = string.Empty;

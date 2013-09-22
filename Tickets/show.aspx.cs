@@ -17,7 +17,7 @@ public partial class Tickets_show : MasterAppPage
     {
         if (!IsPostBack)
         {
-            lnkBtnResolve.Visible = lnkBtnClose.Visible = lnkBtnReOpen.Visible = false;
+            lnkBtnClarification.Visible = lnkBtnClarify.Visible = lnkBtnResolve.Visible = lnkBtnClose.Visible = lnkBtnReOpen.Visible = false;
             routePath = Route.GetRootPath("");
             _id = long.Parse(Request.QueryString["id"]);
             hdnFldTicketId.Value = _id.ToString();
@@ -79,9 +79,17 @@ public partial class Tickets_show : MasterAppPage
                     lnkBtnReOpen.Visible = true;
                     lnkBtnReOpen.PostBackUrl = routePath + "tickets/re_open.aspx?id=" + x.Id;
                 }
+                else if ((currentUserId == x.AssignFromId || currentUserId == x.BehalfOf) && x.State == "Clarificaton")
+                {
+                    lnkBtnClarify.Visible = true;
+                    lnkBtnClarify.PostBackUrl = routePath + "tickets/clarify.aspx?id=" + x.Id;
+                }
                 else if (CanResolve(_id))
                 {
                     NewCommentDiv.Visible = true;
+                    lnkBtnClarification.Visible = true;
+                    lnkBtnClarification.PostBackUrl = routePath + "tickets/clarification.aspx?id=" + x.Id;
+
                     lnkBtnResolve.Visible = true;
                     lnkBtnResolve.PostBackUrl = routePath + "tickets/resolve.aspx?id=" + x.Id;
                 }

@@ -167,6 +167,8 @@
           <Property Name="Rating" Type="nvarchar" MaxLength="50" />
           <Property Name="Resolved_Date" Type="datetime" />
           <Property Name="Closed_Date" Type="datetime" />
+          <Property Name="Clarification_Date" Type="datetime" />
+          <Property Name="Clarified_Date" Type="datetime" />
           <Property Name="Created_At" Type="datetime" Nullable="false" />
           <Property Name="Updated_At" Type="datetime" Nullable="false" />
         </EntityType>
@@ -641,6 +643,8 @@
           <Property Type="String" Name="Rating" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="Resolved_Date" />
           <Property Type="DateTime" Name="Closed_Date" />
+          <Property Type="DateTime" Name="Clarification_Date" />
+          <Property Type="DateTime" Name="Clarified_Date" />
           <Property Type="DateTime" Name="Created_At" Nullable="false" />
           <Property Type="DateTime" Name="Updated_At" Nullable="false" />
           <NavigationProperty Name="Comments" Relationship="Acig_Help_DeskModel.FK_Comments_Tickets" FromRole="Ticket" ToRole="Comment" />
@@ -827,6 +831,8 @@
               <MappingFragment StoreEntitySet="Tickets">
                 <ScalarProperty Name="Updated_At" ColumnName="Updated_At" />
                 <ScalarProperty Name="Created_At" ColumnName="Created_At" />
+                <ScalarProperty Name="Clarified_Date" ColumnName="Clarified_Date" />
+                <ScalarProperty Name="Clarification_Date" ColumnName="Clarification_Date" />
                 <ScalarProperty Name="Closed_Date" ColumnName="Closed_Date" />
                 <ScalarProperty Name="Resolved_Date" ColumnName="Resolved_Date" />
                 <ScalarProperty Name="Rating" ColumnName="Rating" />
@@ -885,10 +891,10 @@
         <EntityTypeShape EntityType="Acig_Help_DeskModel.Department" Width="1.5" PointX="4.375" PointY="11.75" Height="2.3648893229166745" />
         <EntityTypeShape EntityType="Acig_Help_DeskModel.tbl_Users" Width="1.5" PointX="6.625" PointY="11" Height="3.9033007812500031" />
         <AssociationConnector Association="Acig_Help_DeskModel.FK_Comments_tbl_Users" >
-          <ConnectorPoint PointX="7.370118171875" PointY="11" />
-          <ConnectorPoint PointX="7.370118171875" PointY="8.37474609375" />
-          <ConnectorPoint PointX="7.1433899192708337" PointY="8.37474609375" />
-          <ConnectorPoint PointX="6.9767232526041676" PointY="8.37474609375" />
+          <ConnectorPoint PointX="7.3665781464843754" PointY="11" />
+          <ConnectorPoint PointX="7.3665781464843754" PointY="8.37474609375" />
+          <ConnectorPoint PointX="7.1416199065755208" PointY="8.37474609375" />
+          <ConnectorPoint PointX="6.9749532399088547" PointY="8.37474609375" />
           <ConnectorPoint PointX="6.75" PointY="8.37474609375" />
         </AssociationConnector>
         <AssociationConnector Association="Acig_Help_DeskModel.FK_tbl_Users_Departments" >
@@ -901,55 +907,55 @@
           <ConnectorPoint PointX="9" PointY="9.4898893229166674" />
         </AssociationConnector>
         <AssociationConnector Association="Acig_Help_DeskModel.FK_User_Sub_Sub_Categories_tbl_Users" >
-          <ConnectorPoint PointX="7.7788115859375" PointY="11" />
-          <ConnectorPoint PointX="7.7788115859375" PointY="5.5068441341145871" />
+          <ConnectorPoint PointX="7.7770415732421876" PointY="11" />
+          <ConnectorPoint PointX="7.7770415732421876" PointY="5.5068441341145871" />
           <ConnectorPoint PointX="8.25" PointY="5.5068441341145871" />
         </AssociationConnector>
         <AssociationConnector Association="Acig_Help_DeskModel.FK_User_Tickets_tbl_Users" >
-          <ConnectorPoint PointX="7.0600565859375006" PointY="11" />
-          <ConnectorPoint PointX="7.0600565859375006" PointY="6.5740364583333353" />
-          <ConnectorPoint PointX="7.6954782526041674" PointY="6.5740364583333344" />
-          <ConnectorPoint PointX="7.8621449192708335" PointY="6.5740364583333353" />
+          <ConnectorPoint PointX="7.0582865732421878" PointY="11" />
+          <ConnectorPoint PointX="7.0582865732421878" PointY="6.5740364583333353" />
+          <ConnectorPoint PointX="7.6937082399088546" PointY="6.5740364583333344" />
+          <ConnectorPoint PointX="7.8603749065755206" PointY="6.5740364583333353" />
           <ConnectorPoint PointX="10.5" PointY="6.5740364583333353" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="Acig_Help_DeskModel.Ticket" Width="1.5" PointX="10.875" PointY="8" Height="4.6725065104166674" />
+        <EntityTypeShape EntityType="Acig_Help_DeskModel.Ticket" Width="1.5" PointX="10.875" PointY="7.875" Height="5.0571093750000031" />
         <AssociationConnector Association="Acig_Help_DeskModel.FK_Comments_Tickets" >
           <ConnectorPoint PointX="10.875" PointY="9.6509407552083335" />
           <ConnectorPoint PointX="9.0833333333333339" PointY="9.6509407552083335" />
           <ConnectorPoint PointX="8.9166666666666661" PointY="9.6509407552083335" />
-          <ConnectorPoint PointX="7.8621449192708335" PointY="9.6509407552083335" />
-          <ConnectorPoint PointX="7.6954782526041674" PointY="9.6509407552083335" />
-          <ConnectorPoint PointX="7.4534515052083332" PointY="9.6509407552083335" />
-          <ConnectorPoint PointX="7.2867848385416671" PointY="9.6509407552083335" />
-          <ConnectorPoint PointX="7.1433899192708337" PointY="9.6509407552083335" />
-          <ConnectorPoint PointX="6.9767232526041676" PointY="9.6509407552083335" />
+          <ConnectorPoint PointX="7.8603749065755206" PointY="9.6509407552083335" />
+          <ConnectorPoint PointX="7.6937082399088546" PointY="9.6509407552083335" />
+          <ConnectorPoint PointX="7.4499114798177084" PointY="9.6509407552083335" />
+          <ConnectorPoint PointX="7.2832448131510423" PointY="9.6509407552083335" />
+          <ConnectorPoint PointX="7.1416199065755208" PointY="9.6509407552083335" />
+          <ConnectorPoint PointX="6.9749532399088547" PointY="9.6509407552083335" />
           <ConnectorPoint PointX="6.75" PointY="9.6509407552083335" />
         </AssociationConnector>
         <AssociationConnector Association="Acig_Help_DeskModel.FK_Events_Tickets" >
-          <ConnectorPoint PointX="10.875" PointY="8.7449446614583337" />
-          <ConnectorPoint PointX="9.75" PointY="8.7449446614583337" />
+          <ConnectorPoint PointX="10.875" PointY="8.6824446614583337" />
+          <ConnectorPoint PointX="9.75" PointY="8.6824446614583337" />
         </AssociationConnector>
         <AssociationConnector Association="Acig_Help_DeskModel.FK_Tickets_Sub_Categories" >
           <ConnectorPoint PointX="3.6875" PointY="4.8167936197916656" />
           <ConnectorPoint PointX="3.6875" PointY="10.37474609375" />
-          <ConnectorPoint PointX="6.9767232526041676" PointY="10.37474609375" />
-          <ConnectorPoint PointX="7.1433899192708337" PointY="10.37474609375" />
-          <ConnectorPoint PointX="7.2867848385416671" PointY="10.37474609375" />
-          <ConnectorPoint PointX="7.4534515052083332" PointY="10.37474609375" />
-          <ConnectorPoint PointX="7.6954782526041674" PointY="10.37474609375" />
-          <ConnectorPoint PointX="7.8621449192708335" PointY="10.37474609375" />
+          <ConnectorPoint PointX="6.9749532399088547" PointY="10.37474609375" />
+          <ConnectorPoint PointX="7.1416199065755208" PointY="10.37474609375" />
+          <ConnectorPoint PointX="7.2832448131510423" PointY="10.37474609375" />
+          <ConnectorPoint PointX="7.4499114798177084" PointY="10.37474609375" />
+          <ConnectorPoint PointX="7.6937082399088546" PointY="10.37474609375" />
+          <ConnectorPoint PointX="7.8603749065755206" PointY="10.37474609375" />
           <ConnectorPoint PointX="8.9166666666666661" PointY="10.37474609375" />
           <ConnectorPoint PointX="9.0833333333333339" PointY="10.37474609375" />
           <ConnectorPoint PointX="10.875" PointY="10.37474609375" />
         </AssociationConnector>
         <AssociationConnector Association="Acig_Help_DeskModel.FK_Tickets_Users" >
-          <ConnectorPoint PointX="8.125" PointY="11.836253255208334" />
-          <ConnectorPoint PointX="8.9166666666666661" PointY="11.836253255208334" />
-          <ConnectorPoint PointX="9.0833333333333339" PointY="11.836253255208334" />
-          <ConnectorPoint PointX="10.875" PointY="11.836253255208334" />
+          <ConnectorPoint PointX="8.125" PointY="11.966054687500002" />
+          <ConnectorPoint PointX="8.9166666666666661" PointY="11.966054687500002" />
+          <ConnectorPoint PointX="9.0833333333333339" PointY="11.966054687500002" />
+          <ConnectorPoint PointX="10.875" PointY="11.966054687500002" />
         </AssociationConnector>
         <AssociationConnector Association="Acig_Help_DeskModel.FK_User_Tickets_Tickets" >
-          <ConnectorPoint PointX="11.4375" PointY="8" />
+          <ConnectorPoint PointX="11.4375" PointY="7.875" />
           <ConnectorPoint PointX="11.4375" PointY="6.7302864583333326" />
         </AssociationConnector>
       </Diagram>
