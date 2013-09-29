@@ -33,13 +33,13 @@ public partial class Tickets_ereport : MasterAppPage
 
     protected void BindGridViewFull()
     {
-        lblTicketsCreated.Text = "Tickets Created By Department !!";
+        lblTicketsCreated.Text = "Tickets Assigned To Engineer !!";
         txtStartDateTC.Text = string.Empty;
         txtEndDateTC.Text = string.Empty;
         _entity = GetEntity();
         var data = from t in _entity.Tickets
                    join ut in _entity.User_Tickets
-                   on t.Created_By equals ut.User_Id
+                   on t.Id equals ut.Ticket_Id
                    join u in _entity.tbl_Users
                    on ut.User_Id equals u.Id
                    group t by new { u.Email, t.State } into Grp
@@ -69,7 +69,7 @@ public partial class Tickets_ereport : MasterAppPage
         GetStartAndEndDate(type, "ticket_created");
         txtStartDateTC.Text = startDate;
         txtEndDateTC.Text = endDate;
-        lblTicketsCreated.Text = "Tickets Assigned to User From " + startDate + " To " + endDate + " !!";
+        lblTicketsCreated.Text = "Tickets Assigned to Engineer From " + startDate + " To " + endDate + " !!";
         _entity = GetEntity();
         var data = from t in _entity.Tickets
                    join ut in _entity.User_Tickets

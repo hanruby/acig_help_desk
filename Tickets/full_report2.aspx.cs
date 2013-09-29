@@ -34,7 +34,7 @@ public partial class Tickets_full_report2 : MasterAppPage
 
     protected void BindGridViewFull()
     {
-        lblTicketsCreated.Text = "Tickets Created By Department !!";
+        lblTicketsCreated.Text = "Tickets Created By User !!";
         txtStartDateTC.Text = string.Empty;
         txtEndDateTC.Text = string.Empty;
         _entity = GetEntity();
@@ -70,7 +70,7 @@ public partial class Tickets_full_report2 : MasterAppPage
         GetStartAndEndDate(type, "ticket_created");
         txtStartDateTC.Text = startDate;
         txtEndDateTC.Text = endDate;
-        lblTicketsCreated.Text = "Tickets Assigned to User From " + startDate + " To " + endDate + " !!";
+        lblTicketsCreated.Text = "Tickets Created By User From " + startDate + " To " + endDate + " !!";
         _entity = GetEntity();
         var data = from t in _entity.Tickets
                    join u in _entity.tbl_Users
