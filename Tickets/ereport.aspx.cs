@@ -73,7 +73,7 @@ public partial class Tickets_ereport : MasterAppPage
         _entity = GetEntity();
         var data = from t in _entity.Tickets
                    join ut in _entity.User_Tickets
-                   on t.Created_By equals ut.User_Id
+                   on t.Id equals ut.Ticket_Id
                    join u in _entity.tbl_Users
                    on ut.User_Id equals u.Id
                    where t.Created_At >= startDateT && t.Created_At <= endDateT
