@@ -25,7 +25,7 @@ public class Notifier
         {
             Host = "mail.acig.com.sa",
             Port = 25,
-            EnableSsl = false,
+            EnableSsl = true,
             DeliveryMethod = SmtpDeliveryMethod.Network,
             UseDefaultCredentials = false,
             Credentials = new NetworkCredential("crmmailadmin", "passwoRd5656")
