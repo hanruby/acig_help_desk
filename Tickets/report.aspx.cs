@@ -10,6 +10,7 @@ public partial class Tickets_report : MasterAppPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        BindBreadCrumbRepeater("report");
         HideReportLinks(lnkBtnReportSuperVisor, lnkBtnFullReport, lnkBtnReportByUser);
         _entity = GetEntity();
         currentUserId = CurrentUser.Id();
@@ -20,7 +21,6 @@ public partial class Tickets_report : MasterAppPage
         if (!CurrentUser.Is_Engineer())
         {
             divEngineer1.Visible = false;
-            divEngineer2.Visible = false;
             return;
         }
         var data = from t in _entity.Tickets

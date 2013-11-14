@@ -19,6 +19,7 @@ public partial class Tickets_new : MasterAppPage
         if (!IsPostBack)
         {
             hdnFldId.Value = CurrentUser.Id().ToString();
+            BindBreadCrumbRepeater("new_ticket");
         }
     }
 

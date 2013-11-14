@@ -16,6 +16,7 @@ public partial class Tickets_search : MasterAppPage
         if (!IsPostBack)
         {
             UpdateFields(true, false);
+            BindBreadCrumbRepeater("search_ticket");
         }
     }
 

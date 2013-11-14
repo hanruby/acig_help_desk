@@ -35,92 +35,104 @@
     </asp:UpdateProgress>
     <asp:UpdatePanel ID="updatePanelCity" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
-            <fieldset class="login">
-                <legend>Search Ticket</legend>
-                <table style="width: 100%;" class="table table-bordered">
-                    <tr>
-                        <th>
-                            State
-                        </th>
-                        <th>
-                            Search Field
-                        </th>
-                        <th>
-                            Search Value
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:DropDownList ID="ddlTicketType" runat="server">
-                                <asp:ListItem Value="Pending">Pending</asp:ListItem>
-                                <asp:ListItem Value="Resolved">Resolved</asp:ListItem>
-                                <asp:ListItem Value="Closed">Closed</asp:ListItem>
-                            </asp:DropDownList>
-                        </td>
-                        <td>
-                            <asp:DropDownList ID="ddlSearchField" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlSearchField_SelectedIndexChanged">
-                                <asp:ListItem>Created By</asp:ListItem>
-                                <asp:ListItem>Assigned To</asp:ListItem>
-                                <asp:ListItem>Subject</asp:ListItem>
-                                <asp:ListItem>Open Date</asp:ListItem>
-                            </asp:DropDownList>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtString" runat="server"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfvString" runat="server" ControlToValidate="txtString"
-                                ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
-                            <asp:TextBox ID="txtDate" runat="server" CssClass="datePicker"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfvDate" runat="server" ControlToValidate="txtDate"
-                                ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
-                        </td>
-                        <td>
-                            <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary"
-                                OnClick="btnSearch_Click" />
-                        </td>
-                    </tr>
-                </table>
-            </fieldset>
-            <asp:HiddenField ID="hdnFldTicketType" runat="server" />
-            <asp:GridView ID="gvTickets" runat="server" Width="100%" CssClass="table table-bordered"
-                EmptyDataText="No Records" AutoGenerateColumns="false">
-                <Columns>
-                    <asp:TemplateField HeaderText="Ticket ID">
-                        <ItemTemplate>
-                            <asp:Label ID="lblTicketId" runat="server" Text='<%# Eval("Id")%>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Open At">
-                        <ItemTemplate>
-                            <asp:Label ID="lblTicketOpenAt" runat="server" Text='<%# Eval("Opened_At")%>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Open By">
-                        <ItemTemplate>
-                            <asp:Label ID="lblCreatedBy" runat="server" Text='<%# Eval("Opened_By")%>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Assigned To">
-                        <ItemTemplate>
-                            <asp:Label ID="lblAssignedTo" runat="server" Text='<%# Eval("Assigned_To")%>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Category">
-                        <ItemTemplate>
-                            <asp:Label ID="lblCategory" runat="server" Text='<%# Eval("Full_Category")%>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Subject">
-                        <ItemTemplate>
-                            <asp:Label ID="lblSubject" runat="server" Text='<%# Eval("Subject")%>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Details">
-                        <ItemTemplate>
-                            <a href='show.aspx?id=<%# Eval("Id") %>'>Details</a>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                </Columns>
-            </asp:GridView>
+            <div class="row-fluid">
+                <div class="box span12">
+                    <div class="box-header well">
+                        <h2>
+                            <i class="icon-info-sign"></i>&nbsp; Search Ticket
+                        </h2>
+                    </div>
+                    <div class="box-content">
+                        <table style="width: 100%;" class="table table-bordered">
+                            <tr>
+                                <th>
+                                    State
+                                </th>
+                                <th>
+                                    Search Field
+                                </th>
+                                <th>
+                                    Search Value
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <asp:DropDownList ID="ddlTicketType" runat="server" CssClass="input-xlarge">
+                                        <asp:ListItem Value="Pending">Pending</asp:ListItem>
+                                        <asp:ListItem Value="Resolved">Resolved</asp:ListItem>
+                                        <asp:ListItem Value="Closed">Closed</asp:ListItem>
+                                    </asp:DropDownList>
+                                </td>
+                                <td>
+                                    <asp:DropDownList ID="ddlSearchField" runat="server" AutoPostBack="True"
+                                    OnSelectedIndexChanged="ddlSearchField_SelectedIndexChanged" CssClass="input-xlarge">
+                                        <asp:ListItem>Created By</asp:ListItem>
+                                        <asp:ListItem>Assigned To</asp:ListItem>
+                                        <asp:ListItem>Subject</asp:ListItem>
+                                        <asp:ListItem>Open Date</asp:ListItem>
+                                    </asp:DropDownList>
+                                </td>
+                                <td>
+                                    <asp:TextBox ID="txtString" runat="server" CssClass="input-xlarge"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvString" runat="server" ControlToValidate="txtString"
+                                    ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
+                                    <asp:TextBox ID="txtDate" runat="server" CssClass="datePicker input-xlarge"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvDate" runat="server" ControlToValidate="txtDate"
+                                    ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
+                                </td>
+                                <td>
+                                    <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary"
+                                    OnClick="btnSearch_Click" />
+                                </td>
+                            </tr>
+                        </table>
+                        <asp:HiddenField ID="hdnFldTicketType" runat="server" />
+                        <asp:GridView ID="gvTickets" runat="server" Width="100%" CssClass="table table-bordered table-striped"
+                        EmptyDataText="No Records" AutoGenerateColumns="false">
+                            <Columns>
+                                <asp:TemplateField HeaderText="Ticket ID">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblTicketId" runat="server" Text='<%# Eval("Id")%>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Open At">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblTicketOpenAt" runat="server" Text='<%# Eval("Opened_At")%>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Open By">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblCreatedBy" runat="server" Text='<%# Eval("Opened_By")%>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Assigned To">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblAssignedTo" runat="server" Text='<%# Eval("Assigned_To")%>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Category">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblCategory" runat="server" Text='<%# Eval("Full_Category")%>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Subject">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblSubject" runat="server" Text='<%# Eval("Subject")%>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Details">
+                                    <ItemTemplate>
+                                        <a class="btn btn-info" href='show.aspx?id=<%# Eval("Id") %>'>
+                                            <i class="icon-zoom-in icon-white"></i>
+                                            Details
+                                        </a>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
+                    </div>
+                </div>
+            </div>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

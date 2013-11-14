@@ -47,6 +47,46 @@ public class BreadCrumbHelper
                 obj = new BreadCrumbHelper { Divider_Class = "hide", Href = rootPath + "index.aspx", Text = "Departments" };
                 list.Add(obj);
                 break;
+            case "new_ticket":
+                rootPath += "tickets/";
+                obj = new BreadCrumbHelper { Divider_Class = "hide", Href = rootPath + "new.aspx", Text = "New Ticket" };
+                list.Add(obj);
+                break;
+            case "reassign_ticket":
+                rootPath += "tickets/";
+                obj = new BreadCrumbHelper { Divider_Class = "hide", Href = rootPath + "reassign.aspx", Text = "Reassign Ticket" };
+                list.Add(obj);
+                break;
+            case "search_ticket":
+                rootPath += "tickets/";
+                obj = new BreadCrumbHelper { Divider_Class = "hide", Href = rootPath + "search.aspx", Text = "Search Ticket" };
+                list.Add(obj);
+                break;
+            case "report":
+                rootPath += "tickets/";
+                obj = new BreadCrumbHelper { Divider_Class = "hide", Href = rootPath + "report.aspx", Text = "Report" };
+                list.Add(obj);
+                break;
+            case "full_report":
+                rootPath += "tickets/";
+                obj = new BreadCrumbHelper { Divider_Class = "hide", Href = rootPath + "full_report.aspx", Text = "Full Report" };
+                list.Add(obj);
+                break;
+            case "s_report":
+                rootPath += "tickets/";
+                obj = new BreadCrumbHelper { Divider_Class = "hide", Href = rootPath + "sreport.aspx", Text = "Report By Supervisor" };
+                list.Add(obj);
+                break;
+            case "e_report":
+                rootPath += "tickets/";
+                obj = new BreadCrumbHelper { Divider_Class = "hide", Href = rootPath + "ereport.aspx", Text = "Report By Engineer" };
+                list.Add(obj);
+                break;
+            case "u_report":
+                rootPath += "tickets/";
+                obj = new BreadCrumbHelper { Divider_Class = "hide", Href = rootPath + "full_report2.aspx", Text = "Report By User" };
+                list.Add(obj);
+                break;
         }
         return list;
     }
