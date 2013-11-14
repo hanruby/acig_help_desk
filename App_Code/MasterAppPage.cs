@@ -59,4 +59,12 @@ public class MasterAppPage : System.Web.UI.Page
         btnFullReport.Visible = (role2 == "admin" || btnFullReport.CommandArgument.ToString().Contains(role));
         btnReportByUser.Visible = (role2 == "admin" || btnReportByUser.CommandArgument.ToString().Contains(role));
     }
+
+    protected void BindBreadCrumbRepeater(string pageName)
+    {
+        var rptr = (Repeater)Master.FindControl("rptrBreadCrumb");
+        BreadCrumbHelper obj = new BreadCrumbHelper();
+        rptr.DataSource = obj.GetList(pageName);
+        rptr.DataBind();
+    }
 }

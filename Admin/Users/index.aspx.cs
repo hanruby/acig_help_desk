@@ -14,6 +14,7 @@ public partial class Admin_Users_index : MasterAppPage
     {
         if (!IsPostBack)
         {
+            BindBreadCrumbRepeater("user_index");
             lnkBtnNewUser.PostBackUrl = Route.GetRootPath("admin/users/new.aspx");
             BindDataToGridView();
         }

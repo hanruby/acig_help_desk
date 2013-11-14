@@ -14,6 +14,7 @@ public partial class Admin_Departments_index : MasterAppPage
         if (!IsPostBack)
         {
             BindDataToGridView();
+            BindBreadCrumbRepeater("department");
         }
     }
 

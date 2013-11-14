@@ -12,17 +12,20 @@ public partial class Account_create_profile : MasterAppPage
     string _email;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (!IsPostBack)
+        {
+            errorDiv.Visible = false;
+        }
     }
 
-    protected void btnAddNewUser_Click(object sender, EventArgs e)
+    protected void btnSave_Click(object sender, EventArgs e)
     {
         _email = txtEmail.Text.Trim();
         _entity = GetEntity();
         _email = txtEmail.Text.Trim();
         if (_entity.tbl_Users.Where(x => x.Email == _email).Count() > 0)
         {
-            Session["ErrorMessage"] = "Email already taken!";
+            errorDiv.Visible = true;
             return;
         }
         _user = new tbl_Users();

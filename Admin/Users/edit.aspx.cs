@@ -41,6 +41,7 @@ public partial class Admin_Users_edit : MasterAppPage
                 }
             }
             UpdateCategoryBox();
+            BindBreadCrumbRepeater("user_edit");
         }
     }
 

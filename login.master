@@ -1,0 +1,121 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="login.master.cs" Inherits="login" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/acig_help_desk/styles/bootstrap-cerulean.css" rel="stylesheet" />
+    <style type="text/css">
+        body
+        {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav
+        {
+            padding: 9px 0;
+        }
+    </style>
+    <link href="/acig_help_desk/styles/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="/acig_help_desk/styles/charisma-app.css" rel="stylesheet" />
+    <link href="/acig_help_desk/styles/jquery-ui-1.8.21.custom.css" rel="stylesheet" />
+    <link href='/acig_help_desk/styles/fullcalendar.css' rel='stylesheet' />
+    <link href='/acig_help_desk/styles/fullcalendar.print.css' rel='stylesheet'
+        media='print' />
+    <link href='/acig_help_desk/styles/chosen.css' rel='stylesheet' />
+    <link href='/acig_help_desk/styles/uniform.default.css' rel='stylesheet' />
+    <link href='/acig_help_desk/styles/colorbox.css' rel='stylesheet' />
+    <link href='/acig_help_desk/styles/jquery.cleditor.css' rel='stylesheet' />
+    <link href='/acig_help_desk/styles/jquery.noty.css' rel='stylesheet' />
+    <link href='/acig_help_desk/styles/noty_theme_default.css' rel='stylesheet' />
+    <link href='/acig_help_desk/styles/elfinder.min.css' rel='stylesheet' />
+    <link href='/acig_help_desk/styles/elfinder.theme.css' rel='stylesheet' />
+    <link href='/acig_help_desk/styles/jquery.iphone.toggle.css' rel='stylesheet' />
+    <link href='/acig_help_desk/styles/opa-icons.css' rel='stylesheet' />
+    <link href='/acig_help_desk/styles/uploadify.css' rel='stylesheet' />
+    <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+    <!-- The fav icon -->
+    <link rel="shortcut icon" href="/acig_help_desk/images/favicon.ico" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+    <!-- jQuery runat-->
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery-1.7.2.min.js"></script>
+    <!-- jQuery UI -->
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery-ui-1.8.21.custom.min.js"></script>
+    <!-- transition / effect library -->
+    <script type="text/javascript" src="/acig_help_desk/scripts/bootstrap-transition.js"></script>
+    <!-- alert enhancer library -->
+    <script type="text/javascript" src="/acig_help_desk/scripts/bootstrap-alert.js"></script>
+    <!-- modal / dialog library -->
+    <script type="text/javascript" src="/acig_help_desk/scripts/bootstrap-modal.js"></script>
+    <!-- custom dropdown library -->
+    <script type="text/javascript" src="/acig_help_desk/scripts/bootstrap-dropdown.js"></script>
+    <!-- scrolspy library -->
+    <script type="text/javascript" src="/acig_help_desk/scripts/bootstrap-scrollspy.js"></script>
+    <!-- library for creating tabs -->
+    <script type="text/javascript" src="/acig_help_desk/scripts/bootstrap-tab.js"></script>
+    <!-- library for advanced tooltip -->
+    <script type="text/javascript" src="/acig_help_desk/scripts/bootstrap-tooltip.js"></script>
+    <!-- popover effect library -->
+    <script type="text/javascript" src="/acig_help_desk/scripts/bootstrap-popover.js"></script>
+    <!-- button enhancer library -->
+    <script type="text/javascript" src="/acig_help_desk/scripts/bootstrap-button.js"></script>
+    <!-- accordion library (optional, not used in demo) -->
+    <script type="text/javascript" src="/acig_help_desk/scripts/bootstrap-collapse.js"></script>
+    <!-- carousel slideshow library (optional, not used in demo) -->
+    <script type="text/javascript" src="/acig_help_desk/scripts/bootstrap-carousel.js"></script>
+    <!-- autocomplete library -->
+    <script type="text/javascript" src="/acig_help_desk/scripts/bootstrap-typeahead.js"></script>
+    <!-- tour library -->
+    <script type="text/javascript" src="/acig_help_desk/scripts/bootstrap-tour.js"></script>
+    <!-- library for cookie management -->
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.cookie.js"></script>
+    <!-- calander plugin -->
+    <script type="text/javascript" src='/acig_help_desk/scripts/fullcalendar.min.js'></script>
+    <!-- data table plugin -->
+    <script type="text/javascript" src='/acig_help_desk/scripts/jquery.dataTables.min.js'></script>
+    <!-- chart libraries start -->
+    <script type="text/javascript" src="/acig_help_desk/scripts/excanvas.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.flot.min.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.flot.pie.min.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.flot.stack.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.flot.resize.min.js"></script>
+    <!-- chart libraries end -->
+    <!-- select or dropdown enhancer -->
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.chosen.min.js"></script>
+    <!-- checkbox, radio, and file input styler -->
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.uniform.min.js"></script>
+    <!-- plugin for gallery image view -->
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.colorbox.min.js"></script>
+    <!-- rich text editor library -->
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.cleditor.min.js"></script>
+    <!-- notification plugin -->
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.noty.js"></script>
+    <!-- file manager library -->
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.elfinder.min.js"></script>
+    <!-- star rating plugin -->
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.raty.min.js"></script>
+    <!-- for iOS style toggle switch -->
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.iphone.toggle.js"></script>
+    <!-- autogrowing textarea plugin -->
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.autogrow-textarea.js"></script>
+    <!-- multiple file upload plugin -->
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.uploadify-3.1.min.js"></script>
+    <!-- history.js for cross-browser state change on ajax -->
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.history.js"></script>
+    <!-- application script for Charisma demo -->
+    <script type="text/javascript" src="/acig_help_desk/scripts/charisma.js"></script>
+</body>
+</html>

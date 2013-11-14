@@ -15,5 +15,9 @@ public partial class Default2 : MasterAppPage
             return;
         }
         assignedLnkBtns.Visible = CurrentUser.Is_Engineer();
+        if (!IsPostBack)
+        {
+            BindBreadCrumbRepeater("dashboard");
+        }
     }
 }

@@ -15,7 +15,10 @@ public partial class Admin_Users_new : MasterAppPage
     string _email;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (!IsPostBack)
+        {
+            BindBreadCrumbRepeater("user_new");
+        }
     }
 
     protected void btnAddNewUser_Click(object sender, EventArgs e)

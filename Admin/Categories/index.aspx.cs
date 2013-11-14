@@ -20,6 +20,7 @@ public partial class Admin_Categories_index : MasterAppPage
             HideSubCategory();
             HideSubSubCategory();
             BindDataToGridView();
+            BindBreadCrumbRepeater("category");
         }
     }
 

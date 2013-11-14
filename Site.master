@@ -4,108 +4,176 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head runat="server">
     <title>Acig IT Help Desk</title>
-    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Styles/jquery-ui-1.9.0.custom.css" rel="stylesheet" type="text/css" />
-    <link href="~/Styles/Custom.css" rel="stylesheet" type="text/css" />
-    <link href="~/Styles/Form.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="/acig_help_desk/Scripts/jquery-1.8.2.js"></script>
-    <script type="text/javascript" src="/acig_help_desk/Scripts/jquery-ui-1.9.0.custom.js"></script>
-    <script type="text/javascript" src="/acig_help_desk/Scripts/menu-js.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/acig_help_desk/styles/bootstrap-cerulean.css" rel="stylesheet" />
+    <style type="text/css">
+        body
+        {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav
+        {
+            padding: 9px 0;
+        }
+    </style>
+    <link href="/acig_help_desk/styles/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="/acig_help_desk/styles/charisma-app.css" rel="stylesheet" />
+    <link href="/acig_help_desk/styles/jquery-ui-1.8.21.custom.css" rel="stylesheet" />
+    <link href="/acig_help_desk/styles/fullcalendar.css" rel='stylesheet' />
+    <link href="/acig_help_desk/styles/fullcalendar.print.css" rel='stylesheet'
+        media='print' />
+    <link href="/acig_help_desk/styles/chosen.css" rel='stylesheet' />
+    <link href="/acig_help_desk/styles/uniform.default.css" rel='stylesheet' />
+    <link href="/acig_help_desk/styles/colorbox.css" rel='stylesheet' />
+    <link href="/acig_help_desk/styles/jquery.cleditor.css" rel='stylesheet' />
+    <link href="/acig_help_desk/styles/jquery.noty.css" rel='stylesheet' />
+    <link href="/acig_help_desk/styles/noty_theme_default.css" rel='stylesheet' />
+    <link href="/acig_help_desk/styles/elfinder.min.css" rel='stylesheet' />
+    <link href="/acig_help_desk/styles/elfinder.theme.css" rel='stylesheet' />
+    <link href="/acig_help_desk/styles/jquery.iphone.toggle.css" rel='stylesheet' />
+    <link href="/acig_help_desk/styles/opa-icons.css" rel='stylesheet' />
+    <link href="/acig_help_desk/styles/uploadify.css" rel='stylesheet' />
+    <link href="/acig_help_desk/styles/custom.css" rel='stylesheet' />
+    <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+    <!-- The fav icon -->
+    <link rel="shortcut icon" href="/acig_help_desk/images/favicon.ico" />
+      <script type="text/javascript" src="/acig_help_desk/scripts/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery-ui-1.8.21.custom.min.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/bootstrap-transition.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/bootstrap-alert.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/bootstrap-modal.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/bootstrap-dropdown.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/bootstrap-scrollspy.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/bootstrap-tab.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/bootstrap-tooltip.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/bootstrap-popover.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/bootstrap-button.js"></script>
+    <script type="text/javascript" t src="/acig_help_desk/scripts/bootstrap-collapse.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/bootstrap-carousel.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/bootstrap-typeahead.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/bootstrap-tour.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/fullcalendar.min.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/excanvas.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.flot.min.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.flot.pie.min.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.flot.stack.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.flot.resize.min.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.chosen.min.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.uniform.min.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.colorbox.min.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.cleditor.min.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.noty.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.elfinder.min.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.raty.min.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.iphone.toggle.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.autogrow-textarea.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.uploadify-3.1.min.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/jquery.history.js"></script>
+    <script type="text/javascript" src="/acig_help_desk/scripts/charisma.js"></script>
     <script type="text/javascript">
         $(function () {
             $(".close").click(function () {
-                $(this).parent().parent().remove();
+                $(this).parent().remove();
             });
-            $('#custom-menu').superfish({
         });
-    });
     </script>
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form runat="server" enctype="multipart/form-data">
-    <div class="page">
-        <div class="header">
-            <div class="title">
-                <h1>
-                    ACIG IT Help Desk
-                </h1>
-            </div>
-            <div class="loginDisplay">
-                <asp:Label ID="lblUserName" runat="server" Text=""></asp:Label>
-                <asp:HyperLink ID="hprLinkLoginStatus" runat="server">Text</asp:HyperLink>
-                <asp:HyperLink ID="hprLinkCreateProfile" runat="server"> | Create New Profile</asp:HyperLink>
-            </div>
-            <div class="clear hideSkiplink">
-                <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false"
-                    IncludeStyleBlock="false" Orientation="Horizontal">
-                    <Items>
-                        <asp:MenuItem NavigateUrl="~/admin/users/index.aspx" Text="Users" Value="admin" />
-                        <asp:MenuItem NavigateUrl="~/admin/categories/index.aspx" Text="Categories" Value="admin" />
-                        <asp:MenuItem NavigateUrl="~/admin/departments/index.aspx" Text="Departments" Value="admin" />
-                        <asp:MenuItem NavigateUrl="~/dashboard.aspx" Text="Dashboard" Value="" />
-                        <asp:MenuItem NavigateUrl="~/tickets/new.aspx" Text="New Ticket" Value="" />
-                        <asp:MenuItem NavigateUrl="~/tickets/call.aspx" Text="New Call Ticket" Value="engineer" />
-                        <asp:MenuItem NavigateUrl="~/tickets/reassign.aspx" Text="Reassign Ticket" Value="admin" />
-                        <asp:MenuItem NavigateUrl="~/tickets/search.aspx" Text="Search Tickets" Value="" />
-                        <asp:MenuItem NavigateUrl="~/tickets/report.aspx" Text="Report" Value="" />
-                    </Items>
-                </asp:Menu>
+    <form id="Form1" runat="server" enctype="multipart/form-data">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
+                    <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar">
+                    </span></a><a class="brand" href="/">
+                        <img alt="Charisma Logo" id="mainLogo" runat="server" />
+                        <span>IT Desk</span></a>
+                <div class="btn-group pull-right">
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user">
+                    </i><span class="hidden-phone" id="displayName" runat="server"></span><span class="caret">
+                    </span></a>
+                </div>
+                <div class="top-nav nav-collapse">
+                    <ul class="nav">
+                    </ul>
+                </div>
             </div>
         </div>
-        <div class="main">
-            <% if (Session["NoticeMessage"] != null)
-               {%>
-            <div class="alert alert-success">
-                <h4>
+    </div>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span2 main-menu-span">
+                <div class="well nav-collapse sidebar-nav">
+                    <asp:Repeater ID="rptrMainNav" runat="server">
+                        <HeaderTemplate>
+                            <ul class="nav nav-tabs nav-stacked main-menu">
+                                <li class="nav-header hidden-tablet">Main</li>
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                            <li><a class="ajax-link" href='<%# Eval("Href") %>'><i class='<%# Eval("ImagePath") %>'>
+                            </i><span class="hidden-tablet">
+                                <%# Eval("Name") %>
+                            </span></a></li>
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            </ul>
+                        </FooterTemplate>
+                    </asp:Repeater>
+                </div>
+            </div>
+            <div id="content" class="span10">
+                <% if (Session["NoticeMessage"] != null)
+                   {%>
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert">
+                        ×</button>
                     <%= Session["NoticeMessage"]%>
-                    <a class="right close">X</a></h4>
-                <div class="clear">
                 </div>
                 <% Session["NoticeMessage"] = null; %>
-            </div>
-            <%} %>
-            <% if (Session["ErrorMessage"] != null)
-               {%>
-            <div class="alert alert-danger">
-                <h4>
+                <%} %>
+                <% if (Session["ErrorMessage"] != null)
+                   {%>
+                <div class="alert alert-error">
+                    <button type="button" class="close" data-dismiss="alert">
+                        ×</button>
                     <%= Session["ErrorMessage"]%>
-                    <a class="right close">X</a></h4>
-                <div class="clear">
+                    <% Session["ErrorMessage"] = null; %>
                 </div>
-                <% Session["ErrorMessage"] = null; %>
+                <%} %>
+                <div>
+                    <asp:Repeater ID="rptrBreadCrumb" runat="server">
+                        <HeaderTemplate>
+                            <div>
+				                <ul class="breadcrumb">
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                            <li>
+						        <a href='<%# Eval("Href") %>'><%# Eval("Text") %></a>
+                                <span class='<%# Eval("Divider_Class") %>'>/</span>
+					        </li>
+                        </ItemTemplate>
+                        <FooterTemplate>
+                                </ul>
+                            </div>
+                        </FooterTemplate>
+                    </asp:Repeater>
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+                </div>
             </div>
-            <%} %>
-           <%-- <div class="alert alert-success" id="alertSuccess" runat="server">
-                <h4>
-                    <span runat="server" id="successMessage"></span><a class="right close">X</a></h4>
-                <div class="clear">
-                </div>
-            </div>
-            <div class="alert alert-danger" id="alertError" runat="server">
-                <h4>
-                    <span runat="server" id="errorMessage"></span><a class="right close">X</a></h4>
-                <div class="clear">
-                </div>
-            </div>--%>
-            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
-        </div>
-        <div class="clear">
         </div>
         <hr />
-        <div class="footer">
-            <p class="left" style="margin-left: 11px;">
-                &copy Copyright
-                <%= DateTime.Now.Year %>
-                Acig
-            </p>
-            <p class="right" style="margin-right: 11px;">
-                V 1.0
-            </p>
-            <div class="clear">
-            </div>
-        </div>
+        <footer>
+          <hr />
+          <p class="pull-left">Acig</p>
+          <p class="pull-right" id="footerCopy" runat="server"></p>
+        </footer>
     </div>
     </form>
 </body>

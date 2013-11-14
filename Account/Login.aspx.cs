@@ -13,6 +13,10 @@ public partial class Account_Login : MasterAppPage
     tbl_Users user;
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!IsPostBack)
+        {
+            errorDiv.Visible = false;
+        }
         if (User.Identity.IsAuthenticated && Request.QueryString["ReturnUrl"] != null)
         {
             Response.Redirect(Route.GetRootPath("not_authorized.aspx"));
@@ -32,7 +36,8 @@ public partial class Account_Login : MasterAppPage
         }
         if (!user.Active)
         {
-            Session["ErrorMessage"] = "Your account has been deactivated !";
+            errorLabel.Text = "Your account has been deactivated !";
+            errorDiv.Visible = true;
             return;
         }
         FormsAuthentication.SetAuthCookie(user.User_Name, false);
@@ -75,14 +80,16 @@ public partial class Account_Login : MasterAppPage
             //var customUser = _entity.tbl_Users.Where(x => x.Email.Contains(txtUserName.Text)).FirstOrDefault();
             if (customUser == null)
             {
-                Session["ErrorMessage"] = "Your profile does not exist in this system please create Profile!";
+                errorLabel.Text = "Your profile does not exist in this system please create Profile!";
+                errorDiv.Visible = true;
                 return customUser;
             }
             return customUser;
         }
         catch (Exception e)
         {
-            Session["ErrorMessage"] = "Username or Password is incorrect !";
+            errorLabel.Text = "Username or Password is incorrect !";
+            errorDiv.Visible = true;
             return null;
         }
     }
