@@ -19,7 +19,7 @@ public partial class Tickets_ereport : MasterAppPage
     {
         if (!IsPostBack)
         {
-            HideReportLinks(lnkBtnReportSuperVisor, lnkBtnFullReport, lnkBtnReportByUser);
+            BindBreadCrumbRepeater("e_report");
             role = CurrentUser.Role();
             role2 = CurrentUser.Role2();
             if (role != "manager" && role2 != "admin")

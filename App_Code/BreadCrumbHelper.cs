@@ -74,7 +74,7 @@ public class BreadCrumbHelper
                 break;
             case "s_report":
                 rootPath += "tickets/";
-                obj = new BreadCrumbHelper { Divider_Class = "hide", Href = rootPath + "sreport.aspx", Text = "Report By Supervisor" };
+                obj = new BreadCrumbHelper { Divider_Class = "hide", Href = rootPath + "sreport.aspx", Text = "My Department Report" };
                 list.Add(obj);
                 break;
             case "e_report":

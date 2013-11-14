@@ -33,6 +33,22 @@ public class NavigationHelper
             case "user":
                 lst = GetUserMenu(obj, lst, rootPath);
                 break;
+            case "supervisor":
+                lst = GetUserMenu(obj, lst, rootPath);
+                break;
+        }
+        if (role == "manager" || role == "vp" || role == "coo" || role == "ceo")
+        {
+            lst = GetUserMenu(obj, lst, rootPath);
+        }
+        lst = AddCommonListItems(obj, lst, rootPath);
+        if (role == "supervisor")
+        {
+            lst = GetSuprvisorMenu(obj, lst, rootPath);
+        }
+        else if (role == "admin" || role == "manager" || role == "vp" || role == "coo" || role == "ceo")
+        {
+            lst = GetFullReportsMenu(obj, lst, rootPath);
         }
         obj = new NavigationHelper { Name = "Log out", Href = rootPath + "account/log_out.aspx", ImagePath = "icon-off" };
         lst.Add(obj);
@@ -51,7 +67,6 @@ public class NavigationHelper
         lst.Add(obj);
         obj = new NavigationHelper { Name = "Reassign Ticket", Href = rootPath + "tickets/reassign.aspx", ImagePath = "icon-leaf" };
         lst.Add(obj);
-        AddCommonListItems(obj, lst, rootPath);
         return lst;
     }
 
@@ -61,7 +76,6 @@ public class NavigationHelper
         lst.Add(obj);
         obj = new NavigationHelper { Name = "New Call Ticket", Href = rootPath + "tickets/call.aspx", ImagePath = "icon-leaf" };
         lst.Add(obj);
-        AddCommonListItems(obj, lst, rootPath);
         return lst;
     }
 
@@ -69,16 +83,34 @@ public class NavigationHelper
     {
         obj = new NavigationHelper { Name = "New Ticket", Href = rootPath + "tickets/new.aspx", ImagePath = "icon-leaf" };
         lst.Add(obj);
-        AddCommonListItems(obj, lst, rootPath);
         return lst;
     }
 
-    public static void AddCommonListItems(NavigationHelper obj, List<NavigationHelper> lst, string rootPath)
+    public static List<NavigationHelper> AddCommonListItems(NavigationHelper obj, List<NavigationHelper> lst, string rootPath)
     {
         obj = new NavigationHelper { Name = "Search Ticket", Href = rootPath + "tickets/search.aspx", ImagePath = "icon-leaf" };
         lst.Add(obj);
         obj = new NavigationHelper { Name = "Report", Href = rootPath + "tickets/report.aspx", ImagePath = "icon-leaf" };
         lst.Add(obj);
+        return lst;
+    }
+
+    public static List<NavigationHelper> GetSuprvisorMenu(NavigationHelper obj, List<NavigationHelper> lst, string rootPath)
+    {
+        obj = new NavigationHelper { Name = "My Department Report", Href = rootPath + "tickets/sreport.aspx", ImagePath = "icon-leaf" };
+        lst.Add(obj);
+        return lst;
+    }
+
+    public static List<NavigationHelper> GetFullReportsMenu(NavigationHelper obj, List<NavigationHelper> lst, string rootPath)
+    {
+        obj = new NavigationHelper { Name = "Full Report", Href = rootPath + "tickets/full_report.aspx", ImagePath = "icon-leaf" };
+        lst.Add(obj);
+        obj = new NavigationHelper { Name = "Report By User", Href = rootPath + "tickets/full_report2.aspx", ImagePath = "icon-leaf" };
+        lst.Add(obj);
+        obj = new NavigationHelper { Name = "Report By Engineer", Href = rootPath + "tickets/ereport.aspx", ImagePath = "icon-leaf" };
+        lst.Add(obj);
+        return lst;
     }
 
 }

@@ -11,7 +11,6 @@ public partial class Tickets_report : MasterAppPage
     protected void Page_Load(object sender, EventArgs e)
     {
         BindBreadCrumbRepeater("report");
-        HideReportLinks(lnkBtnReportSuperVisor, lnkBtnFullReport, lnkBtnReportByUser);
         _entity = GetEntity();
         currentUserId = CurrentUser.Id();
         lblTotalPending.Text = _entity.Tickets.Where(x => x.State == "Pending" && x.Created_By == currentUserId).Count().ToString();

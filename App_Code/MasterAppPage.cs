@@ -51,15 +51,6 @@ public class MasterAppPage : System.Web.UI.Page
         return count > 0;
     }
 
-    protected void HideReportLinks(LinkButton btnSupervisor, LinkButton btnFullReport, LinkButton btnReportByUser)
-    {
-        var role = CurrentUser.Role();
-        var role2 = CurrentUser.Role2();
-        btnSupervisor.Visible = (role2 == "admin" || btnSupervisor.CommandArgument.ToString().Contains(role));
-        btnFullReport.Visible = (role2 == "admin" || btnFullReport.CommandArgument.ToString().Contains(role));
-        btnReportByUser.Visible = (role2 == "admin" || btnReportByUser.CommandArgument.ToString().Contains(role));
-    }
-
     protected void BindBreadCrumbRepeater(string pageName)
     {
         var rptr = (Repeater)Master.FindControl("rptrBreadCrumb");
