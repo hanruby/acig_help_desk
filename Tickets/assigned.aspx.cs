@@ -20,9 +20,9 @@ public partial class Tickets_assigned : MasterAppPage
         }
         if (!IsPostBack)
         {
+            BindBreadCrumbRepeater("ticket_assigned");
             BindGvOpenTickets();
             BindGvClarifiedTickets();
-            lblMainHeader.Text = "Assigned Tickets Waiting My Response !";
             lblOpen.Text = "Pending Tickets!";
             lblClarified.Text = "Clarified Tickets!";
         }

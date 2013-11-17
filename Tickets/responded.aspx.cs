@@ -15,10 +15,10 @@ public partial class Tickets_responded : MasterAppPage
     {
         if (!IsPostBack)
         {
+            BindBreadCrumbRepeater("ticket_responded");
             BindGvOpenTickets();
             BindGvClarifiedTickets();
             BindGvClosedTickets();
-            lblMainHeader.Text = "Tickets Waiting Engineer's Response !";
             lblOpen.Text = "Pending Tickets!";
             lblClarified.Text = "Clarified Tickets!";
             lblClosed.Text = "Closed Tickets!";

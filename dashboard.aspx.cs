@@ -14,7 +14,6 @@ public partial class Default2 : MasterAppPage
             ErrorRedirect(Route.GetRootPath("account/login.aspx"), "Please login to continue");
             return;
         }
-        assignedLnkBtns.Visible = CurrentUser.Is_Engineer();
         if (!IsPostBack)
         {
             BindBreadCrumbRepeater("dashboard");

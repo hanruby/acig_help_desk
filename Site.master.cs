@@ -21,6 +21,8 @@ public partial class SiteMaster : System.Web.UI.MasterPage
             mainLogo.Src = rootPath + "images/logo20.png";
             rptrMainNav.DataSource = NavigationHelper.GetMainMenu(user);
             rptrMainNav.DataBind();
+            rptrUserNav.DataSource = NavigationHelper.GetUserMenu();
+            rptrUserNav.DataBind();
         }
     }
 }

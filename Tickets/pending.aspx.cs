@@ -15,9 +15,9 @@ public partial class Tickets_pending : MasterAppPage
     {
         if (!IsPostBack)
         {
+            BindBreadCrumbRepeater("ticket_pending");
             BindGvClarificationTickets();
             BindGvResolvedTickets();
-            lblMainHeader.Text = "Tickets Waiting My Response !";
             lblClarification.Text = "Need Clarification Tickets!";
             lblResolved.Text = "Resolved Tickets!";
         }

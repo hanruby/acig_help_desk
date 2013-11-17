@@ -20,10 +20,10 @@ public partial class Tickets_assigned_responded : MasterAppPage
         }
         if (!IsPostBack)
         {
+            BindBreadCrumbRepeater("ticket_assigned_responded");
             BindGvClarificationTickets();
             BindGvResolvedTickets();
             BindGvClosedTickets();
-            lblMainHeader.Text = "Assigned Tickets Responded!";
             lblClarification.Text = "Clarification Tickets!";
             lblResolved.Text = "Resolved Tickets!";
             lblClosed.Text = "Closed Tickets!";

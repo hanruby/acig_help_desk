@@ -99,6 +99,19 @@
                     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user">
                     </i><span class="hidden-phone" id="displayName" runat="server"></span><span class="caret">
                     </span></a>
+                    <asp:Repeater ID="rptrUserNav" runat="server">
+                        <HeaderTemplate>
+                            <ul class="dropdown-menu">
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                            <li>
+                                <a href='<%# Eval("Href") %>'><%# Eval("Name") %></a>
+                            </li>
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            </ul>
+                        </FooterTemplate>
+                    </asp:Repeater>
                 </div>
                 <div class="top-nav nav-collapse">
                     <ul class="nav">
