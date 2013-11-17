@@ -37,7 +37,7 @@ public class NavigationHelper
                 lst = GetAdminMenu(obj, lst, rootPath);
                 if (user.Role == "engineer")
                 {
-                    lst = GetEngineerMenu(obj, lst, rootPath);
+                    lst = GetEngineerMenu(obj, lst, rootPath, true);
                 }
                 break;
             case "engineer":
