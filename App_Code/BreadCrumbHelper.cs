@@ -72,6 +72,31 @@ public class BreadCrumbHelper
                 obj = new BreadCrumbHelper { Divider_Class = "hide", Href = rootPath + "assigned_responded.aspx", Text = "Assigned Tickets Waiting User's Response" };
                 list.Add(obj);
                 break;
+            case "ticket_clarification":
+                rootPath += "tickets/";
+                obj = new BreadCrumbHelper { Divider_Class = "hide", Href = "#", Text = "Need More Clarification" };
+                list.Add(obj);
+                break;
+            case "ticket_clarify":
+                rootPath += "tickets/";
+                obj = new BreadCrumbHelper { Divider_Class = "hide", Href = "#", Text = "Clarify Ticket" };
+                list.Add(obj);
+                break;
+            case "ticket_re_open":
+                rootPath += "tickets/";
+                obj = new BreadCrumbHelper { Divider_Class = "hide", Href = "#", Text = "Re Open Ticket" };
+                list.Add(obj);
+                break;
+            case "ticket_resolve":
+                rootPath += "tickets/";
+                obj = new BreadCrumbHelper { Divider_Class = "hide", Href = "#", Text = "Resolve Ticket" };
+                list.Add(obj);
+                break;
+            case "ticket_close":
+                rootPath += "tickets/";
+                obj = new BreadCrumbHelper { Divider_Class = "hide", Href = "#", Text = "Close Ticket" };
+                list.Add(obj);
+                break;
             case "new_ticket":
                 rootPath += "tickets/";
                 obj = new BreadCrumbHelper { Divider_Class = "hide", Href = rootPath + "new.aspx", Text = "New Ticket" };

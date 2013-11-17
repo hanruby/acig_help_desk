@@ -17,6 +17,7 @@ public partial class Tickets_clarify : MasterAppPage
     {
         if (!IsPostBack)
         {
+            BindBreadCrumbRepeater("ticket_clarify");
             routePath = Route.GetRootPath("");
             currentUserId = CurrentUser.Id();
             _id = long.Parse(Request.QueryString["id"]);

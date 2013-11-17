@@ -17,6 +17,7 @@ public partial class Tickets_re_open : MasterAppPage
     {
         if (!IsPostBack)
         {
+            BindBreadCrumbRepeater("ticket_re_open");
             routePath = Route.GetRootPath("");
             currentUserId = CurrentUser.Id();
             _id = long.Parse(Request.QueryString["id"]);

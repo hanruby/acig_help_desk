@@ -130,7 +130,7 @@
                                 <label>
                                     Priority:
                                 </label>
-                                <%# Eval("Priority") %>
+                                <span class="label label-warning"> <%# Eval("Priority") %> </span>
                             </td>
                         </tr>
                         <tr>
