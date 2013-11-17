@@ -21,6 +21,10 @@ public partial class Tickets_call : MasterAppPage
             ErrorRedirect(Route.GetRootPath("") + "not_authorized.aspx", "Not authorized to access!");
             return;
         }
+        if (!IsPostBack)
+        {
+            BindBreadCrumbRepeater("call_ticket");
+        }
     }
 
     protected void btnSave_Click(object sender, EventArgs e)

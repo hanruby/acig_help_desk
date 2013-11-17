@@ -7,23 +7,26 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     <asp:UpdateProgress ID="updateProgress" runat="server">
-        <ProgressTemplate>
+        <progresstemplate>
             <div style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0;
                 right: 0; left: 0; z-index: 9999999; background-color: #000000; opacity: 0.7;">
                 <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="~/images/ajax-loader.gif"
                     AlternateText="Loading ..." ToolTip="Loading ..." Style="padding: 10px; position: fixed;
                     top: 39%; left: 42%;" />
             </div>
-        </ProgressTemplate>
+        </progresstemplate>
     </asp:UpdateProgress>
     <asp:HiddenField ID="hdnFldId" runat="server" />
-    <h2>
-        New Ticket
-    </h2>
-    <fieldset class="login">
-        <legend>Ticket Information</legend>
-        <asp:UpdatePanel ID="updatePanel" runat="server" UpdateMode="Always">
-            <ContentTemplate>
+    <div class="row-fluid">
+        <div class="box span12">
+            <div class="box-header well">
+                <h2>
+                    <i class="icon-info-sign"></i>&nbsp; Call Ticket Information
+                </h2>
+            </div>
+            <div class="box-content">
+                <asp:UpdatePanel ID="updatePanel" runat="server" UpdateMode="Always">
+                    <contenttemplate>
                 <table style="width: 100%;" class="table table-bordered">
                     <tr>
                         <td>
@@ -136,8 +139,10 @@
                         </td>
                     </tr>
                 </table>
-            </ContentTemplate>
-        </asp:UpdatePanel>
-        <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" CssClass="btn btn-primary" />
-    </fieldset>
+            </contenttemplate>
+                </asp:UpdatePanel>
+                <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" CssClass="btn btn-primary" />
+            </div>
+        </div>
+    </div>
 </asp:Content>
