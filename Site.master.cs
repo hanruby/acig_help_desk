@@ -14,6 +14,7 @@ public partial class SiteMaster : System.Web.UI.MasterPage
         if (!Page.User.Identity.IsAuthenticated) return;
         if (!IsPostBack)
         {
+            brandLogo.HRef = rootPath;
             var _currentUserId = CurrentUser.Id();
             footerCopy.InnerHtml = " &copy; " + DateTime.Now.Year + " ACIG";
             var user = CurrentUser.User();
