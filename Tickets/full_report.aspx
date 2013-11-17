@@ -2,7 +2,6 @@
     CodeFile="full_report.aspx.cs" Inherits="Tickets_full_report" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
-    <script type="text/javascript" src="../scripts/datepicker-range.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -90,7 +89,7 @@
                                                     <%# Eval("state") %>
                                                 </td>
                                                 <td>
-                                                    <%# Eval("count") %>
+                                                     <asp:Label ID="lblTecketsCountByDept" runat="server" Text='<%# Eval("Count") %>' CssClass="label label-success"></asp:Label>
                                                 </td>
                                             </tr>
                                         </ItemTemplate>
@@ -179,7 +178,7 @@
                                                     <%# Eval("state") %>
                                                 </td>
                                                 <td>
-                                                    <%# Eval("count") %>
+                                                    <asp:Label ID="lblTecketsCount" runat="server" Text='<%# Eval("Count") %>' CssClass="label label-success"></asp:Label>
                                                 </td>
                                             </tr>
                                         </ItemTemplate>

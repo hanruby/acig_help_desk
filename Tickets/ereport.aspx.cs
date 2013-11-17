@@ -48,17 +48,17 @@ public partial class Tickets_ereport : MasterAppPage
         lstReportUsers = new List<Report_User>();
         foreach (var x in data)
         {
-            if (lstReportUsers.Where(y => y.email == x.State.Email).Count() > 0)
-            {
-                rptUser = lstReportUsers.Where(y => y.email == x.State.Email).First();
-            }
-            else
+            rptUser = lstReportUsers.Where(y => y.email == x.State.Email).FirstOrDefault();
+            if (rptUser == null)
             {
                 rptUser = new Report_User { email = x.State.Email };
                 lstReportUsers.Add(rptUser);
             }
-            rprtState = rptUser.states.Where(y => y.state == x.State.State).First();
-            rprtState.count = x.Count;
+            rprtState = rptUser.states.Where(y => y.state == x.State.State).FirstOrDefault();
+            if (rprtState != null)
+            {
+                rprtState.count = x.Count;
+            }
         }
         rptrFull.DataSource = lstReportUsers;
         rptrFull.DataBind();
@@ -83,17 +83,17 @@ public partial class Tickets_ereport : MasterAppPage
         lstReportUsers = new List<Report_User>();
         foreach (var x in data)
         {
-            if (lstReportUsers.Where(y => y.email == x.State.Email).Count() > 0)
-            {
-                rptUser = lstReportUsers.Where(y => y.email == x.State.Email).First();
-            }
-            else
+            rptUser = lstReportUsers.Where(y => y.email == x.State.Email).FirstOrDefault();
+            if (rptUser == null)
             {
                 rptUser = new Report_User { email = x.State.Email };
                 lstReportUsers.Add(rptUser);
             }
-            rprtState = rptUser.states.Where(y => y.state == x.State.State).First();
-            rprtState.count = x.Count;
+            rprtState = rptUser.states.Where(y => y.state == x.State.State).FirstOrDefault();
+            if (rprtState != null)
+            {
+                rprtState.count = x.Count;
+            }
         }
         rptrFull.DataSource = lstReportUsers;
         rptrFull.DataBind();

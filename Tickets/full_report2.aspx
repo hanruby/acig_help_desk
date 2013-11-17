@@ -2,7 +2,6 @@
     CodeFile="full_report2.aspx.cs" Inherits="Tickets_full_report2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
-    <script type="text/javascript" src="../scripts/datepicker-range.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">

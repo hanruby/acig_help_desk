@@ -18,9 +18,9 @@ public partial class Tickets_full_report : MasterAppPage
     Hashtable hash;
     protected void Page_Load(object sender, EventArgs e)
     {
-        BindBreadCrumbRepeater("full_report");
         if (!IsPostBack)
         {
+            BindBreadCrumbRepeater("full_report");
             role = CurrentUser.Role();
             role2 = CurrentUser.Role2();
             if (role != "manager" && role2 != "admin")
@@ -50,17 +50,17 @@ public partial class Tickets_full_report : MasterAppPage
         lstReportUsers = new List<Report_User>();
         foreach (var x in data)
         {
-            if (lstReportUsers.Where(y => y.email == x.State.Name).Count() > 0)
-            {
-                rptUser = lstReportUsers.Where(y => y.email == x.State.Name).First();
-            }
-            else
+            rptUser = lstReportUsers.Where(y => y.email == x.State.Name).FirstOrDefault();
+            if (rptUser == null)
             {
                 rptUser = new Report_User { email = x.State.Name };
                 lstReportUsers.Add(rptUser);
             }
-            rprtState = rptUser.states.Where(y => y.state == x.State.State).First();
-            rprtState.count = x.Count;
+            rprtState = rptUser.states.Where(y => y.state == x.State.State).FirstOrDefault();
+            if (rprtState != null)
+            {
+                rprtState.count = x.Count;
+            }
         }
         rptrFull.DataSource = lstReportUsers;
         rptrFull.DataBind();
@@ -85,17 +85,17 @@ public partial class Tickets_full_report : MasterAppPage
         lstReportUsers = new List<Report_User>();
         foreach (var x in data)
         {
-            if (lstReportUsers.Where(y => y.email == x.State.Name).Count() > 0)
-            {
-                rptUser = lstReportUsers.Where(y => y.email == x.State.Name).First();
-            }
-            else
+            rptUser = lstReportUsers.Where(y => y.email == x.State.Name).FirstOrDefault();
+            if (rptUser == null)
             {
                 rptUser = new Report_User { email = x.State.Name };
                 lstReportUsers.Add(rptUser);
             }
-            rprtState = rptUser.states.Where(y => y.state == x.State.State).First();
-            rprtState.count = x.Count;
+            rprtState = rptUser.states.Where(y => y.state == x.State.State).FirstOrDefault();
+            if (rprtState != null)
+            {
+                rprtState.count = x.Count;
+            }
         }
         rptrFull.DataSource = lstReportUsers;
         rptrFull.DataBind();
@@ -120,17 +120,17 @@ public partial class Tickets_full_report : MasterAppPage
         lstReportUsers2 = new List<Report_User>();
         foreach (var x in data2)
         {
-            if (lstReportUsers2.Where(y => y.email == x.State.Name).Count() > 0)
-            {
-                rptUser = lstReportUsers2.Where(y => y.email == x.State.Name).First();
-            }
-            else
+            rptUser = lstReportUsers2.Where(y => y.email == x.State.Name).FirstOrDefault();
+            if (rptUser == null)
             {
                 rptUser = new Report_User { email = x.State.Name };
                 lstReportUsers2.Add(rptUser);
             }
-            rprtState = rptUser.states.Where(y => y.state == x.State.State).First();
-            rprtState.count = x.Count;
+            rprtState = rptUser.states.Where(y => y.state == x.State.State).FirstOrDefault();
+            if (rprtState != null)
+            {
+                rprtState.count = x.Count;
+            }
         }
         rptrFullReportAssigned.DataSource = lstReportUsers2;
         rptrFullReportAssigned.DataBind();
@@ -157,17 +157,17 @@ public partial class Tickets_full_report : MasterAppPage
         lstReportUsers2 = new List<Report_User>();
         foreach (var x in data2)
         {
-            if (lstReportUsers2.Where(y => y.email == x.State.Name).Count() > 0)
-            {
-                rptUser = lstReportUsers2.Where(y => y.email == x.State.Name).First();
-            }
-            else
+            rptUser = lstReportUsers2.Where(y => y.email == x.State.Name).FirstOrDefault();
+            if (rptUser == null)
             {
                 rptUser = new Report_User { email = x.State.Name };
                 lstReportUsers2.Add(rptUser);
             }
-            rprtState = rptUser.states.Where(y => y.state == x.State.State).First();
-            rprtState.count = x.Count;
+            rprtState = rptUser.states.Where(y => y.state == x.State.State).FirstOrDefault();
+            if (rprtState != null)
+            {
+                rprtState.count = x.Count;
+            }
         }
         rptrFullReportAssigned.DataSource = lstReportUsers2;
         rptrFullReportAssigned.DataBind();

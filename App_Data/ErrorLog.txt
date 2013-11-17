@@ -1590,3 +1590,422 @@ Stack Trace:
    at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
    at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
 
+********** 11/17/2013 1:23:45 PM **********
+Inner Exception Type: System.InvalidOperationException
+Inner Exception: Sequence contains no elements
+Inner Source: System.Core
+Inner Stack Trace: 
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Tickets_full_report.BindAssignGridViewFull() in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\full_report.aspx.cs:line 132
+   at Tickets_full_report.lnkBtnAll_Click(Object sender, EventArgs e) in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\full_report.aspx.cs:line 204
+   at System.Web.UI.WebControls.LinkButton.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.LinkButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_full_report_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid.ACIG\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\88a9e655\f3f4a4d1\App_Web_nydbdffe.2.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 11/17/2013 1:23:50 PM **********
+Inner Exception Type: System.InvalidOperationException
+Inner Exception: Sequence contains no elements
+Inner Source: System.Core
+Inner Stack Trace: 
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Tickets_full_report.BindCreatedGridViewFull() in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\full_report.aspx.cs:line 62
+   at Tickets_full_report.lnkBtnAllTC_Click(Object sender, EventArgs e) in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\full_report.aspx.cs:line 234
+   at System.Web.UI.WebControls.LinkButton.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.LinkButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_full_report_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid.ACIG\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\88a9e655\f3f4a4d1\App_Web_nydbdffe.2.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 11/17/2013 1:24:16 PM **********
+Inner Exception Type: System.InvalidOperationException
+Inner Exception: Sequence contains no elements
+Inner Source: System.Core
+Inner Stack Trace: 
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Tickets_full_report.BindCreatedGridViewFull() in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\full_report.aspx.cs:line 62
+   at Tickets_full_report.lnkBtnAllTC_Click(Object sender, EventArgs e) in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\full_report.aspx.cs:line 234
+   at System.Web.UI.WebControls.LinkButton.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.LinkButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_full_report_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid.ACIG\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\88a9e655\f3f4a4d1\App_Web_nydbdffe.2.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 11/17/2013 1:27:37 PM **********
+Inner Exception Type: System.InvalidOperationException
+Inner Exception: Sequence contains no elements
+Inner Source: System.Core
+Inner Stack Trace: 
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Tickets_full_report.BindCreatedGridViewFull() in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\full_report.aspx.cs:line 62
+   at Tickets_full_report.lnkBtnAllTC_Click(Object sender, EventArgs e) in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\full_report.aspx.cs:line 234
+   at System.Web.UI.WebControls.LinkButton.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.LinkButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_full_report_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid.ACIG\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\88a9e655\f3f4a4d1\App_Web_bj304en3.26.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 11/17/2013 1:30:38 PM **********
+Inner Exception Type: System.InvalidOperationException
+Inner Exception: Sequence contains no elements
+Inner Source: System.Core
+Inner Stack Trace: 
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Tickets_full_report.BindCreatedGridViewFull() in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\full_report.aspx.cs:line 62
+   at Tickets_full_report.lnkBtnAllTC_Click(Object sender, EventArgs e) in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\full_report.aspx.cs:line 234
+   at System.Web.UI.WebControls.LinkButton.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.LinkButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_full_report_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid.ACIG\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\88a9e655\f3f4a4d1\App_Web_zicdywgm.24.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 11/17/2013 1:35:32 PM **********
+Inner Exception Type: System.InvalidOperationException
+Inner Exception: Sequence contains no elements
+Inner Source: System.Core
+Inner Stack Trace: 
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Tickets_full_report.BindCreatedGridViewCustom(String type) in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\full_report.aspx.cs:line 97
+   at Tickets_full_report.lnkBtnLastMonthTC_Click(Object sender, EventArgs e) in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\full_report.aspx.cs:line 229
+   at System.Web.UI.WebControls.LinkButton.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.LinkButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_full_report_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid.ACIG\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\88a9e655\f3f4a4d1\App_Web_1fcgzyr0.14.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 11/17/2013 1:38:38 PM **********
+Inner Exception Type: System.InvalidOperationException
+Inner Exception: Sequence contains no elements
+Inner Source: System.Core
+Inner Stack Trace: 
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Tickets_full_report.BindCreatedGridViewCustom(String type) in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\full_report.aspx.cs:line 100
+   at Tickets_full_report.btnSearchTC_Click(Object sender, EventArgs e) in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\full_report.aspx.cs:line 212
+   at System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_full_report_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid.ACIG\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\88a9e655\f3f4a4d1\App_Web_ofqdpveo.0.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 11/17/2013 1:39:17 PM **********
+Inner Exception Type: System.InvalidOperationException
+Inner Exception: Sequence contains no elements
+Inner Source: System.Core
+Inner Stack Trace: 
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Tickets_full_report.BindCreatedGridViewCustom(String type) in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\full_report.aspx.cs:line 100
+   at Tickets_full_report.btnSearchTC_Click(Object sender, EventArgs e) in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\full_report.aspx.cs:line 212
+   at System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_full_report_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid.ACIG\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\88a9e655\f3f4a4d1\App_Web_h0myxey1.20.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 11/17/2013 1:41:08 PM **********
+Inner Exception Type: System.InvalidOperationException
+Inner Exception: Sequence contains no elements
+Inner Source: System.Core
+Inner Stack Trace: 
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Tickets_full_report.BindCreatedGridViewFull() in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\full_report.aspx.cs:line 65
+   at Tickets_full_report.lnkBtnAllTC_Click(Object sender, EventArgs e) in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\full_report.aspx.cs:line 237
+   at System.Web.UI.WebControls.LinkButton.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.LinkButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_full_report_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid.ACIG\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\88a9e655\f3f4a4d1\App_Web_vavkbcvx.20.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 11/17/2013 1:42:11 PM **********
+Inner Exception Type: System.InvalidOperationException
+Inner Exception: Sequence contains no elements
+Inner Source: System.Core
+Inner Stack Trace: 
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Tickets_full_report.BindCreatedGridViewFull() in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\full_report.aspx.cs:line 65
+   at Tickets_full_report.lnkBtnAllTC_Click(Object sender, EventArgs e) in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\full_report.aspx.cs:line 237
+   at System.Web.UI.WebControls.LinkButton.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.LinkButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_full_report_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid.ACIG\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\88a9e655\f3f4a4d1\App_Web_ap2uvsdl.0.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 11/17/2013 1:44:23 PM **********
+Inner Exception Type: System.InvalidOperationException
+Inner Exception: Sequence contains no elements
+Inner Source: System.Core
+Inner Stack Trace: 
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Tickets_full_report.BindCreatedGridViewFull() in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\full_report.aspx.cs:line 65
+   at Tickets_full_report.lnkBtnAllTC_Click(Object sender, EventArgs e) in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\full_report.aspx.cs:line 237
+   at System.Web.UI.WebControls.LinkButton.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.LinkButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_full_report_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid.ACIG\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\88a9e655\f3f4a4d1\App_Web_qiweif2h.2.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 11/17/2013 1:45:54 PM **********
+Inner Exception Type: System.InvalidOperationException
+Inner Exception: Sequence contains no elements
+Inner Source: System.Core
+Inner Stack Trace: 
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Tickets_full_report2.BindGridViewFull() in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\full_report2.aspx.cs:line 61
+   at Tickets_full_report2.lnkBtnAllTC_Click(Object sender, EventArgs e) in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\full_report2.aspx.cs:line 130
+   at System.Web.UI.WebControls.LinkButton.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.LinkButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_full_report2_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid.ACIG\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\88a9e655\f3f4a4d1\App_Web_qiweif2h.22.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 11/17/2013 1:47:25 PM **********
+Inner Exception Type: System.InvalidOperationException
+Inner Exception: Sequence contains no elements
+Inner Source: System.Core
+Inner Stack Trace: 
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Tickets_full_report.BindCreatedGridViewFull() in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\full_report.aspx.cs:line 62
+   at Tickets_full_report.lnkBtnAllTC_Click(Object sender, EventArgs e) in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\full_report.aspx.cs:line 234
+   at System.Web.UI.WebControls.LinkButton.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.LinkButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_full_report_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid.ACIG\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\88a9e655\f3f4a4d1\App_Web_3znuwwz4.16.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 11/17/2013 1:51:06 PM **********
+Inner Exception Type: System.InvalidOperationException
+Inner Exception: Sequence contains no elements
+Inner Source: System.Core
+Inner Stack Trace: 
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Tickets_full_report.BindCreatedGridViewFull() in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\full_report.aspx.cs:line 60
+   at Tickets_full_report.lnkBtnAllTC_Click(Object sender, EventArgs e) in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\full_report.aspx.cs:line 232
+   at System.Web.UI.WebControls.LinkButton.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.LinkButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_full_report_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid.ACIG\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\88a9e655\f3f4a4d1\App_Web_i2lehqmw.8.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 11/17/2013 2:10:51 PM **********
+Inner Exception Type: System.NullReferenceException
+Inner Exception: Object reference not set to an instance of an object.
+Inner Source: App_Web_no4rqrip
+Inner Stack Trace: 
+   at Tickets_full_report.BindAssignGridViewCustom(String type) in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\full_report.aspx.cs:line 169
+   at Tickets_full_report.lnkBtnLastMonth_Click(Object sender, EventArgs e) in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\full_report.aspx.cs:line 199
+   at System.Web.UI.WebControls.LinkButton.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.LinkButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_full_report_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid.ACIG\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\88a9e655\f3f4a4d1\App_Web_no4rqrip.24.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
