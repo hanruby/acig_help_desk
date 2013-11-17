@@ -4,4 +4,38 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
+    <asp:Repeater ID="rptrAssignedTickets" runat="server">
+        <HeaderTemplate>
+            <div class="sortable row-fluid">
+        </HeaderTemplate>
+        <ItemTemplate>
+            <a data-rel="tooltip" title="" class="well span3 top-block" href="#"><span
+                class="icon-red icon-leaf"></span>
+                <div>
+                    <%# Eval("Name") %></div>
+                <div><%# Eval("Href") %></div>
+                <span class="notification"><%# Eval("Href") %></span>
+            </a>
+        </ItemTemplate>
+        <FooterTemplate>
+            </div>
+        </FooterTemplate>
+    </asp:Repeater>
+    <asp:Repeater ID="rptrTickets" runat="server">
+        <HeaderTemplate>
+            <div class="sortable row-fluid">
+        </HeaderTemplate>
+        <ItemTemplate>
+            <a data-rel="tooltip" title="" class="well span3 top-block" href="#"><span
+                class="icon-red icon-leaf"></span>
+                <div>
+                    <%# Eval("Name") %></div>
+                <div><%# Eval("Href") %></div>
+                <span class="notification"><%# Eval("Href") %></span>
+            </a>
+        </ItemTemplate>
+        <FooterTemplate>
+            </div>
+        </FooterTemplate>
+    </asp:Repeater>
 </asp:Content>
