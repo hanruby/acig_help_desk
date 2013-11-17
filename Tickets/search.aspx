@@ -58,6 +58,7 @@
                             <tr>
                                 <td>
                                     <asp:DropDownList ID="ddlTicketType" runat="server" CssClass="input-xlarge">
+                                        <asp:ListItem>All</asp:ListItem>
                                         <asp:ListItem Value="Pending">Pending</asp:ListItem>
                                         <asp:ListItem Value="Resolved">Resolved</asp:ListItem>
                                         <asp:ListItem Value="Closed">Closed</asp:ListItem>
@@ -66,6 +67,8 @@
                                 <td>
                                     <asp:DropDownList ID="ddlSearchField" runat="server" AutoPostBack="True"
                                     OnSelectedIndexChanged="ddlSearchField_SelectedIndexChanged" CssClass="input-xlarge">
+                                        <asp:ListItem>All</asp:ListItem>
+                                        <asp:ListItem>Id</asp:ListItem>
                                         <asp:ListItem>Created By</asp:ListItem>
                                         <asp:ListItem>Assigned To</asp:ListItem>
                                         <asp:ListItem>Subject</asp:ListItem>
@@ -76,6 +79,9 @@
                                     <asp:TextBox ID="txtString" runat="server" CssClass="input-xlarge"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfvString" runat="server" ControlToValidate="txtString"
                                     ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="revId" runat="server" ControlToValidate="txtString"
+                                    ForeColor="#FF3300" SetFocusOnError="True" ValidationExpression="^\d*$"
+                                    ValidationGroup="header">Please enter ID in correct format!</asp:RegularExpressionValidator>
                                     <asp:TextBox ID="txtDate" runat="server" CssClass="datePicker input-xlarge"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfvDate" runat="server" ControlToValidate="txtDate"
                                     ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>

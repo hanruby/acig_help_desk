@@ -16,7 +16,7 @@ public partial class Tickets_search : MasterAppPage
         if (!IsPostBack)
         {
             BindBreadCrumbRepeater("search_ticket");
-            UpdateFields(true, false);
+            UpdateFields(true, false, false);
         }
     }
 
@@ -24,11 +24,15 @@ public partial class Tickets_search : MasterAppPage
     {
         if (ddlSearchField.SelectedValue == "Open Date")
         {
-            UpdateFields(false, true);
+            UpdateFields(false, true, false);
+        }
+        else if (ddlSearchField.SelectedValue == "Id")
+        {
+            UpdateFields(true, false, true);
         }
         else
         {
-            UpdateFields(true, false);
+            UpdateFields(true, false, false);
         }
     }
 
@@ -36,10 +40,11 @@ public partial class Tickets_search : MasterAppPage
     {
     }
 
-    protected void UpdateFields(bool field1, bool field2)
+    protected void UpdateFields(bool field1, bool field2, bool field3)
     {
         txtString.Visible = field1;
-        rfvString.Enabled = field1;
+        rfvString.Enabled = field3;
+        revId.Enabled = field3;
         txtDate.Visible = field2;
         rfvDate.Enabled = field2;
     }
@@ -47,7 +52,19 @@ public partial class Tickets_search : MasterAppPage
     protected void btnSearch_Click(object sender, EventArgs e)
     {
         _entity = GetEntity();
-        if (ddlSearchField.SelectedValue == "Created By")
+        if (ddlTicketType.SelectedValue == "All" && ddlSearchField.SelectedValue == "All")
+        {
+            SearchAll();
+        }
+        else if (ddlTicketType.SelectedValue != "All" && ddlSearchField.SelectedValue == "All")
+        {
+            SearchByTicketState();
+        }
+        else if (ddlSearchField.SelectedValue == "Id")
+        {
+            SearchById();
+        }
+        else if (ddlSearchField.SelectedValue == "Created By")
         {
             SearchByCreatedBy();
         }
@@ -82,9 +99,15 @@ public partial class Tickets_search : MasterAppPage
         var data = from t in _entity.Tickets
                    join u in _entity.tbl_Users
                    on t.Created_By equals u.Id
-                   where ((u.User_Name.Contains(txtString.Text) || u.Email.Contains(txtString.Text)) && t.State == ddlTicketType.SelectedValue)
+                   where ((u.User_Name.Contains(txtString.Text) || u.Email.Contains(txtString.Text)))
                    orderby t.Id descending
-                   select new { Id = t.Id, Opened_At = t.Created_At, Opened_By = u.Email, Assigned_To = t.Assigned_To_Emails, Full_Category = (t.Sub_Sub_Categories.Sub_Categories.Category.Name + " >> " + t.Sub_Sub_Categories.Sub_Categories.Name + " >> " + t.Sub_Sub_Categories.Name), Subject = t.Subject };
+                   select new { Id = t.Id, Opened_At = t.Created_At, Opened_By = u.Email, Assigned_To = t.Assigned_To_Emails, 
+                       Full_Category = (t.Sub_Sub_Categories.Sub_Categories.Category.Name + " >> " + t.Sub_Sub_Categories.Sub_Categories.Name + " >> "
+                       + t.Sub_Sub_Categories.Name), Subject = t.Subject, State = t.State };
+        if (ddlTicketType.SelectedValue != "All")
+        {
+            data = data.Where(x => x.State == ddlTicketType.SelectedValue);
+        }
         gvTickets.DataSource = data;
         gvTickets.DataBind();
     }
@@ -94,9 +117,15 @@ public partial class Tickets_search : MasterAppPage
         var data = from t in _entity.Tickets
                    join u in _entity.tbl_Users
                    on t.Created_By equals u.Id
-                   where t.Assigned_To_Emails.Contains(txtString.Text) && t.State == ddlTicketType.SelectedValue
+                   where t.Assigned_To_Emails.Contains(txtString.Text)
                    orderby t.Id descending
-                   select new { Id = t.Id, Opened_At = t.Created_At, Opened_By = u.Email, Assigned_To = t.Assigned_To_Emails, Full_Category = (t.Sub_Sub_Categories.Sub_Categories.Category.Name + " >> " + t.Sub_Sub_Categories.Sub_Categories.Name + " >> " + t.Sub_Sub_Categories.Name), Subject = t.Subject };
+                   select new { Id = t.Id, Opened_At = t.Created_At, Opened_By = u.Email, Assigned_To = t.Assigned_To_Emails,
+                       Full_Category = (t.Sub_Sub_Categories.Sub_Categories.Category.Name + " >> " + t.Sub_Sub_Categories.Sub_Categories.Name + " >> " 
+                       + t.Sub_Sub_Categories.Name), Subject = t.Subject, State = t.State  };
+        if (ddlTicketType.SelectedValue != "All")
+        {
+            data = data.Where(x => x.State == ddlTicketType.SelectedValue);
+        }
         gvTickets.DataSource = data;
         gvTickets.DataBind();
     }
@@ -106,9 +135,15 @@ public partial class Tickets_search : MasterAppPage
         var data = from t in _entity.Tickets
                    join u in _entity.tbl_Users
                    on t.Created_By equals u.Id
-                   where t.Subject.Contains(txtString.Text) && t.State == ddlTicketType.SelectedValue
+                   where t.Subject.Contains(txtString.Text)
                    orderby t.Id descending
-                   select new { Id = t.Id, Opened_At = t.Created_At, Opened_By = u.Email, Assigned_To = t.Assigned_To_Emails, Full_Category = (t.Sub_Sub_Categories.Sub_Categories.Category.Name + " >> " + t.Sub_Sub_Categories.Sub_Categories.Name + " >> " + t.Sub_Sub_Categories.Name), Subject = t.Subject };
+                   select new { Id = t.Id, Opened_At = t.Created_At, Opened_By = u.Email, Assigned_To = t.Assigned_To_Emails,
+                       Full_Category = (t.Sub_Sub_Categories.Sub_Categories.Category.Name + " >> " + t.Sub_Sub_Categories.Sub_Categories.Name + " >> " 
+                       + t.Sub_Sub_Categories.Name), Subject = t.Subject, State = t.State  };
+        if (ddlTicketType.SelectedValue != "All")
+        {
+            data = data.Where(x => x.State == ddlTicketType.SelectedValue);
+        }
         gvTickets.DataSource = data;
         gvTickets.DataBind();
     }
@@ -120,9 +155,79 @@ public partial class Tickets_search : MasterAppPage
         var data = from t in _entity.Tickets
                    join u in _entity.tbl_Users
                    on t.Created_By equals u.Id
-                   where t.Created_At >= startTime && t.Created_At <= endTime && t.State == ddlTicketType.SelectedValue
+                   where t.Created_At >= startTime && t.Created_At <= endTime
                    orderby t.Id descending
                    select new { Id = t.Id, Opened_At = t.Created_At, Opened_By = u.Email, Assigned_To = t.Assigned_To_Emails, Full_Category = (t.Sub_Sub_Categories.Sub_Categories.Category.Name + " >> " + t.Sub_Sub_Categories.Sub_Categories.Name + " >> " + t.Sub_Sub_Categories.Name), Subject = t.Subject };
+        gvTickets.DataSource = data;
+        gvTickets.DataBind();
+    }
+
+    protected void SearchById()
+    {
+        var id = int.Parse(txtString.Text);
+        var data = from t in _entity.Tickets
+                   join u in _entity.tbl_Users
+                   on t.Created_By equals u.Id
+                   where t.Id == id
+                   orderby t.Id descending
+                   select new
+                   {
+                       Id = t.Id,
+                       Opened_At = t.Created_At,
+                       Opened_By = u.Email,
+                       Assigned_To = t.Assigned_To_Emails,
+                       Full_Category = (t.Sub_Sub_Categories.Sub_Categories.Category.Name + " >> " + t.Sub_Sub_Categories.Sub_Categories.Name + " >> "
+                       + t.Sub_Sub_Categories.Name),
+                       Subject = t.Subject,
+                       State = t.State
+                   };
+        if (ddlTicketType.SelectedValue != "All")
+        {
+            data = data.Where(x => x.State == ddlTicketType.SelectedValue);
+        }
+        gvTickets.DataSource = data;
+        gvTickets.DataBind();
+    }
+
+    protected void SearchAll()
+    {
+        var data = from t in _entity.Tickets
+                   join u in _entity.tbl_Users
+                   on t.Created_By equals u.Id
+                   orderby t.Id descending
+                   select new
+                   {
+                       Id = t.Id,
+                       Opened_At = t.Created_At,
+                       Opened_By = u.Email,
+                       Assigned_To = t.Assigned_To_Emails,
+                       Full_Category = (t.Sub_Sub_Categories.Sub_Categories.Category.Name + " >> " + t.Sub_Sub_Categories.Sub_Categories.Name + " >> "
+                       + t.Sub_Sub_Categories.Name),
+                       Subject = t.Subject,
+                       State = t.State
+                   };
+        gvTickets.DataSource = data;
+        gvTickets.DataBind();
+    }
+
+    protected void SearchByTicketState()
+    {
+        var data = from t in _entity.Tickets
+                   join u in _entity.tbl_Users
+                   on t.Created_By equals u.Id
+                   where t.State == ddlTicketType.SelectedValue
+                   orderby t.Id descending
+                   select new
+                   {
+                       Id = t.Id,
+                       Opened_At = t.Created_At,
+                       Opened_By = u.Email,
+                       Assigned_To = t.Assigned_To_Emails,
+                       Full_Category = (t.Sub_Sub_Categories.Sub_Categories.Category.Name + " >> " + t.Sub_Sub_Categories.Sub_Categories.Name + " >> "
+                       + t.Sub_Sub_Categories.Name),
+                       Subject = t.Subject,
+                       State = t.State
+                   };
         gvTickets.DataSource = data;
         gvTickets.DataBind();
     }
