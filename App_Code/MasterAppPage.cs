@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Acig_Help_DeskModel;
+using System.Web.Security;
 
 public class MasterAppPage : System.Web.UI.Page
 {
@@ -57,5 +58,38 @@ public class MasterAppPage : System.Web.UI.Page
         BreadCrumbHelper obj = new BreadCrumbHelper();
         rptr.DataSource = obj.GetList(pageName);
         rptr.DataBind();
+    }
+
+    protected string SetLogin(tbl_Users user)
+    {
+        FormsAuthentication.SetAuthCookie(user.User_Name, false);
+        FormsAuthenticationTicket ticket1 =
+           new FormsAuthenticationTicket(
+                1,                                   // version
+                user.User_Name,   // get username  from the form
+                DateTime.Now,                        // issue time is now
+                DateTime.Now.AddHours(11),         // expires in 10 minutes
+                false,      // cookie is not persistent
+                user.Id.ToString() + "#" + user.Role2 // role assignment is stored
+                );
+        HttpCookie cookie1 = new HttpCookie(
+          FormsAuthentication.FormsCookieName,
+          FormsAuthentication.Encrypt(ticket1));
+        Response.Cookies.Add(cookie1);
+        string returnUrl = CurrentUser.GetRedirectPath(user.Role);
+        return returnUrl;
+    }
+
+    protected void SetLogout()
+    {
+        FormsAuthentication.SignOut();
+        Session.Abandon();
+        HttpCookie cookie1 = new HttpCookie(FormsAuthentication.FormsCookieName, "");
+        cookie1.Expires = DateTime.Now.AddYears(-1);
+        Response.Cookies.Add(cookie1);
+        HttpCookie cookie2 = new HttpCookie("ASP.NET_SessionId", "");
+        cookie2.Expires = DateTime.Now.AddYears(-1);
+        Response.Cookies.Add(cookie2);
+        FormsAuthentication.RedirectToLoginPage();
     }
 }

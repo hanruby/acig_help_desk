@@ -37,6 +37,11 @@ public class BreadCrumbHelper
                 obj = new BreadCrumbHelper { Divider_Class = "hide", Href = "#", Text = "Edit" };
                 list.Add(obj);
                 break;
+            case "user_auto_login":
+                rootPath += "admin/users/";
+                obj = new BreadCrumbHelper { Divider_Class = "hide", Href = rootPath + "auto_login.aspx", Text = "User's Auto Login" };
+                list.Add(obj);
+                break;
             case "category":
                 rootPath += "admin/categories/";
                 obj = new BreadCrumbHelper { Divider_Class = "hide", Href = rootPath + "index.aspx", Text = "Categories" };

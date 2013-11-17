@@ -40,21 +40,7 @@ public partial class Account_Login : MasterAppPage
             errorDiv.Visible = true;
             return;
         }
-        FormsAuthentication.SetAuthCookie(user.User_Name, false);
-        FormsAuthenticationTicket ticket1 =
-           new FormsAuthenticationTicket(
-                1,                                   // version
-                user.User_Name,   // get username  from the form
-                DateTime.Now,                        // issue time is now
-                DateTime.Now.AddHours(11),         // expires in 10 minutes
-                false,      // cookie is not persistent
-                user.Id.ToString() + "#" + user.Role2 // role assignment is stored
-                );
-        HttpCookie cookie1 = new HttpCookie(
-          FormsAuthentication.FormsCookieName,
-          FormsAuthentication.Encrypt(ticket1));
-        Response.Cookies.Add(cookie1);
-        string returnUrl = CurrentUser.GetRedirectPath(user.Role);
+        string returnUrl = SetLogin(user);
         if (!string.IsNullOrEmpty(Request.QueryString["ReturnUrl"]))
         {
             returnUrl = Request.QueryString["ReturnUrl"];
