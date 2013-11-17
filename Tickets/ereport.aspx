@@ -92,7 +92,7 @@
                                                     <%# Eval("state") %>
                                                 </td>
                                                 <td>
-                                                    <%# Eval("count") %>
+                                                    <asp:Label ID="lblTecketsCountByDept" runat="server" Text='<%# Eval("Count") %>' CssClass="label label-success"></asp:Label>
                                                 </td>
                                             </tr>
                                         </ItemTemplate>
