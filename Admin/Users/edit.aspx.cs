@@ -19,6 +19,7 @@ public partial class Admin_Users_edit : MasterAppPage
     {
         if (!IsPostBack)
         {
+            BindBreadCrumbRepeater("user_edit");
             _entity = GetEntity();
             _id = long.Parse(Request.QueryString["id"]);
             hdnFldUserId.Value = _id.ToString();
@@ -41,7 +42,6 @@ public partial class Admin_Users_edit : MasterAppPage
                 }
             }
             UpdateCategoryBox();
-            BindBreadCrumbRepeater("user_edit");
         }
     }
 

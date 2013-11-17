@@ -17,10 +17,10 @@ public partial class Admin_Categories_index : MasterAppPage
     {
         if (!IsPostBack)
         {
+            BindBreadCrumbRepeater("category");
             HideSubCategory();
             HideSubSubCategory();
             BindDataToGridView();
-            BindBreadCrumbRepeater("category");
         }
     }
 

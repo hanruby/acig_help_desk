@@ -21,8 +21,8 @@ public partial class Tickets_reassign : MasterAppPage
         }
         if (!IsPostBack)
         {
-            Reset();
             BindBreadCrumbRepeater("reassign_ticket");
+            Reset();
         }
     }
 
