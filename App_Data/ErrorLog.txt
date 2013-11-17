@@ -1561,3 +1561,32 @@ Stack Trace:
    at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
    at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
 
+********** 11/17/2013 10:28:31 AM **********
+Inner Exception Type: System.Net.Mail.SmtpException
+Inner Exception: Failure sending mail.
+Inner Source: System
+Inner Stack Trace: 
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at Notifier.SendEmail(String From, String To, String Subject, String Body, Boolean sendCC) in e:\new_theme_acig_it_help_desk\acig_help_desk\App_Code\Notifier.cs:line 33
+   at HtmlEmailer.New_Comment_TicketEMail() in e:\new_theme_acig_it_help_desk\acig_help_desk\App_Code\HtmlEmailer.cs:line 153
+   at Tickets_show.btnSave_Click(Object sender, EventArgs e) in e:\new_theme_acig_it_help_desk\acig_help_desk\Tickets\show.aspx.cs:line 139
+   at System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_show_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid.ACIG\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\88a9e655\f3f4a4d1\App_Web_v44jl0bz.0.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
