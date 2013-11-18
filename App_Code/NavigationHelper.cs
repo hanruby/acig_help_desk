@@ -29,7 +29,7 @@ public class NavigationHelper
         NavigationHelper obj = new NavigationHelper(); ;
         List<NavigationHelper> lst = new List<NavigationHelper>();
         string rootPath = Route.GetRootPath("");
-        obj = new NavigationHelper { Name = "Dashboard ( " + 0 + " )", Href = rootPath + "dashboard.aspx", ImagePath = "icon-home" };
+        obj = new NavigationHelper { Name = "Dashboard", Href = rootPath + "dashboard.aspx", ImagePath = "icon-home" };
         lst.Add(obj);
         switch (role)
         {
@@ -50,12 +50,16 @@ public class NavigationHelper
                 lst = GetUserMenu(obj, lst, rootPath);
                 break;
         }
+        if (role == "admin" && user.Role != "engineer")
+        {
+            lst = GetUserMenu(obj, lst, rootPath);
+        }
         if (role == "manager" || role == "vp" || role == "coo" || role == "ceo")
         {
             lst = GetUserMenu(obj, lst, rootPath);
         }
         lst = AddCommonListItems(obj, lst, rootPath);
-        if (role == "supervisor")
+        if (role == "supervisor" || user.Role == "supervisor")
         {
             lst = GetSuprvisorMenu(obj, lst, rootPath);
         }
