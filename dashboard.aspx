@@ -9,12 +9,12 @@
             <div class="sortable row-fluid">
         </HeaderTemplate>
         <ItemTemplate>
-            <a data-rel="tooltip" title="" class="well span3 top-block" href="#"><span
+            <a data-rel="tooltip" title="" class="well span3 top-block" href='<%# Eval("Href") %>'><span
                 class="icon-red icon-leaf"></span>
                 <div>
                     <%# Eval("Name") %></div>
-                <div><%# Eval("Href") %></div>
-                <span class="notification"><%# Eval("Href") %></span>
+                <div><%# Eval("ImagePath")%></div>
+                <span class="notification"><%# Eval("ImagePath")%></span>
             </a>
         </ItemTemplate>
         <FooterTemplate>
@@ -26,12 +26,12 @@
             <div class="sortable row-fluid">
         </HeaderTemplate>
         <ItemTemplate>
-            <a data-rel="tooltip" title="" class="well span3 top-block" href="#"><span
+            <a data-rel="tooltip" title="" class="well span3 top-block" href='<%# Eval("Href") %>'><span
                 class="icon-red icon-leaf"></span>
                 <div>
                     <%# Eval("Name") %></div>
-                <div><%# Eval("Href") %></div>
-                <span class="notification"><%# Eval("Href") %></span>
+                <div><%# Eval("ImagePath")%></div>
+                <span class="notification"><%# Eval("ImagePath")%></span>
             </a>
         </ItemTemplate>
         <FooterTemplate>
