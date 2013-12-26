@@ -15,6 +15,9 @@
             </div>
             <!--/row-->
             <div class="row-fluid">
+                <div class="span4">
+                    <asp:Image ID="imgLogo" runat="server" />
+                </div>
                 <div class="well span5 center login-box">
                     <div class="alert alert-info">
                         Please login with your Username and Password.

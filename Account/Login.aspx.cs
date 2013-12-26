@@ -16,6 +16,7 @@ public partial class Account_Login : MasterAppPage
         if (!IsPostBack)
         {
             errorDiv.Visible = false;
+            imgLogo.ImageUrl = Route.GetRootPath("images/acig_logo_full.png");
         }
         if (User.Identity.IsAuthenticated && Request.QueryString["ReturnUrl"] != null)
         {
