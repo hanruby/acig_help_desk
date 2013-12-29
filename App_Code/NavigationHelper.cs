@@ -96,12 +96,19 @@ public class NavigationHelper
         obj = new NavigationHelper { Name = "New Ticket", Href = rootPath + "tickets/new.aspx", ImagePath = "icon-leaf" };
         lst.Add(obj);
         obj = new NavigationHelper { Name = "New Call Ticket", Href = rootPath + "tickets/call.aspx", ImagePath = "icon-leaf" };
-        lst.Add(obj);
+        lst.Add(obj);        
         if (admin)
         {
             obj = new NavigationHelper { Name = "Reassign Ticket", Href = rootPath + "tickets/reassign.aspx", ImagePath = "icon-leaf" };
             lst.Add(obj);
         }
+        if (admin)
+        {
+            obj = new NavigationHelper { Name = "Log Systems", Href = rootPath + "log_systems/index.aspx", ImagePath = "icon-th" };
+            lst.Add(obj);
+        }
+        obj = new NavigationHelper { Name = "System Incident Logs", Href = rootPath + "system_logs/index.aspx", ImagePath = "icon-pencil" };
+        lst.Add(obj);
         return lst;
     }
 

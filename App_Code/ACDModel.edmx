@@ -10,8 +10,10 @@
           <EntitySet Name="Comments" EntityType="Acig_Help_DeskModel.Store.Comments" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Departments" EntityType="Acig_Help_DeskModel.Store.Departments" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Events" EntityType="Acig_Help_DeskModel.Store.Events" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Log_Systems" EntityType="Acig_Help_DeskModel.Store.Log_Systems" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Sub_Categories" EntityType="Acig_Help_DeskModel.Store.Sub_Categories" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Sub_Sub_Categories" EntityType="Acig_Help_DeskModel.Store.Sub_Sub_Categories" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="System_Incident_Logs" EntityType="Acig_Help_DeskModel.Store.System_Incident_Logs" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tbl_Users" EntityType="Acig_Help_DeskModel.Store.tbl_Users" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tickets" EntityType="Acig_Help_DeskModel.Store.Tickets" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="User_Sub_Sub_Categories" EntityType="Acig_Help_DeskModel.Store.User_Sub_Sub_Categories" store:Type="Tables" Schema="dbo" />
@@ -39,6 +41,10 @@
           <AssociationSet Name="FK_Sub_Sub_Categories_Sub_Categories" Association="Acig_Help_DeskModel.Store.FK_Sub_Sub_Categories_Sub_Categories">
             <End Role="Sub_Categories" EntitySet="Sub_Categories" />
             <End Role="Sub_Sub_Categories" EntitySet="Sub_Sub_Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_System_Incident_Logs_Log_Systems" Association="Acig_Help_DeskModel.Store.FK_System_Incident_Logs_Log_Systems">
+            <End Role="Log_Systems" EntitySet="Log_Systems" />
+            <End Role="System_Incident_Logs" EntitySet="System_Incident_Logs" />
           </AssociationSet>
           <AssociationSet Name="FK_tbl_Users_Departments" Association="Acig_Help_DeskModel.Store.FK_tbl_Users_Departments">
             <End Role="Departments" EntitySet="Departments" />
@@ -113,6 +119,17 @@
           <Property Name="Created_At" Type="datetime" Nullable="false" />
           <Property Name="Created_By" Type="bigint" Nullable="false" />
         </EntityType>
+        <EntityType Name="Log_Systems">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Created_At" Type="datetime" Nullable="false" />
+          <Property Name="Updated_At" Type="datetime" Nullable="false" />
+          <Property Name="Created_By" Type="int" Nullable="false" />
+          <Property Name="Updated_By" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Sub_Categories">
           <Key>
             <PropertyRef Name="Id" />
@@ -136,6 +153,24 @@
           <Property Name="Updated_At" Type="datetime" Nullable="false" />
           <Property Name="Created_By" Type="bigint" Nullable="false" />
           <Property Name="Updated_By" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="System_Incident_Logs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Incident_Date" Type="date" Nullable="false" />
+          <Property Name="Resolved_Date" Type="date" />
+          <Property Name="Time_Difference" Type="nvarchar" MaxLength="30" />
+          <Property Name="System_Id" Type="int" Nullable="false" />
+          <Property Name="Error_Short_Desc" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Error_Long_Description" Type="nvarchar" MaxLength="250" />
+          <Property Name="Resolved_Description" Type="nvarchar" MaxLength="250" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="250" />
+          <Property Name="Created_At" Type="datetime" Nullable="false" />
+          <Property Name="Updated_At" Type="datetime" Nullable="false" />
+          <Property Name="Created_By" Type="int" Nullable="false" />
+          <Property Name="Updated_By" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tbl_Users">
           <Key>
@@ -257,6 +292,18 @@
             </Principal>
             <Dependent Role="Sub_Sub_Categories">
               <PropertyRef Name="Sub_Category_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_System_Incident_Logs_Log_Systems">
+          <End Role="Log_Systems" Type="Acig_Help_DeskModel.Store.Log_Systems" Multiplicity="1" />
+          <End Role="System_Incident_Logs" Type="Acig_Help_DeskModel.Store.System_Incident_Logs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Log_Systems">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="System_Incident_Logs">
+              <PropertyRef Name="System_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -410,6 +457,12 @@
           <AssociationSet Name="FK_User_Tickets_Tickets" Association="Acig_Help_DeskModel.FK_User_Tickets_Tickets">
             <End Role="Ticket" EntitySet="Tickets" />
             <End Role="User_Tickets" EntitySet="User_Tickets" />
+          </AssociationSet>
+          <EntitySet Name="Log_Systems" EntityType="Acig_Help_DeskModel.Log_Systems" />
+          <EntitySet Name="System_Incident_Logs" EntityType="Acig_Help_DeskModel.System_Incident_Logs" />
+          <AssociationSet Name="FK_System_Incident_Logs_Log_Systems" Association="Acig_Help_DeskModel.FK_System_Incident_Logs_Log_Systems">
+            <End Role="Log_Systems" EntitySet="Log_Systems" />
+            <End Role="System_Incident_Logs" EntitySet="System_Incident_Logs" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Category">
@@ -713,6 +766,49 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Log_Systems">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Created_At" Nullable="false" />
+          <Property Type="DateTime" Name="Updated_At" Nullable="false" />
+          <Property Type="Int32" Name="Created_By" Nullable="false" />
+          <Property Type="Int32" Name="Updated_By" Nullable="false" />
+          <NavigationProperty Name="System_Incident_Logs" Relationship="Acig_Help_DeskModel.FK_System_Incident_Logs_Log_Systems" FromRole="Log_Systems" ToRole="System_Incident_Logs" />
+        </EntityType>
+        <EntityType Name="System_Incident_Logs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="Incident_Date" Nullable="false" />
+          <Property Type="DateTime" Name="Resolved_Date" />
+          <Property Type="String" Name="Time_Difference" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="System_Id" Nullable="false" />
+          <Property Type="String" Name="Error_Short_Desc" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Error_Long_Description" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Resolved_Description" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Comment" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Created_At" Nullable="false" />
+          <Property Type="DateTime" Name="Updated_At" Nullable="false" />
+          <Property Type="Int32" Name="Created_By" Nullable="false" />
+          <Property Type="Int32" Name="Updated_By" Nullable="false" />
+          <NavigationProperty Name="Log_Systems" Relationship="Acig_Help_DeskModel.FK_System_Incident_Logs_Log_Systems" FromRole="System_Incident_Logs" ToRole="Log_Systems" />
+        </EntityType>
+        <Association Name="FK_System_Incident_Logs_Log_Systems">
+          <End Type="Acig_Help_DeskModel.Log_Systems" Role="Log_Systems" Multiplicity="1" />
+          <End Type="Acig_Help_DeskModel.System_Incident_Logs" Role="System_Incident_Logs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Log_Systems">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="System_Incident_Logs">
+              <PropertyRef Name="System_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -848,6 +944,37 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Log_Systems">
+            <EntityTypeMapping TypeName="Acig_Help_DeskModel.Log_Systems">
+              <MappingFragment StoreEntitySet="Log_Systems">
+                <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+                <ScalarProperty Name="Updated_At" ColumnName="Updated_At" />
+                <ScalarProperty Name="Created_At" ColumnName="Created_At" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="System_Incident_Logs">
+            <EntityTypeMapping TypeName="Acig_Help_DeskModel.System_Incident_Logs">
+              <MappingFragment StoreEntitySet="System_Incident_Logs">
+                <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+                <ScalarProperty Name="Updated_At" ColumnName="Updated_At" />
+                <ScalarProperty Name="Created_At" ColumnName="Created_At" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Resolved_Description" ColumnName="Resolved_Description" />
+                <ScalarProperty Name="Error_Long_Description" ColumnName="Error_Long_Description" />
+                <ScalarProperty Name="Error_Short_Desc" ColumnName="Error_Short_Desc" />
+                <ScalarProperty Name="System_Id" ColumnName="System_Id" />
+                <ScalarProperty Name="Time_Difference" ColumnName="Time_Difference" />
+                <ScalarProperty Name="Resolved_Date" ColumnName="Resolved_Date" />
+                <ScalarProperty Name="Incident_Date" ColumnName="Incident_Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -885,8 +1012,8 @@
           <ConnectorPoint PointX="3" PointY="3.374746093749998" />
         </AssociationConnector>
         <AssociationConnector Association="Acig_Help_DeskModel.FK_User_Sub_Sub_Categories_Sub_Sub_Categories" >
-          <ConnectorPoint PointX="4.5" PointY="4.5958968098958328" />
-          <ConnectorPoint PointX="8.25" PointY="4.5958968098958328" />
+          <ConnectorPoint PointX="4.5" PointY="4.5958968098958337" />
+          <ConnectorPoint PointX="8.25" PointY="4.5958968098958337" />
         </AssociationConnector>
         <EntityTypeShape EntityType="Acig_Help_DeskModel.Department" Width="1.5" PointX="4.375" PointY="11.75" Height="2.3648893229166745" />
         <EntityTypeShape EntityType="Acig_Help_DeskModel.tbl_Users" Width="1.5" PointX="6.625" PointY="11" Height="3.9033007812500031" />
@@ -957,6 +1084,12 @@
         <AssociationConnector Association="Acig_Help_DeskModel.FK_User_Tickets_Tickets" >
           <ConnectorPoint PointX="11.4375" PointY="7.875" />
           <ConnectorPoint PointX="11.4375" PointY="6.7302864583333326" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Acig_Help_DeskModel.Log_Systems" Width="1.5" PointX="13.375" PointY="1.625" Height="2.3648893229166745" />
+        <EntityTypeShape EntityType="Acig_Help_DeskModel.System_Incident_Logs" Width="1.5" PointX="15.625" PointY="1" Height="3.7109993489583388" />
+        <AssociationConnector Association="Acig_Help_DeskModel.FK_System_Incident_Logs_Log_Systems" >
+          <ConnectorPoint PointX="14.875" PointY="2.8074446614583337" />
+          <ConnectorPoint PointX="15.625" PointY="2.8074446614583337" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

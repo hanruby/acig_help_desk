@@ -6,11 +6,12 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Acig_Help_DeskModel;
 using System.Web.Security;
+using System.Data;
 
 public class MasterAppPage : System.Web.UI.Page
 {
     protected Acig_Help_DeskEntities _entity;
-    protected long currentUserId;
+    protected int currentUserId;
     protected Acig_Help_DeskEntities GetEntity()
     {
         if (_entity == null)
@@ -91,5 +92,35 @@ public class MasterAppPage : System.Web.UI.Page
         cookie2.Expires = DateTime.Now.AddYears(-1);
         Response.Cookies.Add(cookie2);
         FormsAuthentication.RedirectToLoginPage();
+    }
+
+    private void BindCategoriesRoot(object sender, EventArgs e)
+    {
+    }
+
+    protected void BindDdlLogSystemsRoot(DropDownList ddlRoot)
+    {
+        _entity = GetEntity();
+        List<Log_Systems> lst = _entity.Log_Systems.OrderBy(x => x.Name).ToList();
+        DataTable table = new DataTable();
+        table.Columns.Add("Text");
+        table.Columns.Add("Value");
+        DataRow dr;
+        dr = table.NewRow();
+        dr["Text"] = "Select";
+        dr["Value"] = "0";
+        table.Rows.Add(dr);
+        foreach (var x in lst)
+        {
+            dr = table.NewRow();
+            dr["Text"] = x.Name;
+            dr["Value"] = x.Id;
+            table.Rows.Add(dr);
+        }
+        ddlRoot.DataSource = table;
+        ddlRoot.DataTextField = table.Columns["Text"].ColumnName;
+        ddlRoot.DataValueField = table.Columns["Value"].ColumnName;
+        ddlRoot.DataBind();
+        ddlRoot.SelectedIndexChanged += new System.EventHandler(BindCategoriesRoot);
     }
 }

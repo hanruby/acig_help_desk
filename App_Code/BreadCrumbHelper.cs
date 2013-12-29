@@ -142,6 +142,30 @@ public class BreadCrumbHelper
                 obj = new BreadCrumbHelper { Divider_Class = "hide", Href = rootPath + "full_report2.aspx", Text = "Report By User" };
                 list.Add(obj);
                 break;
+            case "log_systems":
+                rootPath += "log_systems/";
+                obj = new BreadCrumbHelper { Divider_Class = "hide", Href = rootPath + "index.aspx", Text = "Log Systems" };
+                list.Add(obj);
+                break;
+            case "system_logs":
+                rootPath += "system_logs/";
+                obj = new BreadCrumbHelper { Divider_Class = "hide", Href = rootPath + "index.aspx", Text = "System Incident Logs" };
+                list.Add(obj);
+                break;
+            case "system_logs_new":
+                rootPath += "system_logs/";
+                obj = new BreadCrumbHelper { Divider_Class = "divider", Href = rootPath + "index.aspx", Text = "System Incident Logs" };
+                list.Add(obj);
+                obj = new BreadCrumbHelper { Divider_Class = "hide", Href = rootPath + "new.aspx", Text = "New Log" };
+                list.Add(obj);
+                break;
+            case "system_logs_edit":
+                rootPath += "system_logs/";
+                obj = new BreadCrumbHelper { Divider_Class = "divider", Href = rootPath + "index.aspx", Text = "System Incident Logs" };
+                list.Add(obj);
+                obj = new BreadCrumbHelper { Divider_Class = "hide", Href = "#", Text = "Edit Log" };
+                list.Add(obj);
+                break;
         }
         return list;
     }

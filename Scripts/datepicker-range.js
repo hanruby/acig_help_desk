@@ -10,6 +10,11 @@
             return output;
         }
 
+        var startDateVal = $(".start-date").val();
+        if (startDateVal != "") {
+            updateDatePickerOfToDate(convertToDate(startDateVal));
+        }
+
         function updateDatePickerOfToDate(minSelectedDate) {
             minSelectedDate.setDate(minSelectedDate.getDate() + 1);
             var maxDate = new Date(minSelectedDate);
