@@ -28,16 +28,26 @@
                     <div class="box-content">
                         <table class="table table-bordered">
                             <tr>
+                                <th>Department Name</th>
+                                <th>Manager / Supervisor (Email CC TO)</th>
+                            </tr>
+                            <tr>
                                 <td>
-                                    Department Name
-                                    <br />
                                     <asp:TextBox ID="txtDepartmentName" runat="server" MaxLength="200"
                                      CssClass="input-large span4 inline-block"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfvDepartmentName" runat="server" ControlToValidate="txtDepartmentName"
                                     ForeColor="#FF3300" SetFocusOnError="True" ValidationGroup="NewDepartment">*</asp:RequiredFieldValidator>
+                                </td>
+                                <td>
+                                    <asp:DropDownList ID="ddlManagerNew" runat="server"></asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
                                     <asp:Button ID="btnSaveDepartment" runat="server" Text="Save" ValidationGroup="NewDepartment"
                                     OnClick="btnSaveDepartment_Click" CssClass="btn btn-primary" />
                                 </td>
+                                <td></td>
                             </tr>
                         </table>
                         <asp:GridView ID="gvDepartment" runat="server" AutoGenerateColumns="false" OnRowEditing="EditDepartment"
@@ -53,6 +63,15 @@
                                         <asp:HiddenField ID="hdnDepartmentId" runat="server" Value='<%# Eval("Id") %>' />
                                         <asp:RequiredFieldValidator ID="rfvDepartmentNameEdit" runat="server" ControlToValidate="txtDepartmentNameEdit"
                                         ForeColor="#FF3300" SetFocusOnError="True" ValidationGroup="EditDeparmtent">*</asp:RequiredFieldValidator>
+                                    </EditItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Manager / Supervisor Name">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblManager" runat="server" Text='<%# Eval("Manager")%>'></asp:Label>
+                                    </ItemTemplate>
+                                    <EditItemTemplate>
+                                        <asp:DropDownList ID="ddlManagerEdit" runat="server"></asp:DropDownList>
+                                        <asp:HiddenField ID="hdnManagerId" runat="server" Value='<%# Eval("Manager_Id") %>' />                                        
                                     </EditItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField ShowHeader="False">
