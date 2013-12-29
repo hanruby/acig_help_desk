@@ -11,7 +11,7 @@ using System.Data;
 public class MasterAppPage : System.Web.UI.Page
 {
     protected Acig_Help_DeskEntities _entity;
-    protected int currentUserId;
+    protected long currentUserId;
     protected Acig_Help_DeskEntities GetEntity()
     {
         if (_entity == null)

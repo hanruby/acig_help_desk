@@ -1345,7 +1345,7 @@ namespace Acig_Help_DeskModel
         /// <param name="updated_At">Initial value of the Updated_At property.</param>
         /// <param name="created_By">Initial value of the Created_By property.</param>
         /// <param name="updated_By">Initial value of the Updated_By property.</param>
-        public static Log_Systems CreateLog_Systems(global::System.Int32 id, global::System.String name, global::System.DateTime created_At, global::System.DateTime updated_At, global::System.Int32 created_By, global::System.Int32 updated_By)
+        public static Log_Systems CreateLog_Systems(global::System.Int32 id, global::System.String name, global::System.DateTime created_At, global::System.DateTime updated_At, global::System.Int64 created_By, global::System.Int64 updated_By)
         {
             Log_Systems log_Systems = new Log_Systems();
             log_Systems.Id = id;
@@ -1464,7 +1464,7 @@ namespace Acig_Help_DeskModel
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 Created_By
+        public global::System.Int64 Created_By
         {
             get
             {
@@ -1479,8 +1479,8 @@ namespace Acig_Help_DeskModel
                 OnCreated_ByChanged();
             }
         }
-        private global::System.Int32 _Created_By;
-        partial void OnCreated_ByChanging(global::System.Int32 value);
+        private global::System.Int64 _Created_By;
+        partial void OnCreated_ByChanging(global::System.Int64 value);
         partial void OnCreated_ByChanged();
     
         /// <summary>
@@ -1488,7 +1488,7 @@ namespace Acig_Help_DeskModel
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 Updated_By
+        public global::System.Int64 Updated_By
         {
             get
             {
@@ -1503,8 +1503,8 @@ namespace Acig_Help_DeskModel
                 OnUpdated_ByChanged();
             }
         }
-        private global::System.Int32 _Updated_By;
-        partial void OnUpdated_ByChanging(global::System.Int32 value);
+        private global::System.Int64 _Updated_By;
+        partial void OnUpdated_ByChanging(global::System.Int64 value);
         partial void OnUpdated_ByChanged();
 
         #endregion
@@ -2127,7 +2127,7 @@ namespace Acig_Help_DeskModel
         /// <param name="updated_At">Initial value of the Updated_At property.</param>
         /// <param name="created_By">Initial value of the Created_By property.</param>
         /// <param name="updated_By">Initial value of the Updated_By property.</param>
-        public static System_Incident_Logs CreateSystem_Incident_Logs(global::System.Int32 id, global::System.DateTime incident_Date, global::System.Int32 system_Id, global::System.String error_Short_Desc, global::System.DateTime created_At, global::System.DateTime updated_At, global::System.Int32 created_By, global::System.Int32 updated_By)
+        public static System_Incident_Logs CreateSystem_Incident_Logs(global::System.Int32 id, global::System.DateTime incident_Date, global::System.Int32 system_Id, global::System.String error_Short_Desc, global::System.DateTime created_At, global::System.DateTime updated_At, global::System.Int64 created_By, global::System.Int64 updated_By)
         {
             System_Incident_Logs system_Incident_Logs = new System_Incident_Logs();
             system_Incident_Logs.Id = id;
@@ -2416,7 +2416,7 @@ namespace Acig_Help_DeskModel
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 Created_By
+        public global::System.Int64 Created_By
         {
             get
             {
@@ -2431,8 +2431,8 @@ namespace Acig_Help_DeskModel
                 OnCreated_ByChanged();
             }
         }
-        private global::System.Int32 _Created_By;
-        partial void OnCreated_ByChanging(global::System.Int32 value);
+        private global::System.Int64 _Created_By;
+        partial void OnCreated_ByChanging(global::System.Int64 value);
         partial void OnCreated_ByChanged();
     
         /// <summary>
@@ -2440,7 +2440,7 @@ namespace Acig_Help_DeskModel
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 Updated_By
+        public global::System.Int64 Updated_By
         {
             get
             {
@@ -2455,8 +2455,8 @@ namespace Acig_Help_DeskModel
                 OnUpdated_ByChanged();
             }
         }
-        private global::System.Int32 _Updated_By;
-        partial void OnUpdated_ByChanging(global::System.Int32 value);
+        private global::System.Int64 _Updated_By;
+        partial void OnUpdated_ByChanging(global::System.Int64 value);
         partial void OnUpdated_ByChanged();
 
         #endregion
