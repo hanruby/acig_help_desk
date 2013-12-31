@@ -60,6 +60,8 @@
                                     <asp:DropDownList ID="ddlTicketType" runat="server" CssClass="input-xlarge">
                                         <asp:ListItem>All</asp:ListItem>
                                         <asp:ListItem Value="Pending">Pending</asp:ListItem>
+                                        <asp:ListItem Value="Clarification">Clarification</asp:ListItem>
+                                        <asp:ListItem Value="Clarified">Clarified</asp:ListItem>
                                         <asp:ListItem Value="Resolved">Resolved</asp:ListItem>
                                         <asp:ListItem Value="Closed">Closed</asp:ListItem>
                                     </asp:DropDownList>
