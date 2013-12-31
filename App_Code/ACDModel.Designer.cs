@@ -30,8 +30,8 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Tickets_Sub_Categories", "Sub_Sub_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Sub_Sub_Categories), "Ticket", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Ticket), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Tickets_Users", "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.tbl_Users), "Ticket", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Ticket), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_User_Tickets_Tickets", "Ticket", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Ticket), "User_Tickets", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.User_Tickets), true)]
-[assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_System_Incident_Logs_Log_Systems", "Log_Systems", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Log_Systems), "System_Incident_Logs", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.System_Incident_Logs), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_tbl_Users_Departments", "Department", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Department), "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.tbl_Users), true)]
+[assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_System_Incident_Logs_Log_Systems", "Log_Systems", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Log_Systems), "System_Incident_Logs", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.System_Incident_Logs), true)]
 
 #endregion
 
@@ -230,22 +230,6 @@ namespace Acig_Help_DeskModel
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Log_Systems> Log_Systems
-        {
-            get
-            {
-                if ((_Log_Systems == null))
-                {
-                    _Log_Systems = base.CreateObjectSet<Log_Systems>("Log_Systems");
-                }
-                return _Log_Systems;
-            }
-        }
-        private ObjectSet<Log_Systems> _Log_Systems;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<System_Incident_Logs> System_Incident_Logs
         {
             get
@@ -274,6 +258,22 @@ namespace Acig_Help_DeskModel
             }
         }
         private ObjectSet<Department> _Departments;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Log_Systems> Log_Systems
+        {
+            get
+            {
+                if ((_Log_Systems == null))
+                {
+                    _Log_Systems = base.CreateObjectSet<Log_Systems>("Log_Systems");
+                }
+                return _Log_Systems;
+            }
+        }
+        private ObjectSet<Log_Systems> _Log_Systems;
 
         #endregion
         #region AddTo Methods
@@ -351,14 +351,6 @@ namespace Acig_Help_DeskModel
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Log_Systems EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToLog_Systems(Log_Systems log_Systems)
-        {
-            base.AddObject("Log_Systems", log_Systems);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the System_Incident_Logs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToSystem_Incident_Logs(System_Incident_Logs system_Incident_Logs)
@@ -372,6 +364,14 @@ namespace Acig_Help_DeskModel
         public void AddToDepartments(Department department)
         {
             base.AddObject("Departments", department);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Log_Systems EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToLog_Systems(Log_Systems log_Systems)
+        {
+            base.AddObject("Log_Systems", log_Systems);
         }
 
         #endregion
