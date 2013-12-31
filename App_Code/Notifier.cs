@@ -7,7 +7,7 @@ using System.Net;
 
 public class Notifier
 {
-    public static void SendEmail(string From, string To, string Subject, string Body, bool sendCC = true)
+    public static void SendEmail(string From, string To, string Subject, string Body, List<string> ccEmails, bool sendCC = true)
     {
         MailMessage mailMessage = new MailMessage();
         mailMessage.From = new MailAddress(From);
@@ -16,9 +16,16 @@ public class Notifier
         mailMessage.To.Add(To);
         mailMessage.IsBodyHtml = true;
         mailMessage.Priority = MailPriority.Normal;
-        if (sendCC)
+        if (false)//sendCC)
         {
-            mailMessage.CC.Add(new MailAddress("magdi@acig.com.sa"));
+            if (!ccEmails.Contains("magdi@acig.com.sa"))
+            {
+                ccEmails.Add("magdi@acig.com.sa");
+            }
+        }
+        foreach (var x in ccEmails)
+        {
+            mailMessage.CC.Add(new MailAddress(x));
         }
         mailMessage.Bcc.Add(new MailAddress("crmmailadmin@acig.com.sa"));
         SmtpClient smtpClient = new SmtpClient
