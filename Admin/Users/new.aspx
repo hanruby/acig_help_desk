@@ -59,7 +59,7 @@
                             <asp:Label ID="lblSubSubCategory" runat="server" Text='Category(ies)'></asp:Label>
                             <br />
                             <asp:ListBox ID="lstBoxSubSubCategory" runat="server" DataSourceID="SqlDataSource5"
-                                DataTextField="TEXT" DataValueField="ID" SelectionMode="Multiple" CssClass="input-xlarge">
+                                DataTextField="TEXT" DataValueField="ID" SelectionMode="Multiple" CssClass="input-xlarge" Height="500px">
                             </asp:ListBox>
                             <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:Acig_Help_DeskConnectionString %>"
                                 SelectCommand="select  (c.name + ' - ' + s.Name + ' - ' + ss.Name) as TEXT, ss.Id as ID  from Categories c inner join Sub_Categories s on c.Id = s.Category_Id inner join Sub_Sub_Categories ss on s.Id = ss.Sub_Category_Id order by c.Name, s.Name, ss.Name">

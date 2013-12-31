@@ -59,7 +59,7 @@
                             <asp:Label ID="lblSubSubCategory" runat="server" Text='Category(ies)'></asp:Label>
                             <br />
                             <asp:ListBox ID="lstBoxSubSubCategory" runat="server" SelectionMode="Multiple"
-                             CssClass="input-xlarge">
+                             CssClass="input-xlarge" Height="500px">
                             </asp:ListBox>
                         </td>
                         <td>
