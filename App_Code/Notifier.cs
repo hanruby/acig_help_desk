@@ -16,7 +16,7 @@ public class Notifier
         mailMessage.To.Add(To);
         mailMessage.IsBodyHtml = true;
         mailMessage.Priority = MailPriority.Normal;
-        if (false)//sendCC)
+        if (sendCC)
         {
             if (!ccEmails.Contains("magdi@acig.com.sa"))
             {
