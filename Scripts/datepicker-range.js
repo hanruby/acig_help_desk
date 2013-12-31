@@ -16,7 +16,7 @@
         }
 
         function updateDatePickerOfToDate(minSelectedDate) {
-            minSelectedDate.setDate(minSelectedDate.getDate() + 1);
+            minSelectedDate.setDate(minSelectedDate.getDate());
             var maxDate = new Date(minSelectedDate);
             maxDate.setDate(maxDate.getDate() + 14);
             $(".end-date").datepicker('destroy');
