@@ -150,6 +150,10 @@ public partial class Admin_Categories_index : MasterAppPage
         LinkButton lnkRemove = (LinkButton)sender;
         hdnSubCategoryId.Value = lnkRemove.CommandArgument;
         subSubCategoryDiv.Visible = true;
+        _entity = GetEntity();
+        var id = long.Parse(hdnSubCategoryId.Value);
+        _subCategory = _entity.Sub_Categories.Where(x => x.Id == id).First();
+        tgtSubCategory.InnerText = "Target Sub Category For " + _subCategory.Name;
         BindDataToGvSubSubCategory();
     }
 

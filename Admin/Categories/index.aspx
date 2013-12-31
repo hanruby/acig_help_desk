@@ -138,7 +138,8 @@
                 <div class="box span12">
                     <div class="box-header well">
                         <h2>
-                            <i class="icon-info-sign"></i>&nbsp; Target Sub Category
+                            <i class="icon-info-sign"></i>&nbsp; 
+                            <span id="tgtSubCategory" runat="server"></span>
                         </h2>
                     </div>
                     <div class="box-content">
