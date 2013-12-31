@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
     CodeFile="show.aspx.cs" Inherits="Tickets_show" %>
-
+<%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
@@ -177,9 +177,9 @@
                         </div>
                         <div class="clear">
                         </div>
-                        <p style="border-bottom: solid 1px #CCC; padding-bottom: 15px;">
-                            <asp:Label ID="lblNotes" runat="server" Text='<%# Eval("Notes")%>'></asp:Label>
-                        </p>
+                        <div style="border-bottom: solid 1px #CCC; padding-bottom: 15px;">
+                            <%# Eval("Notes")%>
+                        </div>
                     </ItemTemplate>
                     <SeparatorTemplate>
                     </SeparatorTemplate>
@@ -199,10 +199,9 @@
             <div class="box-content">
                 <p>
                     <asp:Label ID="lblDescription" runat="server" Text="Description" AssociatedControlID="txtDescription"></asp:Label>
-                    <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Rows="5" Columns="95"
-                        Width="100%"></asp:TextBox>
+                    <CKEditor:CKEditorControl ID="txtDescription" runat="server"></CKEditor:CKEditorControl>
                     <asp:RequiredFieldValidator ID="rfvDescription" runat="server" ControlToValidate="txtDescription"
-                        ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
+                        ForeColor="#FF3300" SetFocusOnError="True">Required</asp:RequiredFieldValidator>
                 </p>
                 <p>
                     <asp:Label ID="lblFile" runat="server" Text="File"></asp:Label>

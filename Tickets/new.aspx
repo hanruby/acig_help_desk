@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
     CodeFile="new.aspx.cs" Inherits="Tickets_new" %>
-
+<%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
@@ -112,8 +112,7 @@
                                     <td colspan="2">
                                         <asp:Label ID="lblNotes" runat="server" Text="Description" AssociatedControlID="txtNotes">
                                         </asp:Label>
-                                        <asp:TextBox ID="txtNotes" runat="server" TextMode="MultiLine" Width="95%"
-                                        CssClass="input-xlarge"></asp:TextBox>
+                                        <CKEditor:CKEditorControl ID="txtNotes" runat="server"></CKEditor:CKEditorControl>
                                     </td>
                                 </tr>
                                 <tr>

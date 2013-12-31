@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
     CodeFile="clarify.aspx.cs" Inherits="Tickets_clarify" %>
-
+<%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
     <script type="text/javascript">
         function Validate(sender, args) {
@@ -116,8 +116,7 @@
             <div class="box-content">
                 <p>
                     <asp:Label ID="lblDescription" runat="server" Text="Description" AssociatedControlID="txtDescription"></asp:Label>
-                    <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Width="100%"
-                        Height="90px"></asp:TextBox>
+                    <CKEditor:CKEditorControl ID="txtDescription" runat="server"></CKEditor:CKEditorControl>
                     <asp:RequiredFieldValidator ID="rfvDescription" runat="server" ControlToValidate="txtDescription"
                         ForeColor="#FF3300" SetFocusOnError="True">Required</asp:RequiredFieldValidator>
                 </p>
