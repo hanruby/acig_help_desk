@@ -53,14 +53,14 @@ public class NavigationHelper
         if (role == "admin" && user.Role != "engineer")
         {
             lst = GetUserMenu(obj, lst, rootPath);
-        }
-        if (role == "manager" || role == "vp" || role == "coo" || role == "ceo")
-        {
-            lst = GetUserMenu(obj, lst, rootPath);
             if (CurrentUser.Is_IT_Consultant(user))
             {
                 lst = GetReassignTicketMenu(obj, lst, rootPath);
             }
+        }
+        if (role == "manager" || role == "vp" || role == "coo" || role == "ceo")
+        {
+            lst = GetUserMenu(obj, lst, rootPath);
         }
         lst = AddCommonListItems(obj, lst, rootPath);
         if (role == "supervisor" || user.Role == "supervisor")
