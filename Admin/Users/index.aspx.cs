@@ -25,6 +25,7 @@ public partial class Admin_Users_index : MasterAppPage
         routePath = Route.GetRootPath("admin/users/edit.aspx?id=");
         _entity = GetEntity();
         var data = from u in _entity.tbl_Users
+                   orderby u.User_Name
                    select new
                    {
                        Id = u.Id,

@@ -51,6 +51,8 @@ public class HtmlEmailer
                 custDept = custUser.Department;
                 AddCCEmail(custUser.Email);
                 AddManagerIDs(custDept.Manager_Id);
+                AddManagerIDs(custDept.Manager_Id_2);
+                AddManagerIDs(custDept.Manager_Id_3);
             }
         }
     }

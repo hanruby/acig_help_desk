@@ -30,8 +30,8 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Tickets_Sub_Categories", "Sub_Sub_Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Sub_Sub_Categories), "Ticket", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Ticket), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_Tickets_Users", "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.tbl_Users), "Ticket", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.Ticket), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_User_Tickets_Tickets", "Ticket", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Ticket), "User_Tickets", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.User_Tickets), true)]
-[assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_tbl_Users_Departments", "Department", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Department), "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.tbl_Users), true)]
 [assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_System_Incident_Logs_Log_Systems", "Log_Systems", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Log_Systems), "System_Incident_Logs", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.System_Incident_Logs), true)]
+[assembly: EdmRelationshipAttribute("Acig_Help_DeskModel", "FK_tbl_Users_Departments", "Department", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Acig_Help_DeskModel.Department), "tbl_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Acig_Help_DeskModel.tbl_Users), true)]
 
 #endregion
 
@@ -246,22 +246,6 @@ namespace Acig_Help_DeskModel
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Department> Departments
-        {
-            get
-            {
-                if ((_Departments == null))
-                {
-                    _Departments = base.CreateObjectSet<Department>("Departments");
-                }
-                return _Departments;
-            }
-        }
-        private ObjectSet<Department> _Departments;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<Log_Systems> Log_Systems
         {
             get
@@ -274,6 +258,22 @@ namespace Acig_Help_DeskModel
             }
         }
         private ObjectSet<Log_Systems> _Log_Systems;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Department> Departments
+        {
+            get
+            {
+                if ((_Departments == null))
+                {
+                    _Departments = base.CreateObjectSet<Department>("Departments");
+                }
+                return _Departments;
+            }
+        }
+        private ObjectSet<Department> _Departments;
 
         #endregion
         #region AddTo Methods
@@ -359,19 +359,19 @@ namespace Acig_Help_DeskModel
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Departments EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToDepartments(Department department)
-        {
-            base.AddObject("Departments", department);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the Log_Systems EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToLog_Systems(Log_Systems log_Systems)
         {
             base.AddObject("Log_Systems", log_Systems);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Departments EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToDepartments(Department department)
+        {
+            base.AddObject("Departments", department);
         }
 
         #endregion
@@ -986,6 +986,54 @@ namespace Acig_Help_DeskModel
         private Nullable<global::System.Int64> _Manager_Id;
         partial void OnManager_IdChanging(Nullable<global::System.Int64> value);
         partial void OnManager_IdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int64> Manager_Id_2
+        {
+            get
+            {
+                return _Manager_Id_2;
+            }
+            set
+            {
+                OnManager_Id_2Changing(value);
+                ReportPropertyChanging("Manager_Id_2");
+                _Manager_Id_2 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Manager_Id_2");
+                OnManager_Id_2Changed();
+            }
+        }
+        private Nullable<global::System.Int64> _Manager_Id_2;
+        partial void OnManager_Id_2Changing(Nullable<global::System.Int64> value);
+        partial void OnManager_Id_2Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int64> Manager_Id_3
+        {
+            get
+            {
+                return _Manager_Id_3;
+            }
+            set
+            {
+                OnManager_Id_3Changing(value);
+                ReportPropertyChanging("Manager_Id_3");
+                _Manager_Id_3 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Manager_Id_3");
+                OnManager_Id_3Changed();
+            }
+        }
+        private Nullable<global::System.Int64> _Manager_Id_3;
+        partial void OnManager_Id_3Changing(Nullable<global::System.Int64> value);
+        partial void OnManager_Id_3Changed();
     
         /// <summary>
         /// No Metadata Documentation available.
