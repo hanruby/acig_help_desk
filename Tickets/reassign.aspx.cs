@@ -54,9 +54,9 @@ public partial class Tickets_reassign : MasterAppPage
         subCatId = ticket.Sub_Sub_Category_Id;
         var lst = ticket.User_Tickets.ToList().Select(x => x.User_Id);
         var data = from u in _entity.tbl_Users
-                   join us in _entity.User_Sub_Sub_Categories
-                   on u.Id equals us.User_Id
-                   where us.Sub_Sub_Category_Id == subCatId && u.Active == true
+                   //join us in _entity.User_Sub_Sub_Categories
+                   //on u.Id equals us.User_Id
+                   where u.Role == "engineer" && u.Active == true
                    select new { UserId = u.Id, UserName = u.User_Name };
         DataTable table = new DataTable();
         table.Columns.Add("Text");

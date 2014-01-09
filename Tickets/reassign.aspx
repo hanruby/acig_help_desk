@@ -54,7 +54,7 @@
                         <tr>
                             <td colspan="2">
                                 <asp:Label ID="lblReassignTo" runat="server" Text="Reassign To" AssociatedControlID="lstBxAssignTo"></asp:Label>
-                                <asp:ListBox ID="lstBxAssignTo" runat="server" SelectionMode="Multiple" CssClass="input-xlarge">
+                                <asp:ListBox ID="lstBxAssignTo" runat="server" SelectionMode="Multiple" CssClass="input-xlarge" Height="300px">
                                 </asp:ListBox>
                                 <asp:RequiredFieldValidator ID="rfvAssignTo" runat="server" ControlToValidate="lstBxAssignTo"
                                     ForeColor="#FF3300" SetFocusOnError="True" ValidationGroup="assign" InitialValue="0">*</asp:RequiredFieldValidator>
