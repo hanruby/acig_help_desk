@@ -145,7 +145,7 @@ public partial class Tickets_show : MasterAppPage
                           join u in _entity.tbl_Users
                           on c.Created_By equals u.Id
                           where c.Ticket_Id == _id
-                          orderby c.Created_At
+                          orderby c.Created_At descending
                           select new
                           {
                               CreatedBy = u.Email,
