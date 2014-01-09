@@ -57,6 +57,10 @@ public class NavigationHelper
         if (role == "manager" || role == "vp" || role == "coo" || role == "ceo")
         {
             lst = GetUserMenu(obj, lst, rootPath);
+            if (CurrentUser.Is_IT_Consultant(user))
+            {
+                lst = GetReassignTicketMenu(obj, lst, rootPath);
+            }
         }
         lst = AddCommonListItems(obj, lst, rootPath);
         if (role == "supervisor" || user.Role == "supervisor")
@@ -99,8 +103,7 @@ public class NavigationHelper
         lst.Add(obj);        
         if (admin)
         {
-            obj = new NavigationHelper { Name = "Reassign Ticket", Href = rootPath + "tickets/reassign.aspx", ImagePath = "icon-leaf" };
-            lst.Add(obj);
+            GetReassignTicketMenu(obj, lst, rootPath);
         }
         if (admin)
         {
@@ -135,6 +138,13 @@ public class NavigationHelper
     public static List<NavigationHelper> GetSuprvisorMenu(NavigationHelper obj, List<NavigationHelper> lst, string rootPath)
     {
         obj = new NavigationHelper { Name = "My Department Report", Href = rootPath + "tickets/sreport.aspx", ImagePath = "icon-leaf" };
+        lst.Add(obj);
+        return lst;
+    }
+
+    public static List<NavigationHelper> GetReassignTicketMenu(NavigationHelper obj, List<NavigationHelper> lst, string rootPath)
+    {
+        obj = new NavigationHelper { Name = "Reassign Ticket", Href = rootPath + "tickets/reassign.aspx", ImagePath = "icon-leaf" };
         lst.Add(obj);
         return lst;
     }

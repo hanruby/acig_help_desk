@@ -96,9 +96,10 @@ public static class CurrentUser
         return CurrentUser.Role() == "engineer";
     }
 
-    public static bool Is_IT_Consultant()
+    public static bool Is_IT_Consultant(tbl_Users user = null)
     {
-        return CurrentUser.DepartmentName(null, CurrentUser.Id()) == "IT Consultant";
+        var id = user == null ? CurrentUser.Id() : user.Id;
+        return CurrentUser.DepartmentName(null, id) == "IT Consultant";
     }
 
     public static bool Is_Admin()
