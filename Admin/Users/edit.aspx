@@ -70,7 +70,7 @@
                                 <asp:ListItem Value="0">Select</asp:ListItem>
                             </asp:DropDownList>
                             <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:Acig_Help_DeskConnectionString %>"
-                                SelectCommand="SELECT [Id], [Name] FROM [Departments]"></asp:SqlDataSource>
+                                SelectCommand="SELECT [Id], [Name] FROM [Departments] ORDER BY [Name]"></asp:SqlDataSource>
                             <asp:RequiredFieldValidator ID="rfvDepartment" runat="server" ControlToValidate="ddlDepartment"
                                 ForeColor="#FF3300" SetFocusOnError="True" InitialValue="0">*</asp:RequiredFieldValidator>
                         </td>
