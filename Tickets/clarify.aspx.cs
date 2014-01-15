@@ -23,6 +23,7 @@ public partial class Tickets_clarify : MasterAppPage
             _id = long.Parse(Request.QueryString["id"]);
             hdnFldTicketId.Value = _id.ToString();
             _entity = new Acig_Help_DeskEntities();
+            BindCommentsRepeater(rptrComments, _id);
             var ticketData = from t in _entity.Tickets
                              join ssc in _entity.Sub_Sub_Categories
                              on t.Sub_Sub_Category_Id equals ssc.Id

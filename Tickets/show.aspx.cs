@@ -98,20 +98,6 @@ public partial class Tickets_show : MasterAppPage
         }
     }
 
-    protected bool FileLinkVisibile(object obj)
-    {
-        if (obj == null)
-        {
-            return false;
-        }
-        return !string.IsNullOrEmpty(obj.ToString());
-    }
-
-    protected string FileDownloadUrl(object obj)
-    {
-        return Route.GetRootPath("download.aspx?id=" + obj.ToString());
-    }
-
     protected void btnSave_Click(object sender, EventArgs e)
     {
         _id = long.Parse(hdnFldTicketId.Value);
@@ -141,21 +127,7 @@ public partial class Tickets_show : MasterAppPage
 
     void BindGVComments()
     {
-        var commentData = from c in _entity.Comments
-                          join u in _entity.tbl_Users
-                          on c.Created_By equals u.Id
-                          where c.Ticket_Id == _id
-                          orderby c.Created_At descending
-                          select new
-                          {
-                              CreatedBy = u.Email,
-                              CreatedAt = c.Created_At,
-                              Notes = c.Notes,
-                              Visible = c.File_Path,
-                              Url = c.Id
-                          };
-        rptrComments.DataSource = commentData;
-        rptrComments.DataBind();
+        BindCommentsRepeater(rptrComments, _id);
     }
 
     protected void btnCloseTicket_Click(object sender, EventArgs e)

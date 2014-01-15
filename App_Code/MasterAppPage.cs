@@ -94,6 +94,26 @@ public class MasterAppPage : System.Web.UI.Page
         FormsAuthentication.RedirectToLoginPage();
     }
 
+    protected void BindCommentsRepeater(Repeater rptCust, long custId)
+    {
+        _entity = GetEntity();
+        var commentData = from c in _entity.Comments
+                          join u in _entity.tbl_Users
+                          on c.Created_By equals u.Id
+                          where c.Ticket_Id == custId
+                          orderby c.Created_At descending
+                          select new
+                          {
+                              CreatedBy = u.Email,
+                              CreatedAt = c.Created_At,
+                              Notes = c.Notes,
+                              Visible = c.File_Path,
+                              Url = c.Id
+                          };
+        rptCust.DataSource = commentData;
+        rptCust.DataBind();
+    }
+
     private void BindCategoriesRoot(object sender, EventArgs e)
     {
     }
@@ -149,6 +169,20 @@ public class MasterAppPage : System.Web.UI.Page
         ddlRoot.DataValueField = table.Columns["Value"].ColumnName;
         ddlRoot.DataBind();
         ddlRoot.SelectedIndexChanged += new System.EventHandler(BindCategoriesRoot);
+    }
+
+    protected bool FileLinkVisibile(object obj)
+    {
+        if (obj == null)
+        {
+            return false;
+        }
+        return !string.IsNullOrEmpty(obj.ToString());
+    }
+
+    protected string FileDownloadUrl(object obj)
+    {
+        return Route.GetRootPath("download.aspx?id=" + obj.ToString());
     }
 
     string[] High_Users()

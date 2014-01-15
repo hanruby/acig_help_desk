@@ -23,6 +23,7 @@ public partial class Tickets_resolve : MasterAppPage
             _id = long.Parse(Request.QueryString["id"]);
             hdnFldTicketId.Value = _id.ToString();
             _entity = new Acig_Help_DeskEntities();
+            BindCommentsRepeater(rptrComments, _id);
             if (!CanResolve(_id))
             {
                 ErrorRedirect(routePath + "not_authorized.aspx", "Not authorized to access that ticket!");

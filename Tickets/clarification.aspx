@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
     CodeFile="clarification.aspx.cs" Inherits="Tickets_clarification" %>
+
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
     <script type="text/javascript">
@@ -61,7 +62,9 @@
                                 <label>
                                     Priority:
                                 </label>
-                                <span class="label label-warning"> <%# Eval("Priority") %> </span>
+                                <span class="label label-warning">
+                                    <%# Eval("Priority") %>
+                                </span>
                             </td>
                         </tr>
                         <tr>
@@ -75,12 +78,48 @@
                                 <label>
                                     Current State:
                                 </label>
-                                <span class="label label-success"> <%# Eval("State") %> </span>
+                                <span class="label label-success">
+                                    <%# Eval("State") %>
+                                </span>
                             </td>
                         </tr>
                     </ItemTemplate>
                     <FooterTemplate>
                         </table>
+                    </FooterTemplate>
+                </asp:Repeater>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="box span12">
+            <div class="box-header well">
+                <h2>
+                    <i class="icon-info-sign"></i>&nbsp; Comments
+                </h2>
+            </div>
+            <div class="box-content">
+                <asp:Repeater ID="rptrComments" runat="server">
+                    <HeaderTemplate>
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <div class="left">
+                            <asp:Label ID="lblCreatedAt" runat="server" Text='<%# Eval("CreatedAt")%>'></asp:Label>
+                            &nbsp; | &nbsp;
+                            <asp:Label ID="lblCreatedBy" runat="server" Text='<%# Eval("CreatedBy")%>'></asp:Label>
+                            &nbsp; | &nbsp;
+                            <asp:HyperLink ID="hprLinkFile" runat="server" Visible='<%# FileLinkVisibile(Eval("Visible")) %>'
+                                NavigateUrl='<%# FileDownloadUrl(Eval("Url")) %>'>File Download </asp:HyperLink>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div style="border-bottom: solid 1px #CCC; padding-bottom: 15px;">
+                            <%# Eval("Notes")%>
+                        </div>
+                    </ItemTemplate>
+                    <SeparatorTemplate>
+                    </SeparatorTemplate>
+                    <FooterTemplate>
                     </FooterTemplate>
                 </asp:Repeater>
             </div>
