@@ -171,6 +171,68 @@ public class MasterAppPage : System.Web.UI.Page
         ddlRoot.SelectedIndexChanged += new System.EventHandler(BindCategoriesRoot);
     }
 
+    protected void BindDdlDepartmentsRoot(DropDownList ddlRoot)
+    {
+        _entity = GetEntity();
+        var lst = _entity.Departments.OrderBy(x => x.Name).ToList();
+        DataTable table = new DataTable();
+        table.Columns.Add("Text");
+        table.Columns.Add("Value");
+        DataRow dr;
+        dr = table.NewRow();
+        dr["Text"] = "Select";
+        dr["Value"] = "0";
+        table.Rows.Add(dr);
+        foreach (var x in lst)
+        {
+            dr = table.NewRow();
+            dr["Text"] = x.Name;
+            dr["Value"] = x.Id;
+            table.Rows.Add(dr);
+        }
+        ddlRoot.DataSource = table;
+        ddlRoot.DataTextField = table.Columns["Text"].ColumnName;
+        ddlRoot.DataValueField = table.Columns["Value"].ColumnName;
+        ddlRoot.DataBind();
+        ddlRoot.SelectedIndexChanged += new System.EventHandler(BindCategoriesRoot);
+    }
+
+    protected void BindDdlStatus(DropDownList ddlRoot)
+    {
+        List<TextValue> lst = new List<TextValue>();
+        TextValue obj;
+        obj = new TextValue { Text = Enum_Helper.States.Pending.ToString(), Value = Enum_Helper.States.Pending.ToString()};
+        lst.Add(obj);
+        obj = new TextValue { Text = Enum_Helper.States.Resolved.ToString(), Value = Enum_Helper.States.Resolved.ToString() };
+        lst.Add(obj);
+        obj = new TextValue { Text = Enum_Helper.States.Closed.ToString(), Value = Enum_Helper.States.Closed.ToString() };
+        lst.Add(obj);
+        obj = new TextValue { Text = Enum_Helper.States.Clarified.ToString(), Value = Enum_Helper.States.Clarified.ToString() };
+        lst.Add(obj);
+        obj = new TextValue { Text = Enum_Helper.States.Clarification.ToString(), Value = Enum_Helper.States.Clarification.ToString() };
+        lst.Add(obj);
+        DataTable table = new DataTable();
+        table.Columns.Add("Text");
+        table.Columns.Add("Value");
+        DataRow dr;
+        dr = table.NewRow();
+        dr["Text"] = "Select";
+        dr["Value"] = "0";
+        table.Rows.Add(dr);
+        foreach (var x in lst)
+        {
+            dr = table.NewRow();
+            dr["Text"] = x.Text;
+            dr["Value"] = x.Value;
+            table.Rows.Add(dr);
+        }
+        ddlRoot.DataSource = table;
+        ddlRoot.DataTextField = table.Columns["Text"].ColumnName;
+        ddlRoot.DataValueField = table.Columns["Value"].ColumnName;
+        ddlRoot.DataBind();
+        ddlRoot.SelectedIndexChanged += new System.EventHandler(BindCategoriesRoot);
+    }
+
     protected bool FileLinkVisibile(object obj)
     {
         if (obj == null)

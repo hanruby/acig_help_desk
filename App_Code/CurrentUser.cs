@@ -106,4 +106,9 @@ public static class CurrentUser
     {
         return CurrentUser.Role2() == "admin";
     }
+
+    public static bool Is_Manager()
+    {
+        return CurrentUser.Role() == "manager";
+    }
 }

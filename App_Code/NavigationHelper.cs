@@ -151,6 +151,8 @@ public class NavigationHelper
 
     public static List<NavigationHelper> GetFullReportsMenu(NavigationHelper obj, List<NavigationHelper> lst, string rootPath)
     {
+        obj = new NavigationHelper { Name = "Details Report", Href = rootPath + "tickets/detail_report.aspx", ImagePath = "icon-book" };
+        lst.Add(obj);
         obj = new NavigationHelper { Name = "Full Report", Href = rootPath + "tickets/full_report.aspx", ImagePath = "icon-book" };
         lst.Add(obj);
         obj = new NavigationHelper { Name = "Report By User", Href = rootPath + "tickets/full_report2.aspx", ImagePath = "icon-book" };
