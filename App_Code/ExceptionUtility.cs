@@ -49,7 +49,7 @@ public class ExceptionUtility
         }
         sw.Close();
 
-        Notifier.SendEmail("crmmailadmin@acig.com.sa", "ubaidkhan88@gmail.com", "Acig It Help Desk Error", body, new List<string>(), false);
-        Notifier.SendEmail("crmmailadmin@acig.com.sa", "ubaid@acig.com.sa", "Acig It Help Desk Error", body, new List<string>(),  false);
+        Notifier.SendEmail("ubaidkhan88@gmail.com", "Acig It Help Desk Error", body, new List<string>(), false);
+        Notifier.SendEmail("ubaid@acig.com.sa", "Acig It Help Desk Error", body, new List<string>(),  false);
     }
 }
