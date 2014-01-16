@@ -7,10 +7,11 @@ using System.Net;
 
 public class Notifier
 {
-    public static void SendEmail(string From, string To, string Subject, string Body, List<string> ccEmails, bool sendCC = true)
+    public static void SendEmail(string To, string Subject, string Body, List<string> ccEmails, bool sendCC = true)
     {
         MailMessage mailMessage = new MailMessage();
-        mailMessage.From = new MailAddress(From);
+        //mailMessage.From = new MailAddress(From);
+        mailMessage.From = new MailAddress("IT-Support@acig.com.sa");
         mailMessage.Subject = Subject;
         mailMessage.Body = Body;
         mailMessage.To.Add(To);
@@ -27,7 +28,8 @@ public class Notifier
         {
             mailMessage.CC.Add(new MailAddress(x));
         }
-        mailMessage.Bcc.Add(new MailAddress("crmmailadmin@acig.com.sa"));
+        //mailMessage.Bcc.Add(new MailAddress("crmmailadmin@acig.com.sa"));
+        mailMessage.Bcc.Add(new MailAddress("IT-Support@acig.com.sa"));
         SmtpClient smtpClient = new SmtpClient
         {
             Host = "mail.acig.com.sa",
@@ -35,7 +37,8 @@ public class Notifier
             EnableSsl = true,
             DeliveryMethod = SmtpDeliveryMethod.Network,
             UseDefaultCredentials = false,
-            Credentials = new NetworkCredential("crmmailadmin", "passwoRd5656")
+            //Credentials = new NetworkCredential("crmmailadmin", "passwoRd5656")
+            Credentials = new NetworkCredential("IT-Support", "passwoRd101")
         };
         smtpClient.Send(mailMessage);
     }

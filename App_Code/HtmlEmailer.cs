@@ -97,7 +97,7 @@ public class HtmlEmailer
             body = body.Replace("{Url}", url);
             body = body.Replace("{Category}", category);
             body = body.Replace("{AssignedUser}", createdBy);
-            Notifier.SendEmail("crmmailadmin@acig.com.sa", x.tbl_Users.Email, "IT Help Desk - New Ticket Assigned", body, ccEmails);
+            Notifier.SendEmail(x.tbl_Users.Email, "IT Help Desk - New Ticket Assigned", body, ccEmails);
         }
         return;
     }
@@ -115,7 +115,7 @@ public class HtmlEmailer
         body = body.Replace("{Url}", url);
         body = body.Replace("{Category}", category);
         body = body.Replace("{ResolvedUser}", CurrentUser.User().User_Name);
-        Notifier.SendEmail("crmmailadmin@acig.com.sa", createdByEmail, "IT Help Desk - Ticket Resolved", body, ccEmails);
+        Notifier.SendEmail(createdByEmail, "IT Help Desk - Ticket Resolved", body, ccEmails);
         if (ticket.On_Behalf != null)
         {
             using (StreamReader reader = new StreamReader(GetPath("~/Email_Templates/Ticket_Resolved.htm")))
@@ -130,7 +130,7 @@ public class HtmlEmailer
             body = body.Replace("{Url}", url);
             body = body.Replace("{Category}", category);
             body = body.Replace("{ResolvedUser}", CurrentUser.User().User_Name);
-            Notifier.SendEmail("crmmailadmin@acig.com.sa", createdByEmail, "IT Help Desk - Ticket Resolved", body, ccEmails);
+            Notifier.SendEmail(createdByEmail, "IT Help Desk - Ticket Resolved", body, ccEmails);
         }
         return;
     }
@@ -148,7 +148,7 @@ public class HtmlEmailer
         body = body.Replace("{Url}", url);
         body = body.Replace("{Category}", category);
         body = body.Replace("{User}", CurrentUser.User().User_Name);
-        Notifier.SendEmail("crmmailadmin@acig.com.sa", createdByEmail, "IT Help Desk - Ticket Clarification", body, ccEmails);
+        Notifier.SendEmail(createdByEmail, "IT Help Desk - Ticket Clarification", body, ccEmails);
         if (ticket.On_Behalf != null)
         {
             using (StreamReader reader = new StreamReader(GetPath("~/Email_Templates/Ticket_Clarification.htm")))
@@ -163,7 +163,7 @@ public class HtmlEmailer
             body = body.Replace("{Url}", url);
             body = body.Replace("{Category}", category);
             body = body.Replace("{User}", CurrentUser.User().User_Name);
-            Notifier.SendEmail("crmmailadmin@acig.com.sa", createdByEmail, "IT Help Desk - Ticket Clarification", body, ccEmails);
+            Notifier.SendEmail(createdByEmail, "IT Help Desk - Ticket Clarification", body, ccEmails);
         }
         return;
     }
@@ -183,7 +183,7 @@ public class HtmlEmailer
             body = body.Replace("{Url}", url);
             body = body.Replace("{Category}", category);
             body = body.Replace("{ClosedUser}", createdBy);
-            Notifier.SendEmail("crmmailadmin@acig.com.sa", x.tbl_Users.Email, "IT Help Desk - Ticket Closed", body, ccEmails);
+            Notifier.SendEmail(x.tbl_Users.Email, "IT Help Desk - Ticket Closed", body, ccEmails);
         }
         return;
     }
@@ -205,7 +205,7 @@ public class HtmlEmailer
                 body = body.Replace("{Url}", url);
                 body = body.Replace("{Category}", category);
                 body = body.Replace("{CommentUser}", createdBy);
-                Notifier.SendEmail("crmmailadmin@acig.com.sa", x.tbl_Users.Email, "IT Help Desk - New Comment / Notes On Ticket", body, ccEmails);
+                Notifier.SendEmail(x.tbl_Users.Email, "IT Help Desk - New Comment / Notes On Ticket", body, ccEmails);
             }
         }
         else
@@ -220,7 +220,7 @@ public class HtmlEmailer
             body = body.Replace("{Url}", url);
             body = body.Replace("{Category}", category);
             body = body.Replace("{CommentUser}", CurrentUser.User().User_Name);
-            Notifier.SendEmail("crmmailadmin@acig.com.sa", createdByEmail, "IT Help Desk - New Comment / Notes on Ticket", body, ccEmails);
+            Notifier.SendEmail(createdByEmail, "IT Help Desk - New Comment / Notes on Ticket", body, ccEmails);
 
             if (ticket.On_Behalf != null)
             {
@@ -236,7 +236,7 @@ public class HtmlEmailer
                 body = body.Replace("{Url}", url);
                 body = body.Replace("{Category}", category);
                 body = body.Replace("{CommentUser}", CurrentUser.User().User_Name);
-                Notifier.SendEmail("crmmailadmin@acig.com.sa", createdByEmail, "IT Help Desk - New Comment / Notes on Ticket", body, ccEmails);
+                Notifier.SendEmail(createdByEmail, "IT Help Desk - New Comment / Notes on Ticket", body, ccEmails);
             }
         }
         return;
@@ -257,7 +257,7 @@ public class HtmlEmailer
             body = body.Replace("{Url}", url);
             body = body.Replace("{Category}", category);
             body = body.Replace("{ClosedUser}", createdBy);
-            Notifier.SendEmail("crmmailadmin@acig.com.sa", x.tbl_Users.Email, "IT Help Desk - Ticket Re Open", body, ccEmails);
+            Notifier.SendEmail(x.tbl_Users.Email, "IT Help Desk - Ticket Re Open", body, ccEmails);
         }
         return;
     }
@@ -277,7 +277,7 @@ public class HtmlEmailer
             body = body.Replace("{Url}", url);
             body = body.Replace("{Category}", category);
             body = body.Replace("{User}", createdBy);
-            Notifier.SendEmail("crmmailadmin@acig.com.sa", x.tbl_Users.Email, "IT Help Desk - Ticket Clarified", body, ccEmails);
+            Notifier.SendEmail(x.tbl_Users.Email, "IT Help Desk - Ticket Clarified", body, ccEmails);
         }
         return;
     }
@@ -293,13 +293,13 @@ public class HtmlEmailer
         parsedBody = body.Replace("{UserName}", "mustafa");
         parsedBody = parsedBody.Replace("{user_name}", user.User_Name);
         parsedBody = parsedBody.Replace("{email}", user.Email);
-        Notifier.SendEmail("crmmailadmin@acig.com.sa", "mustafa@acig.com.sa", "IT Help Desk - New User Sign up", parsedBody, new List<string>());
+        Notifier.SendEmail("mustafa@acig.com.sa", "IT Help Desk - New User Sign up", parsedBody, new List<string>());
         parsedBody = body.Replace("{UserName}", "ubaid");
         parsedBody = parsedBody.Replace("{user_name}", user.User_Name);
         parsedBody = parsedBody.Replace("{email}", user.Email);
         parsedBody = parsedBody.Replace("{Url}", url);
-        Notifier.SendEmail("crmmailadmin@acig.com.sa", "ubaid@acig.com.sa", "IT Help Desk - New User Sign up", parsedBody, new List<string>());
-        Notifier.SendEmail("crmmailadmin@acig.com.sa", "ubaidkhan88@gmail.com", "IT Help Desk - New User Sign up", parsedBody, new List<string>(), false);
+        Notifier.SendEmail("ubaid@acig.com.sa", "IT Help Desk - New User Sign up", parsedBody, new List<string>());
+        Notifier.SendEmail("ubaidkhan88@gmail.com", "IT Help Desk - New User Sign up", parsedBody, new List<string>(), false);
         return;
     }
 
@@ -316,7 +316,7 @@ public class HtmlEmailer
         body = body.Replace("{Url}", url);
         body = body.Replace("{Category}", category);
         body = body.Replace("{AssignedUser}", createdBy);
-        Notifier.SendEmail("crmmailadmin@acig.com.sa", user.Email, "IT Help Desk - Ticket ReAssigned", body, ccEmails);
+        Notifier.SendEmail(user.Email, "IT Help Desk - Ticket ReAssigned", body, ccEmails);
         return;
     }
 
