@@ -61,6 +61,10 @@ public class NavigationHelper
                 lst = GetReassignTicketMenu(obj, lst, rootPath);
             }
         }
+        if (role == "admin" || user.Role == "engineer")
+        {
+            lst = GetAssignTicketVendorMenu(obj, lst, rootPath);
+        }
         if (role == "manager" || role == "vp" || role == "coo" || role == "ceo")
         {
             lst = GetUserMenu(obj, lst, rootPath);
@@ -117,7 +121,7 @@ public class NavigationHelper
         obj = new NavigationHelper { Name = "New Ticket", Href = rootPath + "tickets/new.aspx", ImagePath = "icon-leaf" };
         lst.Add(obj);
         obj = new NavigationHelper { Name = "New Call Ticket", Href = rootPath + "tickets/call.aspx", ImagePath = "icon-leaf" };
-        lst.Add(obj);        
+        lst.Add(obj);
         if (admin)
         {
             GetReassignTicketMenu(obj, lst, rootPath);
@@ -163,6 +167,11 @@ public class NavigationHelper
     {
         obj = new NavigationHelper { Name = "Reassign Ticket", Href = rootPath + "tickets/reassign.aspx", ImagePath = "icon-leaf" };
         lst.Add(obj);
+        return lst;
+    }
+
+    public static List<NavigationHelper> GetAssignTicketVendorMenu(NavigationHelper obj, List<NavigationHelper> lst, string rootPath)
+    {
         obj = new NavigationHelper { Name = "Assign Ticket To Vendor", Href = rootPath + "tickets/assign_vendor.aspx", ImagePath = "icon-leaf" };
         lst.Add(obj);
         return lst;
