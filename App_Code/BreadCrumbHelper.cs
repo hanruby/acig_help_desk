@@ -107,6 +107,11 @@ public class BreadCrumbHelper
                 obj = new BreadCrumbHelper { Divider_Class = "hide", Href = rootPath + "reassign.aspx", Text = "Reassign Ticket" };
                 list.Add(obj);
                 break;
+            case "assign_vendor":
+                rootPath += "tickets/";
+                obj = new BreadCrumbHelper { Divider_Class = "hide", Href = rootPath + "assign_vendor.aspx", Text = "Assign To Vendor" };
+                list.Add(obj);
+                break;
             case "call_ticket":
                 rootPath += "tickets/";
                 obj = new BreadCrumbHelper { Divider_Class = "hide", Href = rootPath + "call.aspx", Text = "New Call Ticket" };

@@ -49,6 +49,14 @@ public class HtmlEmailer
             {
                 custUser = ut.tbl_Users;
                 custDept = custUser.Department;
+                if (custUser.Role == "vendor" && !string.IsNullOrEmpty(custUser.Vendor_Emails))
+                {
+                    var vendorEmails = custUser.Vendor_Emails.Split(',');
+                    foreach (var e in vendorEmails)
+                    {
+                        AddCCEmail(e);
+                    }
+                }
                 AddCCEmail(custUser.Email);
                 AddManagerIDs(custDept.Manager_Id);
                 AddManagerIDs(custDept.Manager_Id_2);
@@ -317,6 +325,23 @@ public class HtmlEmailer
         body = body.Replace("{Category}", category);
         body = body.Replace("{AssignedUser}", createdBy);
         Notifier.SendEmail(user.Email, "IT Help Desk - Ticket ReAssigned", body, ccEmails);
+        return;
+    }
+
+    public void Assign_Vendor_Ticket_EMail(tbl_Users user)
+    {
+        string body = string.Empty;
+        using (StreamReader reader = new StreamReader(GetPath("~/Email_Templates/Assign_Vendor.htm")))
+        {
+            body = reader.ReadToEnd();
+        }
+        body = body.Replace("{Id}", Id);
+        body = body.Replace("{UserName}", user.User_Name);
+        body = body.Replace("{Subject}", subject);
+        body = body.Replace("{Url}", url);
+        body = body.Replace("{Category}", category);
+        body = body.Replace("{AssignedUser}", createdBy);
+        Notifier.SendEmail(user.Email, "IT Help Desk - New Ticket Assigned", body, ccEmails);
         return;
     }
 

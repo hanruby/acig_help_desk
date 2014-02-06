@@ -163,6 +163,8 @@ public class NavigationHelper
     {
         obj = new NavigationHelper { Name = "Reassign Ticket", Href = rootPath + "tickets/reassign.aspx", ImagePath = "icon-leaf" };
         lst.Add(obj);
+        obj = new NavigationHelper { Name = "Assign Ticket To Vendor", Href = rootPath + "tickets/assign_vendor.aspx", ImagePath = "icon-leaf" };
+        lst.Add(obj);
         return lst;
     }
 

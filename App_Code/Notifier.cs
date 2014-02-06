@@ -26,7 +26,13 @@ public class Notifier
         }
         foreach (var x in ccEmails)
         {
-            mailMessage.CC.Add(new MailAddress(x));
+            try
+            {
+                mailMessage.CC.Add(new MailAddress(x));
+            }
+            catch
+            {
+            }
         }
         //mailMessage.Bcc.Add(new MailAddress("crmmailadmin@acig.com.sa"));
         mailMessage.Bcc.Add(new MailAddress("IT-Support@acig.com.sa"));

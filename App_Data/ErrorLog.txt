@@ -2850,3 +2850,180 @@ Stack Trace:
    at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
    at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
 
+********** 2/6/2014 9:45:09 AM **********
+Inner Exception Type: System.Web.HttpException
+Inner Exception: Unable to find control id 'lstBxAssignTo' referenced by the 'ControlToValidate' property of 'rfvAssignTo'.
+Inner Source: System.Web
+Inner Stack Trace: 
+   at System.Web.UI.WebControls.BaseValidator.CheckControlValidationProperty(String name, String propertyName)
+   at System.Web.UI.WebControls.BaseValidator.ControlPropertiesValid()
+   at System.Web.UI.WebControls.BaseValidator.OnPreRender(EventArgs e)
+   at System.Web.UI.Control.PreRenderRecursiveInternal()
+   at System.Web.UI.Control.PreRenderRecursiveInternal()
+   at System.Web.UI.Control.PreRenderRecursiveInternal()
+   at System.Web.UI.Control.PreRenderRecursiveInternal()
+   at System.Web.UI.Control.PreRenderRecursiveInternal()
+   at System.Web.UI.Control.PreRenderRecursiveInternal()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_assign_vendor_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid.ACIG\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\231ead17\4363d2e5\App_Web_wejrd0tj.18.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 2/6/2014 9:48:03 AM **********
+Inner Exception Type: System.Web.HttpException
+Inner Exception: Unable to find control id 'lstBxAssignTo' referenced by the 'ControlToValidate' property of 'rfvAssignTo'.
+Inner Source: System.Web
+Inner Stack Trace: 
+   at System.Web.UI.WebControls.BaseValidator.CheckControlValidationProperty(String name, String propertyName)
+   at System.Web.UI.WebControls.BaseValidator.ControlPropertiesValid()
+   at System.Web.UI.WebControls.BaseValidator.OnPreRender(EventArgs e)
+   at System.Web.UI.Control.PreRenderRecursiveInternal()
+   at System.Web.UI.Control.PreRenderRecursiveInternal()
+   at System.Web.UI.Control.PreRenderRecursiveInternal()
+   at System.Web.UI.Control.PreRenderRecursiveInternal()
+   at System.Web.UI.Control.PreRenderRecursiveInternal()
+   at System.Web.UI.Control.PreRenderRecursiveInternal()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_assign_vendor_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid.ACIG\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\231ead17\4363d2e5\App_Web_1yatnxwq.6.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 2/6/2014 9:48:39 AM **********
+Inner Exception Type: System.Web.HttpException
+Inner Exception: Unable to find control with id 'lstBxAssignTo' that is associated with the Label 'lblReassignTo'.
+Inner Source: System.Web
+Inner Stack Trace: 
+   at System.Web.UI.WebControls.Label.AddAttributesToRender(HtmlTextWriter writer)
+   at System.Web.UI.WebControls.WebControl.RenderBeginTag(HtmlTextWriter writer)
+   at System.Web.UI.WebControls.WebControl.Render(HtmlTextWriter writer)
+   at System.Web.UI.Control.RenderControlInternal(HtmlTextWriter writer, ControlAdapter adapter)
+   at System.Web.UI.Control.RenderControl(HtmlTextWriter writer, ControlAdapter adapter)
+   at System.Web.UI.Control.RenderControl(HtmlTextWriter writer)
+   at System.Web.UI.Control.RenderChildrenInternal(HtmlTextWriter writer, ICollection children)
+   at System.Web.UI.Control.RenderChildren(HtmlTextWriter writer)
+   at System.Web.UI.HtmlControls.HtmlContainerControl.Render(HtmlTextWriter writer)
+   at System.Web.UI.Control.RenderControlInternal(HtmlTextWriter writer, ControlAdapter adapter)
+   at System.Web.UI.Control.RenderControl(HtmlTextWriter writer, ControlAdapter adapter)
+   at System.Web.UI.Control.RenderControl(HtmlTextWriter writer)
+   at System.Web.UI.Control.RenderChildrenInternal(HtmlTextWriter writer, ICollection children)
+   at System.Web.UI.Control.RenderChildren(HtmlTextWriter writer)
+   at System.Web.UI.Control.Render(HtmlTextWriter writer)
+   at System.Web.UI.Control.RenderControlInternal(HtmlTextWriter writer, ControlAdapter adapter)
+   at System.Web.UI.Control.RenderControl(HtmlTextWriter writer, ControlAdapter adapter)
+   at System.Web.UI.Control.RenderControl(HtmlTextWriter writer)
+   at ASP.site_master.__RenderForm1(HtmlTextWriter __w, Control parameterContainer) in e:\repos\acig_help_desk\Site.master:line 162
+   at System.Web.UI.Control.RenderChildrenInternal(HtmlTextWriter writer, ICollection children)
+   at System.Web.UI.HtmlControls.HtmlForm.RenderChildren(HtmlTextWriter writer)
+   at System.Web.UI.HtmlControls.HtmlContainerControl.Render(HtmlTextWriter writer)
+   at System.Web.UI.HtmlControls.HtmlForm.Render(HtmlTextWriter output)
+   at System.Web.UI.Control.RenderControlInternal(HtmlTextWriter writer, ControlAdapter adapter)
+   at System.Web.UI.Control.RenderControl(HtmlTextWriter writer, ControlAdapter adapter)
+   at System.Web.UI.HtmlControls.HtmlForm.RenderControl(HtmlTextWriter writer)
+   at System.Web.UI.Control.RenderChildrenInternal(HtmlTextWriter writer, ICollection children)
+   at System.Web.UI.Control.RenderChildren(HtmlTextWriter writer)
+   at System.Web.UI.Control.Render(HtmlTextWriter writer)
+   at System.Web.UI.Control.RenderControlInternal(HtmlTextWriter writer, ControlAdapter adapter)
+   at System.Web.UI.Control.RenderControl(HtmlTextWriter writer, ControlAdapter adapter)
+   at System.Web.UI.Control.RenderControl(HtmlTextWriter writer)
+   at System.Web.UI.Control.RenderChildrenInternal(HtmlTextWriter writer, ICollection children)
+   at System.Web.UI.Control.RenderChildren(HtmlTextWriter writer)
+   at System.Web.UI.Page.Render(HtmlTextWriter writer)
+   at System.Web.UI.Control.RenderControlInternal(HtmlTextWriter writer, ControlAdapter adapter)
+   at System.Web.UI.Control.RenderControl(HtmlTextWriter writer, ControlAdapter adapter)
+   at System.Web.UI.Control.RenderControl(HtmlTextWriter writer)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_assign_vendor_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid.ACIG\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\231ead17\4363d2e5\App_Web_5n2hd4h0.12.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 2/6/2014 9:49:24 AM **********
+Inner Exception Type: System.Data.UpdateException
+Inner Exception: An error occurred while updating the entries. See the inner exception for details.
+Inner Source: System.Data.Entity
+Inner Stack Trace: 
+   at System.Data.Mapping.Update.Internal.UpdateTranslator.Update(IEntityStateManager stateManager, IEntityAdapter adapter)
+   at System.Data.EntityClient.EntityAdapter.Update(IEntityStateManager entityCache)
+   at System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   at System.Data.Objects.ObjectContext.SaveChanges()
+   at Tickets_assign_vendor.btnSave_Click(Object sender, EventArgs e) in e:\repos\acig_help_desk\Tickets\assign_vendor.aspx.cs:line 102
+   at System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_assign_vendor_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid.ACIG\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\231ead17\4363d2e5\App_Web_ebroszfi.6.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 2/6/2014 9:52:39 AM **********
+Inner Exception Type: System.ArgumentException
+Inner Exception: The parameter 'address' cannot be an empty string.
+Parameter name: address
+Inner Source: System
+Inner Stack Trace: 
+   at System.Net.Mail.MailAddress..ctor(String address, String displayName, Encoding displayNameEncoding)
+   at System.Net.Mail.MailAddress..ctor(String address)
+   at Notifier.SendEmail(String To, String Subject, String Body, List`1 ccEmails, Boolean sendCC) in e:\repos\acig_help_desk\App_Code\Notifier.cs:line 29
+   at HtmlEmailer.Assign_Vendor_Ticket_EMail(tbl_Users user) in e:\repos\acig_help_desk\App_Code\HtmlEmailer.cs:line 344
+   at Tickets_assign_vendor.btnSave_Click(Object sender, EventArgs e) in e:\repos\acig_help_desk\Tickets\assign_vendor.aspx.cs:line 113
+   at System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_assign_vendor_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid.ACIG\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\231ead17\4363d2e5\App_Web_kobvnves.2.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
