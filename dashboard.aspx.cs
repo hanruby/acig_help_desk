@@ -26,24 +26,27 @@ public partial class Default2 : MasterAppPage
         _entity = GetEntity();
         currentUserId = CurrentUser.Id();
         list = new List<NavigationHelper>();
-        obj = new NavigationHelper();
-        obj.Href = rootPath + "responded.aspx";
-        obj.ImagePath = _entity.Tickets.Where(x => x.State == "Pending" && x.Created_By == currentUserId).Count().ToString();
-        obj.Name = "Pending Tickets";
-        list.Add(obj);
-        obj = new NavigationHelper();
-        obj.Href = rootPath + "pending.aspx";
-        obj.ImagePath = _entity.Tickets.Where(x => x.State == "Resolved" && x.Created_By == currentUserId).Count().ToString();
-        obj.Name = "Resolved Tickets";
-        list.Add(obj);
-        obj = new NavigationHelper();
-        obj.Href = rootPath + "responded.aspx";
-        obj.ImagePath = _entity.Tickets.Where(x => x.State == "Closed" && x.Created_By == currentUserId).Count().ToString();
-        obj.Name = "Closed Tickets";
-        list.Add(obj);
-        rptrTickets.DataSource = list;
-        rptrTickets.DataBind();
-        if (!CurrentUser.Is_Engineer())
+        if (!CurrentUser.Is_Vendor())
+        {
+            obj = new NavigationHelper();
+            obj.Href = rootPath + "responded.aspx";
+            obj.ImagePath = _entity.Tickets.Where(x => x.State == "Pending" && x.Created_By == currentUserId).Count().ToString();
+            obj.Name = "Pending Tickets";
+            list.Add(obj);
+            obj = new NavigationHelper();
+            obj.Href = rootPath + "pending.aspx";
+            obj.ImagePath = _entity.Tickets.Where(x => x.State == "Resolved" && x.Created_By == currentUserId).Count().ToString();
+            obj.Name = "Resolved Tickets";
+            list.Add(obj);
+            obj = new NavigationHelper();
+            obj.Href = rootPath + "responded.aspx";
+            obj.ImagePath = _entity.Tickets.Where(x => x.State == "Closed" && x.Created_By == currentUserId).Count().ToString();
+            obj.Name = "Closed Tickets";
+            list.Add(obj);
+            rptrTickets.DataSource = list;
+            rptrTickets.DataBind();
+        }
+        if (!CurrentUser.Is_Engineer() && !CurrentUser.Is_Vendor())
         {
             return;
         }

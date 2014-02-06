@@ -91,6 +91,16 @@ public static class CurrentUser
         return user;
     }
 
+    public static bool Is_Engineer_Vendor()
+    {
+        return Is_Vendor() || Is_Engineer();
+    }
+
+    public static bool Is_Vendor()
+    {
+        return CurrentUser.Role() == "vendor";
+    }
+
     public static bool Is_Engineer()
     {
         return CurrentUser.Role() == "engineer";

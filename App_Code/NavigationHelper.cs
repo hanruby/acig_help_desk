@@ -49,6 +49,9 @@ public class NavigationHelper
             case "supervisor":
                 lst = GetUserMenu(obj, lst, rootPath);
                 break;
+            case "vendor":
+                lst = GetVendorMenu(obj, lst, rootPath);
+                break;
         }
         if (role == "admin" && user.Role != "engineer")
         {
@@ -62,7 +65,10 @@ public class NavigationHelper
         {
             lst = GetUserMenu(obj, lst, rootPath);
         }
-        lst = AddCommonListItems(obj, lst, rootPath);
+        if (role != "vendor")
+        {
+            lst = AddCommonListItems(obj, lst, rootPath);
+        }
         if (role == "supervisor" || user.Role == "supervisor")
         {
             lst = GetSuprvisorMenu(obj, lst, rootPath);
@@ -72,6 +78,17 @@ public class NavigationHelper
             lst = GetFullReportsMenu(obj, lst, rootPath);
         }
         obj = new NavigationHelper { Name = "Log out", Href = rootPath + "account/log_out.aspx", ImagePath = "icon-off" };
+        lst.Add(obj);
+        return lst;
+    }
+
+    public static List<NavigationHelper> GetVendorMenu(NavigationHelper obj, List<NavigationHelper> lst, string rootPath)
+    {
+        obj = new NavigationHelper { Name = "Assigned Tickets Waiting My Response", Href = rootPath + "tickets/assigned.aspx", ImagePath = "icon-th-large" };
+        lst.Add(obj);
+        obj = new NavigationHelper { Name = "Assigned  Tickets Waiting User's Response", Href = rootPath + "tickets/assigned_responded.aspx", ImagePath = "icon-th-large" };
+        lst.Add(obj);
+        obj = new NavigationHelper { Name = "Report", Href = rootPath + "tickets/report.aspx", ImagePath = "icon-book" };
         lst.Add(obj);
         return lst;
     }

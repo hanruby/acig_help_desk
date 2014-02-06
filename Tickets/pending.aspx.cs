@@ -15,6 +15,11 @@ public partial class Tickets_pending : MasterAppPage
     {
         if (!IsPostBack)
         {
+            if (CurrentUser.Is_Vendor())
+            {
+                ErrorRedirect(Route.GetRootPath("") + "not_authorized.aspx", "Not authorized to access that page !!");
+                return;
+            }
             BindBreadCrumbRepeater("ticket_pending");
             BindGvClarificationTickets();
             BindGvResolvedTickets();
