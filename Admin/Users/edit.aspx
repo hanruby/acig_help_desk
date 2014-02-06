@@ -31,13 +31,14 @@
                     <tr>
                         <td>
                             <asp:Label ID="lblRole" runat="server" Text="Role" AssociatedControlID="ddlRole"></asp:Label>
-                            <asp:DropDownList ID="ddlRole" runat="server" AutoPostBack="True"
-                            OnSelectedIndexChanged="ddlRole_SelectedIndexChanged" CssClass="input-xlarge">
+                            <asp:DropDownList ID="ddlRole" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlRole_SelectedIndexChanged"
+                                CssClass="input-xlarge">
                                 <asp:ListItem Value="0">Select</asp:ListItem>
                                 <asp:ListItem Value="user">User</asp:ListItem>
                                 <asp:ListItem Value="engineer">Engineer</asp:ListItem>
                                 <asp:ListItem Value="supervisor">Supervisor</asp:ListItem>
                                 <asp:ListItem Value="manager">Manager</asp:ListItem>
+                                <asp:ListItem Value="vendor">Vendor</asp:ListItem>
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator ID="rfvRole" runat="server" ControlToValidate="ddlRole"
                                 ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
@@ -45,7 +46,7 @@
                         <td>
                             <asp:Label ID="lblActive" runat="server" Text='Active'></asp:Label>
                             <br />
-                            <asp:DropDownList ID="ddlActive" runat="server"  CssClass="input-xlarge">
+                            <asp:DropDownList ID="ddlActive" runat="server" CssClass="input-xlarge">
                                 <asp:ListItem Value="0">Select</asp:ListItem>
                                 <asp:ListItem Value="True">True</asp:ListItem>
                                 <asp:ListItem Value="False">False</asp:ListItem>
@@ -56,11 +57,17 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Label ID="lblSubSubCategory" runat="server" Text='Category(ies)'></asp:Label>
-                            <br />
-                            <asp:ListBox ID="lstBoxSubSubCategory" runat="server" SelectionMode="Multiple"
-                             CssClass="input-xlarge" Height="500px">
-                            </asp:ListBox>
+                            <div id="categoryDiv" runat="server">
+                                <asp:Label ID="lblSubSubCategory" runat="server" Text='Category(ies)'></asp:Label>
+                                <br />
+                                <asp:ListBox ID="lstBoxSubSubCategory" runat="server" SelectionMode="Multiple" CssClass="input-xlarge"
+                                    Height="500px"></asp:ListBox>
+                            </div>
+                            <div id="vendorEmailsDiv" runat="server">
+                                <asp:Label ID="lblVendorEmails" runat="server" Text="Emails ( ',' separated )"></asp:Label>
+                                <br />
+                                <asp:TextBox ID="txtVendorEmails" runat="server" MaxLength="50"></asp:TextBox>
+                            </div>
                         </td>
                         <td>
                             <asp:Label ID="lblDepartment" runat="server" Text='Department'></asp:Label>
@@ -81,8 +88,7 @@
                                 OnClick="btnUpdateUser_Click" />
                         </td>
                         <td>
-                            <asp:HyperLink ID="hprLnkBack" runat="server" CssClass="btn btn-danger" 
-                            NavigateUrl="index.aspx">Cancel</asp:HyperLink>
+                            <asp:HyperLink ID="hprLnkBack" runat="server" CssClass="btn btn-danger" NavigateUrl="index.aspx">Cancel</asp:HyperLink>
                         </td>
                     </tr>
                 </table>

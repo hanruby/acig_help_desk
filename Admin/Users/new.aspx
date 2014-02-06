@@ -22,7 +22,7 @@
                         </td>
                         <td>
                             <asp:Label ID="lblEmail" runat="server" Text="Email" AssociatedControlID="txtEmail"
-                             CssClass="input-xlarge"></asp:Label>
+                                CssClass="input-xlarge"></asp:Label>
                             <asp:TextBox ID="txtEmail" runat="server" MaxLength="200" CssClass="input-xlarge"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail"
                                 ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
@@ -31,13 +31,14 @@
                     <tr>
                         <td>
                             <asp:Label ID="lblRole" runat="server" Text="Role" AssociatedControlID="ddlRole"></asp:Label>
-                            <asp:DropDownList ID="ddlRole" runat="server" AutoPostBack="True"
-                            OnSelectedIndexChanged="ddlRole_SelectedIndexChanged" CssClass="input-xlarge">
+                            <asp:DropDownList ID="ddlRole" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlRole_SelectedIndexChanged"
+                                CssClass="input-xlarge">
                                 <asp:ListItem Value="0">Select</asp:ListItem>
                                 <asp:ListItem Value="user">User</asp:ListItem>
                                 <asp:ListItem Value="engineer" Selected="True">Engineer</asp:ListItem>
                                 <asp:ListItem Value="supervisor">Supervisor</asp:ListItem>
                                 <asp:ListItem Value="manager">Manager</asp:ListItem>
+                                <asp:ListItem Value="vendor">Vendor</asp:ListItem>
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator ID="rfvRole" runat="server" ControlToValidate="ddlRole"
                                 ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
@@ -56,14 +57,21 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Label ID="lblSubSubCategory" runat="server" Text='Category(ies)'></asp:Label>
-                            <br />
-                            <asp:ListBox ID="lstBoxSubSubCategory" runat="server" DataSourceID="SqlDataSource5"
-                                DataTextField="TEXT" DataValueField="ID" SelectionMode="Multiple" CssClass="input-xlarge" Height="500px">
-                            </asp:ListBox>
-                            <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:Acig_Help_DeskConnectionString %>"
-                                SelectCommand="select  (c.name + ' - ' + s.Name + ' - ' + ss.Name) as TEXT, ss.Id as ID  from Categories c inner join Sub_Categories s on c.Id = s.Category_Id inner join Sub_Sub_Categories ss on s.Id = ss.Sub_Category_Id order by c.Name, s.Name, ss.Name">
-                            </asp:SqlDataSource>
+                            <div id="categoryDiv" runat="server">
+                                <asp:Label ID="lblSubSubCategory" runat="server" Text='Category(ies)'></asp:Label>
+                                <br />
+                                <asp:ListBox ID="lstBoxSubSubCategory" runat="server" DataSourceID="SqlDataSource5"
+                                    DataTextField="TEXT" DataValueField="ID" SelectionMode="Multiple" CssClass="input-xlarge"
+                                    Height="500px"></asp:ListBox>
+                                <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:Acig_Help_DeskConnectionString %>"
+                                    SelectCommand="select  (c.name + ' - ' + s.Name + ' - ' + ss.Name) as TEXT, ss.Id as ID  from Categories c inner join Sub_Categories s on c.Id = s.Category_Id inner join Sub_Sub_Categories ss on s.Id = ss.Sub_Category_Id order by c.Name, s.Name, ss.Name">
+                                </asp:SqlDataSource>
+                            </div>
+                            <div id="vendorEmailsDiv" runat="server">
+                                <asp:Label ID="lblVendorEmails" runat="server" Text="Emails ( ',' separated )"></asp:Label>
+                                <br />
+                                <asp:TextBox ID="txtVendorEmails" runat="server" MaxLength="50"></asp:TextBox>
+                            </div>
                         </td>
                         <td>
                             <asp:Label ID="lblDepartment" runat="server" Text='Department'></asp:Label>

@@ -29,6 +29,7 @@ public partial class Admin_Users_edit : MasterAppPage
             ddlRole.SelectedValue = _user.Role;
             ddlActive.SelectedValue = _user.Active.ToString();
             ddlDepartment.SelectedValue = _user.Department_Id.ToString();
+            txtVendorEmails.Text = _user.Vendor_Emails;
             var _subSubCategoryIds = _entity.User_Sub_Sub_Categories.Where(x => x.User_Id == _id).ToList().Select(x => x.Sub_Sub_Category_Id).ToList();
             BindSubSubCategoryDdl();
             if (_subSubCategoryIds.Count > 0)
@@ -119,6 +120,14 @@ public partial class Admin_Users_edit : MasterAppPage
         _user.Department_Id = long.Parse(ddlDepartment.SelectedValue);
         _user.Role = ddlRole.SelectedValue;
         _user.Updated_At = DateTime.Now;
+        if (ddlRole.SelectedValue == "vendor")
+        {
+            _user.Vendor_Emails = txtVendorEmails.Text;
+        }
+        else
+        {
+            _user.Vendor_Emails = string.Empty;
+        }
         _entity.SaveChanges();
         if (email_Changed)
         {
@@ -158,13 +167,7 @@ public partial class Admin_Users_edit : MasterAppPage
 
     protected void UpdateCategoryBox()
     {
-        if (ddlRole.SelectedValue == "engineer")
-        {
-            lstBoxSubSubCategory.Visible = true;
-        }
-        else
-        {
-            lstBoxSubSubCategory.Visible = false;
-        }
+        vendorEmailsDiv.Visible = ddlRole.SelectedValue == "vendor";
+        categoryDiv.Visible = ddlRole.SelectedValue == "engineer";
     }
 }

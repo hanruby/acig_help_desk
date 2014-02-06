@@ -18,6 +18,7 @@ public partial class Admin_Users_new : MasterAppPage
         if (!IsPostBack)
         {
             BindBreadCrumbRepeater("user_new");
+            vendorEmailsDiv.Visible = false;
         }
     }
 
@@ -40,17 +41,24 @@ public partial class Admin_Users_new : MasterAppPage
         _user.Department_Id = long.Parse(ddlDepartment.SelectedValue);
         _user.Created_At = DateTime.Now;
         _user.Updated_At = DateTime.Now;
+        if (ddlRole.SelectedValue == "vendor")
+        {
+            _user.Vendor_Emails = txtVendorEmails.Text;
+        }
         _entity.AddTotbl_Users(_user);
         _entity.SaveChanges();
-        foreach (ListItem x in lstBoxSubSubCategory.Items)
+        if (ddlRole.SelectedValue == "engineer")
         {
-            if (x.Selected)
+            foreach (ListItem x in lstBoxSubSubCategory.Items)
             {
-                _sc = new User_Sub_Sub_Categories();
-                _sc.User_Id = _user.Id;
-                _sc.Sub_Sub_Category_Id = long.Parse(x.Value);
-                _entity.AddToUser_Sub_Sub_Categories(_sc);
-                _entity.SaveChanges();
+                if (x.Selected)
+                {
+                    _sc = new User_Sub_Sub_Categories();
+                    _sc.User_Id = _user.Id;
+                    _sc.Sub_Sub_Category_Id = long.Parse(x.Value);
+                    _entity.AddToUser_Sub_Sub_Categories(_sc);
+                    _entity.SaveChanges();
+                }
             }
         }
         Session["NoticeMessage"] = "Successfully created new user profile!";
@@ -59,13 +67,7 @@ public partial class Admin_Users_new : MasterAppPage
 
     protected void ddlRole_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (ddlRole.SelectedValue == "engineer")
-        {
-            lstBoxSubSubCategory.Visible = true;
-        }
-        else
-        {
-            lstBoxSubSubCategory.Visible = false;
-        }
+        vendorEmailsDiv.Visible = ddlRole.SelectedValue == "vendor";
+        categoryDiv.Visible = ddlRole.SelectedValue == "engineer";
     }
 }
