@@ -8,7 +8,7 @@ using System.IO;
 
 public class HtmlEmailer
 {
-    string rootPath, category, Id, subject, url, createdBy, createdByEmail, createdByDeptEmail, assignedToDeptEmail;
+    string rootPath, category, Id, subject, url, localUrl, createdBy, createdByEmail, createdByDeptEmail, assignedToDeptEmail;
     long currentUserId;
     tbl_Users user, custUser;
     Department custDept;
@@ -29,6 +29,7 @@ public class HtmlEmailer
         createdBy = user.User_Name;
         createdByEmail = user.Email;
         url = ConfigurationManager.AppSettings["RootPath"] + "/tickets/show.aspx?id=" + Id;
+        localUrl = ConfigurationManager.AppSettings["LocalRootPath"] + "/tickets/show.aspx?id=" + Id;
         Create_CC_EMails();
         AddManagerCCEmails();
     }
@@ -103,6 +104,7 @@ public class HtmlEmailer
             body = body.Replace("{UserName}", x.tbl_Users.User_Name);
             body = body.Replace("{Subject}", subject);
             body = body.Replace("{Url}", url);
+            body = body.Replace("{LocalUrl}", localUrl);
             body = body.Replace("{Category}", category);
             body = body.Replace("{AssignedUser}", createdBy);
             Notifier.SendEmail(x.tbl_Users.Email, "IT Help Desk - New Ticket Assigned", body, ccEmails);
@@ -121,6 +123,7 @@ public class HtmlEmailer
         body = body.Replace("{Subject}", subject);
         body = body.Replace("{UserName}", createdBy);
         body = body.Replace("{Url}", url);
+        body = body.Replace("{LocalUrl}", localUrl);
         body = body.Replace("{Category}", category);
         body = body.Replace("{ResolvedUser}", CurrentUser.User().User_Name);
         Notifier.SendEmail(createdByEmail, "IT Help Desk - Ticket Resolved", body, ccEmails);
@@ -136,6 +139,7 @@ public class HtmlEmailer
             var customUser = _entity.tbl_Users.Where(x => x.Id == customId).First();
             body = body.Replace("{UserName}", customUser.Email);
             body = body.Replace("{Url}", url);
+            body = body.Replace("{LocalUrl}", localUrl);
             body = body.Replace("{Category}", category);
             body = body.Replace("{ResolvedUser}", CurrentUser.User().User_Name);
             Notifier.SendEmail(createdByEmail, "IT Help Desk - Ticket Resolved", body, ccEmails);
@@ -154,6 +158,7 @@ public class HtmlEmailer
         body = body.Replace("{Subject}", subject);
         body = body.Replace("{UserName}", createdBy);
         body = body.Replace("{Url}", url);
+        body = body.Replace("{LocalUrl}", localUrl);
         body = body.Replace("{Category}", category);
         body = body.Replace("{User}", CurrentUser.User().User_Name);
         Notifier.SendEmail(createdByEmail, "IT Help Desk - Ticket Clarification", body, ccEmails);
@@ -169,6 +174,7 @@ public class HtmlEmailer
             var customUser = _entity.tbl_Users.Where(x => x.Id == customId).First();
             body = body.Replace("{UserName}", customUser.Email);
             body = body.Replace("{Url}", url);
+            body = body.Replace("{LocalUrl}", localUrl);
             body = body.Replace("{Category}", category);
             body = body.Replace("{User}", CurrentUser.User().User_Name);
             Notifier.SendEmail(createdByEmail, "IT Help Desk - Ticket Clarification", body, ccEmails);
@@ -189,6 +195,7 @@ public class HtmlEmailer
             body = body.Replace("{Subject}", subject);
             body = body.Replace("{UserName}", x.tbl_Users.User_Name);
             body = body.Replace("{Url}", url);
+            body = body.Replace("{LocalUrl}", localUrl);
             body = body.Replace("{Category}", category);
             body = body.Replace("{ClosedUser}", createdBy);
             Notifier.SendEmail(x.tbl_Users.Email, "IT Help Desk - Ticket Closed", body, ccEmails);
@@ -211,6 +218,7 @@ public class HtmlEmailer
                 body = body.Replace("{Subject}", subject);
                 body = body.Replace("{UserName}", x.tbl_Users.User_Name);
                 body = body.Replace("{Url}", url);
+                body = body.Replace("{LocalUrl}", localUrl);
                 body = body.Replace("{Category}", category);
                 body = body.Replace("{CommentUser}", createdBy);
                 Notifier.SendEmail(x.tbl_Users.Email, "IT Help Desk - New Comment / Notes On Ticket", body, ccEmails);
@@ -226,6 +234,7 @@ public class HtmlEmailer
             body = body.Replace("{Subject}", subject);
             body = body.Replace("{UserName}", createdBy);
             body = body.Replace("{Url}", url);
+            body = body.Replace("{LocalUrl}", localUrl);
             body = body.Replace("{Category}", category);
             body = body.Replace("{CommentUser}", CurrentUser.User().User_Name);
             Notifier.SendEmail(createdByEmail, "IT Help Desk - New Comment / Notes on Ticket", body, ccEmails);
@@ -242,6 +251,7 @@ public class HtmlEmailer
                 var customUser = _entity.tbl_Users.Where(x => x.Id == customId).First();
                 body = body.Replace("{UserName}", customUser.Email);
                 body = body.Replace("{Url}", url);
+                body = body.Replace("{LocalUrl}", localUrl);
                 body = body.Replace("{Category}", category);
                 body = body.Replace("{CommentUser}", CurrentUser.User().User_Name);
                 Notifier.SendEmail(createdByEmail, "IT Help Desk - New Comment / Notes on Ticket", body, ccEmails);
@@ -263,6 +273,7 @@ public class HtmlEmailer
             body = body.Replace("{Subject}", subject);
             body = body.Replace("{UserName}", x.tbl_Users.User_Name);
             body = body.Replace("{Url}", url);
+            body = body.Replace("{LocalUrl}", localUrl);
             body = body.Replace("{Category}", category);
             body = body.Replace("{ClosedUser}", createdBy);
             Notifier.SendEmail(x.tbl_Users.Email, "IT Help Desk - Ticket Re Open", body, ccEmails);
@@ -283,6 +294,7 @@ public class HtmlEmailer
             body = body.Replace("{Subject}", subject);
             body = body.Replace("{UserName}", x.tbl_Users.User_Name);
             body = body.Replace("{Url}", url);
+            body = body.Replace("{LocalUrl}", localUrl);
             body = body.Replace("{Category}", category);
             body = body.Replace("{User}", createdBy);
             Notifier.SendEmail(x.tbl_Users.Email, "IT Help Desk - Ticket Clarified", body, ccEmails);
@@ -322,6 +334,7 @@ public class HtmlEmailer
         body = body.Replace("{UserName}", user.User_Name);
         body = body.Replace("{Subject}", subject);
         body = body.Replace("{Url}", url);
+        body = body.Replace("{LocalUrl}", localUrl);
         body = body.Replace("{Category}", category);
         body = body.Replace("{AssignedUser}", createdBy);
         Notifier.SendEmail(user.Email, "IT Help Desk - Ticket ReAssigned", body, ccEmails);
@@ -339,6 +352,7 @@ public class HtmlEmailer
         body = body.Replace("{UserName}", user.User_Name);
         body = body.Replace("{Subject}", subject);
         body = body.Replace("{Url}", url);
+        body = body.Replace("{LocalUrl}", localUrl);
         body = body.Replace("{Category}", category);
         body = body.Replace("{AssignedUser}", createdBy);
         Notifier.SendEmail(user.Email, "IT Help Desk - New Ticket Assigned", body, ccEmails);
