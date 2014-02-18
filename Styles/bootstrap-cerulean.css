@@ -1,13 +1,16 @@
-@import url(https://fonts.googleapis.com/css?family=Karla|Ubuntu);
-/*!
- * Bootstrap v2.0.4
- *
- * Copyright 2012 Twitter, Inc
- * Licensed under the Apache License v2.0
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Designed and built with all the love in the world @twitter by @mdo and @fat.
- */
+@font-face {
+  font-family: 'Karla';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Karla'), local('Karla-Regular'), url(../fonts/azR40LUJrT4HaWK28zHmVA.woff) format('woff');
+}
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Ubuntu'), url(../fonts/_xyN3apAT_yRRDeqB3sPRg.woff) format('woff');
+}
+ 
 article,
 aside,
 details,
