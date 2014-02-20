@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
     CodeFile="show.aspx.cs" Inherits="Tickets_show" %>
+
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
 </asp:Content>
@@ -29,52 +30,48 @@
         <div class="box span12">
             <div class="box-header well">
                 <h2>
-                    <i class="icon-info-sign"></i>&nbsp; Ticket States
+                    <i class="icon-info-sign"></i>&nbsp; Ticket States & Assigned To
                 </h2>
             </div>
             <div class="box-content">
-                <asp:GridView ID="gvEvents" runat="server" CssClass="table table-bordered" AutoGenerateColumns="false"
-                    ShowHeader="true" Width="100%">
-                    <Columns>
-                        <asp:TemplateField HeaderText="State">
-                            <ItemTemplate>
-                                <asp:Label ID="lblName" runat="server" Text='<%# Eval("State")%>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Created At">
-                            <ItemTemplate>
-                                <asp:Label ID="lblCountry" runat="server" Text='<%# Eval("CreatedAt")%>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-                </asp:GridView>
-            </div>
-        </div>
-    </div>
-    <div class="row-fluid">
-        <div class="box span12">
-            <div class="box-header well">
-                <h2>
-                    <i class="icon-info-sign"></i>&nbsp; Assigned To
-                </h2>
-            </div>
-            <div class="box-content">
-                <asp:Repeater ID="rptrAssignedUsers" runat="server">
-                    <HeaderTemplate>
-                        <table width="100%" class="table table-bordered">
+                <div class="left" style='width:70%;'>
+                    <h5>States</h5>
+                    <asp:GridView ID="gvEvents" runat="server" CssClass="table table-bordered" AutoGenerateColumns="false"
+                        ShowHeader="true" Width="100%">
+                        <Columns>
+                            <asp:TemplateField HeaderText="State">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblName" runat="server" Text='<%# Eval("State")%>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Created At">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblCountry" runat="server" Text='<%# Eval("CreatedAt")%>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                </div>
+                <div class="right" style='width:25%;'>
+                    <h5>Assigned To</h5>
+                    <asp:Repeater ID="rptrAssignedUsers" runat="server">
+                        <HeaderTemplate>
+                            <table width="100%" class="table table-bordered right">
+                        </HeaderTemplate>
+                        <ItemTemplate>
                             <tr>
                                 <td>
-                    </HeaderTemplate>
-                    <ItemTemplate>
-                        <%# Eval("Name") %>
-                    </ItemTemplate>
-                    <SeparatorTemplate>
-                        ,
-                    </SeparatorTemplate>
-                    <FooterTemplate>
-                        </td> </tr> </table>
-                    </FooterTemplate>
-                </asp:Repeater>
+                                    <%# Eval("Name") %>
+                                </td>
+                            </tr>
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            </table>
+                        </FooterTemplate>
+                    </asp:Repeater>
+                </div>
+                <div class="clear">
+                </div>
             </div>
         </div>
     </div>
@@ -130,7 +127,9 @@
                                 <label>
                                     Priority:
                                 </label>
-                                <span class="label label-warning"> <%# Eval("Priority") %> </span>
+                                <span class="label label-warning">
+                                    <%# Eval("Priority") %>
+                                </span>
                             </td>
                         </tr>
                         <tr>
@@ -144,7 +143,8 @@
                                 <label>
                                     Current State:
                                 </label>
-                                <span class="label label-success"> <%# Eval("State") %></span>
+                                <span class="label label-success">
+                                    <%# Eval("State") %></span>
                             </td>
                         </tr>
                     </ItemTemplate>
