@@ -1,6 +1,6 @@
 ﻿USE [Acig_Help_Desk]
 GO
-/****** Object:  Table [dbo].[Categories]    Script Date: 01/09/2014 14:14:49 ******/
+/****** Object:  Table [dbo].[Categories]    Script Date: 03/02/2014 09:50:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -18,7 +18,7 @@ CREATE TABLE [dbo].[Categories](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Departments]    Script Date: 01/09/2014 14:14:49 ******/
+/****** Object:  Table [dbo].[Departments]    Script Date: 03/02/2014 09:50:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -39,7 +39,7 @@ CREATE TABLE [dbo].[Departments](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Log_Systems]    Script Date: 01/09/2014 14:14:49 ******/
+/****** Object:  Table [dbo].[Log_Systems]    Script Date: 03/02/2014 09:50:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -57,7 +57,7 @@ CREATE TABLE [dbo].[Log_Systems](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Sub_Categories]    Script Date: 01/09/2014 14:14:49 ******/
+/****** Object:  Table [dbo].[Sub_Categories]    Script Date: 03/02/2014 09:50:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -76,19 +76,22 @@ CREATE TABLE [dbo].[Sub_Categories](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[tbl_Users]    Script Date: 01/09/2014 14:14:49 ******/
+/****** Object:  Table [dbo].[tbl_Users]    Script Date: 03/02/2014 09:50:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[tbl_Users](
 	[Id] [bigint] IDENTITY(1,1) NOT NULL,
-	[Email] [nvarchar](200) NOT NULL,
-	[User_Name] [nvarchar](200) NOT NULL,
 	[Active] [bit] NOT NULL,
+	[Account_Type] [nvarchar](10) NOT NULL,
+	[Department_Id] [bigint] NOT NULL,
+	[Email] [nvarchar](200) NOT NULL,
+	[Password] [nvarchar](50) NULL,
 	[Role] [nvarchar](50) NOT NULL,
 	[Role2] [nvarchar](50) NOT NULL,
-	[Department_Id] [bigint] NOT NULL,
+	[User_Name] [nvarchar](200) NOT NULL,
+	[Vendor_Emails] [nvarchar](50) NULL,
 	[Created_At] [datetime] NOT NULL,
 	[Updated_At] [datetime] NOT NULL,
  CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED 
@@ -97,7 +100,7 @@ CREATE TABLE [dbo].[tbl_Users](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[System_Incident_Logs]    Script Date: 01/09/2014 14:14:49 ******/
+/****** Object:  Table [dbo].[System_Incident_Logs]    Script Date: 03/02/2014 09:50:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -122,7 +125,7 @@ CREATE TABLE [dbo].[System_Incident_Logs](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Sub_Sub_Categories]    Script Date: 01/09/2014 14:14:49 ******/
+/****** Object:  Table [dbo].[Sub_Sub_Categories]    Script Date: 03/02/2014 09:50:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -141,7 +144,7 @@ CREATE TABLE [dbo].[Sub_Sub_Categories](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[User_Sub_Sub_Categories]    Script Date: 01/09/2014 14:14:49 ******/
+/****** Object:  Table [dbo].[User_Sub_Sub_Categories]    Script Date: 03/02/2014 09:50:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -156,7 +159,7 @@ CREATE TABLE [dbo].[User_Sub_Sub_Categories](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Tickets]    Script Date: 01/09/2014 14:14:49 ******/
+/****** Object:  Table [dbo].[Tickets]    Script Date: 03/02/2014 09:50:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -184,7 +187,7 @@ CREATE TABLE [dbo].[Tickets](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[User_Tickets]    Script Date: 01/09/2014 14:14:49 ******/
+/****** Object:  Table [dbo].[User_Tickets]    Script Date: 03/02/2014 09:50:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -199,7 +202,7 @@ CREATE TABLE [dbo].[User_Tickets](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Events]    Script Date: 01/09/2014 14:14:49 ******/
+/****** Object:  Table [dbo].[Events]    Script Date: 03/02/2014 09:50:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -216,7 +219,7 @@ CREATE TABLE [dbo].[Events](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Comments]    Script Date: 01/09/2014 14:14:49 ******/
+/****** Object:  Table [dbo].[Comments]    Script Date: 03/02/2014 09:50:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -235,85 +238,85 @@ CREATE TABLE [dbo].[Comments](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  ForeignKey [FK_Comments_tbl_Users]    Script Date: 01/09/2014 14:14:49 ******/
+/****** Object:  ForeignKey [FK_Comments_tbl_Users]    Script Date: 03/02/2014 09:50:17 ******/
 ALTER TABLE [dbo].[Comments]  WITH CHECK ADD  CONSTRAINT [FK_Comments_tbl_Users] FOREIGN KEY([Created_By])
 REFERENCES [dbo].[tbl_Users] ([Id])
 GO
 ALTER TABLE [dbo].[Comments] CHECK CONSTRAINT [FK_Comments_tbl_Users]
 GO
-/****** Object:  ForeignKey [FK_Comments_Tickets]    Script Date: 01/09/2014 14:14:49 ******/
+/****** Object:  ForeignKey [FK_Comments_Tickets]    Script Date: 03/02/2014 09:50:17 ******/
 ALTER TABLE [dbo].[Comments]  WITH CHECK ADD  CONSTRAINT [FK_Comments_Tickets] FOREIGN KEY([Ticket_Id])
 REFERENCES [dbo].[Tickets] ([Id])
 GO
 ALTER TABLE [dbo].[Comments] CHECK CONSTRAINT [FK_Comments_Tickets]
 GO
-/****** Object:  ForeignKey [FK_Events_tbl_Users]    Script Date: 01/09/2014 14:14:49 ******/
+/****** Object:  ForeignKey [FK_Events_tbl_Users]    Script Date: 03/02/2014 09:50:17 ******/
 ALTER TABLE [dbo].[Events]  WITH CHECK ADD  CONSTRAINT [FK_Events_tbl_Users] FOREIGN KEY([Created_By])
 REFERENCES [dbo].[tbl_Users] ([Id])
 GO
 ALTER TABLE [dbo].[Events] CHECK CONSTRAINT [FK_Events_tbl_Users]
 GO
-/****** Object:  ForeignKey [FK_Events_Tickets]    Script Date: 01/09/2014 14:14:49 ******/
+/****** Object:  ForeignKey [FK_Events_Tickets]    Script Date: 03/02/2014 09:50:17 ******/
 ALTER TABLE [dbo].[Events]  WITH CHECK ADD  CONSTRAINT [FK_Events_Tickets] FOREIGN KEY([Ticket_Id])
 REFERENCES [dbo].[Tickets] ([Id])
 GO
 ALTER TABLE [dbo].[Events] CHECK CONSTRAINT [FK_Events_Tickets]
 GO
-/****** Object:  ForeignKey [FK_Sub_Categories_Categories]    Script Date: 01/09/2014 14:14:49 ******/
+/****** Object:  ForeignKey [FK_Sub_Categories_Categories]    Script Date: 03/02/2014 09:50:17 ******/
 ALTER TABLE [dbo].[Sub_Categories]  WITH CHECK ADD  CONSTRAINT [FK_Sub_Categories_Categories] FOREIGN KEY([Category_Id])
 REFERENCES [dbo].[Categories] ([Id])
 GO
 ALTER TABLE [dbo].[Sub_Categories] CHECK CONSTRAINT [FK_Sub_Categories_Categories]
 GO
-/****** Object:  ForeignKey [FK_Sub_Sub_Categories_Sub_Categories]    Script Date: 01/09/2014 14:14:49 ******/
+/****** Object:  ForeignKey [FK_Sub_Sub_Categories_Sub_Categories]    Script Date: 03/02/2014 09:50:17 ******/
 ALTER TABLE [dbo].[Sub_Sub_Categories]  WITH CHECK ADD  CONSTRAINT [FK_Sub_Sub_Categories_Sub_Categories] FOREIGN KEY([Sub_Category_Id])
 REFERENCES [dbo].[Sub_Categories] ([Id])
 GO
 ALTER TABLE [dbo].[Sub_Sub_Categories] CHECK CONSTRAINT [FK_Sub_Sub_Categories_Sub_Categories]
 GO
-/****** Object:  ForeignKey [FK_System_Incident_Logs_Log_Systems]    Script Date: 01/09/2014 14:14:49 ******/
+/****** Object:  ForeignKey [FK_System_Incident_Logs_Log_Systems]    Script Date: 03/02/2014 09:50:17 ******/
 ALTER TABLE [dbo].[System_Incident_Logs]  WITH CHECK ADD  CONSTRAINT [FK_System_Incident_Logs_Log_Systems] FOREIGN KEY([System_Id])
 REFERENCES [dbo].[Log_Systems] ([Id])
 GO
 ALTER TABLE [dbo].[System_Incident_Logs] CHECK CONSTRAINT [FK_System_Incident_Logs_Log_Systems]
 GO
-/****** Object:  ForeignKey [FK_tbl_Users_Departments]    Script Date: 01/09/2014 14:14:49 ******/
+/****** Object:  ForeignKey [FK_tbl_Users_Departments]    Script Date: 03/02/2014 09:50:17 ******/
 ALTER TABLE [dbo].[tbl_Users]  WITH CHECK ADD  CONSTRAINT [FK_tbl_Users_Departments] FOREIGN KEY([Department_Id])
 REFERENCES [dbo].[Departments] ([Id])
 GO
 ALTER TABLE [dbo].[tbl_Users] CHECK CONSTRAINT [FK_tbl_Users_Departments]
 GO
-/****** Object:  ForeignKey [FK_Tickets_Sub_Categories]    Script Date: 01/09/2014 14:14:49 ******/
+/****** Object:  ForeignKey [FK_Tickets_Sub_Categories]    Script Date: 03/02/2014 09:50:17 ******/
 ALTER TABLE [dbo].[Tickets]  WITH CHECK ADD  CONSTRAINT [FK_Tickets_Sub_Categories] FOREIGN KEY([Sub_Sub_Category_Id])
 REFERENCES [dbo].[Sub_Sub_Categories] ([Id])
 GO
 ALTER TABLE [dbo].[Tickets] CHECK CONSTRAINT [FK_Tickets_Sub_Categories]
 GO
-/****** Object:  ForeignKey [FK_Tickets_Users]    Script Date: 01/09/2014 14:14:49 ******/
+/****** Object:  ForeignKey [FK_Tickets_Users]    Script Date: 03/02/2014 09:50:17 ******/
 ALTER TABLE [dbo].[Tickets]  WITH CHECK ADD  CONSTRAINT [FK_Tickets_Users] FOREIGN KEY([Created_By])
 REFERENCES [dbo].[tbl_Users] ([Id])
 GO
 ALTER TABLE [dbo].[Tickets] CHECK CONSTRAINT [FK_Tickets_Users]
 GO
-/****** Object:  ForeignKey [FK_User_Sub_Sub_Categories_Sub_Sub_Categories]    Script Date: 01/09/2014 14:14:49 ******/
+/****** Object:  ForeignKey [FK_User_Sub_Sub_Categories_Sub_Sub_Categories]    Script Date: 03/02/2014 09:50:17 ******/
 ALTER TABLE [dbo].[User_Sub_Sub_Categories]  WITH CHECK ADD  CONSTRAINT [FK_User_Sub_Sub_Categories_Sub_Sub_Categories] FOREIGN KEY([Sub_Sub_Category_Id])
 REFERENCES [dbo].[Sub_Sub_Categories] ([Id])
 GO
 ALTER TABLE [dbo].[User_Sub_Sub_Categories] CHECK CONSTRAINT [FK_User_Sub_Sub_Categories_Sub_Sub_Categories]
 GO
-/****** Object:  ForeignKey [FK_User_Sub_Sub_Categories_tbl_Users]    Script Date: 01/09/2014 14:14:49 ******/
+/****** Object:  ForeignKey [FK_User_Sub_Sub_Categories_tbl_Users]    Script Date: 03/02/2014 09:50:17 ******/
 ALTER TABLE [dbo].[User_Sub_Sub_Categories]  WITH CHECK ADD  CONSTRAINT [FK_User_Sub_Sub_Categories_tbl_Users] FOREIGN KEY([User_Id])
 REFERENCES [dbo].[tbl_Users] ([Id])
 GO
 ALTER TABLE [dbo].[User_Sub_Sub_Categories] CHECK CONSTRAINT [FK_User_Sub_Sub_Categories_tbl_Users]
 GO
-/****** Object:  ForeignKey [FK_User_Tickets_tbl_Users]    Script Date: 01/09/2014 14:14:49 ******/
+/****** Object:  ForeignKey [FK_User_Tickets_tbl_Users]    Script Date: 03/02/2014 09:50:17 ******/
 ALTER TABLE [dbo].[User_Tickets]  WITH CHECK ADD  CONSTRAINT [FK_User_Tickets_tbl_Users] FOREIGN KEY([User_Id])
 REFERENCES [dbo].[tbl_Users] ([Id])
 GO
 ALTER TABLE [dbo].[User_Tickets] CHECK CONSTRAINT [FK_User_Tickets_tbl_Users]
 GO
-/****** Object:  ForeignKey [FK_User_Tickets_Tickets]    Script Date: 01/09/2014 14:14:49 ******/
+/****** Object:  ForeignKey [FK_User_Tickets_Tickets]    Script Date: 03/02/2014 09:50:17 ******/
 ALTER TABLE [dbo].[User_Tickets]  WITH CHECK ADD  CONSTRAINT [FK_User_Tickets_Tickets] FOREIGN KEY([Ticket_Id])
 REFERENCES [dbo].[Tickets] ([Id])
 GO
