@@ -180,12 +180,14 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="User_Name" Type="nvarchar" Nullable="false" MaxLength="200" />
           <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="Account_Type" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="Department_Id" Type="bigint" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
           <Property Name="Role" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Role2" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="Department_Id" Type="bigint" Nullable="false" />
+          <Property Name="User_Name" Type="nvarchar" Nullable="false" MaxLength="200" />
           <Property Name="Vendor_Emails" Type="nvarchar" MaxLength="50" />
           <Property Name="Created_At" Type="datetime" Nullable="false" />
           <Property Name="Updated_At" Type="datetime" Nullable="false" />
@@ -729,12 +731,14 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Email" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="User_Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="String" Name="Account_Type" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="Department_Id" Nullable="false" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Role" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Role2" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int64" Name="Department_Id" Nullable="false" />
+          <Property Type="String" Name="User_Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Vendor_Emails" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="Created_At" Nullable="false" />
           <Property Type="DateTime" Name="Updated_At" Nullable="false" />
@@ -977,12 +981,14 @@
                 <ScalarProperty Name="Updated_At" ColumnName="Updated_At" />
                 <ScalarProperty Name="Created_At" ColumnName="Created_At" />
                 <ScalarProperty Name="Vendor_Emails" ColumnName="Vendor_Emails" />
-                <ScalarProperty Name="Department_Id" ColumnName="Department_Id" />
+                <ScalarProperty Name="User_Name" ColumnName="User_Name" />
                 <ScalarProperty Name="Role2" ColumnName="Role2" />
                 <ScalarProperty Name="Role" ColumnName="Role" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Department_Id" ColumnName="Department_Id" />
+                <ScalarProperty Name="Account_Type" ColumnName="Account_Type" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1046,16 +1052,16 @@
         </AssociationConnector>
         <AssociationConnector Association="Acig_Help_DeskModel.FK_Tickets_Sub_Categories" >
           <ConnectorPoint PointX="3.6875" PointY="4.8167936197916674" />
-          <ConnectorPoint PointX="3.6875" PointY="10.31224609375" />
-          <ConnectorPoint PointX="7.0260404166666666" PointY="10.31224609375" />
-          <ConnectorPoint PointX="7.1927070833333326" PointY="10.31224609375" />
-          <ConnectorPoint PointX="7.3854191666666669" PointY="10.31224609375" />
-          <ConnectorPoint PointX="7.5520858333333329" PointY="10.31224609375" />
-          <ConnectorPoint PointX="7.7447954166666664" PointY="10.31224609375" />
-          <ConnectorPoint PointX="7.9114620833333325" PointY="10.31224609375" />
-          <ConnectorPoint PointX="8.9166666666666661" PointY="10.31224609375" />
-          <ConnectorPoint PointX="9.0833333333333339" PointY="10.31224609375" />
-          <ConnectorPoint PointX="10.875" PointY="10.31224609375" />
+          <ConnectorPoint PointX="3.6875" PointY="10.24974609375" />
+          <ConnectorPoint PointX="7.0260404166666666" PointY="10.24974609375" />
+          <ConnectorPoint PointX="7.1927070833333326" PointY="10.24974609375" />
+          <ConnectorPoint PointX="7.3854191666666669" PointY="10.24974609375" />
+          <ConnectorPoint PointX="7.5520858333333329" PointY="10.24974609375" />
+          <ConnectorPoint PointX="7.7447954166666664" PointY="10.24974609375" />
+          <ConnectorPoint PointX="7.9114620833333325" PointY="10.24974609375" />
+          <ConnectorPoint PointX="8.9166666666666661" PointY="10.24974609375" />
+          <ConnectorPoint PointX="9.0833333333333339" PointY="10.24974609375" />
+          <ConnectorPoint PointX="10.875" PointY="10.24974609375" />
         </AssociationConnector>
         <AssociationConnector Association="Acig_Help_DeskModel.FK_User_Tickets_Tickets" >
           <ConnectorPoint PointX="11.4375" PointY="7.875" />
@@ -1068,9 +1074,9 @@
           <ConnectorPoint PointX="15.625" PointY="2.8074446614583337" />
         </AssociationConnector>
         <EntityTypeShape EntityType="Acig_Help_DeskModel.Department" Width="1.5" PointX="4.375" PointY="11.5" Height="2.9417936197916674" />
-        <EntityTypeShape EntityType="Acig_Help_DeskModel.tbl_Users" Width="1.5" PointX="6.625" PointY="10.875" Height="4.0956022135416674" />
+        <EntityTypeShape EntityType="Acig_Help_DeskModel.tbl_Users" Width="1.5" PointX="6.625" PointY="10.75" Height="4.4802050781250031" />
         <AssociationConnector Association="Acig_Help_DeskModel.FK_Comments_tbl_Users" >
-          <ConnectorPoint PointX="7.4687525" PointY="10.875" />
+          <ConnectorPoint PointX="7.4687525" PointY="10.75" />
           <ConnectorPoint PointX="7.4687525" PointY="8.2942178776041651" />
           <ConnectorPoint PointX="7.1927070833333326" PointY="8.2942178776041651" />
           <ConnectorPoint PointX="7.0260404166666666" PointY="8.2942178776041651" />
@@ -1081,23 +1087,23 @@
           <ConnectorPoint PointX="6.625" PointY="12.970896809895834" />
         </AssociationConnector>
         <AssociationConnector Association="Acig_Help_DeskModel.FK_Events_tbl_Users" >
-          <ConnectorPoint PointX="8.125" PointY="12.922801106770834" />
-          <ConnectorPoint PointX="9" PointY="12.922801106770834" />
+          <ConnectorPoint PointX="8.125" PointY="12.990102539062502" />
+          <ConnectorPoint PointX="9" PointY="12.990102539062502" />
           <ConnectorPoint PointX="9" PointY="9.4898893229166674" />
         </AssociationConnector>
         <AssociationConnector Association="Acig_Help_DeskModel.FK_Tickets_Users" >
-          <ConnectorPoint PointX="8.125" PointY="11.836400553385417" />
-          <ConnectorPoint PointX="8.9166666666666661" PointY="11.836400553385417" />
-          <ConnectorPoint PointX="9.0833333333333339" PointY="11.836400553385417" />
-          <ConnectorPoint PointX="10.875" PointY="11.836400553385417" />
+          <ConnectorPoint PointX="8.125" PointY="11.8410546875" />
+          <ConnectorPoint PointX="8.9166666666666661" PointY="11.8410546875" />
+          <ConnectorPoint PointX="9.0833333333333339" PointY="11.8410546875" />
+          <ConnectorPoint PointX="10.875" PointY="11.8410546875" />
         </AssociationConnector>
         <AssociationConnector Association="Acig_Help_DeskModel.FK_User_Sub_Sub_Categories_tbl_Users" >
-          <ConnectorPoint PointX="7.10937375" PointY="10.875" />
+          <ConnectorPoint PointX="7.10937375" PointY="10.75" />
           <ConnectorPoint PointX="7.10937375" PointY="5.5068441341145835" />
           <ConnectorPoint PointX="8.25" PointY="5.5068441341145835" />
         </AssociationConnector>
         <AssociationConnector Association="Acig_Help_DeskModel.FK_User_Tickets_tbl_Users" >
-          <ConnectorPoint PointX="7.8281287499999994" PointY="10.875" />
+          <ConnectorPoint PointX="7.8281287499999994" PointY="10.75" />
           <ConnectorPoint PointX="7.8281287499999994" PointY="6.5740364583333317" />
           <ConnectorPoint PointX="10.5" PointY="6.5740364583333317" />
         </AssociationConnector>

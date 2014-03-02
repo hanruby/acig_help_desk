@@ -13,6 +13,7 @@
             </div>
             <div class="box-content">
                 <asp:HiddenField ID="hdnFldUserId" runat="server" />
+                <asp:HiddenField ID="hdnFldAccountType" runat="server" />
                 <table class="table table-bordered">
                     <tr>
                         <td>
@@ -53,6 +54,24 @@
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator ID="rfvActiveNew" runat="server" ControlToValidate="ddlActive"
                                 ForeColor="#FF3300" SetFocusOnError="True" InitialValue="0">*</asp:RequiredFieldValidator>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Label ID="lblAccountType" runat="server" Text='Account Type'></asp:Label>
+                            <br />
+                            <asp:DropDownList ID="ddlAccountType" runat="server" CssClass="input-xlarge" OnSelectedIndexChanged="ddlAccountType_SelectedIndexChanged"
+                                AutoPostBack="true">
+                            </asp:DropDownList>
+                            <asp:RequiredFieldValidator ID="rfvAccountType" runat="server" ControlToValidate="ddlAccountType"
+                                ForeColor="#FF3300" SetFocusOnError="True" InitialValue="0">*</asp:RequiredFieldValidator>
+                        </td>
+                        <td>
+                            <asp:Label ID="lblPassword" runat="server" Text="Password" AssociatedControlID="txtPassword"
+                                CssClass="input-xlarge"></asp:Label>
+                            <asp:TextBox ID="txtPassword" runat="server" MaxLength="20" CssClass="input-xlarge" TextMode="Password"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="txtPassword"
+                                ForeColor="#FF3300" SetFocusOnError="True">*</asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>

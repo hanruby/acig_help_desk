@@ -11,14 +11,14 @@ public partial class Admin_Users_edit : MasterAppPage
 {
     tbl_Users _user;
     User_Sub_Sub_Categories _user_Sub_Sub_Categories;
-    Sub_Sub_Categories _sub_Sub_Category;
     long _id, _sub_Sub_CategoryId;
-    bool email_Changed;
-    string old_Email, new_Email;
+    bool email_Changed, acntType;
+    string old_Email, new_Email, userName;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
+            BindDdlAccountTypes(ddlAccountType);
             BindBreadCrumbRepeater("user_edit");
             _entity = GetEntity();
             _id = long.Parse(Request.QueryString["id"]);
@@ -30,6 +30,8 @@ public partial class Admin_Users_edit : MasterAppPage
             ddlActive.SelectedValue = _user.Active.ToString();
             ddlDepartment.SelectedValue = _user.Department_Id.ToString();
             txtVendorEmails.Text = _user.Vendor_Emails;
+            ddlAccountType.SelectedValue = _user.Account_Type;
+            hdnFldAccountType.Value = _user.Account_Type;
             var _subSubCategoryIds = _entity.User_Sub_Sub_Categories.Where(x => x.User_Id == _id).ToList().Select(x => x.Sub_Sub_Category_Id).ToList();
             BindSubSubCategoryDdl();
             if (_subSubCategoryIds.Count > 0)
@@ -43,6 +45,14 @@ public partial class Admin_Users_edit : MasterAppPage
                 }
             }
             UpdateCategoryBox();
+            if (_user.Account_Type == Enum_Helper.AccountTypes.NON_ACIG.ToString())
+            {
+                UpdateAccountDiv(true, false);
+            }
+            else
+            {
+                UpdateAccountDiv(false, false);
+            }
         }
     }
 
@@ -81,6 +91,7 @@ public partial class Admin_Users_edit : MasterAppPage
     protected void btnUpdateUser_Click(object sender, EventArgs e)
     {
         _id = long.Parse(hdnFldUserId.Value);
+        userName = txtUserName.Text.Trim();
         _entity = GetEntity();
         _user = _entity.tbl_Users.Where(x => x.Id == _id).First();
         new_Email = txtEmail.Text.Trim();
@@ -92,6 +103,14 @@ public partial class Admin_Users_edit : MasterAppPage
             if (_entity.tbl_Users.Where(x => x.Email == new_Email).Count() > 0)
             {
                 Session["ErrorMessage"] = "Email already taken!";
+                return;
+            }
+        }
+        if (_user.User_Name != userName)
+        {
+            if (_entity.tbl_Users.Where(x => x.User_Name == userName).Count() > 0)
+            {
+                Session["ErrorMessage"] = "Username already taken!";
                 return;
             }
         }
@@ -114,6 +133,7 @@ public partial class Admin_Users_edit : MasterAppPage
                 _entity.SaveChanges();
             }
         }
+        _user.Account_Type = ddlAccountType.SelectedValue;
         _user.Email = new_Email;
         _user.User_Name = txtUserName.Text;
         _user.Active = bool.Parse(ddlActive.SelectedValue);
@@ -127,6 +147,14 @@ public partial class Admin_Users_edit : MasterAppPage
         else
         {
             _user.Vendor_Emails = string.Empty;
+        }
+        if (_user.Account_Type == Enum_Helper.AccountTypes.NON_ACIG.ToString())
+        {
+            _user.Role = "vendor";
+            if (!string.IsNullOrEmpty(txtPassword.Text))
+            {
+                _user.Password = String_Helper.Encrypt(txtPassword.Text.Trim());
+            }
         }
         _entity.SaveChanges();
         if (email_Changed)
@@ -169,5 +197,28 @@ public partial class Admin_Users_edit : MasterAppPage
     {
         vendorEmailsDiv.Visible = ddlRole.SelectedValue == "vendor";
         categoryDiv.Visible = ddlRole.SelectedValue == "engineer";
+    }
+
+    protected void ddlAccountType_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        acntType = ddlAccountType.SelectedValue == Enum_Helper.AccountTypes.NON_ACIG.ToString();
+        if (hdnFldAccountType.Value == Enum_Helper.AccountTypes.ACIG.ToString() && acntType)
+        {
+            UpdateAccountDiv(true, true);
+        }
+        else if (hdnFldAccountType.Value == Enum_Helper.AccountTypes.NON_ACIG.ToString() && acntType)
+        {
+            UpdateAccountDiv(true, false);
+        }
+        else
+        {
+            UpdateAccountDiv(false, false);
+        }
+    }
+
+    void UpdateAccountDiv(bool visible, bool enabled)
+    {
+        txtPassword.Visible = lblPassword.Visible = visible;
+        rfvPassword.Enabled = enabled;
     }
 }

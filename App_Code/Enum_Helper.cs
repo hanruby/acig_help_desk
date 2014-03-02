@@ -10,4 +10,10 @@ public class Enum_Helper
     {
         Pending, Clarification, Clarified, Resolved, Closed
     };
+
+    public enum AccountTypes
+    {
+        ACIG,
+        NON_ACIG
+    }
 }

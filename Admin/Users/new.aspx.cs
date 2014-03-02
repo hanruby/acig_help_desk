@@ -12,11 +12,14 @@ public partial class Admin_Users_new : MasterAppPage
     long _id;
     tbl_Users _user;
     User_Sub_Sub_Categories _sc;
-    string _email;
+    string _email, _userName;
+    bool acntType;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
+            BindDdlAccountTypes(ddlAccountType);
+            UpdateAccountDiv(false, false);
             BindBreadCrumbRepeater("user_new");
             vendorEmailsDiv.Visible = false;
         }
@@ -27,13 +30,20 @@ public partial class Admin_Users_new : MasterAppPage
         _email = txtEmail.Text.Trim();
         _entity = GetEntity();
         _email = txtEmail.Text.Trim();
+        _userName = txtUserName.Text.Trim();
         if (_entity.tbl_Users.Where(x => x.Email == _email).Count() > 0)
         {
             Session["ErrorMessage"] = "Email already taken!";
             return;
         }
+        if (_entity.tbl_Users.Where(x => x.User_Name == _userName).Count() > 0)
+        {
+            Session["ErrorMessage"] = "User Name already taken!";
+            return;
+        }
         _user = new tbl_Users();
         _user.User_Name = txtUserName.Text;
+        _user.Account_Type = ddlAccountType.SelectedValue;
         _user.Email = _email;
         _user.Active = bool.Parse(ddlActive.SelectedValue);
         _user.Role = ddlRole.SelectedValue;
@@ -44,6 +54,11 @@ public partial class Admin_Users_new : MasterAppPage
         if (ddlRole.SelectedValue == "vendor")
         {
             _user.Vendor_Emails = txtVendorEmails.Text;
+        }
+        if (_user.Account_Type == Enum_Helper.AccountTypes.NON_ACIG.ToString())
+        {
+            _user.Role = "vendor";
+            _user.Password = String_Helper.Encrypt(txtPassword.Text.Trim());
         }
         _entity.AddTotbl_Users(_user);
         _entity.SaveChanges();
@@ -70,4 +85,17 @@ public partial class Admin_Users_new : MasterAppPage
         vendorEmailsDiv.Visible = ddlRole.SelectedValue == "vendor";
         categoryDiv.Visible = ddlRole.SelectedValue == "engineer";
     }
+
+    protected void ddlAccountType_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        acntType = ddlAccountType.SelectedValue == Enum_Helper.AccountTypes.NON_ACIG.ToString();
+        UpdateAccountDiv(acntType, acntType);
+    }
+
+    void UpdateAccountDiv(bool visible, bool enabled)
+    {
+        txtPassword.Visible = lblPassword.Visible = visible;
+        rfvPassword.Enabled = enabled;
+    }
+    
 }

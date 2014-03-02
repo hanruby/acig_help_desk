@@ -2590,24 +2590,26 @@ namespace Acig_Help_DeskModel
         /// Create a new tbl_Users object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
-        /// <param name="email">Initial value of the Email property.</param>
-        /// <param name="user_Name">Initial value of the User_Name property.</param>
         /// <param name="active">Initial value of the Active property.</param>
+        /// <param name="account_Type">Initial value of the Account_Type property.</param>
+        /// <param name="department_Id">Initial value of the Department_Id property.</param>
+        /// <param name="email">Initial value of the Email property.</param>
         /// <param name="role">Initial value of the Role property.</param>
         /// <param name="role2">Initial value of the Role2 property.</param>
-        /// <param name="department_Id">Initial value of the Department_Id property.</param>
+        /// <param name="user_Name">Initial value of the User_Name property.</param>
         /// <param name="created_At">Initial value of the Created_At property.</param>
         /// <param name="updated_At">Initial value of the Updated_At property.</param>
-        public static tbl_Users Createtbl_Users(global::System.Int64 id, global::System.String email, global::System.String user_Name, global::System.Boolean active, global::System.String role, global::System.String role2, global::System.Int64 department_Id, global::System.DateTime created_At, global::System.DateTime updated_At)
+        public static tbl_Users Createtbl_Users(global::System.Int64 id, global::System.Boolean active, global::System.String account_Type, global::System.Int64 department_Id, global::System.String email, global::System.String role, global::System.String role2, global::System.String user_Name, global::System.DateTime created_At, global::System.DateTime updated_At)
         {
             tbl_Users tbl_Users = new tbl_Users();
             tbl_Users.Id = id;
-            tbl_Users.Email = email;
-            tbl_Users.User_Name = user_Name;
             tbl_Users.Active = active;
+            tbl_Users.Account_Type = account_Type;
+            tbl_Users.Department_Id = department_Id;
+            tbl_Users.Email = email;
             tbl_Users.Role = role;
             tbl_Users.Role2 = role2;
-            tbl_Users.Department_Id = department_Id;
+            tbl_Users.User_Name = user_Name;
             tbl_Users.Created_At = created_At;
             tbl_Users.Updated_At = updated_At;
             return tbl_Users;
@@ -2648,6 +2650,78 @@ namespace Acig_Help_DeskModel
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
+        public global::System.Boolean Active
+        {
+            get
+            {
+                return _Active;
+            }
+            set
+            {
+                OnActiveChanging(value);
+                ReportPropertyChanging("Active");
+                _Active = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Active");
+                OnActiveChanged();
+            }
+        }
+        private global::System.Boolean _Active;
+        partial void OnActiveChanging(global::System.Boolean value);
+        partial void OnActiveChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Account_Type
+        {
+            get
+            {
+                return _Account_Type;
+            }
+            set
+            {
+                OnAccount_TypeChanging(value);
+                ReportPropertyChanging("Account_Type");
+                _Account_Type = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Account_Type");
+                OnAccount_TypeChanged();
+            }
+        }
+        private global::System.String _Account_Type;
+        partial void OnAccount_TypeChanging(global::System.String value);
+        partial void OnAccount_TypeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 Department_Id
+        {
+            get
+            {
+                return _Department_Id;
+            }
+            set
+            {
+                OnDepartment_IdChanging(value);
+                ReportPropertyChanging("Department_Id");
+                _Department_Id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Department_Id");
+                OnDepartment_IdChanged();
+            }
+        }
+        private global::System.Int64 _Department_Id;
+        partial void OnDepartment_IdChanging(global::System.Int64 value);
+        partial void OnDepartment_IdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
         public global::System.String Email
         {
             get
@@ -2670,50 +2744,26 @@ namespace Acig_Help_DeskModel
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String User_Name
+        public global::System.String Password
         {
             get
             {
-                return _User_Name;
+                return _Password;
             }
             set
             {
-                OnUser_NameChanging(value);
-                ReportPropertyChanging("User_Name");
-                _User_Name = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("User_Name");
-                OnUser_NameChanged();
+                OnPasswordChanging(value);
+                ReportPropertyChanging("Password");
+                _Password = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Password");
+                OnPasswordChanged();
             }
         }
-        private global::System.String _User_Name;
-        partial void OnUser_NameChanging(global::System.String value);
-        partial void OnUser_NameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Boolean Active
-        {
-            get
-            {
-                return _Active;
-            }
-            set
-            {
-                OnActiveChanging(value);
-                ReportPropertyChanging("Active");
-                _Active = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Active");
-                OnActiveChanged();
-            }
-        }
-        private global::System.Boolean _Active;
-        partial void OnActiveChanging(global::System.Boolean value);
-        partial void OnActiveChanged();
+        private global::System.String _Password;
+        partial void OnPasswordChanging(global::System.String value);
+        partial void OnPasswordChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -2768,24 +2818,24 @@ namespace Acig_Help_DeskModel
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 Department_Id
+        public global::System.String User_Name
         {
             get
             {
-                return _Department_Id;
+                return _User_Name;
             }
             set
             {
-                OnDepartment_IdChanging(value);
-                ReportPropertyChanging("Department_Id");
-                _Department_Id = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Department_Id");
-                OnDepartment_IdChanged();
+                OnUser_NameChanging(value);
+                ReportPropertyChanging("User_Name");
+                _User_Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("User_Name");
+                OnUser_NameChanged();
             }
         }
-        private global::System.Int64 _Department_Id;
-        partial void OnDepartment_IdChanging(global::System.Int64 value);
-        partial void OnDepartment_IdChanged();
+        private global::System.String _User_Name;
+        partial void OnUser_NameChanging(global::System.String value);
+        partial void OnUser_NameChanged();
     
         /// <summary>
         /// No Metadata Documentation available.

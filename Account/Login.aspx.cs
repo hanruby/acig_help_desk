@@ -11,12 +11,14 @@ using Acig_Help_DeskModel;
 public partial class Account_Login : MasterAppPage
 {
     tbl_Users user;
+    string userName, pwd, acntType;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
             errorDiv.Visible = false;
             imgLogo.ImageUrl = Route.GetRootPath("images/acig_logo_full.png");
+            BindDdlAccountTypes(ddlAccountType, false);
         }
         if (User.Identity.IsAuthenticated && Request.QueryString["ReturnUrl"] != null)
         {
@@ -30,7 +32,7 @@ public partial class Account_Login : MasterAppPage
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        user = ActiveDirectoryAuthentication();
+        user = ddlAccountType.SelectedValue == Enum_Helper.AccountTypes.ACIG.ToString() ? ActiveDirectoryAuthentication() : DataBaseAuthentication();
         if (user == null)
         {
             return;
@@ -62,8 +64,9 @@ public partial class Account_Login : MasterAppPage
             DirectoryEntry dsresult = sr.GetDirectoryEntry();
             _entity = GetEntity();
             var email = dsresult.Properties["mail"][0].ToString();
+            acntType = Enum_Helper.AccountTypes.ACIG.ToString();
             //var email = "supervisor1@acig.com.sa";
-            var customUser = _entity.tbl_Users.Where(x => x.Email == email).FirstOrDefault();
+            var customUser = _entity.tbl_Users.Where(x => x.Email == email && x.Account_Type == acntType).FirstOrDefault();
             //var customUser = _entity.tbl_Users.Where(x => x.Email.Contains(txtUserName.Text)).FirstOrDefault();
             if (customUser == null)
             {
@@ -79,6 +82,21 @@ public partial class Account_Login : MasterAppPage
             errorDiv.Visible = true;
             return null;
         }
+    }
+
+    tbl_Users DataBaseAuthentication()
+    {
+        userName = txtUserName.Text.Trim();
+        pwd = String_Helper.Encrypt(txtPassword.Text.Trim());
+        acntType = Enum_Helper.AccountTypes.NON_ACIG.ToString();
+        _entity = GetEntity();
+        var customUser = _entity.tbl_Users.Where(x => x.User_Name == userName && x.Password == pwd && x.Account_Type == acntType).FirstOrDefault();
+        if (customUser == null)
+        {
+            errorLabel.Text = "Username or Password is incorrect !";
+            errorDiv.Visible = true;
+        }
+        return customUser;
     }
 
 }

@@ -233,6 +233,39 @@ public class MasterAppPage : System.Web.UI.Page
         ddlRoot.SelectedIndexChanged += new System.EventHandler(BindCategoriesRoot);
     }
 
+    protected void BindDdlAccountTypes(DropDownList ddlRoot, bool includeDefault = true)
+    {
+        List<TextValue> lst = new List<TextValue>();
+        TextValue obj;
+        obj = new TextValue { Text = Enum_Helper.AccountTypes.ACIG.ToString(), Value = Enum_Helper.AccountTypes.ACIG.ToString() };
+        lst.Add(obj);
+        obj = new TextValue { Text = Enum_Helper.AccountTypes.NON_ACIG.ToString(), Value = Enum_Helper.AccountTypes.NON_ACIG.ToString() };
+        lst.Add(obj);
+        DataTable table = new DataTable();
+        table.Columns.Add("Text");
+        table.Columns.Add("Value");
+        DataRow dr;
+        if (includeDefault)
+        {
+            dr = table.NewRow();
+            dr["Text"] = "Select";
+            dr["Value"] = "0";
+            table.Rows.Add(dr);
+        }
+        foreach (var x in lst)
+        {
+            dr = table.NewRow();
+            dr["Text"] = x.Text;
+            dr["Value"] = x.Value;
+            table.Rows.Add(dr);
+        }
+        ddlRoot.DataSource = table;
+        ddlRoot.DataTextField = table.Columns["Text"].ColumnName;
+        ddlRoot.DataValueField = table.Columns["Value"].ColumnName;
+        ddlRoot.DataBind();
+        ddlRoot.SelectedIndexChanged += new System.EventHandler(BindCategoriesRoot);
+    }
+
     protected bool FileLinkVisibile(object obj)
     {
         if (obj == null)
