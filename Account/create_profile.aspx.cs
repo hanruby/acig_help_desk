@@ -37,6 +37,7 @@ public partial class Account_create_profile : MasterAppPage
         _user.Department_Id = long.Parse(ddlDepartment.SelectedValue);
         _user.Created_At = DateTime.Now;
         _user.Updated_At = DateTime.Now;
+        _user.Account_Type = Enum_Helper.AccountTypes.ACIG.ToString();
         _entity.AddTotbl_Users(_user);
         _entity.SaveChanges();
         HtmlEmailer.New_User_Sign_Up(_entity, _user);
