@@ -51,7 +51,7 @@ public partial class Tickets_assigned_responded : MasterAppPage
     protected void gvTicketsClarification_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         if (e.Row.RowType != DataControlRowType.DataRow) return;
-        var text = e.Row.Cells[5].Text;
+        var text = e.Row.Cells[6].Text;
         LinkButton lb;
         lb = new LinkButton();
         lb.CommandArgument = text;
@@ -59,24 +59,10 @@ public partial class Tickets_assigned_responded : MasterAppPage
         lb.Text = "Details";
         lb.PostBackUrl = "show.aspx?id=" + text;
         lb.CssClass = "blue-link";
-        e.Row.Cells[5].Controls.Add((Control)lb);
+        e.Row.Cells[6].Controls.Add((Control)lb);
     }
 
     protected void gvTicketsResolved_RowDataBound(object sender, GridViewRowEventArgs e)
-    {
-        if (e.Row.RowType != DataControlRowType.DataRow) return;
-        var text = e.Row.Cells[5].Text;
-        LinkButton lb;
-        lb = new LinkButton();
-        lb.CommandArgument = text;
-        lb.CommandName = "NumClick";
-        lb.Text = "Details";
-        lb.PostBackUrl = "show.aspx?id=" + text;
-        lb.CssClass = "blue-link";
-        e.Row.Cells[5].Controls.Add((Control)lb);
-    }
-
-    protected void gvTicketsClosed_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         if (e.Row.RowType != DataControlRowType.DataRow) return;
         var text = e.Row.Cells[6].Text;
@@ -88,6 +74,20 @@ public partial class Tickets_assigned_responded : MasterAppPage
         lb.PostBackUrl = "show.aspx?id=" + text;
         lb.CssClass = "blue-link";
         e.Row.Cells[6].Controls.Add((Control)lb);
+    }
+
+    protected void gvTicketsClosed_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType != DataControlRowType.DataRow) return;
+        var text = e.Row.Cells[7].Text;
+        LinkButton lb;
+        lb = new LinkButton();
+        lb.CommandArgument = text;
+        lb.CommandName = "NumClick";
+        lb.Text = "Details";
+        lb.PostBackUrl = "show.aspx?id=" + text;
+        lb.CssClass = "blue-link";
+        e.Row.Cells[7].Controls.Add((Control)lb);
     }
 
     protected void GetHeader(string scope)
@@ -110,6 +110,7 @@ public partial class Tickets_assigned_responded : MasterAppPage
             dt.Columns.Add(new DataColumn("Closed At", typeof(string)));
         }
         dt.Columns.Add(new DataColumn("Category", typeof(string)));
+        dt.Columns.Add(new DataColumn("User", typeof(string)));
         dt.Columns.Add(new DataColumn("Details", typeof(string)));
     }
 
@@ -130,6 +131,8 @@ public partial class Tickets_assigned_responded : MasterAppPage
                    on t.Id equals ut.Ticket_Id
                    join u in _entity.tbl_Users
                    on ut.User_Id equals u.Id
+                   join cr in _entity.tbl_Users
+                   on t.Created_By equals cr.Id
                    where u.Id == currentUserId && t.State == "Clarification"
                    orderby t.Id descending
                    select new
@@ -142,7 +145,8 @@ public partial class Tickets_assigned_responded : MasterAppPage
                        SubCategoryName = sc.Name,
                        SubSubCategoryName = ssc.Name,
                        Id = t.Id,
-                       Subject = t.Subject
+                       Subject = t.Subject,
+                       Created_By = cr.User_Name
                    };
         foreach (var x in data)
         {
@@ -152,6 +156,7 @@ public partial class Tickets_assigned_responded : MasterAppPage
             dr["Open At"] = x.OpenAt;
             dr["Clarification Request Sent At"] = x.ClarificationAt;
             dr["Category"] = x.CategoryName + " >> " + x.SubCategoryName + " >> " + x.SubSubCategoryName;
+            dr["User"] = x.Created_By;
             dr["Details"] = x.Id;
             dt.Rows.Add(dr);
         }
@@ -176,6 +181,8 @@ public partial class Tickets_assigned_responded : MasterAppPage
                    on t.Id equals ut.Ticket_Id
                    join u in _entity.tbl_Users
                    on ut.User_Id equals u.Id
+                   join cr in _entity.tbl_Users
+                   on t.Created_By equals cr.Id
                    where u.Id == currentUserId && t.State == "Resolved"
                    orderby t.Created_By descending
                    select new
@@ -187,7 +194,8 @@ public partial class Tickets_assigned_responded : MasterAppPage
                        SubCategoryName = sc.Name,
                        SubSubCategoryName = ssc.Name,
                        Id = t.Id,
-                       Subject = t.Subject
+                       Subject = t.Subject,
+                       Created_By = cr.User_Name
                    };
         foreach (var x in data)
         {
@@ -198,6 +206,7 @@ public partial class Tickets_assigned_responded : MasterAppPage
             dr["Category"] = x.CategoryName + " >> " + x.SubCategoryName + " >> " + x.SubSubCategoryName;
             dr["Resolved At"] = x.ResolvedAt;
             dr["Details"] = x.Id;
+            dr["User"] = x.Created_By;
             dt.Rows.Add(dr);
         }
         gvTicketsResolved.DataSource = dt;
@@ -221,6 +230,8 @@ public partial class Tickets_assigned_responded : MasterAppPage
                    on t.Id equals ut.Ticket_Id
                    join u in _entity.tbl_Users
                    on ut.User_Id equals u.Id
+                   join cr in _entity.tbl_Users
+                   on t.Created_By equals cr.Id
                    where u.Id == currentUserId && t.State == "Closed"
                    orderby t.Created_By descending
                    select new
@@ -232,7 +243,8 @@ public partial class Tickets_assigned_responded : MasterAppPage
                        SubCategoryName = sc.Name,
                        SubSubCategoryName = ssc.Name,
                        Id = t.Id,
-                       Subject = t.Subject
+                       Subject = t.Subject,
+                       Created_By = cr.User_Name
                    };
         foreach (var x in data)
         {
@@ -244,6 +256,7 @@ public partial class Tickets_assigned_responded : MasterAppPage
             dr["Resolved At"] = x.ResolvedAt;
             dr["Closed At"] = x.ClosedAt;
             dr["Details"] = x.Id;
+            dr["User"] = x.Created_By;
             dt.Rows.Add(dr);
         }
         gvTicketsClosed.DataSource = dt;
