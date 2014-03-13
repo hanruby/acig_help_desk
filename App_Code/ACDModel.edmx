@@ -188,7 +188,7 @@
           <Property Name="Role" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Role2" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="User_Name" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="Vendor_Emails" Type="nvarchar" MaxLength="50" />
+          <Property Name="Vendor_Emails" Type="nvarchar" MaxLength="150" />
           <Property Name="Created_At" Type="datetime" Nullable="false" />
           <Property Name="Updated_At" Type="datetime" Nullable="false" />
         </EntityType>
@@ -739,7 +739,7 @@
           <Property Type="String" Name="Role" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Role2" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="User_Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Vendor_Emails" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Vendor_Emails" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="Created_At" Nullable="false" />
           <Property Type="DateTime" Name="Updated_At" Nullable="false" />
           <NavigationProperty Name="Comments" Relationship="Acig_Help_DeskModel.FK_Comments_tbl_Users" FromRole="tbl_Users" ToRole="Comment" />
