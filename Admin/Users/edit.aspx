@@ -85,7 +85,7 @@
                             <div id="vendorEmailsDiv" runat="server">
                                 <asp:Label ID="lblVendorEmails" runat="server" Text="Emails ( ',' separated )"></asp:Label>
                                 <br />
-                                <asp:TextBox ID="txtVendorEmails" runat="server" MaxLength="150"></asp:TextBox>
+                                <asp:TextBox ID="txtVendorEmails" runat="server" MaxLength="250"></asp:TextBox>
                             </div>
                         </td>
                         <td>
