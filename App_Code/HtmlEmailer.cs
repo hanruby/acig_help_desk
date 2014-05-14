@@ -40,6 +40,8 @@ public class HtmlEmailer
         managerIds = new List<long>();
         currentUserId = CurrentUser.Id();
         AddManagerIDs(user.Department.Manager_Id);
+        AddManagerIDs(user.Department.Manager_Id_2);
+        AddManagerIDs(user.Department.Manager_Id_3);
         if (currentUserId == ticket.Created_By)
         {
             AddCCEmail(createdByEmail);
