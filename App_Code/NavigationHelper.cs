@@ -122,10 +122,7 @@ public class NavigationHelper
         lst.Add(obj);
         obj = new NavigationHelper { Name = "New Call Ticket", Href = rootPath + "tickets/call.aspx", ImagePath = "icon-leaf" };
         lst.Add(obj);
-        if (admin)
-        {
-            GetReassignTicketMenu(obj, lst, rootPath);
-        }
+        GetReassignTicketMenu(obj, lst, rootPath);
         if (admin)
         {
             obj = new NavigationHelper { Name = "Log Systems", Href = rootPath + "log_systems/index.aspx", ImagePath = "icon-th" };
