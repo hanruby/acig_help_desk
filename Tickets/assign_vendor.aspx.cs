@@ -14,7 +14,7 @@ public partial class Tickets_assign_vendor : MasterAppPage
     User_Tickets userTicket;
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!CurrentUser.Is_Engineer() && !CurrentUser.Is_IT_Consultant() && !CurrentUser.Is_Admin())
+        if (!CurrentUser.Is_Admin())
         {
             ErrorRedirect(Route.GetRootPath("") + "not_authorized.aspx", "Not authorized to access!");
             return;

@@ -61,7 +61,7 @@ public class NavigationHelper
                 lst = GetReassignTicketMenu(obj, lst, rootPath);
             }
         }
-        if (role == "admin" || user.Role == "engineer")
+        if (role == "admin")
         {
             lst = GetAssignTicketVendorMenu(obj, lst, rootPath);
         }
@@ -127,9 +127,9 @@ public class NavigationHelper
         {
             obj = new NavigationHelper { Name = "Log Systems", Href = rootPath + "log_systems/index.aspx", ImagePath = "icon-th" };
             lst.Add(obj);
+            obj = new NavigationHelper { Name = "System Incident Logs", Href = rootPath + "system_logs/index.aspx", ImagePath = "icon-pencil" };
+            lst.Add(obj);
         }
-        obj = new NavigationHelper { Name = "System Incident Logs", Href = rootPath + "system_logs/index.aspx", ImagePath = "icon-pencil" };
-        lst.Add(obj);
         return lst;
     }
 
