@@ -185,7 +185,7 @@ public partial class Tickets_ereport : MasterAppPage
             if (filter)
             {
                 cmd.Parameters.AddWithValue("@Start_Date", startDateT);
-                cmd.Parameters.AddWithValue("@End_Date", startDateT);
+                cmd.Parameters.AddWithValue("@End_Date", endDateT);
             }
             dr = cmd.ExecuteReader();
             while (dr.Read())
