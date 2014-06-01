@@ -151,7 +151,8 @@ public partial class Tickets_ereport : MasterAppPage
 
     void AssignPendingQuery(bool filter = false)
     {
-        filterCondition = filter ? "WHERE evc.Created_At >= @Start_Date AND evc.Created_At <= @End_Date" : string.Empty;
+        filterCondition = "WHERE r.Active = 'True' ";
+        filterCondition += (filter ? "AND evc.Created_At >= @Start_Date AND evc.Created_At <= @End_Date" : string.Empty);
         query = "SELECT t.State, r.User_Name, evc.Created_At FROM TICKETS t INNER JOIN " +
             "(SELECT e.Created_By, e.Ticket_Id, e.State, e.Created_At FROM events e INNER JOIN " +
             "(SELECT MAX(id) as CID FROM events GROUP BY ticket_id  ) ec " +
@@ -163,7 +164,8 @@ public partial class Tickets_ereport : MasterAppPage
 
     void AssignResolvedQuery(bool filter = false)
     {
-        filterCondition = filter ? "WHERE evc.Created_At >= @Start_Date AND evc.Created_At <= @End_Date" : string.Empty;
+        filterCondition = "WHERE r.Active = 'True' ";
+        filterCondition += (filter ? "AND evc.Created_At >= @Start_Date AND evc.Created_At <= @End_Date" : string.Empty);
         query = "SELECT t.State, r.User_Name, evc.Created_At FROM TICKETS t INNER JOIN " +
             "(SELECT e.Created_By, e.Ticket_Id, e.State, e.Created_At FROM events e INNER JOIN " +
             "(SELECT MAX(id) as CID FROM events WHERE State = 'Resolved' GROUP BY ticket_id  ) ec " +
