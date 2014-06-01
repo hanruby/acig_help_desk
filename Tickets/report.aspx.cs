@@ -5,9 +5,19 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Acig_Help_DeskModel;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 
 public partial class Tickets_report : MasterAppPage
 {
+    string query, filterCondition;
+    int pendingCount, resolvedCount, closedCount, totalCount, count;
+    List<TextValue> lstText;
+    TextValue objText;
+    SqlConnection conn = null;
+    SqlCommand cmd = null;
+    IDataReader dr = null;
     protected void Page_Load(object sender, EventArgs e)
     {
         BindBreadCrumbRepeater("report");
@@ -22,40 +32,129 @@ public partial class Tickets_report : MasterAppPage
             divEngineer1.Visible = false;
             return;
         }
-        var data = from t in _entity.Tickets
-                   join ut in _entity.User_Tickets
-                   on t.Id equals ut.Ticket_Id
-                   where ut.User_Id == currentUserId
-                   group t by t.State into Grp
-                   select new { Count = Grp.Count(), State = Grp.Key };
+        AssignPendingQuery();
+        ExecuteQuery();
+        AssignResolvedQuery();
+        ExecuteQuery();
         lblAssignedPending.Text = lblAssignedResolved.Text = lblAssignedClosed.Text = "0";
-        foreach (var x in data)
+        lblAssignedPending.Text = pendingCount.ToString();
+        lblAssignedResolved.Text = resolvedCount.ToString();
+        lblAssignedClosed.Text = closedCount.ToString();
+        lblAssignedTotal.Text = totalCount.ToString();
+        AssignDeptPendingQuery();
+        ExecuteQuery(true);
+        AssignDeptResolvedQuery();
+        ExecuteQuery(true);
+        rptrDeptTickets.DataSource = lstText;
+        rptrDeptTickets.DataBind();
+    }
+
+    void AssignPendingQuery(bool filter = false)
+    {
+        filterCondition = "WHERE r.Id='" + currentUserId + "'";
+        query = "SELECT t.State, COUNT(*) AS Tickets_Count FROM TICKETS t INNER JOIN " +
+            "(SELECT e.Created_By, e.Ticket_Id FROM events e INNER JOIN " +
+            "(SELECT MAX(id) as CID FROM events GROUP BY ticket_id  ) ec " +
+            "ON e.Id = ec.CID WHERE e.State = 'Open') evc ON t.Id = evc.Ticket_Id " +
+            "INNER JOIN User_Tickets ut ON t.Id = ut.Ticket_Id INNER JOIN tbl_Users r " +
+            "ON ut.User_Id = r.Id " +
+            "{0} GROUP BY r.Id, t.State";
+        query = string.Format(query, filterCondition);
+    }
+
+    void AssignResolvedQuery(bool filter = false)
+    {
+        filterCondition = "WHERE r.Id='" + currentUserId + "'";
+        query = "SELECT t.State, COUNT(*) AS Tickets_Count FROM TICKETS t INNER JOIN " +
+            "(SELECT e.Created_By, e.Ticket_Id FROM events e INNER JOIN " +
+            "(SELECT MAX(id) as CID FROM events WHERE State = 'Resolved' GROUP BY ticket_id  ) ec " +
+            "ON e.Id = ec.CID) evc ON t.Id = evc.Ticket_Id INNER JOIN tbl_Users r ON evc.Created_By = r.Id " +
+            "{0} GROUP BY r.Id, t.State";
+        query = string.Format(query, filterCondition);
+    }
+
+    void AssignDeptPendingQuery(bool filter = false)
+    {
+        filterCondition = "WHERE r.Id='" + currentUserId + "'";
+        query = "SELECT d.Name, COUNT(*) AS Tickets_Count FROM TICKETS t INNER JOIN " +
+            "(SELECT e.Created_By, e.Ticket_Id FROM events e INNER JOIN " +
+            "(SELECT MAX(id) as CID FROM events GROUP BY ticket_id  ) ec " +
+            "ON e.Id = ec.CID WHERE e.State = 'Open') evc ON t.Id = evc.Ticket_Id " +
+            "INNER JOIN User_Tickets ut ON t.Id = ut.Ticket_Id INNER JOIN tbl_Users r " +
+            "ON ut.User_Id = r.Id INNER JOIN tbl_Users c ON t.Created_By = c.Id " +
+            "INNER JOIN departments d ON c.Department_Id = d.Id " + 
+            "{0} GROUP BY d.Name";
+        query = string.Format(query, filterCondition);
+    }
+
+    void AssignDeptResolvedQuery(bool filter = false)
+    {
+        filterCondition = "WHERE r.Id='" + currentUserId + "'";
+        query = "SELECT d.Name, COUNT(*) AS Tickets_Count FROM TICKETS t INNER JOIN " +
+            "(SELECT e.Created_By, e.Ticket_Id FROM events e INNER JOIN " +
+            "(SELECT MAX(id) as CID FROM events WHERE State = 'Resolved' GROUP BY ticket_id  ) ec " +
+            "ON e.Id = ec.CID) evc ON t.Id = evc.Ticket_Id INNER JOIN tbl_Users r ON evc.Created_By = r.Id " +
+            "INNER JOIN tbl_Users c ON t.Created_By = c.Id " +
+            "INNER JOIN departments d ON c.Department_Id = d.Id " + 
+            "{0} GROUP BY d.Name";
+        query = string.Format(query, filterCondition);
+    }
+
+    void ExecuteQuery(bool forDept = false)
+    {
+        totalCount = 0;
+        lstText = new List<TextValue>();
+        conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Acig_Help_DeskConnectionString"].ToString());
+        cmd = new SqlCommand();
+        try
         {
-            if (x.State == "Pending")
+            conn.Open();
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            cmd.CommandText = query;
+            dr = cmd.ExecuteReader();
+            while (dr.Read())
             {
-                lblAssignedPending.Text = x.Count.ToString();
-            }
-            else if (x.State == "Resolved")
-            {
-                lblAssignedResolved.Text = x.Count.ToString();
-            }
-            else
-            {
-                lblAssignedClosed.Text = x.Count.ToString();
+                if (forDept)
+                {
+                    objText = lstText.Where(x => x.Text == dr["Name"].ToString()).FirstOrDefault();
+                    if (objText == null)
+                    {
+                        objText = new TextValue { Text = dr["Name"].ToString(), Value = "0" };
+                    }
+                    objText.Value = (int.Parse(dr["Tickets_Count"].ToString()) + int.Parse(objText.Value)).ToString();
+                    lstText.Add(objText);
+                }
+                else
+                {
+                    count = 0;
+                    if (dr["State"].ToString() == "Pending")
+                    {
+                        count = int.Parse(dr["Tickets_Count"].ToString());
+                        pendingCount += count;
+                    }
+                    else if (dr["State"].ToString() == "Resolved")
+                    {
+                        count = int.Parse(dr["Tickets_Count"].ToString());
+                        resolvedCount += count;
+                    }
+                    else if (dr["State"].ToString() == "Closed")
+                    {
+                        count = int.Parse(dr["Tickets_Count"].ToString());
+                        closedCount += count;
+                    }
+                    totalCount += count;
+                }
             }
         }
-        lblAssignedTotal.Text = (long.Parse(lblAssignedPending.Text) + long.Parse(lblAssignedResolved.Text) + long.Parse(lblAssignedClosed.Text)).ToString();
-        var data2 = from t in _entity.Tickets
-                   join ut in _entity.User_Tickets
-                   on t.Id equals ut.Ticket_Id
-                   join u in _entity.tbl_Users
-                   on t.Created_By equals u.Id
-                   join d in _entity.Departments
-                   on u.Department_Id equals d.Id
-                   where ut.User_Id == currentUserId
-                   group t by d.Name into Grp
-                   select new { Count = Grp.Count(), Department = Grp.Key };
-        rptrDeptTickets.DataSource = data2;
-        rptrDeptTickets.DataBind();
+        catch
+        {
+
+        }
+        finally
+        {
+            cmd.Parameters.Clear();
+            conn.Close();
+        }
     }
 }

@@ -71,10 +71,10 @@
                         <ItemTemplate>
                             <tr>
                                 <td>
-                                    <%# Eval("Department") %>
+                                    <%# Eval("Text") %>
                                 </td>
                                 <td>
-                                    <asp:Label ID="lblTecketsByDept" runat="server" Text='<%# Eval("Count") %>' CssClass="label label-success"></asp:Label>
+                                    <asp:Label ID="lblTecketsByDept" runat="server" Text='<%# Eval("Value") %>' CssClass="label label-success"></asp:Label>
                                 </td>
                             </tr>
                         </ItemTemplate>
