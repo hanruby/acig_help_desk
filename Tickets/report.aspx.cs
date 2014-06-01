@@ -32,6 +32,8 @@ public partial class Tickets_report : MasterAppPage
             divEngineer1.Visible = false;
             return;
         }
+        totalCount = 0;
+        lstText = new List<TextValue>();
         AssignPendingQuery();
         ExecuteQuery();
         AssignResolvedQuery();
@@ -102,8 +104,6 @@ public partial class Tickets_report : MasterAppPage
 
     void ExecuteQuery(bool forDept = false)
     {
-        totalCount = 0;
-        lstText = new List<TextValue>();
         conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Acig_Help_DeskConnectionString"].ToString());
         cmd = new SqlCommand();
         try
