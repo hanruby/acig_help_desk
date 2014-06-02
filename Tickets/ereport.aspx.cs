@@ -8,6 +8,7 @@ using System.Collections;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text;
 
 public partial class Tickets_ereport : MasterAppPage
 {
@@ -15,12 +16,13 @@ public partial class Tickets_ereport : MasterAppPage
     Report_User rptUser;
     Report_State rprtState;
     List<Report_User> lstReportUsers;
-    string startDate, endDate;
+    string startDate, endDate, fileName, excelData;
     DateTime startDateT, endDateT;
     Hashtable hash;
     SqlConnection conn = null;
     SqlCommand cmd = null;
     IDataReader dr = null;
+    List<string> lstReportHeader;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -39,6 +41,7 @@ public partial class Tickets_ereport : MasterAppPage
 
     protected void BindGridViewFull()
     {
+        hdnFldFilterType.Value = "all";
         lblTicketsCreated.Text = "Tickets Assigned To Engineer !!";
         txtStartDateTC.Text = string.Empty;
         txtEndDateTC.Text = string.Empty;
@@ -147,6 +150,22 @@ public partial class Tickets_ereport : MasterAppPage
             startDateT = (DateTime)hash["StartDate"];
             endDateT = (DateTime)hash["EndDate"];
         }
+        hdnFldFilterType.Value = "custom";
+        hdnFldFilterStartDate.Value = startDateT.ToString();
+        hdnFldFilterEndDate.Value = endDateT.ToString();
+    }
+
+    protected void lnkBtnDownload_Click(object sender, EventArgs e)
+    {
+        BindReportData(); ;
+        Response.ClearContent();
+        Response.Clear();
+        Response.AddHeader("content-disposition", "attachment;filename=" + fileName);
+        Response.ContentType = "application/ms-excel";
+        Response.ContentEncoding = Encoding.Unicode;
+        Response.BinaryWrite(Encoding.Unicode.GetPreamble());
+        Response.Write(excelData);
+        Response.End();
     }
 
     void AssignPendingQuery(bool filter = false)
@@ -215,6 +234,54 @@ public partial class Tickets_ereport : MasterAppPage
         {
             cmd.Parameters.Clear();
             conn.Close();
+        }
+    }
+
+    void BindReportData()
+    {
+        fileName = "Report_By_Engineer_" + DateTimeHelper.ToTimeStamp() + ".xls";
+        lstReportHeader = new List<string>();
+        lstReportUsers = new List<Report_User>();
+        if (hdnFldFilterType.Value == "all")
+        {
+            AssignPendingQuery();
+            ExecuteQuery();
+            AssignResolvedQuery();
+            ExecuteQuery();
+        }
+        else
+        {
+            startDateT = DateTime.Parse(hdnFldFilterStartDate.Value);
+            endDateT = DateTime.Parse(hdnFldFilterEndDate.Value);
+            AssignPendingQuery(true);
+            ExecuteQuery(true);
+            AssignResolvedQuery(true);
+            ExecuteQuery(true);
+        }
+        foreach (var x in lstReportUsers)
+        {
+            foreach (var y in x.states)
+            {
+                if (!lstReportHeader.Contains(y.state))
+                {
+                    lstReportHeader.Add(y.state);
+                }
+            }
+        }
+        excelData = "User\t";
+        foreach (var x in lstReportHeader)
+        {
+            excelData += x + "\t";
+        }
+        excelData += "\n";
+        foreach (var x in lstReportUsers)
+        {
+            excelData += x.email + "\t";
+            foreach (var y in x.states)
+            {
+                excelData += y.count + "\t";
+            }
+            excelData += "\n";
         }
     }
 }
