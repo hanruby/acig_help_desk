@@ -3193,3 +3193,247 @@ Stack Trace:
    at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
    at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
 
+********** 6/5/2014 11:24:31 AM **********
+Inner Exception Type: System.Threading.SemaphoreFullException
+Inner Exception: Adding the specified count to the semaphore would cause it to exceed its maximum count.
+Inner Source: System
+Inner Stack Trace: 
+   at System.Threading.Semaphore.Release(Int32 releaseCount)
+   at System.Data.ProviderBase.DbConnectionPool.PutNewObject(DbConnectionInternal obj)
+   at System.Data.ProviderBase.DbConnectionPool.DeactivateObject(DbConnectionInternal obj)
+   at System.Data.ProviderBase.DbConnectionPool.PutObject(DbConnectionInternal obj, Object owningObject)
+   at System.Data.ProviderBase.DbConnectionInternal.CloseConnection(DbConnection owningObject, DbConnectionFactory connectionFactory)
+   at System.Data.SqlClient.SqlInternalConnection.CloseConnection(DbConnection owningObject, DbConnectionFactory connectionFactory)
+   at System.Data.SqlClient.SqlConnection.Close()
+   at Tickets_edreport.ExecuteQuery(Boolean filter) in e:\repos\acig_help_desk\Tickets\edreport.aspx.cs:line 119
+   at Tickets_edreport.btnSearch_Click(Object sender, EventArgs e) in e:\repos\acig_help_desk\Tickets\edreport.aspx.cs:line 50
+   at System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_edreport_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid.ACIG\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\231ead17\4363d2e5\App_Web_vetahmq1.2.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 6/5/2014 11:26:51 AM **********
+Inner Exception Type: System.Threading.SemaphoreFullException
+Inner Exception: Adding the specified count to the semaphore would cause it to exceed its maximum count.
+Inner Source: System
+Inner Stack Trace: 
+   at System.Threading.Semaphore.Release(Int32 releaseCount)
+   at System.Data.ProviderBase.DbConnectionPool.PutNewObject(DbConnectionInternal obj)
+   at System.Data.ProviderBase.DbConnectionPool.DeactivateObject(DbConnectionInternal obj)
+   at System.Data.ProviderBase.DbConnectionPool.PutObject(DbConnectionInternal obj, Object owningObject)
+   at System.Data.ProviderBase.DbConnectionInternal.CloseConnection(DbConnection owningObject, DbConnectionFactory connectionFactory)
+   at System.Data.SqlClient.SqlInternalConnection.CloseConnection(DbConnection owningObject, DbConnectionFactory connectionFactory)
+   at System.Data.SqlClient.SqlConnection.Close()
+   at Tickets_edreport.ExecuteQuery(Boolean filter) in e:\repos\acig_help_desk\Tickets\edreport.aspx.cs:line 123
+   at Tickets_edreport.btnSearch_Click(Object sender, EventArgs e) in e:\repos\acig_help_desk\Tickets\edreport.aspx.cs:line 54
+   at System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_edreport_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid.ACIG\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\231ead17\4363d2e5\App_Web_szw5t4r0.4.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 6/5/2014 11:27:41 AM **********
+Inner Exception Type: System.Threading.SemaphoreFullException
+Inner Exception: Adding the specified count to the semaphore would cause it to exceed its maximum count.
+Inner Source: System
+Inner Stack Trace: 
+   at System.Threading.Semaphore.Release(Int32 releaseCount)
+   at System.Data.ProviderBase.DbConnectionPool.PutNewObject(DbConnectionInternal obj)
+   at System.Data.ProviderBase.DbConnectionPool.DeactivateObject(DbConnectionInternal obj)
+   at System.Data.ProviderBase.DbConnectionPool.PutObject(DbConnectionInternal obj, Object owningObject)
+   at System.Data.ProviderBase.DbConnectionInternal.CloseConnection(DbConnection owningObject, DbConnectionFactory connectionFactory)
+   at System.Data.SqlClient.SqlInternalConnection.CloseConnection(DbConnection owningObject, DbConnectionFactory connectionFactory)
+   at System.Data.SqlClient.SqlConnection.Close()
+   at Tickets_edreport.ExecuteQuery(Boolean filter) in e:\repos\acig_help_desk\Tickets\edreport.aspx.cs:line 123
+   at Tickets_edreport.btnSearch_Click(Object sender, EventArgs e) in e:\repos\acig_help_desk\Tickets\edreport.aspx.cs:line 54
+   at System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_edreport_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid.ACIG\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\231ead17\4363d2e5\App_Web_szw5t4r0.4.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 6/5/2014 11:28:17 AM **********
+Inner Exception Type: System.Threading.SemaphoreFullException
+Inner Exception: Adding the specified count to the semaphore would cause it to exceed its maximum count.
+Inner Source: System
+Inner Stack Trace: 
+   at System.Threading.Semaphore.Release(Int32 releaseCount)
+   at System.Data.ProviderBase.DbConnectionPool.PutNewObject(DbConnectionInternal obj)
+   at System.Data.ProviderBase.DbConnectionPool.DeactivateObject(DbConnectionInternal obj)
+   at System.Data.ProviderBase.DbConnectionPool.PutObject(DbConnectionInternal obj, Object owningObject)
+   at System.Data.ProviderBase.DbConnectionInternal.CloseConnection(DbConnection owningObject, DbConnectionFactory connectionFactory)
+   at System.Data.SqlClient.SqlInternalConnection.CloseConnection(DbConnection owningObject, DbConnectionFactory connectionFactory)
+   at System.Data.SqlClient.SqlConnection.Close()
+   at Tickets_edreport.ExecuteQuery(Boolean filter) in e:\repos\acig_help_desk\Tickets\edreport.aspx.cs:line 123
+   at Tickets_edreport.btnSearch_Click(Object sender, EventArgs e) in e:\repos\acig_help_desk\Tickets\edreport.aspx.cs:line 54
+   at System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_edreport_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid.ACIG\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\231ead17\4363d2e5\App_Web_szw5t4r0.4.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 6/5/2014 11:39:15 AM **********
+Inner Exception Type: System.Web.HttpException
+Inner Exception: The GridView 'gvTickets' fired event PageIndexChanging which wasn't handled.
+Inner Source: System.Web
+Inner Stack Trace: 
+   at System.Web.UI.WebControls.GridView.OnPageIndexChanging(GridViewPageEventArgs e)
+   at System.Web.UI.WebControls.GridView.HandlePage(Int32 newPage)
+   at System.Web.UI.WebControls.GridView.HandleEvent(EventArgs e, Boolean causesValidation, String validationGroup)
+   at System.Web.UI.WebControls.GridView.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.GridView.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_edreport_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid.ACIG\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\231ead17\4363d2e5\App_Web_bgc1bto1.28.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 6/5/2014 11:40:27 AM **********
+Inner Exception Type: System.Web.HttpException
+Inner Exception: The GridView 'gvTickets' fired event PageIndexChanging which wasn't handled.
+Inner Source: System.Web
+Inner Stack Trace: 
+   at System.Web.UI.WebControls.GridView.OnPageIndexChanging(GridViewPageEventArgs e)
+   at System.Web.UI.WebControls.GridView.HandlePage(Int32 newPage)
+   at System.Web.UI.WebControls.GridView.HandleEvent(EventArgs e, Boolean causesValidation, String validationGroup)
+   at System.Web.UI.WebControls.GridView.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.GridView.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_edreport_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid.ACIG\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\231ead17\4363d2e5\App_Web_3bincliy.6.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 6/5/2014 11:40:29 AM **********
+Inner Exception Type: System.Web.HttpException
+Inner Exception: The GridView 'gvTickets' fired event PageIndexChanging which wasn't handled.
+Inner Source: System.Web
+Inner Stack Trace: 
+   at System.Web.UI.WebControls.GridView.OnPageIndexChanging(GridViewPageEventArgs e)
+   at System.Web.UI.WebControls.GridView.HandlePage(Int32 newPage)
+   at System.Web.UI.WebControls.GridView.HandleEvent(EventArgs e, Boolean causesValidation, String validationGroup)
+   at System.Web.UI.WebControls.GridView.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.GridView.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_edreport_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid.ACIG\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\231ead17\4363d2e5\App_Web_3bincliy.6.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+********** 6/5/2014 11:42:24 AM **********
+Inner Exception Type: System.Web.HttpException
+Inner Exception: The GridView 'gvTickets' fired event PageIndexChanging which wasn't handled.
+Inner Source: System.Web
+Inner Stack Trace: 
+   at System.Web.UI.WebControls.GridView.OnPageIndexChanging(GridViewPageEventArgs e)
+   at System.Web.UI.WebControls.GridView.HandlePage(Int32 newPage)
+   at System.Web.UI.WebControls.GridView.HandleEvent(EventArgs e, Boolean causesValidation, String validationGroup)
+   at System.Web.UI.WebControls.GridView.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.GridView.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+Exception Type: System.Web.HttpUnhandledException
+Exception: Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Source: Application_Error - Global.asax
+Stack Trace: 
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at ASP.tickets_edreport_aspx.ProcessRequest(HttpContext context) in c:\Users\Ubaid.ACIG\AppData\Local\Temp\Temporary ASP.NET Files\acig_help_desk\231ead17\4363d2e5\App_Web_0t4qi11x.18.cs:line 0
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+

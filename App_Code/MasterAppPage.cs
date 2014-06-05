@@ -197,6 +197,32 @@ public class MasterAppPage : System.Web.UI.Page
         ddlRoot.SelectedIndexChanged += new System.EventHandler(BindCategoriesRoot);
     }
 
+    protected void BindDdlUsersRoot(DropDownList ddlRoot, string role)
+    {
+        _entity = GetEntity();
+        var lst = _entity.tbl_Users.Where(x => x.Role == role).OrderBy(x => x.User_Name).ToList();
+        DataTable table = new DataTable();
+        table.Columns.Add("Text");
+        table.Columns.Add("Value");
+        DataRow dr;
+        dr = table.NewRow();
+        dr["Text"] = "Select";
+        dr["Value"] = "0";
+        table.Rows.Add(dr);
+        foreach (var x in lst)
+        {
+            dr = table.NewRow();
+            dr["Text"] = x.User_Name;
+            dr["Value"] = x.Id;
+            table.Rows.Add(dr);
+        }
+        ddlRoot.DataSource = table;
+        ddlRoot.DataTextField = table.Columns["Text"].ColumnName;
+        ddlRoot.DataValueField = table.Columns["Value"].ColumnName;
+        ddlRoot.DataBind();
+        ddlRoot.SelectedIndexChanged += new System.EventHandler(BindCategoriesRoot);
+    }
+
     protected void BindDdlStatus(DropDownList ddlRoot)
     {
         List<TextValue> lst = new List<TextValue>();

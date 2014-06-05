@@ -184,6 +184,8 @@ public class NavigationHelper
         lst.Add(obj);
         obj = new NavigationHelper { Name = "Report By Engineer", Href = rootPath + "tickets/ereport.aspx", ImagePath = "icon-book" };
         lst.Add(obj);
+        obj = new NavigationHelper { Name = "Engineer Ticket Details", Href = rootPath + "tickets/edreport.aspx", ImagePath = "icon-book" };
+        lst.Add(obj);
         return lst;
     }
 
