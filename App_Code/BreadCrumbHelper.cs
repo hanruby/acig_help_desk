@@ -122,6 +122,11 @@ public class BreadCrumbHelper
                 obj = new BreadCrumbHelper { Divider_Class = "hide", Href = rootPath + "search.aspx", Text = "Search Ticket" };
                 list.Add(obj);
                 break;
+            case "engineer_ticket_details":
+                rootPath += "tickets/";
+                obj = new BreadCrumbHelper { Divider_Class = "hide", Href = rootPath + "edreport.aspx", Text = "Tickets Detail By Engineer" };
+                list.Add(obj);
+                break;
             case "report":
                 rootPath += "tickets/";
                 obj = new BreadCrumbHelper { Divider_Class = "hide", Href = rootPath + "report.aspx", Text = "Report" };

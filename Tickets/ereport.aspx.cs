@@ -157,7 +157,7 @@ public partial class Tickets_ereport : MasterAppPage
 
     protected void lnkBtnDownload_Click(object sender, EventArgs e)
     {
-        BindReportData(); ;
+        BindReportData();
         Response.ClearContent();
         Response.Clear();
         Response.AddHeader("content-disposition", "attachment;filename=" + fileName);

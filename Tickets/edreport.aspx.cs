@@ -8,6 +8,7 @@ using System.Data;
 using Acig_Help_DeskModel;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Text;
 
 public partial class Tickets_edreport : MasterAppPage
 {
@@ -16,7 +17,7 @@ public partial class Tickets_edreport : MasterAppPage
     IDataReader dataReader = null;
     CustomReport objCustom;
     List<CustomReport> lstCustom;
-    string query, filterCondition;
+    string query, filterCondition, fileName, excelData;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -26,7 +27,7 @@ public partial class Tickets_edreport : MasterAppPage
                 ErrorRedirect(Route.GetRootPath("") + "not_authorized.aspx", "Not authorized to access that page !!");
                 return;
             }
-            BindBreadCrumbRepeater("search_ticket");
+            BindBreadCrumbRepeater("engineer_ticket_details");
             BindDdlUsersRoot(ddlEngineer, "engineer");
         }
     }
@@ -45,6 +46,21 @@ public partial class Tickets_edreport : MasterAppPage
     protected void btnSearch_Click(object sender, EventArgs e)
     {
         ExecuteQuery();
+    }
+
+    protected void lnkBtnDownload_Click(object sender, EventArgs e)
+    {
+        fileName = "details_by_engineer_" + DateTimeHelper.ToTimeStamp() + ".xls";
+        ExecuteQuery(false);
+        BuildDownloadData();
+        Response.ClearContent();
+        Response.Clear();
+        Response.AddHeader("content-disposition", "attachment;filename=" + fileName);
+        Response.ContentType = "application/ms-excel";
+        Response.ContentEncoding = Encoding.Unicode;
+        Response.BinaryWrite(Encoding.Unicode.GetPreamble());
+        Response.Write(excelData);
+        Response.End();
     }
 
     void AssignPendingQuery()
@@ -79,7 +95,7 @@ public partial class Tickets_edreport : MasterAppPage
         query = string.Format(query, filterCondition);
     }
 
-    void ExecuteQuery(bool filter = false)
+    void ExecuteQuery(bool bindData = true)
     {
         _entity = GetEntity();
         filterCondition = "WHERE r.Active = 'True' AND t.State = '" + ddlTicketStatus.SelectedValue + "'";
@@ -117,8 +133,11 @@ public partial class Tickets_edreport : MasterAppPage
                 objCustom.Subject = dataReader["Subject"].ToString();
                 lstCustom.Add(objCustom);
             }
-            gvTickets.DataSource = lstCustom;
-            gvTickets.DataBind();
+            if (bindData)
+            {
+                gvTickets.DataSource = lstCustom;
+                gvTickets.DataBind();
+            }
         }
         catch
         {
@@ -127,6 +146,15 @@ public partial class Tickets_edreport : MasterAppPage
         finally
         {
             conn.Close();
+        }
+    }
+
+    void BuildDownloadData()
+    {
+        excelData = "Id\tOpen At\tSubject\tCategory\tOpen By\tAssigned To\tStatus\n";
+        foreach (var x in lstCustom)
+        {
+            excelData += (x.Id + "\t" + x.CreatedAt + "\t" + x.Subject + "\t" + x.Category + "\t" + x.CreatedBy + "\t" + x.AssignedTo + "\t" + x.Status + "\n");
         }
     }
 }
