@@ -50,7 +50,7 @@ public partial class Tickets_edreport : MasterAppPage
 
     protected void lnkBtnDownload_Click(object sender, EventArgs e)
     {
-        fileName = "details_by_engineer_" + DateTimeHelper.ToTimeStamp() + ".xls";
+        fileName = "Tickets_Detail_By_Engineer_" + DateTimeHelper.ToTimeStamp() + ".xls";
         ExecuteQuery(false);
         BuildDownloadData();
         Response.ClearContent();
