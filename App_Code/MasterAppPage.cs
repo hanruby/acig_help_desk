@@ -144,10 +144,14 @@ public class MasterAppPage : System.Web.UI.Page
         ddlRoot.SelectedIndexChanged += new System.EventHandler(BindCategoriesRoot);
     }
 
-    protected void BindDdlManagersRoot(DropDownList ddlRoot)
+    protected void BindDdlManagersRoot(DropDownList ddlRoot, string additionalRoles = "")
     {
         _entity = GetEntity();
-        var highUsers = High_Users();
+        var highUsers = High_Users().ToList<string>();
+        if (!string.IsNullOrEmpty(additionalRoles))
+        {
+            highUsers.Add(additionalRoles);
+        }
         var lst = _entity.tbl_Users.Where(x => highUsers.Contains(x.Role)).OrderBy(x => x.User_Name).ToList();
         DataTable table = new DataTable();
         table.Columns.Add("Text");
